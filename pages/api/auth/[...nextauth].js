@@ -42,7 +42,8 @@ const options = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET
     })
   ],
-  adapter: MongoDBAdapter(clientPromise)
+  adapter: MongoDBAdapter(clientPromise),
+  secret: process.env.NEXTAUTH_SECRET
 }
 
 const NextAuthHandler = (req, res) => NextAuth(req, res, options)
