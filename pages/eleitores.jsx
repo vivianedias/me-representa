@@ -1,4 +1,4 @@
-import { getUsers } from "./api/user"
+import fetchClient from '../utils/apiClient'
 
 export default function Dashboard({ data }) {
   return (
@@ -9,10 +9,10 @@ export default function Dashboard({ data }) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(req, res) {
   // Fetch data from external API
-  const data = await getUsers()
+  const data = await fetchClient(`${process.env.NEXTAUTH_URL}/api/users`)
 
   // Pass data to the page via props
-  return { props: { data: JSON.parse(JSON.stringify(data)) } }
+  return { props: { data } }
 }

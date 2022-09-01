@@ -1,4 +1,4 @@
-import { getUser } from "../api/user"
+import fetchClient from '../../utils/apiClient'
 
 export default function Candidato({ data }) {
   return (
@@ -11,8 +11,10 @@ export default function Candidato({ data }) {
 
 export async function getServerSideProps(req, res) {
   // Fetch data from external API
-  const data = await getUser(req, res)
+  const { id } = req.query
+
+  const data = await fetchClient(`${process.env.NEXTAUTH_URL}/api/user/${id}`)
 
   // Pass data to the page via props
-  return { props: { data: JSON.parse(JSON.stringify(data)) } }
+  return { props: { data } }
 }
