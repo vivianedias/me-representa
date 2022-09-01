@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import Image from "next/image";
 
 const AjudeEleitores = () => {
-  const { t } = useTranslation('translation', {keyPrefix: 'home'});
+  const { t } = useTranslation('translation', {keyPrefix: 'home.ajudeEleitores'});
   return (
     <>
       <div>
