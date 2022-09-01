@@ -17,6 +17,11 @@ i18n.
                         btnSouVoluntario: "Quero ser voluntária/o",
                         btnSouEleitor: "Sou eleitor/a",
                         imgDescricao: "Eleitores diversos com balões de fala dizendo 'voto!' e '#me representa'"
+                    },
+                    conheca: {
+                        titulo: "Conheça o #MeRepresenta",
+                        oMeRepresenta: "O #MeRepresenta é uma união de coletivos formados por mulheres, pessoas negras e LGBT+. Nosso objetivo é diminuir a distância entre eleitoras/es e candidatas/os comprometidas/os com os direitos sociais, civis e políticos da população.",
+                        aNovaPlataforma: "A nova plataforma #MeRepresenta Eleições 2020 foi elaborada com a participação de 16 organizações da sociedade civil. Veja abaixo quem está com a gente!"
                     }
                 }
             }
