@@ -43,7 +43,7 @@ const options = {
     })
   ],
   adapter: MongoDBAdapter(clientPromise),
-  secret: process.env.NEXTAUTH_SECRET
+  secret: process.env.NEXTAUTH_SECRET,
 }
 
 const NextAuthHandler = (req, res) => NextAuth(req, res, options)
