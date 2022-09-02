@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next"
 const Conheca = () => {
   const { t } = useTranslation("translation", { keyPrefix: "home.conheca" })
   return (
-    <>
+    <section>
       <div>
         <iframe id="videoRep" width="560" height="400" src="https://www.youtube.com/embed/xNSkAwC5TZo" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
       </div>
@@ -13,7 +13,7 @@ const Conheca = () => {
         <p>{t("oMeRepresenta")}</p>
         <p>{t("aNovaPlataforma")}</p>
       </div>
-    </>
+    </section>
   )
 }
 

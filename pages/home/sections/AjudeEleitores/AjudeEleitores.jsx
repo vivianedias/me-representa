@@ -5,7 +5,7 @@ import Image from "next/image";
 const AjudeEleitores = () => {
   const { t } = useTranslation('translation', {keyPrefix: 'home.ajudeEleitores'})
   return (
-    <>
+    <section>
       <div>
         <h1>{t("titulo")}</h1>
         <p>{t("querAparecer")}</p>
@@ -18,7 +18,7 @@ const AjudeEleitores = () => {
       <div>
         <Image src="" alt={t("imgDescricao")} />
       </div>
-    </>
+    </section>
   )
 }
 
