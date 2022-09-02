@@ -2,7 +2,7 @@ import React from "react"
 import { useTranslation } from "react-i18next"
 
 const Conheca = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "home.conheca" });
+  const { t } = useTranslation("translation", { keyPrefix: "home.conheca" })
   return (
     <>
       <div>
@@ -14,7 +14,7 @@ const Conheca = () => {
         <p>{t("aNovaPlataforma")}</p>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Conheca;
+export default Conheca

@@ -22,6 +22,24 @@ i18n.
                         titulo: "Conheça o #MeRepresenta",
                         oMeRepresenta: "O #MeRepresenta é uma união de coletivos formados por mulheres, pessoas negras e LGBT+. Nosso objetivo é diminuir a distância entre eleitoras/es e candidatas/os comprometidas/os com os direitos sociais, civis e políticos da população.",
                         aNovaPlataforma: "A nova plataforma #MeRepresenta Eleições 2020 foi elaborada com a participação de 16 organizações da sociedade civil. Veja abaixo quem está com a gente!"
+                    },
+                    pautas: {
+                        titulo: "Entenda as #pautas em debate",
+                        genero: "#Gênero",
+                        lgbt: "#LGBT+",
+                        raca: "#Raça", 
+                        povos: "#Povos Tradicionais",
+                        politicasSociais: "#Políticas Sociais",
+                        segurancaPublica: "#Segurança Pública",
+                        drogas: "#Drogas",
+                        comunicacao: "#Comunicação",
+                        demoracracia: "#Democracia",
+                        meioAmbiente: "#Meio Ambiente",
+                        imgsAlt: {
+                            raca: "Pessoas negras marcham com punho erguido e sorrindo",
+                            povos: "Indigenas com os corpos pintados em protesto",
+                            lgbt: "Bandeira do movimento LGBT+ balançada em frente a grande público em passeata"
+                        }
                     }
                 }
             }
