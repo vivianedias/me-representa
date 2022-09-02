@@ -24,7 +24,6 @@ async function apiClient(endpoint, { body, ...customConfig } = {}) {
     ? 'http://' + process.env.NEXTAUTH_URL
     : 'https://' + process.env.NEXT_PUBLIC_VERCEL_URL
 
-  console.log({ endpoint: url + endpoint })
   const res = await fetch(url + endpoint, config);
 
   if (!res.ok) {
