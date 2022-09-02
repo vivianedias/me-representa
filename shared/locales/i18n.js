@@ -40,6 +40,12 @@ i18n.
                             povos: "Indigenas com os corpos pintados em protesto",
                             lgbt: "Bandeira do movimento LGBT+ balançada em frente a grande público em passeata"
                         }
+                    },
+                    facaParte: {
+                        titulo: "Faça parte do #MeRepresenta",
+                        btnVoluntario: "Quero ser voluntario",
+                        btnSaberMais: "Quero saber mais",
+                        imgDescricao: "Ilustração com 3 pessoas com balões de fala dizendo '#me representa'"
                     }
                 }
             }
