@@ -46,6 +46,17 @@ i18n.
                         btnVoluntario: "Quero ser voluntario",
                         btnSaberMais: "Quero saber mais",
                         imgDescricao: "Ilustração com 3 pessoas com balões de fala dizendo '#me representa'"
+                    },
+                    quemFez: {
+                        titulo: "Quem fez isso possível?",
+                        imgsAlt: {
+                            mulheresNegras: "Logo com a frase 'mulheres negras decidem' em maiusculas",
+                            blogueirasNegras: "Logo com uma mulher negra a esquerda em fundo amarelo e o título 'Blogueiras Negras'",
+                            redeFeminista: "Logo com uma arte em linhas finas e o título 'Rede Feminista de Juristas'",
+                            cidadaniaInteligente: "Logo com uma arte de uma lâmpada e pontos coloridos com o título 'Cidadania Inteligente'",
+                            voteLGBT: "Logo com o título '#VoteLGBT'",
+
+                        }
                     }
                 }
             }

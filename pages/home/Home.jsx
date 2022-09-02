@@ -3,6 +3,7 @@ import AjudeEleitores from "./sections/AjudeEleitores/AjudeEleitores"
 import Conheca from "./sections/Conheca/Conheca"
 import FacaParte from "./sections/FacaParte/FacaParte"
 import Pautas from "./sections/Pautas/Pautas"
+import QuemFez from "./sections/QuemFez/QuemFez"
 
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
       <Conheca />
       <Pautas />
       <FacaParte />
+      <QuemFez />
     </main>
   )
 }
