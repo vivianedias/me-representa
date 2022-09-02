@@ -13,7 +13,7 @@ export async function getServerSideProps(req, res) {
   // Fetch data from external API
   const { id } = req.query
 
-  const data = await fetchClient(`${process.env.NEXTAUTH_URL}/api/user/${id}`)
+  const data = await fetchClient('/api/user/${id}')
 
   // Pass data to the page via props
   return { props: { data } }
