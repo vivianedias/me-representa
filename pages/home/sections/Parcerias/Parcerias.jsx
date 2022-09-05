@@ -3,7 +3,6 @@ import Image from "next/image"
 import { useTranslation } from "react-i18next"
 import styles from './styles.module.css'
 
-
 import abglt from '/public/imgs/home/logo_abglt.png'
 import alianca from '/public/imgs/home/logo_aliancia_lgbti.png'
 import apoinme from '/public/imgs/home/logo_apoinme.png'
