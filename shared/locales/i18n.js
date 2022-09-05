@@ -55,7 +55,27 @@ i18n.
                             redeFeminista: "Logo com uma arte em linhas finas e o título 'Rede Feminista de Juristas'",
                             cidadaniaInteligente: "Logo com uma arte de uma lâmpada e pontos coloridos com o título 'Cidadania Inteligente'",
                             voteLGBT: "Logo com o título '#VoteLGBT'",
-
+                        }
+                    },
+                    parcerias: {
+                        titulo: "Parcerias",
+                        imgsAlt: {
+                            ABGLT: "",
+                            aliancaNacionalLGBTI: "",
+                            apoinme: "",
+                            cfemea: "",
+                            conaq: "",
+                            gn: "",
+                            instutoSouDaPaz: "",
+                            intervozes: "",
+                            ittc: "",
+                            mtrst: "",
+                            pbpd: "",
+                            sistemaPolitico: "",
+                            redeJusticaCriminal: "",
+                            azMina: "",
+                            movimentoTransparencia: "",
+                            monabot: ""
                         }
                     }
                 }
