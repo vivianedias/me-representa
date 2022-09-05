@@ -6,15 +6,19 @@ import MosaicItem from "/shared/ui/Mosaic/MosaicItem/MosaicItem";
 import styles from "./styles.module.css";
 import Image from "next/image";
 
-import raca from "/public/imgs/home/imagem_raca.png"
-import povos from "/public/imgs/home/imagem_povos_originarios.png"
-import lgbt from "/public/imgs/home/imagem_lgbt.png"
+import raca from "/public/imgs/home/imagem_raca.png";
+import povos from "/public/imgs/home/imagem_povos_originarios.png";
+import lgbt from "/public/imgs/home/imagem_lgbt.png";
+import { Heading } from "@chakra-ui/react";
+import homeStyles from "../home.module.css"
 
 const Pautas = () => {
   const { t } = useTranslation("translation", { keyPrefix: "home.pautas" });
   return (
     <section>
-      <h1>{t("titulo")}</h1>
+      <Heading as="h1" size="2xl" className={homeStyles.title} textAlign="center">
+        {t("titulo")}
+      </Heading>
       <Mosaic>
         {/* Genero */}
         <MosaicItem>
@@ -40,7 +44,13 @@ const Pautas = () => {
         <MosaicItem>
           {({ getBoxProps }) => (
             <Box {...getBoxProps()}>
-              <Image src={raca} alt={t('imgsAlt.raca')} layout="fill" objectFit="cover" objectPosition="left top"/>
+              <Image
+                src={raca}
+                alt={t("imgsAlt.raca")}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="left top"
+              />
             </Box>
           )}
         </MosaicItem>
@@ -70,7 +80,13 @@ const Pautas = () => {
         <MosaicItem>
           {({ getBoxProps }) => (
             <Box {...getBoxProps()}>
-              <Image src={povos} alt={t('imgsAlt.povos')} layout="fill" objectFit="cover" objectPosition="left top"/>
+              <Image
+                src={povos}
+                alt={t("imgsAlt.povos")}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="left top"
+              />
             </Box>
           )}
         </MosaicItem>
@@ -140,7 +156,13 @@ const Pautas = () => {
         <MosaicItem>
           {({ getBoxProps }) => (
             <Box {...getBoxProps()}>
-              <Image src={lgbt} alt={t('imgsAlt.lgbt')} layout="fill" objectFit="cover" objectPosition="left top"/>
+              <Image
+                src={lgbt}
+                alt={t("imgsAlt.lgbt")}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="left top"
+              />
             </Box>
           )}
         </MosaicItem>

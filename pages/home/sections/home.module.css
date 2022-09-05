@@ -55,8 +55,9 @@
     padding: var(--chakra-space-2);
     text-align: center;
     font-weight: bold;
-    font-size: var(--chakra-fontSizes-2xl);
+    font-size: var(--chakra-fontSizes-lg);
     cursor: pointer;
+    text-transform: uppercase;
 }
 
 

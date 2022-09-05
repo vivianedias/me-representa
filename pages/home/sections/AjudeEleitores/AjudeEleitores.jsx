@@ -2,8 +2,8 @@ import React from "react"
 import { useTranslation } from "react-i18next"
 import NextLink from "next/link"
 import Image from "next/image"
-import { Heading, Text, Button } from "@chakra-ui/react"
-import styles from "../home.module.css"
+import { Heading, Text } from "@chakra-ui/react"
+import homeStyles from "../home.module.css"
 
 import hero from "/public/imgs/home/imagem_hero.png"
 
@@ -13,25 +13,25 @@ const AjudeEleitores = () => {
     keyPrefix: "home.ajudeEleitores",
   })
   return (
-    <section className={styles.container}>
-      <div className={styles.left}>
-        <Heading as="h1" size="2xl" className={styles.title}>
+    <section className={homeStyles.container}>
+      <div className={homeStyles.left}>
+        <Heading as="h1" size="2xl" className={homeStyles.title}>
           {t("titulo")}
         </Heading>
-        <Text className={`${styles.body}`}>{t("querAparecer")}</Text>
-        <div className={styles.btnGroup}>
+        <Text className={`${homeStyles.body}`}>{t("querAparecer")}</Text>
+        <div className={homeStyles.btnGroup}>
           <NextLink href="/home" passHref>
-            <a className={`${styles.btnLink} ${styles.btnLinkPink}`}>{t("btnSouCandidato")}</a>
+            <a className={`${homeStyles.btnLink} ${homeStyles.btnLinkPink}`}>{t("btnSouCandidato")}</a>
           </NextLink>
           <NextLink href="/home" passHref>
-            <a className={`${styles.btnLink} ${styles.btnLinkTeal}`}>{t("btnSouVoluntario")}</a>
+            <a className={`${homeStyles.btnLink} ${homeStyles.btnLinkTeal}`}>{t("btnSouVoluntario")}</a>
           </NextLink>
           <NextLink href="/home" passHref>
-            <a className={`${styles.btnLink}`}>{t("btnSouEleitor")}</a>
+            <a className={`${homeStyles.btnLink}`}>{t("btnSouEleitor")}</a>
           </NextLink>
         </div>
       </div>
-      <div className={styles.right}>
+      <div className={homeStyles.right}>
         <Image src={hero} alt={t("imgDescricao")} />
       </div>
     </section>

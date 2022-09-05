@@ -1,7 +1,9 @@
 import React from "react"
 import Image from "next/image"
 import { useTranslation } from "react-i18next"
+import { Heading } from "@chakra-ui/react"
 import styles from './styles.module.css'
+import homeStyles from "../home.module.css";
 
 import abglt from '/public/imgs/home/logo_abglt.png'
 import alianca from '/public/imgs/home/logo_aliancia_lgbti.png'
@@ -25,7 +27,14 @@ const Parcerias = () => {
     const { t } = useTranslation("translation", {keyPrefix: "home.parcerias"})
     return (
         <section>
-            <h1>{t('titulo')}</h1>
+            <Heading
+          as="h1"
+          size="2xl"
+          className={homeStyles.title}
+          textAlign="center"
+        >
+          {t("titulo")}
+        </Heading>
             <div className={styles.container}>
                 <div className={styles.imageContainer}>
                     <Image src={abglt} alt={t('imgsAlt.abglt')}  layout="responsive"/>
