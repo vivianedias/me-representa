@@ -1,9 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Box, Text } from "@chakra-ui/layout";
-import Mosaic from "../../../../shared/ui/Mosaic/Mosaic";
-import MosaicItem from "../../../../shared/ui/Mosaic/MosaicItem/MosaicItem";
-import styles from './styles.module.css'
+import Mosaic from "/shared/ui/Mosaic/Mosaic";
+import MosaicItem from "/shared/ui/Mosaic/MosaicItem/MosaicItem";
+import styles from "./styles.module.css";
+import Image from "next/image";
+
+import raca from "/public/imgs/home/imagem_raca.png"
+import povos from "/public/imgs/home/imagem_povos_originarios.png"
+import lgbt from "/public/imgs/home/imagem_lgbt.png"
 
 const Pautas = () => {
   const { t } = useTranslation("translation", { keyPrefix: "home.pautas" });
@@ -35,16 +40,7 @@ const Pautas = () => {
         <MosaicItem>
           {({ getBoxProps }) => (
             <Box {...getBoxProps()}>
-              <picture>
-                <source
-                  srcSet="http://localhost:3001/static/media/raca.9ba1c7d5.png"
-                  type="image/webp"
-                />
-                <img
-                  alt={t("imgsAlt.raca")}
-                  src="http://localhost:3001/static/media/raca.9ba1c7d5.png"
-                />
-              </picture>
+              <Image src={raca} alt={t('imgsAlt.raca')} layout="fill" objectFit="cover" objectPosition="left top"/>
             </Box>
           )}
         </MosaicItem>
@@ -74,16 +70,7 @@ const Pautas = () => {
         <MosaicItem>
           {({ getBoxProps }) => (
             <Box {...getBoxProps()}>
-              <picture>
-                <source
-                  srcSet="http://localhost:3001/static/media/povos-originarios.56c22ff1.png"
-                  type="image/webp"
-                />
-                <img
-                  alt={t("imgsAlt.povos")}
-                  src="http://localhost:3001/static/media/povos-originarios.56c22ff1.png"
-                />
-              </picture>
+              <Image src={povos} alt={t('imgsAlt.povos')} layout="fill" objectFit="cover" objectPosition="left top"/>
             </Box>
           )}
         </MosaicItem>
@@ -153,16 +140,7 @@ const Pautas = () => {
         <MosaicItem>
           {({ getBoxProps }) => (
             <Box {...getBoxProps()}>
-              <picture>
-                <source
-                  srcSet="	http://localhost:3001/static/media/lgbt.45c642e3.png"
-                  type="image/webp"
-                />
-                <img
-                  alt={t("imgsAlt.lgbt")}
-                  src="	http://localhost:3001/static/media/lgbt.45c642e3.png"
-                />
-              </picture>
+              <Image src={lgbt} alt={t('imgsAlt.lgbt')} layout="fill" objectFit="cover" objectPosition="left top"/>
             </Box>
           )}
         </MosaicItem>
