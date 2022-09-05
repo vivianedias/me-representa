@@ -1,21 +1,14 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
+import Image from "next/image"
+import React from "react"
+import { useTranslation } from "react-i18next"
+import facaParte from '/public/imgs/home/imagem_faca_parte.png'
 
 const FacaParte = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "home.facaParte" });
+  const { t } = useTranslation("translation", { keyPrefix: "home.facaParte" })
   return (
     <section>
       <div>
-        <picture>
-          <source
-            srcSet="	http://localhost:3001/static/media/join-image.66f88621.png"
-            type="image/webp"
-          />
-          <img
-            alt={t("imgDescricao")}
-            src="	http://localhost:3001/static/media/join-image.66f88621.png"
-          />
-        </picture>
+        <Image src={facaParte} alt={t("imgDescricao")} />
       </div>
       <div>
         <h1>{t("titulo")}</h1>
@@ -23,7 +16,7 @@ const FacaParte = () => {
         <a href="#">{t("btnSaberMais")}</a>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default FacaParte;
+export default FacaParte

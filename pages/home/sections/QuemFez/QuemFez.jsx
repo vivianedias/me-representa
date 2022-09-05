@@ -1,11 +1,18 @@
-import { Box } from "@chakra-ui/layout";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import Mosaic from "../../../../shared/ui/Mosaic/Mosaic";
-import MosaicItem from "../../../../shared/ui/Mosaic/MosaicItem/MosaicItem";
+import { Box } from "@chakra-ui/layout"
+import Image from "next/image"
+import React from "react"
+import { useTranslation } from "react-i18next"
+import Mosaic from "/shared/ui/Mosaic/Mosaic"
+import MosaicItem from "/shared/ui/Mosaic/MosaicItem/MosaicItem"
+
+import mulheresNegras from '/public/imgs/home/logo_mulheres_negras.png'
+import blogueirasNegras from '/public/imgs/home/logo_blogueiras_negras.png'
+import redeFeminista from '/public/imgs/home/logo_feminista_juristas.png'
+import cidadaniaInteligente from '/public/imgs/home/logo_cidadania_inteligente.png'
+import voteLGBT from '/public/imgs/home/logo_vote_lgbt.png'
 
 const QuemFez = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "home.quemFez" });
+  const { t } = useTranslation("translation", { keyPrefix: "home.quemFez" })
   return (
     <section>
       <div>
@@ -15,86 +22,41 @@ const QuemFez = () => {
         <MosaicItem>
           {({getBoxProps}) => (
           <Box {...getBoxProps()}>
-            <picture>
-              <source
-                srcSet="http://localhost:3001/static/media/vote_geral%20(1).e3171f96.png"
-                type="image/webp"
-              />
-              <img
-                alt={t("imgsAlt.mulheresNegras")}
-                src="http://localhost:3001/static/media/vote_geral%20(1).e3171f96.png"
-              />
-            </picture>
+            <Image src={mulheresNegras} alt={t("imgsAlt.mulheresNegras")}/>
           </Box>
           )}
         </MosaicItem>
         <MosaicItem>
           {({getBoxProps}) => (
           <Box {...getBoxProps()}>
-            <picture>
-              <source
-                srcSet="http://localhost:3001/static/media/blogueiras-negras.02d0ef07.png"
-                type="image/webp"
-              />
-              <img
-                alt={t("imgsAlt.blogueirasNegras")}
-                src="http://localhost:3001/static/media/blogueiras-negras.02d0ef07.png"
-              />
-            </picture>
+            <Image src={blogueirasNegras} alt={t("imgsAlt.blogueirasNegras")}/>
           </Box>
           )}
         </MosaicItem>
         <MosaicItem>
           {({getBoxProps}) => (
           <Box {...getBoxProps()}>
-            <picture>
-              <source
-                srcSet="http://localhost:3001/static/media/feminista-juristas.36661af2.png"
-                type="image/webp"
-              />
-              <img
-                alt={t("imgsAlt.redeFeminista")}
-                src="http://localhost:3001/static/media/feminista-juristas.36661af2.png"
-              />
-            </picture>
+            <Image src={redeFeminista} alt={t("imgsAlt.redeFeminista")}/>
           </Box>
           )}
         </MosaicItem>
         <MosaicItem>
           {({getBoxProps}) => (
           <Box {...getBoxProps()}>
-            <picture>
-              <source
-                srcSet="http://localhost:3001/static/media/cidadania-inteligente.6ec87d83.png"
-                type="image/webp"
-              />
-              <img
-                alt={t("imgsAlt.cidadaniaInteligente")}
-                src="http://localhost:3001/static/media/cidadania-inteligente.6ec87d83.png"
-              />
-            </picture>
+            <Image src={cidadaniaInteligente} alt={t("imgsAlt.cidadaniaInteligente")}/>
           </Box>
           )}
         </MosaicItem>
         <MosaicItem>
           {({getBoxProps}) => (
           <Box {...getBoxProps()}>
-            <picture>
-              <source
-                srcSet="http://localhost:3001/static/media/vote-lgbt.6b89e444.png"
-                type="image/webp"
-              />
-              <img
-                alt={t("imgsAlt.voteLGBT")}
-                src="http://localhost:3001/static/media/vote-lgbt.6b89e444.png"
-              />
-            </picture>
+            <Image src={voteLGBT} alt={t("imgsAlt.voteLGBT")}/>
           </Box>
           )}
         </MosaicItem>
       </Mosaic>
     </section>
-  );
-};
+  )
+}
 
-export default QuemFez;
+export default QuemFez
