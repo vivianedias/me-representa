@@ -60,22 +60,22 @@ i18n.
                     parcerias: {
                         titulo: "Parcerias",
                         imgsAlt: {
-                            ABGLT: "",
-                            aliancaNacionalLGBTI: "",
-                            apoinme: "",
-                            cfemea: "",
-                            conaq: "",
-                            gn: "",
-                            instutoSouDaPaz: "",
-                            intervozes: "",
-                            ittc: "",
-                            mtrst: "",
-                            pbpd: "",
-                            sistemaPolitico: "",
-                            redeJusticaCriminal: "",
-                            azMina: "",
-                            movimentoTransparencia: "",
-                            monabot: ""
+                            agblt: "Logotipo da Associação Brasileira de Gays, Lésbicas, Bissexuais, Travestis, Transexuais e Intersexos",
+                            aliancaNacionalLGBTI: "Logotipo da Aliança Nacional LGBTI+",
+                            apoinme: "Logotipo da Articulação dos Povos Indígenas do Nordeste, Minas Gerais e Espírito Santo (APOINME)",
+                            cfemea: "Logotipo do Centro Feminista de Estudos e Assessoria",
+                            conaq: "Logotipo da Coordenação Nacional de Articulação de Quilombos",
+                            gn: "Logotipo da orgnização Gênero e Número",
+                            instutoSouDaPaz: "Logotipo do Instituto Sou da Paz",
+                            intervozes: "Logotipo da Intervozes",
+                            ittc: "Logotitpo do Instituto Terra, Trabalho e Cidadania - ITTC",
+                            mst: "Logotipo do Movimento dos Trabalhadores Rurais Sem Terra",
+                            pbpd: "Logotipo da Plataforma Brasileira de Política de Drogas (PBPD)",
+                            sistemaPolitico: "Logotipo da Plataforma pela reforma do sistema político",
+                            redeJusticaCriminal: "Logotipo da Rede Justiça Criminal",
+                            azMina: "Logotipo do instituto AzMina",
+                            movimentoTransparencia: "Logotipo do Movimento Transparência Partidária",
+                            monabot: "Logotipo da M0na Bot"
                         }
                     }
                 }
