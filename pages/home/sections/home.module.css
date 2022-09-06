@@ -3,6 +3,7 @@
     flex-wrap: wrap;
     max-width: var(--chakra-sizes-container-xl);
     margin: 0 auto;
+    margin-bottom: 20px;
     justify-content: space-evenly;
 }
 
