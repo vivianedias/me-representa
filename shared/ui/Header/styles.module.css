@@ -1,10 +1,13 @@
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    position: fixed;
     width: 100%;
     padding: var(--chakra-space-4);
+    background-color: white;
+    z-index: 10;
+    min-height: 100px;
+    position: sticky;
+    top: 0;
 }
 
 .container ul {
@@ -22,9 +25,13 @@
     display: inline-block;
 }
 
-.navBar li {
+.navBar li{
     padding: var(--chakra-space-2);
     text-align: center;
+}
+
+.navBar li:not(:last-of-type) {
+    text-decoration: underline;
 }
 
 
@@ -52,6 +59,12 @@
     .navBar li {
         display: flex;
         align-items: center;
+    }
+
+    .navBar li:hover {
+        color: var(--chakra-colors-pink-500);
+        transition: all;
+        transition-duration: .5s;
     }
 }
 
