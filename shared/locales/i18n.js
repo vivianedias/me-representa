@@ -9,6 +9,20 @@ i18n.
     resources: {
         'pt-BR': {
             translation: {
+                header: {
+                    imgDescricao: "Logotipo do MeRepresenta",
+                    navbar: {
+                        sobre: "Sobre",
+                        voluntaria: "Voluntária/o",
+                        eleitora: "Eleitor/a",
+                        pautas: "Pautas",
+                        perguntas: "Perguntas?",
+                        candidata: "Sou Candidata/o",
+                        menu: "Clique para {{estado}} o menu",
+                        menuAbrir: "abrir",
+                        menuFechar: "fechar"
+                    }
+                }
             }
         }
     }
