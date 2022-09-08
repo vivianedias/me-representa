@@ -21,6 +21,46 @@ i18n.
                         menu: "Clique para {{estado}} o menu",
                         menuAbrir: "abrir",
                         menuFechar: "fechar"
+                    },
+                },
+                footer: {
+                    sobre: {
+                        titulo: "Sobre",
+                        quemSomos: "Quem somos",
+                        impacto: "Impacto",
+                        transparencia: "Transparência"
+                    },
+                    participar: {
+                        titulo: "Participar",
+                        candidato: "Candidato",
+                        eleitor: "Eleitor",
+                        voluntario: "Voluntário"
+                    },
+                    financiamento: {
+                        titulo: "Financiamento",
+                        iniciativa: "uma iniciativa de",
+                        imgsAlt: {
+                            ciudadania: "Ciudadania Inteligente",
+                            altec: "Uma iniciativa de Altec",
+                            undef: "Undef",
+                            avina: "Avina",
+                            omidyar: "Omidyar"
+                        }
+                    },
+                    apoio: {
+                        titulo: "Apoio",
+                        imgsAlt: {
+                            zoly: "Saiba Mais Zoly",
+                            mattos: "Mattos Filho",
+                            silveira: "Silveira Andrade",
+                            casa1: "Casa 1",
+                            tiniguimaraes: "Tini e Guimarães",
+                            dataLabel: "Data Label"
+
+                        }
+                    },
+                    direitos: {
+                        titulo: "#Todos os direitos reservados a #MeRepresenta 2022"
                     }
                 }
             }
