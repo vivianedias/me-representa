@@ -5,9 +5,12 @@
     padding: var(--chakra-space-4);
     background-color: white;
     z-index: 10;
-    min-height: 100px;
     position: sticky;
     top: 0;
+}
+
+.menuClosed {
+    display: none;
 }
 
 .container ul {

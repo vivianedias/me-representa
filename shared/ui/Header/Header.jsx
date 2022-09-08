@@ -28,6 +28,7 @@ const Header = () => {
   const handleToggle = () => setIsVisible(!isVisible);
   const { t } = useTranslation('translation', {keyPrefix: "header"}) 
   const btnText = t("navbar.menu", {estado: isVisible ? t("navbar.menuFechar") : t("navbar.menuAbrir")})
+  const menuClass = isVisible ? "" : styles.menuClosed 
   const routeChange = () => {
     console.log("route change");
   };
@@ -48,7 +49,7 @@ const Header = () => {
           />
         </span>
       </div>
-      <nav className={styles.navBar}>
+      <nav className={`${styles.navBar} ${menuClass}`}>
         <SlideFade in={isVisible}>
           <ul>
             <li>
