@@ -6,7 +6,7 @@ const Mosaic = ({children}) => {
     <div className={styles.container}>
       {children}
     </div>
-  );
-};
+  )
+}
 
-export default Mosaic;
+export default Mosaic

@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: var(--chakra-colors-teal-500);
+    padding: var(--chakra-space-12) var(--chakra-space-24);
+}
+
+.title {
+    color: white;
+}
+
+.body {
+    color: white;
+    margin-bottom: var(--chakra-space-5);
+    font-size: var(--chakra-fontSizes-xl);
+}
+
+@media screen and (min-width: 48em) {
+    .left,
+    .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 50%;
+    }
+}
