@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+
+}
+
+.imageContainer {
+    display: block;
+    width: 200px;
+    height: 200px;
+    padding: 6px;
+}

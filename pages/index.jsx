@@ -1,12 +1,6 @@
-// import Home from './home/Home'
-import '../shared/locales/i18n'
-import Footer from '/shared/ui/Footer/Footer'
-import Header from '/shared/ui/Header/Header'
+import Home from "../shared/ui/Home/Home";
+import "../shared/locales/i18n";
 
 export default function App() {
-  return (
-    <div>
-      {/* <Home /> */}
-    </div>
-  )
+  return <Home />;
 }
