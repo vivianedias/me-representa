@@ -1,5 +1,5 @@
 import fetchClient from '../../utils/apiClient'
-import '../shared/locales/i18n'
+import "../../shared/locales/i18n";
 
 export default function Candidato({ data }) {
   return (
