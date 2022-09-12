@@ -62,6 +62,27 @@ i18n.
                     direitos: {
                         titulo: "#Todos os direitos reservados a #MeRepresenta 2022"
                     }
+                },
+                termos: {
+                    tituloTermos: "Termos Simplificados",
+                    labelCheckbox: "Li e concordo com os termos de uso",
+                    labelBtn: "Continuar",
+                    termos: {
+                        item1: "Dados preenchidoos aqui poderão ser pesquisados durante e após o período eleitoral.",
+                        item2: "Não fazemos pesquisa de intenção de votos, nem campanha eleitoral.",
+                        item3: "Você pode alterar suas respostas ao questionário até 30 dias antes do 1o turno das eleições.",
+                        item4: "Você pode apagar seus dados da plataforma quando quiser.",
+                    },
+                    tituloUso: "Uso e armazenamento de dados pessoais:",
+                    uso: {
+                        item1: "De acordo com a vigência da Lei Geral de Proteção de Dados, a plataforma #MeRepresenta atualizou seus prootocolos pensando na proteção de usuáries. Veja noossos termos de uso para mais informações.",
+                        item2: "Nós respeitamos sua privacidade, portanto, os dados pessoais fornecidos serão utilizados de forma anonimizada de acordo com a finalidade prevista nos termos de uso da organização.",
+                        item3: "Os dados concedidos serão armazenados, tratados e geridos de forma segura e transparente para as finalidades previsas pela organização.",
+                        item4: "Os dados sensíveis fornecidos podem ser utilizados para a realização de estudos e levantamento estatísticos de modo anônimo.",
+                        item5: "Para tais dados, naão há pedidoo de consentimento dos usuários, de acordo com os termos de uso da plataforma.",
+                        item6: "Os dados pessoais cujo acesso é público serão colhidos das bases de informações da Justiça Eleitoral.",
+                    }
+
                 }
             }
         }

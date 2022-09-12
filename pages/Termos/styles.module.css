@@ -1,0 +1,14 @@
+.checkboxContainer {
+    position: relative;
+    width: 100%;
+}
+
+.fixedContainer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #fff;
+    padding: var(--chakra-space-4);
+}
