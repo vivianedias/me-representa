@@ -1,0 +1,73 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: var(--chakra-space-4);
+    background-color: white;
+    z-index: 10;
+    position: sticky;
+    top: 0;
+}
+
+.menuClosed {
+    display: none;
+}
+
+.container ul {
+    list-style: none;
+}
+
+.logoContainer {
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menuBtn {
+    display: inline-block;
+}
+
+.navBar li{
+    padding: var(--chakra-space-2);
+    text-align: center;
+}
+
+.navBar li:not(:last-of-type) {
+    text-decoration: underline;
+}
+
+
+@media screen and (min-width: 48em) {
+    .menuBtn {
+        display: none;
+    }
+    .container {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .logoContainer {
+        flex-grow: 0;
+        position: relative;
+    }
+
+    .navBar ul {
+        display: flex;
+        flex-wrap: wrap;
+        flex-grow: 1;
+        justify-content: space-evenly;
+    }
+
+    .navBar li {
+        display: flex;
+        align-items: center;
+    }
+
+    .navBar li:hover {
+        color: var(--chakra-colors-pink-500);
+        transition: all;
+        transition-duration: .5s;
+    }
+}
+

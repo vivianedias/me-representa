@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { signIn, useSession } from 'next-auth/react'
+import '../shared/locales/i18n'
 
 export default function CadastroCandidato({ data }) {
   const { data: session, status } = useSession()
