@@ -6,9 +6,7 @@ import Header from '/shared/ui/Header/Header'
 export default function App() {
   return (
     <div>
-      <Header />
       {/* <Home /> */}
-      <Footer />
     </div>
   )
 }
