@@ -9,6 +9,21 @@ i18n.
     resources: {
         'pt-BR': {
             translation: {
+                login: {
+                    title: "Login",
+                    email: {
+                        placeholder: "endereço de e-mail",
+                        validation: {
+                            required: "Campo obrigatório"
+                        },
+                        verificationEmail: {
+                            title: "Cheque seu e-mail!",
+                            body: "Um link mágico para login acaba de ser enviado!",
+                            error: "Houve um erro ao enviar o link. Tente novamente mais tarde."
+                        },
+                        button: "Entrar com e-mail"
+                    },
+                },
                 header: {
                     imgDescricao: "Logotipo do MeRepresenta",
                     navbar: {
