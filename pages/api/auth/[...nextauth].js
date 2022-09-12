@@ -12,10 +12,10 @@ const options = {
     EmailProvider({
       server: {
         port: 465,
-        host: 'smtp.sendgrid.net',
+        host: "smtp.sendgrid.net",
         secure: true,
         auth: {
-          user: 'apikey',
+          user: "apikey",
           pass: process.env.SENDGRID_API_KEY,
         },
         tls: {
@@ -27,24 +27,24 @@ const options = {
     TwitterProvider({
       clientId: process.env.TWITTER_CLIENT_ID,
       clientSecret: process.env.TWITTER_CLIENT_SECRET,
-      version: "2.0"
+      version: "2.0",
     }),
     LinkedInProvider({
       clientId: process.env.LINKEDIN_CLIENT_ID,
-      clientSecret: process.env.LINKEDIN_CLIENT_SECRET
+      clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
     }),
     InstagramProvider({
       clientId: process.env.INSTAGRAM_CLIENT_ID,
-      clientSecret: process.env.INSTAGRAM_CLIENT_SECRET
+      clientSecret: process.env.INSTAGRAM_CLIENT_SECRET,
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET
-    })
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
   ],
   adapter: MongoDBAdapter(clientPromise),
   secret: process.env.NEXTAUTH_SECRET,
-}
+};
 
 const NextAuthHandler = (req, res) => NextAuth(req, res, options)
 

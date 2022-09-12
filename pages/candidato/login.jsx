@@ -33,8 +33,9 @@ function Login() {
       const sendingVerificationEmail = await signIn("email", {
         email,
         redirect: false,
+        callbackUrl: "/cadastro",
       });
-      console.log({ sendingVerificationEmail });
+
       if (sendingVerificationEmail.error !== null) {
         throw new Error("Problems with singin");
       }
