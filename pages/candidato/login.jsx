@@ -14,24 +14,25 @@ import {
   FormErrorMessage,
   VStack,
   HStack,
-  Divider,
 } from "@chakra-ui/react";
 import { Form, Field } from "react-final-form";
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FORM_ERROR } from "final-form";
+import { useSession } from "next-auth/react";
 import {
   FaUserAlt,
   FaRegTimesCircle,
-  FaGoogle,
-  FaLinkedinIn,
   FaTwitterSquare,
-  FaFacebook,
   FaRegEnvelope,
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/router";
 
 function Login() {
+  const { status } = useSession();
+  const router = useRouter();
+
   const [verificationEmailSent, setVerificationEmailStatus] = useState(false);
   const CFaUserAlt = chakra(FaUserAlt);
   const CFaRegTimesCircle = chakra(FaRegTimesCircle);
@@ -42,7 +43,7 @@ function Login() {
       const sendingVerificationEmail = await signIn("email", {
         email,
         redirect: false,
-        callbackUrl: "/cadastro",
+        callbackUrl: "/candidato/cadastro",
       });
 
       if (sendingVerificationEmail.error !== null) {
@@ -56,8 +57,23 @@ function Login() {
       return { [FORM_ERROR]: e };
     }
   };
+
   const required = (value) =>
     value ? undefined : t("email.validation.required");
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/candidato/cadastro");
+    }
+  }, [status, router]);
+
+  if (status === "loading") {
+    return <div>{t("loading")}</div>;
+  }
+
+  if (status === "authenticated") {
+    return <div>{t("redirect")}...</div>;
+  }
 
   return (
     <>
@@ -134,7 +150,7 @@ function Login() {
                     colorScheme="twitter"
                     onClick={() =>
                       signIn("twitter", {
-                        callbackUrl: "/cadastro",
+                        callbackUrl: "/candidato/cadastro",
                       })
                     }
                   >

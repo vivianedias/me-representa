@@ -8,6 +8,8 @@ i18n.use(initReactI18next).init({
     "pt-BR": {
       translation: {
         login: {
+          loading: "Carregando",
+          redirect: "Redirecionando",
           title: "Login",
           twitter: {
             button: "Entrar com Twitter",

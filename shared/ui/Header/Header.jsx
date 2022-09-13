@@ -93,10 +93,16 @@ const Header = () => {
                       <Avatar size={"sm"} src={data?.user?.image} />
                     </MenuButton>
                     <MenuList>
-                      <MenuItem onClick={() => router.push("/cadastro")}>
+                      <MenuItem
+                        onClick={() => router.push("/candidato/cadastro")}
+                      >
                         {t("navbar.auth.profile")}
                       </MenuItem>
-                      <MenuItem onClick={() => router.push("/cadastro/pautas")}>
+                      <MenuItem
+                        onClick={() =>
+                          router.push("/candidato/cadastro/pautas")
+                        }
+                      >
                         {t("navbar.auth.pautas")}
                       </MenuItem>
                       <MenuItem onClick={() => signOut({ callbackUrl: "/" })}>
