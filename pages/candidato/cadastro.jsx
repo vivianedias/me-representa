@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Container,
   Heading,
   Input,
   Radio,
@@ -28,7 +29,7 @@ const Cadastro = () => {
   const onSendPhoto = () => {}
 
   return (
-    <>
+    <Container>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <Heading className="cadastroInputsHeading" as="h2" size="lg">
@@ -228,7 +229,7 @@ const Cadastro = () => {
                   </Text> */}
         </Box>
       </form>
-    </>
+    </Container>
   );
 };
 
