@@ -8,6 +8,7 @@ import {
   RadioGroup,
   Text,
   Tooltip,
+  VisuallyHidden,
 } from "@chakra-ui/react";
 import { signIn, useSession } from "next-auth/react";
 import "/shared/locales/i18n";
@@ -25,11 +26,20 @@ const Cadastro = () => {
   //   return <p>Loading...</p>;
   // }
 
-  const handleSubmit = () => {}
-  const onSendPhoto = () => {}
+  const handleSubmit = () => {};
+  const onSendPhoto = () => {};
 
   return (
-    <Container>
+    <Container as="section">
+      <Box marginBottom="4" marginTop="4">
+        <VisuallyHidden>
+          <Heading as="h1">Cadastro</Heading>
+        </VisuallyHidden>
+        <Heading as="h2" size="md">
+          Olá, Candidato! Obrigada por ingressar na nossa plataforma! Para sua
+          segurança precisamos cadastrar e validar o seu perfil.
+        </Heading>
+      </Box>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <Heading className="cadastroInputsHeading" as="h2" size="lg">
