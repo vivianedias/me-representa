@@ -4,7 +4,7 @@
     max-width: 1000px;
     margin: 0 auto;
     flex-wrap: wrap;
-
+    justify-content: center;
 }
 
 .imageContainer {
@@ -12,4 +12,10 @@
     width: 200px;
     height: 200px;
     padding: 6px;
+}
+
+@media screen and (min-width: 48em) {
+    .container {
+        justify-content: initial;
+    }
 }
