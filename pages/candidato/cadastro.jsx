@@ -1,246 +1,109 @@
+import "../../shared/locales/i18n";
+import { useSession } from "next-auth/react";
+import { Form, Field } from "react-final-form";
 import {
   Box,
-  Button,
-  Container,
-  Heading,
+  FormControl,
   Input,
-  Radio,
-  RadioGroup,
-  Text,
-  Tooltip,
-  VisuallyHidden,
+  InputGroup,
+  InputLeftElement,
+  chakra,
+  Stack,
+  Heading,
+  FormLabel,
+  FormErrorMessage,
 } from "@chakra-ui/react";
-import { signIn, useSession } from "next-auth/react";
-import "/shared/locales/i18n";
+import { FaUserAlt } from "react-icons/fa";
+import validations from "../../utils/validations";
+import { useTranslation } from "react-i18next";
 
-const Cadastro = () => {
+export default function CadastroCandidato({ data }) {
   const { status, data: session } = useSession({
     required: true,
     onUnauthenticated() {
       // signIn();
-      console.log("deslogado");
+      console.log("logoff");
     },
   });
+  const CFaUserAlt = chakra(FaUserAlt);
+  const { t } = useTranslation("translation", { keyPrefix: "cadastro" });
+  const { required } = validations(t);
 
   // if (status === "loading") {
   //   return <p>Loading...</p>;
   // }
 
-  const handleSubmit = () => {};
-  const onSendPhoto = () => {};
+  const onSubmit = (data) => console.log({ data });
 
   return (
-    <Container as="section">
-      <Box marginBottom="4" marginTop="4">
-        <VisuallyHidden>
-          <Heading as="h1">Cadastro</Heading>
-        </VisuallyHidden>
-        <Heading as="h2" size="md">
-          Olá, Candidato! Obrigada por ingressar na nossa plataforma! Para sua
-          segurança precisamos cadastrar e validar o seu perfil.
+    <Stack
+      flexDir="column"
+      mb="2"
+      justifyContent="center"
+      alignItems="center"
+      p="1rem"
+      backgroundColor="whiteAlpha.900"
+      boxShadow="md"
+    >
+      <Box as="section" bgColor="white" minW={{ base: "90%", md: "768px" }}>
+        <Heading as="h1" size="2xl" align="center">
+          Candidato
         </Heading>
+        <Form
+          onSubmit={onSubmit}
+          initialValues={{
+            email: session?.user?.email,
+          }}
+          render={({ handleSubmit, submitting, submitError }) => {
+            return (
+              <Box as="form" onSubmit={handleSubmit} my={10}>
+                <Stack spacing={4} align="center">
+                  <Field name="email" validate={required}>
+                    {({ input, meta }) => {
+                      return (
+                        <FormControl isInvalid={meta.error && meta.touched}>
+                          <FormLabel>{t("email.label")}</FormLabel>
+                          <InputGroup>
+                            <InputLeftElement pointerEvents="none">
+                              <CFaUserAlt color="gray.300" />
+                            </InputLeftElement>
+                            <Input
+                              {...input}
+                              type="email"
+                              placeholder={t("email.placeholder")}
+                            />
+                          </InputGroup>
+                          <FormErrorMessage>{meta.error}</FormErrorMessage>
+                        </FormControl>
+                      );
+                    }}
+                  </Field>
+                  <Field name="cpf" validate={required}>
+                    {({ input, meta }) => {
+                      return (
+                        <FormControl isInvalid={meta.error && meta.touched}>
+                          <FormLabel>{t("cpf.label")}</FormLabel>
+                          <InputGroup>
+                            <InputLeftElement pointerEvents="none">
+                              <CFaUserAlt color="gray.300" />
+                            </InputLeftElement>
+                            <Input
+                              {...input}
+                              type="cpf"
+                              placeholder={t("cpf.placeholder")}
+                            />
+                          </InputGroup>
+                          <FormErrorMessage>{meta.error}</FormErrorMessage>
+                        </FormControl>
+                      );
+                    }}
+                  </Field>
+                </Stack>
+              </Box>
+            );
+          }}
+        />
       </Box>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <Heading className="cadastroInputsHeading" as="h2" size="lg">
-            Dados da candidatura
-          </Heading>
-          <label htmlFor="email">
-            <span>Nome de Urna </span>
-            <Input
-              id="name"
-              isRequired
-              name="name"
-              onChange={(event) => {
-                setFieldValue(event.target.name, event.target.value);
-              }}
-            />
-          </label>
-          <label htmlFor="cpf">
-            <span>CPF</span>
-            <Input
-              id="cpf"
-              name="cpf"
-              isRequired
-              onChange={(event) => {
-                setFieldValue(event.target.name, event.target.value);
-              }}
-            />
-          </label>
-          <label htmlFor="secao">
-            <span>
-              Seção Eleitoral(
-              <Tooltip label="Localizada no título de eleitor, a seção eleitoral é composta por uma sequência de 4 dígitos">
-                ?
-              </Tooltip>
-              )
-            </span>
-            <Input
-              id="secao"
-              name="secao"
-              isRequired
-              onChange={(event) => {
-                setFieldValue(event.target.name, event.target.value);
-              }}
-            />
-          </label>
-        </div>
-
-        <div className="form-group">
-          <Heading className="cadastroInputsHeading" as="h2" size="lg">
-            Para mantermos contato:
-          </Heading>
-          <label htmlFor="telefone">
-            <span>Telefone Celular com DDD</span>
-            <Input
-              id="telefone"
-              name="telefone"
-              isRequired
-              placeholder="+55 21925640835"
-              onChange={(event) => {
-                setFieldValue(event.target.name, event.target.value);
-              }}
-            />
-          </label>
-          <label htmlFor="email">
-            <span>E-mail</span>
-            <Input
-              id="email"
-              name="email"
-              isRequired
-              onChange={(event) => {
-                setFieldValue(event.target.name, event.target.value);
-              }}
-            />
-          </label>
-        </div>
-
-        <div className="form-group">
-          <Heading className="cadastroInputsHeading" as="h2" size="lg">
-            Como encontramos sua candidatura nas redes sociais?
-          </Heading>
-          <label htmlFor="telefone">
-            <span>Facebook</span>
-            <Input
-              id="facebook"
-              name="facebook"
-              placeholder="www.facebook.com"
-              onChange={(event) => {
-                setFieldValue(event.target.name, event.target.value);
-              }}
-            />
-          </label>
-          <label htmlFor="instagram">
-            <span>Instagram</span>
-            <Input
-              id="instagram"
-              name="instagram"
-              placeholder="www.instagram.com"
-              onChange={(event) => {
-                setFieldValue(event.target.name, event.target.value);
-              }}
-            />
-          </label>
-          <label htmlFor="twitter">
-            <span>Twitter</span>
-            <Input
-              id="twitter"
-              name="twitter"
-              placeholder="www.twitter.com"
-              onChange={(event) => {
-                setFieldValue(event.target.name, event.target.value);
-              }}
-            />
-          </label>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="preenchimentoCandidato">
-            <Heading className="cadastroInputsHeading" as="h2" size="lg">
-              Quem está preenchendo o cadastro é a/o própria/o candidata/o?
-            </Heading>
-            <RadioGroup
-              name="preenchimentoCandidato"
-              isRequired
-              onChange={(event) =>
-                setFieldValue(event.target.name, event.target.value)
-              }
-            >
-              <Radio value="Sim">Sim</Radio>
-              <Radio value="Nao">Não</Radio>
-            </RadioGroup>
-          </label>
-        </div>
-
-        <div className="form-group">
-          <Heading className="cadastroInputsHeading" as="h2" size="lg">
-            Cadastre uma senha para acesso futuro
-          </Heading>
-          <label htmlFor="email">
-            <span>Senha</span>
-            <Input
-              id="password"
-              name="password"
-              isRequired
-              type="password"
-              onChange={(event) => {
-                setFieldValue(event.target.name, event.target.value);
-              }}
-            />
-          </label>
-          <label htmlFor="cpf">
-            <span>Confirme sua senha</span>
-            <Input
-              id="confirmaSenha"
-              name="confirmaSenha"
-              isRequired
-              type="password"
-              onChange={(event) => {
-                setFieldValue(event.target.name, event.target.value);
-              }}
-            />
-          </label>
-        </div>
-
-        <div className="form-group">
-          <Heading className="cadastroInputsHeading" as="h2" size="lg">
-            Anexar sua foto de candidatura
-          </Heading>
-          <Box className="cadastroInputs">
-            {/* <Thumb file={photoFile} /> */}
-            <Text className="helperTextUpload">
-              Insira a foto que será usado na divulgação da sua campanha, caso
-              faça parte de uma candidatura coletiva você deverá usar a imagem
-              com todos os integrantes.
-            </Text>
-          </Box>
-          <input
-            id="photo"
-            name="photo"
-            className="inputPhoto"
-            required
-            type="file"
-            onChange={onSendPhoto}
-          />
-        </div>
-
-        <Box className="cadastroButtons">
-          <Button
-            // isLoading={isLoading}
-            // isDisabled={!values.photo}
-            loadingText="Enviando"
-            variantColor="pink"
-            type="submit"
-          >
-            Enviar
-          </Button>
-          {/* <Text>
-                    Ao enviar seus dados você receberá um código de validação, insira-o na tela a seguir
-                  </Text> */}
-        </Box>
-      </form>
-    </Container>
+    </Stack>
   );
-};
-
-export default Cadastro;
+}

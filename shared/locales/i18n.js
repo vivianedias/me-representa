@@ -1,12 +1,39 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
+const validations = {
+  required: "Campo obrigatório",
+};
+
+const placeholder = {
+  email: "endereço de e-mail",
+  cpf: "cpf do candidato",
+};
+
+const label = {
+  email: "E-mail",
+  cpf: "CPF",
+};
+
 i18n.use(initReactI18next).init({
   fallbackLng: "pt-BR",
   lng: "pt-BR",
   resources: {
     "pt-BR": {
       translation: {
+        cadastro: {
+          validation: {
+            required: validations.required,
+          },
+          email: {
+            label: label.email,
+            placeholder: placeholder.email,
+          },
+          cpf: {
+            label: label.cpf,
+            placeholder: placeholder.cpf,
+          },
+        },
         login: {
           loading: "Carregando",
           redirect: "Redirecionando",
@@ -14,11 +41,11 @@ i18n.use(initReactI18next).init({
           twitter: {
             button: "Entrar com Twitter",
           },
+          validation: {
+            required: validations.required,
+          },
           email: {
-            placeholder: "endereço de e-mail",
-            validation: {
-              required: "Campo obrigatório",
-            },
+            placeholder: placeholder.email,
             verificationEmail: {
               title: "Cheque seu e-mail!",
               body: "Um link mágico para login acaba de ser enviado!",
