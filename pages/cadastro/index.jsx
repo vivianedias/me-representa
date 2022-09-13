@@ -3,16 +3,16 @@ import { signIn, useSession } from 'next-auth/react'
 import "../../shared/locales/i18n";
 
 export default function CadastroCandidato({ data }) {
-  const { data: session, status } = useSession()
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     if (status === "unauthenticated") {
-      return signIn()
+      signIn();
     }
-  }, [status])
+  }, [status]);
 
-  if (status === "loading") {
-    return <p>Loading...</p>
+  if (status === "loading" || session === null) {
+    return <p>Loading...</p>;
   }
 
   return (

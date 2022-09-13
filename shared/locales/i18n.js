@@ -9,6 +9,9 @@ i18n.use(initReactI18next).init({
       translation: {
         login: {
           title: "Login",
+          twitter: {
+            button: "Entrar com Twitter",
+          },
           email: {
             placeholder: "endereço de e-mail",
             validation: {
@@ -20,7 +23,7 @@ i18n.use(initReactI18next).init({
               error:
                 "Houve um erro ao enviar o link. Tente novamente mais tarde.",
             },
-            button: "Entrar com e-mail",
+            button: "Entrar com Email",
           },
         },
         header: {

@@ -48,11 +48,6 @@ const Header = () => {
   });
   const menuClass = isVisible ? "" : styles.menuClosed;
 
-  const routeChange = () => {
-    const url = isAuth ? "/cadastro" : "";
-    router.push(url);
-  };
-
   return (
     <header className={styles.container}>
       <div className={styles.logoContainer}>
@@ -100,7 +95,7 @@ const Header = () => {
                       cursor={"pointer"}
                       minW={0}
                     >
-                      <Avatar size={"sm"} />
+                      <Avatar size={"sm"} src={data?.user?.image} />
                     </MenuButton>
                     <MenuList>
                       <MenuItem onClick={() => router.push("/cadastro")}>

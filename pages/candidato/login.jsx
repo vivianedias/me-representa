@@ -14,12 +14,21 @@ import {
   FormErrorMessage,
   VStack,
   HStack,
+  Divider,
 } from "@chakra-ui/react";
 import { Form, Field } from "react-final-form";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { FORM_ERROR } from "final-form";
-import { FaUserAlt, FaRegTimesCircle } from "react-icons/fa";
+import {
+  FaUserAlt,
+  FaRegTimesCircle,
+  FaGoogle,
+  FaLinkedinIn,
+  FaTwitterSquare,
+  FaFacebook,
+  FaRegEnvelope,
+} from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
 function Login() {
@@ -61,8 +70,11 @@ function Login() {
         mb="2"
         justifyContent="center"
         alignItems="center"
+        p="1rem"
+        backgroundColor="whiteAlpha.900"
+        boxShadow="md"
       >
-        <Heading as="h1" color="pink.500">
+        <Heading as="h1" color="pink.500" mb="6">
           {t("title")}
         </Heading>
         <Box minW={{ base: "90%", md: "468px" }}>
@@ -70,12 +82,7 @@ function Login() {
             onSubmit={onSubmit}
             render={({ handleSubmit, submitting, submitError }) => (
               <Box as="form" onSubmit={handleSubmit}>
-                <Stack
-                  spacing={4}
-                  p="1rem"
-                  backgroundColor="whiteAlpha.900"
-                  boxShadow="md"
-                >
+                <Stack spacing={4} align="center">
                   <Field name="email" validate={required}>
                     {({ input, meta }) => (
                       <FormControl isInvalid={meta.error && meta.touched}>
@@ -110,15 +117,29 @@ function Login() {
                     </HStack>
                   ) : null}
                   <Button
-                    borderRadius={0}
                     type="submit"
+                    isLoading={submitting}
+                    loadingText="Enviando"
+                    borderRadius={0}
                     variant="solid"
                     colorScheme="pink"
                     width="full"
-                    isLoading={submitting}
-                    loadingText="Enviando"
+                    leftIcon={<FaRegEnvelope />}
                   >
                     {t("email.button")}
+                  </Button>
+                  <Button
+                    width="full"
+                    leftIcon={<FaTwitterSquare />}
+                    variant="solid"
+                    colorScheme="twitter"
+                    onClick={() =>
+                      signIn("twitter", {
+                        callbackUrl: "/cadastro",
+                      })
+                    }
+                  >
+                    {t("twitter.button")}
                   </Button>
                 </Stack>
               </Box>
