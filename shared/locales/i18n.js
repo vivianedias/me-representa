@@ -97,14 +97,14 @@ i18n.use(initReactI18next).init({
               "Eleitores diversos com balões de fala dizendo 'voto!' e '#me representa'",
           },
           conheca: {
-            titulo: "Conheça o #MeRepresenta",
+            titulo: "Conheça o <1>#MeRepresenta</1>",
             oMeRepresenta:
               "O #MeRepresenta é uma união de coletivos formados por mulheres, pessoas negras e LGBT+. Nosso objetivo é diminuir a distância entre eleitoras/es e candidatas/os comprometidas/os com os direitos sociais, civis e políticos da população.",
             aNovaPlataforma:
               "A nova plataforma #MeRepresenta Eleições 2020 foi elaborada com a participação de 16 organizações da sociedade civil. Veja abaixo quem está com a gente!",
           },
           pautas: {
-            titulo: "Entenda as #pautas em debate",
+            titulo: "Entenda as <1>#pautas</1> em debate",
             genero: "#Gênero",
             lgbt: "#LGBT+",
             raca: "#Raça",
@@ -122,7 +122,7 @@ i18n.use(initReactI18next).init({
             },
           },
           facaParte: {
-            titulo: "Faça parte do #MeRepresenta",
+            titulo: "Faça parte do <1>#MeRepresenta</1>",
             btnVoluntario: "Quero ser voluntario",
             btnSaberMais: "Quero saber mais",
             imgDescricao:
