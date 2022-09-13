@@ -68,22 +68,17 @@ const Header = () => {
         <SlideFade in={isVisible}>
           <ul>
             <li>
-              <NextLink href="/">{t("navbar.sobre")}</NextLink>
+              <NextLink href="/">{t("navbar.home")}</NextLink>
             </li>
-            <li>
+            {/* <li>
               <NextLink href="#">{t("navbar.voluntaria")}</NextLink>
-            </li>
+            </li> */}
             <li>
-              <NextLink href="#">{t("navbar.eleitora")}</NextLink>
+              <NextLink href="/eleitores">{t("navbar.eleitora")}</NextLink>
             </li>
-            <li>
-              <NextLink href="/cadastro/candidato-pautas">
-                {t("navbar.pautas")}
-              </NextLink>
-            </li>
-            <li>
+            {/* <li>
               <NextLink href="#">{t("navbar.perguntas")}</NextLink>
-            </li>
+            </li> */}
             <li>
               {isAuth ? (
                 <Flex alignItems={"center"}>
@@ -100,6 +95,9 @@ const Header = () => {
                     <MenuList>
                       <MenuItem onClick={() => router.push("/cadastro")}>
                         {t("navbar.auth.profile")}
+                      </MenuItem>
+                      <MenuItem onClick={() => router.push("/cadastro/pautas")}>
+                        {t("navbar.auth.pautas")}
                       </MenuItem>
                       <MenuItem onClick={() => signOut({ callbackUrl: "/" })}>
                         {t("navbar.auth.logout")}

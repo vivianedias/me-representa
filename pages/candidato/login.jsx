@@ -120,7 +120,6 @@ function Login() {
                     type="submit"
                     isLoading={submitting}
                     loadingText="Enviando"
-                    borderRadius={0}
                     variant="solid"
                     colorScheme="pink"
                     width="full"

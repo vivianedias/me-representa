@@ -29,10 +29,9 @@ i18n.use(initReactI18next).init({
         header: {
           imgDescricao: "Logotipo do MeRepresenta",
           navbar: {
-            sobre: "Sobre",
+            home: "Home",
             voluntaria: "Voluntária/o",
             eleitora: "Eleitor/a",
-            pautas: "Pautas",
             perguntas: "Perguntas?",
             candidata: "Sou Candidata/o",
             menu: "Clique para {{estado}} o menu",
@@ -41,6 +40,7 @@ i18n.use(initReactI18next).init({
             auth: {
               profile: "Editar perfil",
               logout: "Sair",
+              pautas: "Pautas",
             },
           },
         },
