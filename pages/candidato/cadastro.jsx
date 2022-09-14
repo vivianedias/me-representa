@@ -22,15 +22,15 @@ import {
   VStack,
   Image,
   Spinner,
-  HStack,
   Center,
+  Flex,
 } from "@chakra-ui/react";
 import { FaUserAlt } from "react-icons/fa";
 import validations from "../../utils/validations";
 import useUploadS3 from "../../shared/hooks/useUploadS3";
 import fetcher from "../../utils/apiClient";
 
-export default function CadastroCandidato({ data }) {
+export default function CadastroCandidato() {
   const { status, data: session } = useSession({
     required: true,
     onUnauthenticated() {
@@ -71,143 +71,150 @@ export default function CadastroCandidato({ data }) {
   }
 
   return (
-		<>
-			<Head>
+    <>
+      <Head>
         <title>{t("title")}</title>
         <meta property="og:title" content={t("title")} key="title" />
       </Head>
-			<Stack
-				flexDir="column"
-				mb="2"
-				justifyContent="center"
-				alignItems="center"
-				p="1rem"
-				backgroundColor="whiteAlpha.900"
-				boxShadow="md"
-			>
-				<Box as="section" bgColor="white" w={{ base: "90%", md: "768px" }}>
-					<Stack spacing={3} align="center">
+      <Stack
+        flexDir="column"
+        justifyContent="center"
+        alignItems="center"
+        p="1rem"
+        backgroundColor="whiteAlpha.900"
+        boxShadow="md"
+        py={8}
+      >
+        <Box as="section" bgColor="white" w={{ base: "90%", md: "768px" }}>
+          <Stack spacing={3} align="center">
             <Heading as="h1" size="xl" align="center">
               {t("heading.hello")}
             </Heading>
-            <Heading as="h1" size="xl" align="center">
-              {t("heading.thanks")}
-            </Heading>
-            <Heading as="h2" size="md" align="center">
-              {t("heading.validationMessage")}
-            </Heading>
+            <Text fontSize="18px" align="center">
+              {t("heading.thanks")} {t("heading.validationMessage")}
+            </Text>
           </Stack>
-					<Form
-						onSubmit={onSubmit}
-						initialValues={{
-							email: session?.user?.email,
-							image: session?.user?.image,
-						}}
-						render={({ handleSubmit, submitting, submitError }) => {
-							return (
-								<Box as="form" onSubmit={handleSubmit} my={10}>
-									<Stack spacing={4} align="center">
-										<Field
-											name="email"
-											validate={composeValidators(required, email)}
-										>
-											{({ input, meta }) => {
-												return (
-													<FormControl isInvalid={meta.error && meta.touched}>
-														<FormLabel>{t("email.label")}</FormLabel>
-														<InputGroup>
-															<InputLeftElement pointerEvents="none">
-																<CFaUserAlt color="gray.300" />
-															</InputLeftElement>
-															<Input
-																{...input}
-																type="email"
-																placeholder={t("email.placeholder")}
-															/>
-														</InputGroup>
-														<FormErrorMessage>{meta.error}</FormErrorMessage>
-													</FormControl>
-												);
-											}}
-										</Field>
-										<Field
-											name="cpf"
-											validate={composeValidators(required, cpf, length(11))}
-										>
-											{({ input, meta }) => {
-												return (
-													<FormControl isInvalid={meta.error && meta.touched}>
-														<FormLabel>{t("cpf.label")}</FormLabel>
-														<InputGroup>
-															<Input
-																{...input}
-																type="cpf"
-																placeholder={t("cpf.placeholder")}
-															/>
-														</InputGroup>
-														<FormErrorMessage>{meta.error}</FormErrorMessage>
-													</FormControl>
-												);
-											}}
-										</Field>
-										<Field name="image" validate={required}>
-											{({ input, meta }) => {
-												return (
-													<Stack spacing={4}>
-														<Text align="center" fontSize="20px" fontWeight={700}>
-															{t("image.label")}
-														</Text>
-														<FormControl isInvalid={meta.error && meta.touched}>
-															<HStack spacing={10} align="centers">
-																<>
-																	<Center boxSize="300px" position="absolute">
-																		{isLoading ? <Spinner size="xl" /> : null}
-																	</Center>
-																	<Image
-																		borderRadius="full"
-																		boxSize="300px"
-																		alt="Profile photo selected by the candidate"
-																		src={imageUrl}
-																		fallbackSrc="https://via.placeholder.com/300"
-																	/>
-																</>
-																<VStack>
-																	<Input
-																		{...input}
-																		onChange={(e) =>
-																			handleFileInput(e, input.onChange)
-																		}
-																		type="file"
-																		placeholder={t("image.placeholder")}
-																	/>
-																	<FormHelperText>
-																		{t("image.helperText")}
-																	</FormHelperText>
-																</VStack>
-															</HStack>
-															<FormErrorMessage>{meta.error}</FormErrorMessage>
-														</FormControl>
-														<Button
-															type="submit"
-															isLoading={submitting}
-															loadingText="Enviando"
-															variant="solid"
-															colorScheme="pink"
-															width="20%"
-														>
-															{t("button")}
-														</Button>
-													</Stack>
-												);
-											}}
-										</Field>
-									</Stack>
-								</Box>
-							);
-						}}
-					/>
-				</Box>
-			</Stack>
-		</>
+          <Form
+            onSubmit={onSubmit}
+            initialValues={{
+              email: session?.user?.email,
+              image: null,
+              cpf: "",
+            }}
+            render={({ handleSubmit, submitting, submitError }) => {
+              return (
+                <Box as="form" onSubmit={handleSubmit} my={10}>
+                  <Stack spacing={4} align="center">
+                    <Field
+                      name="email"
+                      validate={composeValidators(required, email)}
+                    >
+                      {({ input, meta }) => {
+                        return (
+                          <FormControl isInvalid={meta.error && meta.touched}>
+                            <FormLabel>{t("email.label")}</FormLabel>
+                            <InputGroup>
+                              <InputLeftElement pointerEvents="none">
+                                <CFaUserAlt color="gray.300" />
+                              </InputLeftElement>
+                              <Input
+                                {...input}
+                                type="email"
+                                placeholder={t("email.placeholder")}
+                              />
+                            </InputGroup>
+                            <FormErrorMessage>{meta.error}</FormErrorMessage>
+                          </FormControl>
+                        );
+                      }}
+                    </Field>
+                    <Field
+                      name="cpf"
+                      validate={composeValidators(required, cpf, length(11))}
+                    >
+                      {({ input, meta }) => {
+                        return (
+                          <FormControl isInvalid={meta.error && meta.touched}>
+                            <FormLabel>{t("cpf.label")}</FormLabel>
+                            <InputGroup>
+                              <Input
+                                {...input}
+                                type="cpf"
+                                placeholder={t("cpf.placeholder")}
+                              />
+                            </InputGroup>
+                            <FormErrorMessage>{meta.error}</FormErrorMessage>
+                          </FormControl>
+                        );
+                      }}
+                    </Field>
+                    <Field name="image" validate={required}>
+                      {({ input, meta }) => {
+                        return (
+                          <>
+                            <Text align="left" fontSize="18px" fontWeight={700}>
+                              {t("image.label")}
+                            </Text>
+                            <FormControl isInvalid={meta.error && meta.touched}>
+                              <Stack
+                                spacing={10}
+                                align="center"
+                                direction={{ base: "column", md: "row" }}
+                              >
+                                <>
+                                  <Center boxSize="300px" position="absolute">
+                                    {isLoading ? <Spinner size="xl" /> : null}
+                                  </Center>
+                                  <Image
+                                    borderRadius="full"
+                                    boxSize="300px"
+                                    alt="Profile photo selected by the candidate"
+                                    src={imageUrl}
+                                    fallbackSrc="https://via.placeholder.com/300"
+                                  />
+                                </>
+                                <VStack>
+                                  <Input
+                                    {...input}
+                                    onChange={(e) =>
+                                      handleFileInput(e, input.onChange)
+                                    }
+                                    type="file"
+                                    placeholder={t("image.placeholder")}
+                                  />
+                                  <FormHelperText>
+                                    {t("image.helperText")}
+                                  </FormHelperText>
+                                  <FormErrorMessage>
+                                    {meta.error}
+                                  </FormErrorMessage>
+                                </VStack>
+                              </Stack>
+                            </FormControl>
+                          </>
+                        );
+                      }}
+                    </Field>
+                  </Stack>
+                  <Flex justifyContent="flex-end" mt={8}>
+                    <Button
+                      type="submit"
+                      isLoading={submitting}
+                      loadingText="Enviando"
+                      variant="solid"
+                      colorScheme="pink"
+                      size="md"
+                      alignSelf="flex-end"
+                    >
+                      {t("button")}
+                    </Button>
+                  </Flex>
+                </Box>
+              );
+            }}
+          />
+        </Box>
+      </Stack>
+    </>
   );
 }

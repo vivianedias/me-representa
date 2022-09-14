@@ -28,6 +28,7 @@ i18n.use(initReactI18next).init({
       translation: {
         cadastro: {
           loading: "Carregando",
+          button: "Enviar",
           validation,
           email: {
             label: label.email,
@@ -41,7 +42,8 @@ i18n.use(initReactI18next).init({
           heading: {
             hello: "Olá, Candidata(o)!",
             thanks: "Obrigada por ingressar na nossa plataforma!",
-            validationMessage: "Para sua segurança, precisamos cadastrar e validar o seu perfil."
+            validationMessage:
+              "Para sua segurança, precisamos cadastrar e validar o seu perfil.",
           },
           image: {
             label: label.image,
