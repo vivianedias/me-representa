@@ -37,6 +37,12 @@ i18n.use(initReactI18next).init({
             label: label.cpf,
             placeholder: placeholder.cpf,
           },
+          title: "Cadastro",
+          heading: {
+            hello: "Olá, Candidata(o)!",
+            thanks: "Obrigada por ingressar na nossa plataforma!",
+            validationMessage: "Para sua segurança, precisamos cadastrar e validar o seu perfil."
+          },
           image: {
             label: label.image,
             placeholder: placeholder.image,
