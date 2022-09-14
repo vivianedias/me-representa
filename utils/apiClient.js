@@ -20,9 +20,9 @@ async function apiClient(endpoint, { body, ...customConfig } = {}) {
   }
 
   const dev = process.env.NODE_ENV !== 'production';
-  const url = dev 
-    ? 'http://' + process.env.NEXTAUTH_URL
-    : 'https://' + process.env.NEXT_PUBLIC_VERCEL_URL
+  const url = dev
+    ? "http://" + process.env.NEXT_PUBLIC_APP_URL
+    : "https://" + process.env.NEXT_PUBLIC_VERCEL_URL;
 
   const res = await fetch(url + endpoint, config);
 
