@@ -170,7 +170,10 @@ i18n.use(initReactI18next).init({
           },
         },
         candidato: {
+          titulo: "Pautas #MeRepresenta",
           perguntas: {
+            contador: "Pauta {{current}} de {{max}}",
+            posicionamento: "Qual o seu posicionamento?",
             genero: {
               1: {
                 label: "Aborto legal e seguro no SUS",
@@ -195,21 +198,22 @@ i18n.use(initReactI18next).init({
               }
             },
             LGBTQ: {
-              1: {
+              titulo: "#LGBT+",
+              cirurgia: {
                 label: "Cirurgia genital em crianças intersexo por motivo estético",
                 pergunta: "Crianças intersexo estão passando por cirurgias porque seus pais e médicos estão definindo qual sexo deveriam ter, apenas por motivos estéticos. Cerca de 1% da população do mundo é intersexo, pois tem uma genitália, órgãos reprodutores ou cromossomos que não se encaixam inteiramente na definição típica de masculino ou feminino. A maioria destas cirurgias não é de emergência e nem tem motivos médicos, pois são crianças saudáveis. Após a cirurgia, estas crianças ainda precisam tomar hormônios por toda a vida. Além disso, muitas delas ficam com problemas como incontinência urinária, perda de sensação e função sexual e trauma psicológico. No Brasil não há legislação sobre o assunto. Apenas em Malta e no Chile existem leis proibindo intervenção médica em crianças intersexo sem emergências clínicas.",
                 info: "Saiba mais sobre o assunto neste vídeo e nesta matéria.",
                 labelAFavor: "Sou a FAVOR de cirurgia genital em crianças intersexo por motivo estético",
                 labelContra: "Sou CONTRA cirurgia genital em crianças intersexo por motivo estético",
               },
-              2: {
+              sexualidade: {
                 label: "Discussão de gênero e sexualidade nas escolas",
                 pergunta: "Jovens estão sendo impedidos de estudar e debater sobre gênero e sexualidade nas escolas. Municípios e estados em todo país têm aprovado leis contra a “ideologia de gênero”, associadas à ideia de promover uma “Escola sem partido”. Mas o Supremo Tribunal Federal já decidiu, em 2020, que estas leis são contrárias à Constituição, porque violam princípios do sistema educacional brasileiro: a liberdade de ensinar e o pluralismo de ideias.",
                 info: "Saiba mais sobre como a “ideologia de gênero” é um projeto político e fundamentalista na série de reportagens O Reino Sagrado da Desinformação da Gênero e Número.",
                 labelAFavor: "Sou a FAVOR da discussão de gênero e sexualidade nas escolas",
                 labelContra: "Sou CONTRA a discussão de gênero e sexualidade nas escolas",
               },
-              3: {
+              casas: {
                 label: "Casas públicas de acolhida para LGBT+",
                 pergunta: "Jovens LGBT+ são expulsos de casa pela família, o Brasil é o país que mais mata LGBT+ no mundo e a saúde mental desta população ficou ainda pior durante a pandemia. Praticamente não há políticas públicas no Brasil de atendimento à população LGBT+. O movimento LGBT+ demanda desde a década de 70 que sejam criadas pelo Estado casas de acolhida. Na ausência do Estado, a própria sociedade civil já criou 14 casas de acolhida LGBT+ em todas as regiões do país, mantidas principalmente com recursos de doações. Além de abrigo, costumam oferecer também atendimento de saúde clínica, mental e orientações sobre seus direitos.",
                 info: "Saiba mais sobre o trabalho das casas de acolhida nesta reportagem e nesta outra reportagem também.",
