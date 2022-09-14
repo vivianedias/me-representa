@@ -1,18 +1,23 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-const validations = {
+const validation = {
   required: "Campo obrigatório",
+  cpf: "CPF inválido",
+  email: "Insira um e-mail válido",
+  length: "Formato inválido",
 };
 
 const placeholder = {
   email: "endereço de e-mail",
   cpf: "cpf do candidato",
+  image: "Inserir foto da candidatura",
 };
 
 const label = {
   email: "E-mail",
   cpf: "CPF",
+  image: "Anexar sua foto de candidatura",
 };
 
 i18n.use(initReactI18next).init({
@@ -22,9 +27,7 @@ i18n.use(initReactI18next).init({
     "pt-BR": {
       translation: {
         cadastro: {
-          validation: {
-            required: validations.required,
-          },
+          validation,
           email: {
             label: label.email,
             placeholder: placeholder.email,
@@ -38,7 +41,13 @@ i18n.use(initReactI18next).init({
             hello: "Olá, Candidata(o)!",
             thanks: "Obrigada por ingressar na nossa plataforma!",
             validationMessage: "Para sua segurança, precisamos cadastrar e validar o seu perfil."
-          }
+          },
+          image: {
+            label: label.image,
+            placeholder: placeholder.image,
+            helperText:
+              "Insira a foto que será usado na divulgação da sua campanha, caso faça parte de uma candidatura coletiva, você deverá usar a imagem com todos os integrantes.",
+          },
         },
         login: {
           loading: "Carregando",
@@ -47,9 +56,7 @@ i18n.use(initReactI18next).init({
           twitter: {
             button: "Entrar com Twitter",
           },
-          validation: {
-            required: validations.required,
-          },
+          validation,
           email: {
             placeholder: placeholder.email,
             verificationEmail: {
