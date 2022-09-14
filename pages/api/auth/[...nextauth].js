@@ -55,6 +55,14 @@ const options = {
   pages: {
     signIn: "/candidato/login",
   },
+  callbacks: {
+    async session({ user, session }) {
+      return {
+        expires: session.expires,
+        user,
+      };
+    },
+  },
 };
 
 const NextAuthHandler = (req, res) => NextAuth(req, res, options)
