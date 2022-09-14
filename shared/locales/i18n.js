@@ -27,6 +27,7 @@ i18n.use(initReactI18next).init({
     "pt-BR": {
       translation: {
         cadastro: {
+          loading: "Carregando",
           validation,
           email: {
             label: label.email,

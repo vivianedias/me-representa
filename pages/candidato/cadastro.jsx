@@ -1,7 +1,9 @@
 import "../../shared/locales/i18n";
-import { useSession } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import { Form, Field } from "react-final-form";
 import { useTranslation } from "react-i18next";
+import useSWR from "swr";
+import { useRouter } from "next/router";
 import {
   Box,
   FormControl,
@@ -24,6 +26,7 @@ import {
 import { FaUserAlt } from "react-icons/fa";
 import validations from "../../utils/validations";
 import useUploadS3 from "../../shared/hooks/useUploadS3";
+import fetcher from "../../utils/apiClient";
 
 export default function CadastroCandidato({ data }) {
   const { status, data: session } = useSession({
@@ -32,10 +35,16 @@ export default function CadastroCandidato({ data }) {
       signIn();
     },
   });
-  const { imageUrl, uploadS3, isLoading } = useUploadS3();
-  const CFaUserAlt = chakra(FaUserAlt);
+  const { candidate, mutate } = useSWR(
+    `/api/candidate/${session?.user?.id}`,
+    fetcher
+  );
+
+  const router = useRouter();
+  const { imageUrl, uploadS3, isLoading } = useUploadS3(session);
   const { t } = useTranslation("translation", { keyPrefix: "cadastro" });
   const { required, email, composeValidators, cpf, length } = validations(t);
+  const CFaUserAlt = chakra(FaUserAlt);
 
   const handleFileInput = (e, onChange) => {
     const file = e.target.files[0];
@@ -43,10 +52,20 @@ export default function CadastroCandidato({ data }) {
     onChange(e);
   };
 
-  const onSubmit = (data) => console.log({ data });
+  const onSubmit = async (data) => {
+    try {
+      await mutate({
+        ...data,
+        image: imageUrl,
+      });
+      router(`/candidato/${session?.user?.id}`);
+    } catch (error) {
+      // Handle an error while updating the user here
+    }
+  };
 
   if (status === "loading") {
-    return <p>Loading...</p>;
+    return <Text>{t("loading")}</Text>;
   }
 
   return (
@@ -67,7 +86,8 @@ export default function CadastroCandidato({ data }) {
           onSubmit={onSubmit}
           initialValues={{
             email: session?.user?.email,
-            image: session?.user?.image,
+            cpf: "",
+            image: null,
           }}
           render={({ handleSubmit, submitting, submitError }) => {
             return (
