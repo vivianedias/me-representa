@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { S3Client } from "@aws-sdk/client-s3";
 
@@ -16,9 +16,15 @@ const s3Client = new S3Client({
   },
 });
 
-const useUploadS3 = () => {
+const useUploadS3 = (session) => {
   const [imageUrl, setImageUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (session && session.user && session.user.image) {
+      setImageUrl(session.user.image);
+    }
+  }, [session]);
 
   const uploadS3 = async (file) => {
     setIsLoading(true);
