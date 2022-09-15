@@ -9,6 +9,10 @@ i18n.use(initReactI18next).init({
 	resources: {
 		"pt-BR": {
 			translation: {
+				global: {
+					contador: "Pauta {{current}} de {{max}}",
+					posicionamento: "Qual o seu posicionamento?",
+				},
 				login,
 				header: {
 					imgDescricao: "Logotipo do MeRepresenta",
