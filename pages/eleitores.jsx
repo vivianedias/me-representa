@@ -155,6 +155,17 @@ function Priorities({ t }) {
 function State({ t }) {
 	return (
 		<Stack spacing={2}>
+			<Field name={props.name} type="select">
+				{({ input }) => (
+					<Select placeholder={t("filters.state.label")} {...input}>
+						{props.label}
+						<option value="SP">SP</option>
+						<option value="RJ">RJ</option>
+						<option value="ES">ES</option>
+					</Select>
+				)}
+			</Field>
+
 			<Heading as="h2" size="sm" align="left">
 				{t("filters.state.label")}
 			</Heading>
@@ -212,7 +223,7 @@ export default function EleitoresDashboard({ data }) {
 									<LGBT t={t} />
 									<Parties t={t} />
 									<Priorities t={t} />
-									<State t={t} />
+									{/* <State t={t} /> */}
 
 									<Button
 										type="submit"
