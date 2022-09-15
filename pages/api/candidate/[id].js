@@ -4,13 +4,13 @@ import clientPromise from "../../../lib/mongodb";
 export default async function getCandidate(req, res) {
   try {
     const { id } = req.query;
-    const parsedId = ObjectId(id);
 
     const client = await clientPromise;
     const db = client.db("merepresenta");
+
     const findResult = await db
       .collection("candidates")
-      .findOne({ userId: parsedId });
+      .findOne({ userId: ObjectId(id) });
 
     return res.status(200).json(findResult);
   } catch (e) {

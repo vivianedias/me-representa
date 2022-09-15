@@ -16,15 +16,17 @@ const s3Client = new S3Client({
   },
 });
 
-const useUploadS3 = (session) => {
+const useUploadS3 = ({ session, candidate }) => {
   const [imageUrl, setImageUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (session && session.user && session.user.image) {
-      setImageUrl(session.user.image);
+    const candidateImg = candidate && candidate.image;
+    const sessionImg = session && session.user && session.user.image;
+    if (candidateImg || sessionImg) {
+      setImageUrl(candidateImg || sessionImg);
     }
-  }, [session]);
+  }, [session, candidate]);
 
   const uploadS3 = async (file) => {
     setIsLoading(true);

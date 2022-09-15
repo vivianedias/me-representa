@@ -27,6 +27,7 @@ i18n.use(initReactI18next).init({
     "pt-BR": {
       translation: {
         cadastro: {
+          submitError: "Houve um erro ao enviar o formulário",
           loading: "Carregando",
           button: "Enviar",
           validation,
@@ -50,6 +51,7 @@ i18n.use(initReactI18next).init({
             placeholder: placeholder.image,
             helperText:
               "Insira a foto que será usado na divulgação da sua campanha, caso faça parte de uma candidatura coletiva, você deverá usar a imagem com todos os integrantes.",
+            validation: "Por favor, faça o upload de uma foto da candidata(o)",
           },
         },
         login: {

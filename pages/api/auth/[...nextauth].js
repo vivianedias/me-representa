@@ -7,7 +7,7 @@ import clientPromise from "../../../lib/mongodb";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const options = {
+export const authOptions = {
   providers: [
     EmailProvider({
       server: {
@@ -65,6 +65,6 @@ const options = {
   },
 };
 
-const NextAuthHandler = (req, res) => NextAuth(req, res, options)
+const NextAuthHandler = (req, res) => NextAuth(req, res, authOptions);
 
 export default NextAuthHandler

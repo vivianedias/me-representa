@@ -4,7 +4,6 @@ import { useSession, signIn } from "next-auth/react";
 import { Form, Field } from "react-final-form";
 import { useTranslation } from "react-i18next";
 import useSWR from "swr";
-import { useRouter } from "next/router";
 import {
   Box,
   Button,
@@ -37,13 +36,12 @@ export default function CadastroCandidato() {
       signIn();
     },
   });
-  const { candidate, mutate } = useSWR(
-    `/api/candidate/${session?.user?.id}`,
+  const { data: candidate, mutate } = useSWR(
+    session?.user?.id ? `/api/candidate/${session.user.id}` : null,
     fetcher
   );
 
-  const router = useRouter();
-  const { imageUrl, uploadS3, isLoading } = useUploadS3(session);
+  const { imageUrl, uploadS3, isLoading } = useUploadS3({ candidate, session });
   const { t } = useTranslation("translation", { keyPrefix: "cadastro" });
   const { required, email, composeValidators, cpf, length } = validations(t);
   const CFaUserAlt = chakra(FaUserAlt);
@@ -54,20 +52,33 @@ export default function CadastroCandidato() {
     onChange(e);
   };
 
-  const onSubmit = async (data) => {
-    try {
-      await mutate({
-        ...data,
-        image: imageUrl,
-      });
-      router(`/candidato/${session?.user?.id}`);
-    } catch (error) {
-      // Handle an error while updating the user here
+  const updateCandidate = (newCandidate) => {
+    fetcher("/api/candidate/register", {
+      method: "POST",
+      body: newCandidate,
+    });
+  };
+
+  const onSubmit = async (values) => {
+    if (!imageUrl) {
+      return { image: t("image.validation") };
     }
+
+    const candidate = {
+      ...values,
+      image: imageUrl,
+      userId: session?.user?.id,
+    };
+
+    await mutate(updateCandidate(candidate), {
+      revalidate: false,
+      rollbackOnError: true,
+      optimisticData: candidate,
+    });
   };
 
   if (status === "loading") {
-    return <Text>{t("loading")}</Text>;
+    return <Text>{t("loading")}...</Text>;
   }
 
   return (
@@ -97,9 +108,9 @@ export default function CadastroCandidato() {
           <Form
             onSubmit={onSubmit}
             initialValues={{
-              email: session?.user?.email,
+              email: session?.user?.email || "",
               image: null,
-              cpf: "",
+              cpf: candidate?.cpf || "",
             }}
             render={({ handleSubmit, submitting, submitError }) => {
               return (
@@ -148,7 +159,7 @@ export default function CadastroCandidato() {
                         );
                       }}
                     </Field>
-                    <Field name="image" validate={required}>
+                    <Field name="image">
                       {({ input, meta }) => {
                         return (
                           <>
@@ -181,6 +192,7 @@ export default function CadastroCandidato() {
                                     }
                                     type="file"
                                     placeholder={t("image.placeholder")}
+                                    accept="image/*"
                                   />
                                   <FormHelperText>
                                     {t("image.helperText")}
