@@ -155,57 +155,80 @@ function ImageField({ t, isLoading, uploadS3, imageUrl }) {
   );
 }
 
-function SelectSexualOrientation({ t, errors, values }) {
+const Error = ({ name, children }) => (
+  <Field name={name} subscription={{ error: true, touched: true }}>
+    {({ meta: { error, touched } }) =>
+      children({
+        hasError: error && touched,
+        error,
+      })
+    }
+  </Field>
+);
+
+const Condition = ({ when, is, children }) => {
+  return (
+    <Field name={when} subscription={{ value: true }}>
+      {({ input: { value } }) => (value === is ? children : null)}
+    </Field>
+  );
+};
+
+function SelectSexualOrientation({ t }) {
   const { required } = validations(t);
-  const memoedValues = useMemo(() => values, [values]);
-  const memoedErrors = useMemo(() => errors, [errors]);
 
   return (
     <>
-      <RadioGroup defaultValue="2" isInvalid={errors.lgbtConfirm}>
-        <Stack spacing={5} direction="row">
-          <FormLabel>{t("lgbt.confirm.label")}</FormLabel>
-          <Field
-            name="lgbtConfirm"
-            value="true"
-            validate={required}
-            type="radio"
-          >
-            {({ input, meta }) => (
-              <Radio
-                {...input}
-                colorScheme="yellow"
-                isInvalid={meta.error && meta.touched}
-              >
-                {t("lgbt.confirm.true")}
-              </Radio>
-            )}
-          </Field>
-          <Field
-            name="lgbtConfirm"
-            value="false"
-            validate={required}
-            type="radio"
-          >
-            {({ input, meta }) => (
-              <Radio
-                {...input}
-                colorScheme="yellow"
-                isInvalid={meta.error && meta.touched}
-              >
-                {t("lgbt.confirm.false")}
-              </Radio>
-            )}
-          </Field>
-        </Stack>
-        <FormErrorMessage>{memoedErrors.lgbtConfirm}</FormErrorMessage>
-      </RadioGroup>
-      {memoedValues.lgbtConfirm === "true" ? (
+      <Error name="lgbtConfirm">
+        {({ hasError, error }) => (
+          <FormControl isInvalid={hasError}>
+            <FormLabel>{t("lgbt.confirm.label")}</FormLabel>
+            <Stack spacing={5} direction="column">
+              <RadioGroup>
+                <Field
+                  name="lgbtConfirm"
+                  value="true"
+                  validate={required}
+                  type="radio"
+                >
+                  {({ input, meta }) => (
+                    <Radio
+                      {...input}
+                      colorScheme="yellow"
+                      isInvalid={meta.error && meta.touched}
+                    >
+                      {t("lgbt.confirm.true")}
+                    </Radio>
+                  )}
+                </Field>
+                <Field
+                  name="lgbtConfirm"
+                  value="false"
+                  validate={required}
+                  type="radio"
+                >
+                  {({ input, meta }) => (
+                    <Radio
+                      {...input}
+                      colorScheme="yellow"
+                      isInvalid={meta.error && meta.touched}
+                    >
+                      {t("lgbt.confirm.false")}
+                    </Radio>
+                  )}
+                </Field>
+              </RadioGroup>
+            </Stack>
+            <FormErrorMessage>{error}</FormErrorMessage>
+          </FormControl>
+        )}
+      </Error>
+      <Condition when="lgbtConfirm" is="true">
         <Field name="lgbt" validate={required}>
           {({ input, meta }) => {
             return (
-              <>
-                <Select {...input} isInvalid={meta.touched && meta.error}>
+              <FormControl isInvalid={meta.touched && meta.error}>
+                <Select {...input}>
                   <option value="">{t("lgbt.options.default")}</option>
                   <option value="lesbian">{t("lgbt.options.lesbian")}</option>
                   <option value="bissexual">
@@ -216,11 +239,11 @@ function SelectSexualOrientation({ t, errors, values }) {
                   <option value="other">{t("lgbt.options.other")}</option>
                 </Select>
                 <FormErrorMessage>{meta.error}</FormErrorMessage>
-              </>
+              </FormControl>
             );
           }}
         </Field>
-      ) : null}
+      </Condition>
     </>
   );
 }
@@ -288,23 +311,13 @@ export default function CadastroCandidato({ session, candidate }) {
               image: null,
               cpf: candidate?.cpf || "",
             }}
-            render={({
-              handleSubmit,
-              submitting,
-              pristine,
-              errors,
-              values,
-            }) => {
+            render={({ handleSubmit, submitting, pristine }) => {
               return (
                 <Box as="form" onSubmit={handleSubmit} my={10}>
                   <Stack spacing={4} align="center">
                     <EmailField t={t} />
                     <CpfField t={t} />
-                    <SelectSexualOrientation
-                      t={t}
-                      errors={errors}
-                      values={values}
-                    />
+                    <SelectSexualOrientation t={t} />
                     <ImageField t={t} {...s3Props} />
                   </Stack>
                   <Flex justifyContent="flex-end" mt={8}>
