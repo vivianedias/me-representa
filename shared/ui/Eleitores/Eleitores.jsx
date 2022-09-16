@@ -15,7 +15,7 @@ import {
 	HStack,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
-import { FormSpy, useField } from "react-final-form";
+import MultiSelect from "react-select";
 
 export const CustomCheckbox = (props) => {
 	return (
@@ -41,9 +41,9 @@ export function CheckboxCard(props) {
 				borderRadius="md"
 				boxShadow="md"
 				_checked={{
-					bg: "yellow.500",
-					color: "white",
-					borderColor: "yellow.500",
+					bg: "yellow.400",
+					color: "black",
+					borderColor: "yellow.400",
 				}}
 				_focus={{
 					boxShadow: "outline",
@@ -68,3 +68,20 @@ export const CustomCheckboxCard = (props) => {
 		</Field>
 	);
 };
+
+export const ReactSelectAdapter = ({ input, ...rest }) => (
+	<MultiSelect
+		{...input}
+		{...rest}
+		searchable
+		theme={(theme) => ({
+			...theme,
+			colors: {
+				...theme.colors,
+				primary: "#A0AEC0",
+				primary25: "#EDF2F7",
+				neutral10: "#ECC94B",
+			},
+		})}
+	/>
+);
