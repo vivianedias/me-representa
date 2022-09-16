@@ -1,10 +1,9 @@
 import "../../shared/locales/i18n";
 import Head from "next/head";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { unstable_getServerSession } from "next-auth";
 import { Form, Field } from "react-final-form";
 import { useTranslation } from "react-i18next";
-import { useSWRConfig } from "swr";
 import {
   Box,
   Button,
@@ -27,8 +26,9 @@ import {
   Select,
   RadioGroup,
   Radio,
+  HStack,
 } from "@chakra-ui/react";
-import { FaUserAlt } from "react-icons/fa";
+import { FaUserAlt, FaRegTimesCircle } from "react-icons/fa";
 import validations from "../../utils/validations";
 import useUploadS3 from "../../shared/hooks/useUploadS3";
 import fetcher from "../../utils/apiClient";
@@ -174,56 +174,41 @@ const Condition = ({ when, is, children }) => {
   );
 };
 
-function SelectSexualOrientation({ t }) {
+function SelectSexualOrientation({ t, lgbtConfirmInitialValue }) {
   const { required } = validations(t);
 
   return (
     <>
-      <Error name="lgbtConfirm">
-        {({ hasError, error }) => (
-          <FormControl isInvalid={hasError}>
+      <Field validate={required} type="radio" name="lgbtConfirm">
+        {({ input, meta }) => (
+          <FormControl isInvalid={meta.error && meta.touched}>
             <FormLabel>{t("lgbt.confirm.label")}</FormLabel>
-            <Stack spacing={5} direction="column">
-              <RadioGroup>
-                <Field
-                  name="lgbtConfirm"
-                  value="true"
-                  validate={required}
-                  type="radio"
+            <RadioGroup
+              colorScheme="yellow"
+              defaultValue={lgbtConfirmInitialValue}
+            >
+              <Stack direction="row" spacing={4}>
+                <Radio
+                  {...input}
+                  value="yes"
+                  isInvalid={meta.error && meta.touched}
                 >
-                  {({ input, meta }) => (
-                    <Radio
-                      {...input}
-                      colorScheme="yellow"
-                      isInvalid={meta.error && meta.touched}
-                    >
-                      {t("lgbt.confirm.true")}
-                    </Radio>
-                  )}
-                </Field>
-                <Field
-                  name="lgbtConfirm"
-                  value="false"
-                  validate={required}
-                  type="radio"
+                  {t("lgbt.confirm.true")}
+                </Radio>
+                <Radio
+                  {...input}
+                  value="no"
+                  isInvalid={meta.error && meta.touched}
                 >
-                  {({ input, meta }) => (
-                    <Radio
-                      {...input}
-                      colorScheme="yellow"
-                      isInvalid={meta.error && meta.touched}
-                    >
-                      {t("lgbt.confirm.false")}
-                    </Radio>
-                  )}
-                </Field>
-              </RadioGroup>
-            </Stack>
-            <FormErrorMessage>{error}</FormErrorMessage>
+                  {t("lgbt.confirm.false")}
+                </Radio>
+              </Stack>
+              <FormErrorMessage>{meta.error}</FormErrorMessage>
+            </RadioGroup>
           </FormControl>
         )}
-      </Error>
-      <Condition when="lgbtConfirm" is="true">
+      </Field>
+      <Condition when="lgbtConfirm" is="yes">
         <Field name="lgbt" validate={required}>
           {({ input, meta }) => {
             return (
@@ -248,21 +233,48 @@ function SelectSexualOrientation({ t }) {
   );
 }
 
-export default function CadastroCandidato({ session, candidate }) {
-  const { mutate } = useSWRConfig();
+function formatInitialValues({ candidate, session }) {
+  const parseToAnswer = ({ lgbtConfirm }) =>
+    lgbtConfirm === true ? "yes" : "no";
 
+  return {
+    email: candidate?.email || session?.user?.email || "",
+    image: null,
+    cpf: candidate?.cpf || "",
+    lgbtConfirm: candidate ? parseToAnswer(candidate) : null,
+    lgbt: candidate?.lgbt || "",
+  };
+}
+
+export default function CadastroCandidato(props) {
+  const { session, candidate } = props;
+
+  const [initialValues, setInitialValues] = useState(
+    formatInitialValues(props)
+  );
+  const [submitError, setSubmitError] = useState(false);
+  const { t } = useTranslation("translation", { keyPrefix: "cadastro" });
   const s3Props = useUploadS3({ candidate, session });
   const { imageUrl } = s3Props;
-  const { t } = useTranslation("translation", { keyPrefix: "cadastro" });
 
-  const updateCandidate = (newCandidate) => {
-    fetcher("/api/candidate/register", {
-      method: "POST",
-      body: newCandidate,
-    });
+  const memoedInitialValues = useMemo(() => initialValues, [initialValues]);
+  const CFaRegTimesCircle = chakra(FaRegTimesCircle);
+
+  const updateCandidate = async (newCandidate) => {
+    try {
+      await fetcher("/api/candidate/register", {
+        method: "POST",
+        body: newCandidate,
+      });
+    } catch (e) {
+      console.log(e);
+      setSubmitError(true);
+    }
   };
 
   const onSubmit = async (values) => {
+    setSubmitError(false);
+
     if (!imageUrl) {
       return { image: t("image.validation") };
     }
@@ -271,13 +283,16 @@ export default function CadastroCandidato({ session, candidate }) {
       ...values,
       image: imageUrl,
       userId: session?.user?.id,
+      lgbtConfirm: values.lgbtConfirm === "yes",
     };
 
-    await mutate(updateCandidate(candidate), {
-      revalidate: false,
-      rollbackOnError: true,
-      optimisticData: candidate,
-    });
+    await updateCandidate(candidate);
+
+    setInitialValues(
+      formatInitialValues({
+        candidate,
+      })
+    );
   };
 
   return (
@@ -306,21 +321,31 @@ export default function CadastroCandidato({ session, candidate }) {
           </Stack>
           <Form
             onSubmit={onSubmit}
-            initialValues={{
-              email: session?.user?.email || "",
-              image: null,
-              cpf: candidate?.cpf || "",
-            }}
+            initialValues={memoedInitialValues}
             render={({ handleSubmit, submitting, pristine }) => {
               return (
                 <Box as="form" onSubmit={handleSubmit} my={10}>
                   <Stack spacing={4} align="center">
                     <EmailField t={t} />
                     <CpfField t={t} />
-                    <SelectSexualOrientation t={t} />
+                    <SelectSexualOrientation
+                      t={t}
+                      lgbtConfirmInitialValue={initialValues.lgbtConfirm}
+                    />
                     <ImageField t={t} {...s3Props} />
                   </Stack>
-                  <Flex justifyContent="flex-end" mt={8}>
+                  <Flex
+                    justifyContent="flex-end"
+                    mt={8}
+                    direction="column"
+                    gap={4}
+                  >
+                    {submitError ? (
+                      <HStack justifyContent="flex-end">
+                        <CFaRegTimesCircle w={5} h={5} color="red.500" />
+                        <Text color="red.600">{t("submitError")}</Text>
+                      </HStack>
+                    ) : null}
                     <Button
                       type="submit"
                       isLoading={submitting}
