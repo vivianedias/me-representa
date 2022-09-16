@@ -13,6 +13,8 @@ import {
 	Stack,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
+import { RadioGroup, Radio } from "/shared/ui/Radio/Radio";
+import { Pergunta } from "/shared/ui/Pergunta/Pergunta";
 
 function CustomCheckbox(props) {
 	return (
@@ -154,27 +156,15 @@ function Priorities({ t }) {
 
 function State({ t }) {
 	return (
-		<Stack spacing={2}>
-			<Field name={props.name} type="select">
-				{({ input }) => (
-					<Select placeholder={t("filters.state.label")} {...input}>
-						{props.label}
-						<option value="SP">SP</option>
-						<option value="RJ">RJ</option>
-						<option value="ES">ES</option>
-					</Select>
-				)}
-			</Field>
-
-			<Heading as="h2" size="sm" align="left">
-				{t("filters.state.label")}
-			</Heading>
-			<Select placeholder={t("filters.state.label")}>
-				<option value="SP">SP</option>
-				<option value="RJ">RJ</option>
-				<option value="ES">ES</option>
-			</Select>
-		</Stack>
+		<Field name="state">
+			{({ input }) => (
+				<Select {...input} placeholder={t("filters.state.label")}>
+					<option value="SP">SP</option>
+					<option value="RJ">RJ</option>
+					<option value="ES">ES</option>
+				</Select>
+			)}
+		</Field>
 	);
 }
 
@@ -223,7 +213,8 @@ export default function EleitoresDashboard({ data }) {
 									<LGBT t={t} />
 									<Parties t={t} />
 									<Priorities t={t} />
-									{/* <State t={t} /> */}
+									<State t={t} />
+									<Pergunta />
 
 									<Button
 										type="submit"
