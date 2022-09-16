@@ -23,11 +23,134 @@ import {
   Spinner,
   Center,
   Flex,
+  Grid,
+  GridItem,
 } from "@chakra-ui/react";
 import { FaUserAlt } from "react-icons/fa";
 import validations from "../../utils/validations";
 import useUploadS3 from "../../shared/hooks/useUploadS3";
 import fetcher from "../../utils/apiClient";
+
+function EmailField({ t }) {
+  const CFaUserAlt = chakra(FaUserAlt);
+  const { required, email, composeValidators } = validations(t);
+
+  return (
+    <Field name="email" validate={composeValidators(required, email)}>
+      {({ input, meta }) => {
+        return (
+          <FormControl isInvalid={meta.error && meta.touched}>
+            <FormLabel>{t("email.label")}</FormLabel>
+            <InputGroup>
+              <InputLeftElement pointerEvents="none">
+                <CFaUserAlt color="gray.300" />
+              </InputLeftElement>
+              <Input
+                {...input}
+                type="email"
+                placeholder={t("email.placeholder")}
+              />
+            </InputGroup>
+            <FormErrorMessage>{meta.error}</FormErrorMessage>
+          </FormControl>
+        );
+      }}
+    </Field>
+  );
+}
+
+function CpfField({ t }) {
+  const { required, composeValidators, cpf, length } = validations(t);
+
+  return (
+    <Field name="cpf" validate={composeValidators(required, cpf, length(11))}>
+      {({ input, meta }) => {
+        return (
+          <FormControl isInvalid={meta.error && meta.touched}>
+            <FormLabel>{t("cpf.label")}</FormLabel>
+            <InputGroup>
+              <Input {...input} type="cpf" placeholder={t("cpf.placeholder")} />
+            </InputGroup>
+            <FormErrorMessage>{meta.error}</FormErrorMessage>
+          </FormControl>
+        );
+      }}
+    </Field>
+  );
+}
+
+function ImageField({ t, isLoading, uploadS3, imageUrl }) {
+  const handleFileInput = (e, onChange) => {
+    const file = e.target.files[0];
+    uploadS3(file);
+    onChange(e);
+  };
+
+  return (
+    <Field name="image">
+      {({ input, meta }) => {
+        return (
+          <>
+            <Text align="left" fontSize="18px" fontWeight={700}>
+              {t("image.label")}
+            </Text>
+            <FormControl isInvalid={meta.error && meta.touched}>
+              <Grid
+                align="center"
+                templateColumns={{ base: "1fr", md: "400px 1fr" }}
+                templateRows={{ base: "repeat(2, 1fr)", md: "1fr" }}
+              >
+                <GridItem>
+                  <Box
+                    bgColor="gray.200"
+                    overflow="hidden"
+                    borderRadius="full"
+                    position="relative"
+                    boxSize="300px"
+                    mb={{ base: 10, md: 0 }}
+                  >
+                    <Box
+                      position="absolute"
+                      top="50%"
+                      left="50%"
+                      transform="translate(-50%, -50%)"
+                      zIndex={1}
+                    >
+                      {isLoading ? <Spinner color="white" size="xl" /> : null}
+                    </Box>
+                    <Image
+                      position="absolute"
+                      top="50%"
+                      left="50%"
+                      transform="translate(-50%, -50%)"
+                      objectFit="cover"
+                      alt="Profile photo selected by the candidate"
+                      src={imageUrl}
+                      fallbackSrc="https://via.placeholder.com/300"
+                    />
+                  </Box>
+                </GridItem>
+                <GridItem>
+                  <Input
+                    {...input}
+                    onChange={(e) => handleFileInput(e, input.onChange)}
+                    type="file"
+                    placeholder={t("image.placeholder")}
+                    accept="image/*"
+                  />
+                  <FormHelperText textAlign="left">
+                    {t("image.helperText")}
+                  </FormHelperText>
+                  <FormErrorMessage>{meta.error}</FormErrorMessage>
+                </GridItem>
+              </Grid>
+            </FormControl>
+          </>
+        );
+      }}
+    </Field>
+  );
+}
 
 export default function CadastroCandidato() {
   const { status, data: session } = useSession({
@@ -36,21 +159,15 @@ export default function CadastroCandidato() {
       signIn();
     },
   });
-  const { data: candidate, mutate } = useSWR(
-    session?.user?.id ? `/api/candidate/${session.user.id}` : null,
-    fetcher
-  );
+  const {
+    data: candidate,
+    mutate,
+    isValidating,
+  } = useSWR(session?.user?.id ? `/api/candidate/${session.user.id}` : null);
 
-  const { imageUrl, uploadS3, isLoading } = useUploadS3({ candidate, session });
+  const s3Props = useUploadS3({ candidate, session });
+  const { imageUrl } = s3Props;
   const { t } = useTranslation("translation", { keyPrefix: "cadastro" });
-  const { required, email, composeValidators, cpf, length } = validations(t);
-  const CFaUserAlt = chakra(FaUserAlt);
-
-  const handleFileInput = (e, onChange) => {
-    const file = e.target.files[0];
-    uploadS3(file);
-    onChange(e);
-  };
 
   const updateCandidate = (newCandidate) => {
     fetcher("/api/candidate/register", {
@@ -77,7 +194,7 @@ export default function CadastroCandidato() {
     });
   };
 
-  if (status === "loading") {
+  if (status === "loading" || (isValidating && !candidate)) {
     return <Text>{t("loading")}...</Text>;
   }
 
@@ -112,106 +229,19 @@ export default function CadastroCandidato() {
               image: null,
               cpf: candidate?.cpf || "",
             }}
-            render={({ handleSubmit, submitting, submitError }) => {
+            render={({ handleSubmit, submitting, pristine }) => {
               return (
                 <Box as="form" onSubmit={handleSubmit} my={10}>
                   <Stack spacing={4} align="center">
-                    <Field
-                      name="email"
-                      validate={composeValidators(required, email)}
-                    >
-                      {({ input, meta }) => {
-                        return (
-                          <FormControl isInvalid={meta.error && meta.touched}>
-                            <FormLabel>{t("email.label")}</FormLabel>
-                            <InputGroup>
-                              <InputLeftElement pointerEvents="none">
-                                <CFaUserAlt color="gray.300" />
-                              </InputLeftElement>
-                              <Input
-                                {...input}
-                                type="email"
-                                placeholder={t("email.placeholder")}
-                              />
-                            </InputGroup>
-                            <FormErrorMessage>{meta.error}</FormErrorMessage>
-                          </FormControl>
-                        );
-                      }}
-                    </Field>
-                    <Field
-                      name="cpf"
-                      validate={composeValidators(required, cpf, length(11))}
-                    >
-                      {({ input, meta }) => {
-                        return (
-                          <FormControl isInvalid={meta.error && meta.touched}>
-                            <FormLabel>{t("cpf.label")}</FormLabel>
-                            <InputGroup>
-                              <Input
-                                {...input}
-                                type="cpf"
-                                placeholder={t("cpf.placeholder")}
-                              />
-                            </InputGroup>
-                            <FormErrorMessage>{meta.error}</FormErrorMessage>
-                          </FormControl>
-                        );
-                      }}
-                    </Field>
-                    <Field name="image">
-                      {({ input, meta }) => {
-                        return (
-                          <>
-                            <Text align="left" fontSize="18px" fontWeight={700}>
-                              {t("image.label")}
-                            </Text>
-                            <FormControl isInvalid={meta.error && meta.touched}>
-                              <Stack
-                                spacing={10}
-                                align="center"
-                                direction={{ base: "column", md: "row" }}
-                              >
-                                <>
-                                  <Center boxSize="300px" position="absolute">
-                                    {isLoading ? <Spinner size="xl" /> : null}
-                                  </Center>
-                                  <Image
-                                    borderRadius="full"
-                                    boxSize="300px"
-                                    alt="Profile photo selected by the candidate"
-                                    src={imageUrl}
-                                    fallbackSrc="https://via.placeholder.com/300"
-                                  />
-                                </>
-                                <VStack>
-                                  <Input
-                                    {...input}
-                                    onChange={(e) =>
-                                      handleFileInput(e, input.onChange)
-                                    }
-                                    type="file"
-                                    placeholder={t("image.placeholder")}
-                                    accept="image/*"
-                                  />
-                                  <FormHelperText>
-                                    {t("image.helperText")}
-                                  </FormHelperText>
-                                  <FormErrorMessage>
-                                    {meta.error}
-                                  </FormErrorMessage>
-                                </VStack>
-                              </Stack>
-                            </FormControl>
-                          </>
-                        );
-                      }}
-                    </Field>
+                    <EmailField t={t} />
+                    <CpfField t={t} />
+                    <ImageField t={t} {...s3Props} />
                   </Stack>
                   <Flex justifyContent="flex-end" mt={8}>
                     <Button
                       type="submit"
                       isLoading={submitting}
+                      disabled={submitting || pristine}
                       loadingText="Enviando"
                       variant="solid"
                       colorScheme="pink"
