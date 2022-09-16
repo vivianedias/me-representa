@@ -7,22 +7,16 @@ import {
 	Button,
 	Checkbox,
 	CheckboxGroup,
+	Flex,
 	Heading,
-	Input,
 	Select,
 	Stack,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
-import { RadioGroup, Radio } from "/shared/ui/Radio/Radio";
-import { Pergunta } from "/shared/ui/Pergunta/Pergunta";
-
-function CustomCheckbox(props) {
-	return (
-		<Field name={props.name} type="checkbox" value={props.value}>
-			{({ input }) => <Checkbox {...input}>{props.label}</Checkbox>}
-		</Field>
-	);
-}
+import {
+	CustomCheckbox,
+	CustomCheckboxCard,
+} from "/shared/ui/Eleitores/Eleitores";
 
 function Identity({ t }) {
 	return (
@@ -106,65 +100,70 @@ function Priorities({ t }) {
 			<Heading as="h2" size="sm" align="left">
 				{t("filters.priorities.label")}
 			</Heading>
-			<CheckboxGroup colorScheme="yellow">
-				<Stack spacing={4} direction={"column"}>
-					<CustomCheckbox
+			<Flex wrap="wrap" gap={1}>
+				<CheckboxGroup>
+					<CustomCheckboxCard
 						name="priorities"
 						value="corruption"
 						label={t("filters.priorities.corruption")}
 					/>
-					<CustomCheckbox
+					<CustomCheckboxCard
 						name="priorities"
 						value="gender"
 						label={t("filters.priorities.gender")}
 					/>
-					<CustomCheckbox
-						name="priorities"
-						value="drugs"
-						label={t("filters.priorities.drugs")}
-					/>
-					<CustomCheckbox
+					<CustomCheckboxCard
 						name="priorities"
 						value="security"
 						label={t("filters.priorities.security")}
 					/>
-					<CustomCheckbox
+					<CustomCheckboxCard
+						name="priorities"
+						value="drugs"
+						label={t("filters.priorities.drugs")}
+					/>
+					<CustomCheckboxCard
 						name="priorities"
 						value="migration"
 						label={t("filters.priorities.migration")}
 					/>
-					<CustomCheckbox
+					<CustomCheckboxCard
 						name="priorities"
 						value="race"
 						label={t("filters.priorities.race")}
 					/>
-					<CustomCheckbox
+					<CustomCheckboxCard
 						name="priorities"
 						value="traditionalPopulationEnvironment"
 						label={t("filters.priorities.traditionalPopulationEnvironment")}
 					/>
-					<CustomCheckbox
+					<CustomCheckboxCard
 						name="priorities"
 						value="healthEducationWork"
 						label={t("filters.priorities.healthEducationWork")}
 					/>
-				</Stack>
-			</CheckboxGroup>
+				</CheckboxGroup>
+			</Flex>
 		</Stack>
 	);
 }
 
 function State({ t }) {
 	return (
-		<Field name="state">
-			{({ input }) => (
-				<Select {...input} placeholder={t("filters.state.label")}>
-					<option value="SP">SP</option>
-					<option value="RJ">RJ</option>
-					<option value="ES">ES</option>
-				</Select>
-			)}
-		</Field>
+		<Stack spacing={2}>
+			<Heading as="h2" size="sm" align="left">
+				{t("filters.state.label")}
+			</Heading>
+			<Field name="state">
+				{({ input }) => (
+					<Select {...input} placeholder={t("filters.state.label")}>
+						<option value="SP">SP</option>
+						<option value="RJ">RJ</option>
+						<option value="ES">ES</option>
+					</Select>
+				)}
+			</Field>
+		</Stack>
 	);
 }
 
@@ -214,7 +213,6 @@ export default function EleitoresDashboard({ data }) {
 									<Parties t={t} />
 									<Priorities t={t} />
 									<State t={t} />
-									<Pergunta />
 
 									<Button
 										type="submit"
