@@ -1,9 +1,10 @@
 import "../../shared/locales/i18n";
 import Head from "next/head";
-import { useSession, signIn } from "next-auth/react";
+import { useMemo } from "react";
+import { unstable_getServerSession } from "next-auth";
 import { Form, Field } from "react-final-form";
 import { useTranslation } from "react-i18next";
-import useSWR from "swr";
+import { useSWRConfig } from "swr";
 import {
   Box,
   Button,
@@ -18,18 +19,20 @@ import {
   FormErrorMessage,
   Text,
   FormHelperText,
-  VStack,
   Image,
   Spinner,
-  Center,
   Flex,
   Grid,
   GridItem,
+  Select,
+  RadioGroup,
+  Radio,
 } from "@chakra-ui/react";
 import { FaUserAlt } from "react-icons/fa";
 import validations from "../../utils/validations";
 import useUploadS3 from "../../shared/hooks/useUploadS3";
 import fetcher from "../../utils/apiClient";
+import { authOptions } from "../api/auth/[...nextauth]";
 
 function EmailField({ t }) {
   const CFaUserAlt = chakra(FaUserAlt);
@@ -152,18 +155,78 @@ function ImageField({ t, isLoading, uploadS3, imageUrl }) {
   );
 }
 
-export default function CadastroCandidato() {
-  const { status, data: session } = useSession({
-    required: true,
-    onUnauthenticated() {
-      signIn();
-    },
-  });
-  const {
-    data: candidate,
-    mutate,
-    isValidating,
-  } = useSWR(session?.user?.id ? `/api/candidate/${session.user.id}` : null);
+function SelectSexualOrientation({ t, errors, values }) {
+  const { required } = validations(t);
+  const memoedValues = useMemo(() => values, [values]);
+  const memoedErrors = useMemo(() => errors, [errors]);
+
+  return (
+    <>
+      <RadioGroup defaultValue="2" isInvalid={errors.lgbtConfirm}>
+        <Stack spacing={5} direction="row">
+          <FormLabel>{t("lgbt.confirm.label")}</FormLabel>
+          <Field
+            name="lgbtConfirm"
+            value="true"
+            validate={required}
+            type="radio"
+          >
+            {({ input, meta }) => (
+              <Radio
+                {...input}
+                colorScheme="yellow"
+                isInvalid={meta.error && meta.touched}
+              >
+                {t("lgbt.confirm.true")}
+              </Radio>
+            )}
+          </Field>
+          <Field
+            name="lgbtConfirm"
+            value="false"
+            validate={required}
+            type="radio"
+          >
+            {({ input, meta }) => (
+              <Radio
+                {...input}
+                colorScheme="yellow"
+                isInvalid={meta.error && meta.touched}
+              >
+                {t("lgbt.confirm.false")}
+              </Radio>
+            )}
+          </Field>
+        </Stack>
+        <FormErrorMessage>{memoedErrors.lgbtConfirm}</FormErrorMessage>
+      </RadioGroup>
+      {memoedValues.lgbtConfirm === "true" ? (
+        <Field name="lgbt" validate={required}>
+          {({ input, meta }) => {
+            return (
+              <>
+                <Select {...input} isInvalid={meta.touched && meta.error}>
+                  <option value="">{t("lgbt.options.default")}</option>
+                  <option value="lesbian">{t("lgbt.options.lesbian")}</option>
+                  <option value="bissexual">
+                    {t("lgbt.options.bissexual")}
+                  </option>
+                  <option value="gay">{t("lgbt.options.gay")}</option>
+                  <option value="trans">{t("lgbt.options.trans")}</option>
+                  <option value="other">{t("lgbt.options.other")}</option>
+                </Select>
+                <FormErrorMessage>{meta.error}</FormErrorMessage>
+              </>
+            );
+          }}
+        </Field>
+      ) : null}
+    </>
+  );
+}
+
+export default function CadastroCandidato({ session, candidate }) {
+  const { mutate } = useSWRConfig();
 
   const s3Props = useUploadS3({ candidate, session });
   const { imageUrl } = s3Props;
@@ -193,10 +256,6 @@ export default function CadastroCandidato() {
       optimisticData: candidate,
     });
   };
-
-  if (status === "loading" || (isValidating && !candidate)) {
-    return <Text>{t("loading")}...</Text>;
-  }
 
   return (
     <>
@@ -229,12 +288,23 @@ export default function CadastroCandidato() {
               image: null,
               cpf: candidate?.cpf || "",
             }}
-            render={({ handleSubmit, submitting, pristine }) => {
+            render={({
+              handleSubmit,
+              submitting,
+              pristine,
+              errors,
+              values,
+            }) => {
               return (
                 <Box as="form" onSubmit={handleSubmit} my={10}>
                   <Stack spacing={4} align="center">
                     <EmailField t={t} />
                     <CpfField t={t} />
+                    <SelectSexualOrientation
+                      t={t}
+                      errors={errors}
+                      values={values}
+                    />
                     <ImageField t={t} {...s3Props} />
                   </Stack>
                   <Flex justifyContent="flex-end" mt={8}>
@@ -259,4 +329,40 @@ export default function CadastroCandidato() {
       </Stack>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    authOptions
+  );
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/cadastro/login",
+        permanent: false,
+      },
+    };
+  }
+
+  try {
+    const candidate = await fetcher(`/api/candidate/${session.user.id}`);
+
+    return {
+      props: {
+        session,
+        candidate,
+      },
+    };
+  } catch (e) {
+    console.error("error", e);
+    return {
+      props: {
+        session,
+        candidate: null,
+      },
+    };
+  }
 }
