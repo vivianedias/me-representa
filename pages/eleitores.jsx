@@ -9,14 +9,15 @@ import {
 	CheckboxGroup,
 	Flex,
 	Heading,
-	Select,
 	Stack,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import {
 	CustomCheckbox,
 	CustomCheckboxCard,
+	ReactSelectAdapter,
 } from "/shared/ui/Eleitores/Eleitores";
+import React, { CSSProperties } from "react";
 
 function Identity({ t }) {
 	return (
@@ -87,10 +88,24 @@ function LGBT({ t }) {
 }
 
 function Parties({ t }) {
+	const parties = [
+		{ value: "pt", label: "PT" },
+		{ value: "psol", label: "PSOL" },
+		{ value: "pcdob", label: "PCdoB" },
+	];
 	return (
-		<Heading as="h2" size="sm" align="left">
-			{t("filters.parties.label")}
-		</Heading>
+		<Stack spacing={2}>
+			<Heading as="h2" size="sm" align="left">
+				{t("filters.parties.label")}
+			</Heading>
+			<Field
+				name="parties"
+				component={ReactSelectAdapter}
+				options={parties}
+				placeholder={t("filters.parties.label")}
+				isMulti
+			/>
+		</Stack>
 	);
 }
 
@@ -149,20 +164,23 @@ function Priorities({ t }) {
 }
 
 function State({ t }) {
+	const states = [
+		{ value: "sp", label: "SP" },
+		{ value: "rj", label: "RJ" },
+		{ value: "es", label: "ES" },
+	];
 	return (
 		<Stack spacing={2}>
 			<Heading as="h2" size="sm" align="left">
 				{t("filters.state.label")}
 			</Heading>
-			<Field name="state">
-				{({ input }) => (
-					<Select {...input} placeholder={t("filters.state.label")}>
-						<option value="SP">SP</option>
-						<option value="RJ">RJ</option>
-						<option value="ES">ES</option>
-					</Select>
-				)}
-			</Field>
+
+			<Field
+				name="state"
+				component={ReactSelectAdapter}
+				options={states}
+				placeholder={t("filters.state.label")}
+			/>
 		</Stack>
 	);
 }
