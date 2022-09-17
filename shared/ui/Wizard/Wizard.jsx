@@ -1,66 +1,84 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
-import { Form } from "react-final-form"
+import { Field, Form } from "react-final-form"
+import { Button } from "@chakra-ui/react"
+import { useTranslation } from "react-i18next"
+import "/shared/locales/i18n";
 
-export const Wizard = (props) => {
+export const Wizard = ({ initialValues, onSubmit, children }) => {
+  const { t } = useTranslation("translation", { keyPrefix: "wizard" })
   const [state, setState] = useState({
     page: 0,
-    values: props.initialValues || {},
+    values: initialValues || {},
   })
-  const { children } = props
-  const { page, values } = state
-  const activePage = React.Children.toArray(children)[page]
-  const isLastPage = page === React.Children.count(children) - 1
+  const activePage = React.Children.toArray(children)[state.page]
+  const isLastPage = state.page === React.Children.count(children) - 1
 
   const handleSubmit = (values) => {
-    const { children, onSubmit } = props
-    const { page } = state
-    const isLastPage = page === React.Children.count(children) - 1
+    const isLastPage = state.page === React.Children.count(children) - 1
     if (isLastPage) {
       return onSubmit(values)
-    } else {
-      next(values)
     }
+    next(values)
   }
 
-  const validate = (values) => {
-    const activePage = React.Children.toArray(props.children)[
-      state.page
-    ]
-    return activePage.props.validate ? activePage.props.validate(values) : {}
+  const pageValidation = (values) => {
+    const errors = {}
+    for (const key in values) {
+      if (!values[key]) {
+        errors[key] = "REQUIRED"
+      }
+    }
+    return errors
   }
 
-  const next = (values) =>
+  const next = (values) => {
     setState((state) => ({
-      page: Math.min(state.page + 1, props.children.length - 1),
+      page: Math.min(state.page + 1, children.length - 1),
       values,
     }))
+  }
 
-  const previous = () =>
-    setState((state) => ({
-      page: Math.max(state.page - 1, 0),
-    }))
+  const previous = () => {
+    setState((state) => ({ ...state, page: Math.max(state.page - 1, 0) }))
+  }
+
+  const renderPrevious = () => {
+    return state.page > 0 && <Button onClick={previous}>{t("anterior")}</Button>
+  }
+
+  const renderNext = () => {
+    return !isLastPage && <Button type="submit">{t("proximo")}</Button>
+  }
+
+  const renderSubmit = (isSubmitting, hasValidationErrors) => {
+    return (
+      isLastPage && (
+        <Button
+          colorScheme="pink"
+          type="submit"
+          disabled={isSubmitting || hasValidationErrors}
+        >
+          {t("submeter")}
+        </Button>
+      )
+    )
+  }
 
   return (
-    <Form initialValues={values} validate={validate} onSubmit={handleSubmit}>
-      {({ handleSubmit, submitting, values }) => (
+    <Form
+      initialValues={state.values}
+      validate={pageValidation}
+      onSubmit={handleSubmit}
+    >
+      {({ handleSubmit, submitting, hasValidationErrors }) => (
         <form onSubmit={handleSubmit}>
           {activePage}
-          <div className="buttons">
-            {page > 0 && (
-              <button type="button" onClick={previous}>
-                « Previous
-              </button>
-            )}
-            {!isLastPage && <button type="submit">Next »</button>}
-            {isLastPage && (
-              <button type="submit" disabled={submitting}>
-                Submit
-              </button>
-            )}
+          <div>
+            {renderPrevious()}
+            {renderNext()}
+            {renderSubmit(submitting, hasValidationErrors)}
           </div>
-
-          <pre>{JSON.stringify(values, 0, 2)}</pre>
         </form>
       )}
     </Form>
@@ -71,4 +89,18 @@ Wizard.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 }
 
-Wizard.Page = function Page({ children }) { return children }
+Wizard.Page = function Page({ children }) {
+  return children
+}
+
+Wizard.Error = function Error({ name }) {
+  return (
+    <Field
+      name={name}
+      subscription={{ touched: true, error: true }}
+      render={({ meta: { touched, error } }) =>
+        touched && error ? <span>{error}</span> : null
+      }
+    />
+  )
+}

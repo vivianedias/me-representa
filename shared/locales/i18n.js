@@ -2,6 +2,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import login from "./pt-BR/candidato/login.json";
 import home from "./pt-BR/home.json";
+import wizard from "./pt-BR/wizard.json";
 
 i18n.use(initReactI18next).init({
 	fallbackLng: "pt-BR",
@@ -72,6 +73,7 @@ i18n.use(initReactI18next).init({
 					},
 				},
 				home,
+				wizard,
 			},
 		},
 	},
