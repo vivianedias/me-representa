@@ -29,7 +29,7 @@ export const Pergunta = (props) => {
         {t("posicionamento")}
       </Box>
       <RadioGroup ariaLabelledBy={pergunta.id}>
-        <Box marginY={3}>
+        <Box marginY={3} display="flex">
           <Radio
             name={pergunta.id}
             value="favor"
@@ -37,7 +37,7 @@ export const Pergunta = (props) => {
             style={{ width: "100%" }}
           />
         </Box>
-        <Box marginY={3}>
+        <Box marginY={3} display="flex">
           <Radio
             name={pergunta.id}
             value="contra"
