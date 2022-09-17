@@ -28,15 +28,16 @@ import {
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
+import validations from "../../utils/validations";
 
 function Login() {
   const { status } = useSession();
   const router = useRouter();
-
   const [verificationEmailSent, setVerificationEmailStatus] = useState(false);
   const CFaUserAlt = chakra(FaUserAlt);
   const CFaRegTimesCircle = chakra(FaRegTimesCircle);
   const { t } = useTranslation("translation", { keyPrefix: "login" });
+  const { required } = validations(t);
 
   const onSubmit = async ({ email }) => {
     try {
@@ -58,8 +59,7 @@ function Login() {
     }
   };
 
-  const required = (value) =>
-    value ? undefined : t("email.validation.required");
+  
 
   useEffect(() => {
     if (status === "authenticated") {

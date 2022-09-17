@@ -12,7 +12,7 @@ export default function Dashboard({ data }) {
 
 export async function getServerSideProps(req, res) {
   // Fetch data from external API
-  const data = await fetchClient('/api/users')
+  const data = await fetchClient("/api/candidates");
 
   // Pass data to the page via props
   return { props: { data } }
