@@ -212,8 +212,7 @@ export default function EleitoresDashboard({ data }) {
       >
         <Form
           onSubmit={onSubmit}
-          render={({ handleSubmit, submitting, submitError, ...rest }) => {
-            console.log(rest.values);
+          render={({ handleSubmit, submitting, submitError }) => {
             return (
               <Box
                 as="form"
