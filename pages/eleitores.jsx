@@ -87,22 +87,17 @@ function LGBT({ t }) {
   );
 }
 
-function Parties({ t }) {
-  const parties = [
-    { value: "pt", label: "PT" },
-    { value: "psol", label: "PSOL" },
-    { value: "pcdob", label: "PCdoB" },
-  ];
+function Parties(props) {
   return (
     <Stack spacing={2}>
       <Heading as="h2" size="sm" align="left">
-        {t("filters.parties.label")}
+        {props.t("filters.parties.label")}
       </Heading>
       <Field
         name="parties"
         component={ReactSelectAdapter}
-        options={parties}
-        placeholder={t("filters.parties.label")}
+        options={props.parties}
+        placeholder={props.t("filters.parties.label")}
         isMulti
       />
     </Stack>
@@ -163,23 +158,18 @@ function Priorities({ t }) {
   );
 }
 
-function State({ t }) {
-  const states = [
-    { value: "sp", label: "SP" },
-    { value: "rj", label: "RJ" },
-    { value: "es", label: "ES" },
-  ];
+function State(props) {
   return (
     <Stack spacing={2}>
       <Heading as="h2" size="sm" align="left">
-        {t("filters.state.label")}
+        {props.t("filters.state.label")}
       </Heading>
 
       <Field
         name="state"
         component={ReactSelectAdapter}
-        options={states}
-        placeholder={t("filters.state.label")}
+        options={props.states}
+        placeholder={props.t("filters.state.label")}
       />
     </Stack>
   );
@@ -194,6 +184,18 @@ export default function EleitoresDashboard({ data }) {
     await sleep(300);
     console.log({ data });
   };
+
+  const parties = [
+    { value: "pt", label: "PT" },
+    { value: "psol", label: "PSOL" },
+    { value: "pcdob", label: "PCdoB" },
+  ];
+
+  const states = [
+    { value: "sp", label: "SP" },
+    { value: "rj", label: "RJ" },
+    { value: "es", label: "ES" },
+  ];
 
   return (
     <>
@@ -227,9 +229,9 @@ export default function EleitoresDashboard({ data }) {
 
                   <Identity t={t} />
                   <LGBT t={t} />
-                  <Parties t={t} />
+                  <Parties t={t} parties={parties} />
                   <Priorities t={t} />
-                  <State t={t} />
+                  <State t={t} states={states} />
 
                   <Button
                     type="submit"
