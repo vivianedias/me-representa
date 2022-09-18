@@ -5,7 +5,6 @@ import Head from "next/head";
 import {
   Box,
   Button,
-  Checkbox,
   CheckboxGroup,
   Flex,
   Heading,
@@ -16,7 +15,7 @@ import {
   CustomCheckbox,
   CustomCheckboxCard,
   ReactSelectAdapter,
-} from "/shared/ui/Eleitores/Eleitores";
+} from "/shared/ui/Components/Checkbox";
 import React, { CSSProperties } from "react";
 
 function Identity({ t }) {
