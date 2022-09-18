@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import { Heading } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import styles from "./styles.module.css";
 import homeStyles from "../home.module.css";
 
@@ -25,7 +25,7 @@ import monabot from "/public/imgs/home/logo_mona_bot.png";
 const Parcerias = () => {
   const { t } = useTranslation("translation", { keyPrefix: "home.parcerias" });
   return (
-    <section>
+    <Box as="section" w="100%">
       <Heading
         as="h1"
         size="2xl"
@@ -104,7 +104,7 @@ const Parcerias = () => {
           <Image src={monabot} alt={t("imgsAlt.monabot")} layout="responsive" />
         </div>
       </div>
-    </section>
+    </Box>
   );
 };
 

@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: var(--chakra-sizes-container-xl);
+    margin: 0 auto;
+    margin-bottom: 20px;
+    justify-content: space-evenly;
+    padding: var(--chakra-space-6);
+}
+
+.imgContainer {
+    width: 100%;
+}
+
+.imgWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (min-width: 48em) {
+    .container {
+        flex-direction: row;
+        width: 100%;
+        padding: var(--chakra-space-12);
+    }
+
+    .imgContainer {
+        max-width: 50%;
+        /* flex-grow: 1; */
+    }
+    
+    .btnsContainer {
+        max-width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
