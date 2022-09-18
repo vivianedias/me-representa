@@ -1,0 +1,27 @@
+{
+  "title": "Termos e Condições",
+  "labelCheckbox": "Li e concordo com os termos de uso",
+  "labelBtn": "Continuar",
+  "fullTerms": "Leia nossos Termos e Condições e Política de Privacidade na íntegra",
+  "click": "clique aqui",
+  "simplified": {
+    "title": "Termos Simplificados",
+    "item1": "Você é responsável pelas afirmações preenchidas",
+    "item2": "Não fazemos pesquisa de intenção de votos, nem campanha eleitoral",
+    "item3": "Você pode alterar suas respostas ao questionário até 23 de outubro de 2020",
+    "item4": "O usuário candidato é livre para excluir seus perfil, a qualquer momento, diretamente na plataforma (acesso com login e senha), ou requerer o pedido de exclusão definitiva de seus dados da #MeRepresenta através do email: contato@merepresenta.org.br, mediante a confirmação dos dados pessoais fornecidos."
+  },
+  "use": {
+    "title": "Uso e armazenamento de dados pessoais",
+    "item1": "De acordo com a vigência da Lei Geral de Proteção de Dados, a plataforma #MeRepresenta atualizou seus prootocolos pensando na proteção de usuáries. Veja noossos termos de uso para mais informações.",
+    "item2": "Nós respeitamos sua privacidade, portanto, os dados pessoais fornecidos serão utilizados de forma anonimizada de acordo com a finalidade prevista nos termos de uso da organização.",
+    "item3": "Os dados concedidos serão armazenados, tratados e geridos de forma segura e transparente para as finalidades previsas pela organização.",
+    "item4": "Para tais dados, não há pedidoo de consentimento dos usuários, de acordo com os termos de uso da plataforma.",
+    "item5": "Os dados pessoais sensíveis fornecidos podem ser utilizados para a realização de estudos e levantamento estatísticos pelo #MeRepresenta de modo anônimo.",
+    "item6": "Os dados pessoais sensíveis fornecidos, durante as eleições, serão utilizados na plataforma para permitir que o eleitor faça buscas por candidaturas e para priorizar a ordem de aparição das candidaturas.",
+    "item7": "Os dados pessoais sensíveis fornecidos de candidaturas eleitas podem ser utilizados para a realização de estudos e levantamento estatísticos pelo #MeRepresenta e entidades parceiras de modo não anônimo.",
+    "item8": "Os dados pessoais cujo acesso é público serão colhidos das bases de informações da Justiça Eleitoral.",
+    "item9": "Para uso adicional dos dados pessoais preenchidos, incluindo o uso pelas próprias entidades que compõem a gestão do #MeRepresenta, a candidatura será consultada previamente pela equipe da #MeRepresenta."
+  },
+  "calcExplanation": "A #MeRepresenta desenvolveu uma nota para cada partido, baseada no desempenho do partido em temas de direitos humanos e na representação de raça e gênero interna e no financiamento de candidaturas, que será utilizada para priorizar a ordem de aparição das candidaturas."
+}
