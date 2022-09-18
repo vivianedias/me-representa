@@ -2,20 +2,25 @@ import fetchClient from "../utils/apiClient";
 import "../shared/locales/i18n";
 import { Form } from "react-final-form";
 import Head from "next/head";
-import { Box, Button, Stack } from "@chakra-ui/react";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  AddIcon,
+  Box,
+  Button,
+  Heading,
+  MinusIcon,
+  Stack,
+} from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import React from "react";
-import Filters from "../shared/ui/Filters/Filters";
+import ExpandingFilters from "../shared/ui/Filters/ExpandingFilters";
 
 export default function EleitoresDashboard({ data }) {
   const { t } = useTranslation("translation", { keyPrefix: "eleitores" });
-
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  const onSubmit = async (data) => {
-    await sleep(300);
-    console.log({ data });
-  };
 
   const parties = [
     { value: "pt", label: "PT" },
@@ -44,34 +49,9 @@ export default function EleitoresDashboard({ data }) {
         backgroundColor="whiteAlpha.900"
         boxShadow="md"
       >
-        <Form
-          onSubmit={onSubmit}
-          render={({ handleSubmit, submitting, submitError }) => {
-            return (
-              <Box
-                as="form"
-                onSubmit={handleSubmit}
-                bgColor="white"
-                w={{ base: "85vw", md: "768px" }}
-              >
-                <Stack spacing={8}>
-                  <Filters t={t} parties={parties} states={states} />
-
-                  <Button
-                    type="submit"
-                    isLoading={submitting}
-                    loadingText="Filtrando"
-                    variant="solid"
-                    colorScheme="pink"
-                    size="md"
-                  >
-                    {t("filters.button")}
-                  </Button>
-                </Stack>
-              </Box>
-            );
-          }}
-        />
+        <Box bgColor="white" w={{ base: "85vw", md: "768px" }}>
+          <ExpandingFilters t={t} parties={parties} states={states} />
+        </Box>
       </Stack>
     </>
   );
