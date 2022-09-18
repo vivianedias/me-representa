@@ -26,6 +26,11 @@
       "label": "Você se considera parte da comunidade LGBT?"
     }
   },
+  "terms": {
+    "label": "Li e concordo com os",
+    "termsAndConditions": "Termos e Condições e Política de Privacidade",
+    "error": "Você precisa concordar com os Termos e Condições e a Política de Privacidade."
+  },
   "heading": {
     "hello": "Olá, Candidata(o)!",
     "thanks": "Obrigada por ingressar na nossa plataforma!",

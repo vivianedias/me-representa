@@ -55,7 +55,7 @@ const Terms = () => {
         <Box paddingLeft={4}>
           <Text as="span">{t("fullTerms")}</Text>{" "}
           <NextLink href="#" passHref isExternal>
-            <Link isExternal color="pink.600">
+            <Link isExternal color="pink.600" target="_blank">
               {t("click")}{" "}
               <Icon as={FaExternalLinkAlt} color="pink.600" boxSize={3} />.
             </Link>

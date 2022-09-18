@@ -1,5 +1,6 @@
 import "../../shared/locales/i18n";
 import Head from "next/head";
+import NextLink from "next/link";
 import { useMemo, useState } from "react";
 import { unstable_getServerSession } from "next-auth";
 import { Form, Field } from "react-final-form";
@@ -27,8 +28,12 @@ import {
   RadioGroup,
   Radio,
   HStack,
+  Checkbox,
+  Link,
+  Icon,
+  CheckboxGroup,
 } from "@chakra-ui/react";
-import { FaUserAlt, FaRegTimesCircle } from "react-icons/fa";
+import { FaUserAlt, FaRegTimesCircle, FaExternalLinkAlt } from "react-icons/fa";
 import validations from "../../utils/validations";
 import useUploadS3 from "../../shared/hooks/useUploadS3";
 import fetcher from "../../utils/apiClient";
@@ -93,15 +98,13 @@ function ImageField({ t, isLoading, uploadS3, imageUrl }) {
     <Field name="image">
       {({ input, meta }) => {
         return (
-          <>
-            <Text align="left" fontSize="18px" fontWeight={700}>
-              {t("image.label")}
-            </Text>
+          <Stack w="100%" spacing={4}>
             <FormControl isInvalid={meta.error && meta.touched}>
+              <FormLabel>{t("image.label")}</FormLabel>
               <Grid
                 align="center"
-                templateColumns={{ base: "1fr", md: "400px 1fr" }}
-                templateRows={{ base: "repeat(2, 1fr)", md: "1fr" }}
+                templateColumns={{ base: "1fr", md: "300px 1fr" }}
+                templateRows={{ base: "repeat(2, 100%)", md: "1fr" }}
               >
                 <GridItem>
                   <Box
@@ -109,7 +112,7 @@ function ImageField({ t, isLoading, uploadS3, imageUrl }) {
                     overflow="hidden"
                     borderRadius="full"
                     position="relative"
-                    boxSize="300px"
+                    boxSize="200px"
                     mb={{ base: 10, md: 0 }}
                   >
                     <Box
@@ -148,23 +151,12 @@ function ImageField({ t, isLoading, uploadS3, imageUrl }) {
                 </GridItem>
               </Grid>
             </FormControl>
-          </>
+          </Stack>
         );
       }}
     </Field>
   );
 }
-
-const Error = ({ name, children }) => (
-  <Field name={name} subscription={{ error: true, touched: true }}>
-    {({ meta: { error, touched } }) =>
-      children({
-        hasError: error && touched,
-        error,
-      })
-    }
-  </Field>
-);
 
 const Condition = ({ when, is, children }) => {
   return (
@@ -233,6 +225,36 @@ function SelectSexualOrientation({ t, lgbtConfirmInitialValue }) {
   );
 }
 
+function AgreeTermsCheckbox({ t, termsInitialValue }) {
+  const { required } = validations(t);
+
+  function TermsLink() {
+    return (
+      <NextLink href="/termos" passHref>
+        <Link color="pink.600" target="_blank">
+          {t("terms.termsAndConditions")}{" "}
+          <Icon as={FaExternalLinkAlt} color="pink.600" boxSize={3} />.
+        </Link>
+      </NextLink>
+    );
+  }
+
+  return (
+    <Field name="terms" validate={required} value="yes" type="checkbox">
+      {({ input, meta }) => (
+        <FormControl isInvalid={meta.touched && meta.error}>
+          <CheckboxGroup defaultValue={termsInitialValue}>
+            <Checkbox {...input} colorScheme="yellow">
+              {t("terms.label")} <TermsLink />
+            </Checkbox>
+            <FormErrorMessage>{t("terms.error")}</FormErrorMessage>
+          </CheckboxGroup>
+        </FormControl>
+      )}
+    </Field>
+  );
+}
+
 function formatInitialValues({ candidate, session }) {
   const parseToAnswer = ({ lgbtConfirm }) =>
     lgbtConfirm === true ? "yes" : "no";
@@ -243,6 +265,7 @@ function formatInitialValues({ candidate, session }) {
     cpf: candidate?.cpf || "",
     lgbtConfirm: candidate ? parseToAnswer(candidate) : null,
     lgbt: candidate?.lgbt || "",
+    terms: candidate?.acceptedTerms ? ["yes"] : [],
   };
 }
 
@@ -273,6 +296,7 @@ export default function CadastroCandidato(props) {
   };
 
   const onSubmit = async (values) => {
+    const { terms, ...restValues } = values;
     setSubmitError(false);
 
     if (!imageUrl) {
@@ -280,10 +304,11 @@ export default function CadastroCandidato(props) {
     }
 
     const candidate = {
-      ...values,
+      ...restValues,
       image: imageUrl,
       userId: session?.user?.id,
-      lgbtConfirm: values.lgbtConfirm === "yes",
+      lgbtConfirm: restValues.lgbtConfirm === "yes",
+      acceptedTerms: terms[0] === "yes",
     };
 
     await updateCandidate(candidate);
@@ -305,12 +330,11 @@ export default function CadastroCandidato(props) {
         flexDir="column"
         justifyContent="center"
         alignItems="center"
-        p="1rem"
         backgroundColor="whiteAlpha.900"
         boxShadow="md"
-        py={8}
+        p={8}
       >
-        <Box as="section" bgColor="white" w={{ base: "90%", md: "768px" }}>
+        <Box as="section" bgColor="white" w={{ base: "90%", lg: "768px" }}>
           <Stack spacing={3} align="center">
             <Heading as="h1" size="xl" align="center">
               {t("heading.hello")}
@@ -322,10 +346,10 @@ export default function CadastroCandidato(props) {
           <Form
             onSubmit={onSubmit}
             initialValues={memoedInitialValues}
-            render={({ handleSubmit, submitting, pristine }) => {
+            render={({ handleSubmit, submitting, pristine, values }) => {
               return (
-                <Box as="form" onSubmit={handleSubmit} my={10}>
-                  <Stack spacing={4} align="center">
+                <Box as="form" onSubmit={handleSubmit} marginTop={8}>
+                  <Stack spacing={5} align="center">
                     <EmailField t={t} />
                     <CpfField t={t} />
                     <SelectSexualOrientation
@@ -333,32 +357,38 @@ export default function CadastroCandidato(props) {
                       lgbtConfirmInitialValue={initialValues.lgbtConfirm}
                     />
                     <ImageField t={t} {...s3Props} />
-                  </Stack>
-                  <Flex
-                    justifyContent="flex-end"
-                    mt={8}
-                    direction="column"
-                    gap={4}
-                  >
-                    {submitError ? (
-                      <HStack justifyContent="flex-end">
-                        <CFaRegTimesCircle w={5} h={5} color="red.500" />
-                        <Text color="red.600">{t("submitError")}</Text>
-                      </HStack>
-                    ) : null}
-                    <Button
-                      type="submit"
-                      isLoading={submitting}
-                      disabled={submitting || pristine}
-                      loadingText="Enviando"
-                      variant="solid"
-                      colorScheme="pink"
-                      size="md"
-                      alignSelf="flex-end"
+                    {candidate?.acceptedTerms ? null : (
+                      <AgreeTermsCheckbox
+                        t={t}
+                        termsInitialValue={initialValues.terms}
+                      />
+                    )}
+                    <Flex
+                      justifyContent="flex-end"
+                      direction="column"
+                      gap={4}
+                      w="100%"
                     >
-                      {t("button")}
-                    </Button>
-                  </Flex>
+                      {submitError ? (
+                        <HStack justifyContent="flex-end">
+                          <CFaRegTimesCircle w={5} h={5} color="red.500" />
+                          <Text color="red.600">{t("submitError")}</Text>
+                        </HStack>
+                      ) : null}
+                      <Button
+                        type="submit"
+                        isLoading={submitting}
+                        disabled={submitting || pristine}
+                        loadingText="Enviando"
+                        variant="solid"
+                        colorScheme="pink"
+                        size="md"
+                        alignSelf="flex-end"
+                      >
+                        {t("button")}
+                      </Button>
+                    </Flex>
+                  </Stack>
                 </Box>
               );
             }}
@@ -387,7 +417,7 @@ export async function getServerSideProps(context) {
 
   try {
     const candidate = await fetcher(`/api/candidate/${session.user.id}`);
-
+    console.log({ candidate, session });
     return {
       props: {
         session,
