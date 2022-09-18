@@ -1,11 +1,20 @@
 import { SessionProvider } from "next-auth/react";
-import { ChakraProvider } from "@chakra-ui/react";
-import { Flex } from "@chakra-ui/react"
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { SWRConfig } from "swr";
-import Header from '../shared/ui/Header/Header'
-import Footer from '../shared/ui/Footer/Footer'
+import Header from "../shared/ui/Header/Header";
+import Footer from "../shared/ui/Footer/Footer";
 import fetcher from "../utils/apiClient";
 import "../styles/globals.css";
+
+const theme = {
+  colors: {
+    yellow: {
+      500: "#ECC94B",
+      600: "#ECC94B",
+    },
+  },
+};
 
 function MyApp({ Component, pageProps }) {
   const options = {
@@ -14,7 +23,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <SWRConfig value={options}>
       <SessionProvider session={pageProps.session}>
-        <ChakraProvider>
+        <ChakraProvider theme={extendTheme(theme)}>
           <Header />
           <Flex
             flexDirection="column"

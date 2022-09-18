@@ -1,0 +1,38 @@
+{
+	"title": "Eleitores",
+	"filters": {
+		"heading": "FILTROS",
+		"identity": {
+			"label": "Identitários",
+			"black": "Negros",
+			"indigenous": "Indígenas",
+			"women": "Mulheres",
+			"lgbt": "LGBT"
+		},
+		"lgbt": {
+			"label": "LGBT",
+			"lesbian": "Lésbica",
+			"gay": "Gay",
+			"bisexual": "Bissexual",
+			"trans": "Trans"
+		},
+		"parties": {
+			"label": "Partidos"
+		},
+		"priorities": {
+			"label": "Prioridades",
+			"corruption": "Corrupção",
+			"gender": "Gênero",
+			"drugs": "Drogas",
+			"security": "Segurança",
+			"migration": "Imigrantes",
+			"race": "Raça",
+			"traditionalPopulationEnvironment": "Povos Tradicionais e Meio Ambiente",
+			"healthEducationWork": "Saúde, Educação e Trabalho"
+		},
+		"state": {
+			"label": "Estado"
+		},
+		"button": "Filtrar"
+	}
+}
