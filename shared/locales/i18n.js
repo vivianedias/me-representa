@@ -2,7 +2,17 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import login from "./pt-BR/candidato/login.json";
 import home from "./pt-BR/home.json";
+import cadastro from "./pt-BR/candidato/cadastro.json";
 import eleitores from "./pt-BR/eleitores.json";
+
+export const validation = {
+  required: "Campo obrigatório",
+  cpf: "CPF inválido",
+  email: "Insira um e-mail válido",
+  length: "Formato inválido",
+};
+
+
 
 i18n.use(initReactI18next).init({
 	fallbackLng: "pt-BR",
@@ -14,6 +24,10 @@ i18n.use(initReactI18next).init({
 					contador: "Pauta {{current}} de {{max}}",
 					posicionamento: "Qual o seu posicionamento?",
 				},
+        cadastro: {
+          ...cadastro,
+          validation,
+        },
 				login,
 				header: {
 					imgDescricao: "Logotipo do MeRepresenta",

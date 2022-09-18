@@ -30,7 +30,6 @@ export const Radio = ({
   const field = useField(name, {
     type: "radio",
     value: value,
-    initialValue: "",
   })
   const toggle = () => field.input.onChange(field.input.value)
 
