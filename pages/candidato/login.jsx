@@ -17,24 +17,36 @@ import {
 } from "@chakra-ui/react";
 import { Form, Field } from "react-final-form";
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FORM_ERROR } from "final-form";
-import { FaUserAlt, FaRegTimesCircle } from "react-icons/fa";
+import { useSession } from "next-auth/react";
+import {
+  FaUserAlt,
+  FaRegTimesCircle,
+  FaTwitterSquare,
+  FaRegEnvelope,
+} from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/router";
+import validations from "../../utils/validations";
 
 function Login() {
+  const { status } = useSession();
+  const router = useRouter();
   const [verificationEmailSent, setVerificationEmailStatus] = useState(false);
   const CFaUserAlt = chakra(FaUserAlt);
   const CFaRegTimesCircle = chakra(FaRegTimesCircle);
   const { t } = useTranslation("translation", { keyPrefix: "login" });
+  const { required } = validations(t);
 
   const onSubmit = async ({ email }) => {
     try {
       const sendingVerificationEmail = await signIn("email", {
         email,
         redirect: false,
+        callbackUrl: "/candidato/cadastro",
       });
-      console.log({ sendingVerificationEmail });
+
       if (sendingVerificationEmail.error !== null) {
         throw new Error("Problems with singin");
       }
@@ -46,8 +58,22 @@ function Login() {
       return { [FORM_ERROR]: e };
     }
   };
-  const required = (value) =>
-    value ? undefined : t("email.validation.required");
+
+  
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/candidato/cadastro");
+    }
+  }, [status, router]);
+
+  if (status === "loading") {
+    return <div>{t("loading")}</div>;
+  }
+
+  if (status === "authenticated") {
+    return <div>{t("redirect")}...</div>;
+  }
 
   return (
     <>
@@ -60,8 +86,11 @@ function Login() {
         mb="2"
         justifyContent="center"
         alignItems="center"
+        p="1rem"
+        backgroundColor="whiteAlpha.900"
+        boxShadow="md"
       >
-        <Heading as="h1" color="pink.500">
+        <Heading as="h1" color="pink.500" mb="6">
           {t("title")}
         </Heading>
         <Box minW={{ base: "90%", md: "468px" }}>
@@ -69,12 +98,7 @@ function Login() {
             onSubmit={onSubmit}
             render={({ handleSubmit, submitting, submitError }) => (
               <Box as="form" onSubmit={handleSubmit}>
-                <Stack
-                  spacing={4}
-                  p="1rem"
-                  backgroundColor="whiteAlpha.900"
-                  boxShadow="md"
-                >
+                <Stack spacing={4} align="center">
                   <Field name="email" validate={required}>
                     {({ input, meta }) => (
                       <FormControl isInvalid={meta.error && meta.touched}>
@@ -109,15 +133,28 @@ function Login() {
                     </HStack>
                   ) : null}
                   <Button
-                    borderRadius={0}
                     type="submit"
+                    isLoading={submitting}
+                    loadingText="Enviando"
                     variant="solid"
                     colorScheme="pink"
                     width="full"
-                    isLoading={submitting}
-                    loadingText="Enviando"
+                    leftIcon={<FaRegEnvelope />}
                   >
                     {t("email.button")}
+                  </Button>
+                  <Button
+                    width="full"
+                    leftIcon={<FaTwitterSquare />}
+                    variant="solid"
+                    colorScheme="twitter"
+                    onClick={() =>
+                      signIn("twitter", {
+                        callbackUrl: "/candidato/cadastro",
+                      })
+                    }
+                  >
+                    {t("twitter.button")}
                   </Button>
                 </Stack>
               </Box>

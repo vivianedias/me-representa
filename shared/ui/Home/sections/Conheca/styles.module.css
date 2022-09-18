@@ -3,7 +3,8 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     background-color: var(--chakra-colors-teal-500);
-    padding: var(--chakra-space-12) var(--chakra-space-24);
+    padding: var(--chakra-space-12) var(--chakra-space-16);
+    max-width: 100%;
 }
 
 .title {
@@ -16,12 +17,42 @@
     font-size: var(--chakra-fontSizes-xl);
 }
 
-@media screen and (min-width: 48em) {
-    .left,
-    .right {
+.videoWrapper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+}
+
+.iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.videoContainer,
+.textContainer {
+    width: 100%;
+}
+
+@media screen and (min-width: 62em) {
+    .videoContainer,
+    .textContainer {
         display: flex;
         flex-direction: column;
         justify-content: center;
         max-width: 50%;
+    }
+
+    .videoContainer {
+        width: 60%;
+    }
+
+    .textContainer {
+        width: 40%;
     }
 }

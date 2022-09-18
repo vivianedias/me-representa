@@ -1,177 +1,124 @@
 import i18n from "i18next";
-import { initReactI18next } from "react-i18next"
+import { initReactI18next } from "react-i18next";
+import login from "./pt-BR/candidato/login.json";
+import home from "./pt-BR/home.json";
+import cadastro from "./pt-BR/candidato/cadastro.json";
 
-i18n.
-    use(initReactI18next)
-    .init({
-    fallbackLng: 'pt-BR',
-    lng: 'pt-BR',
-    resources: {
-        'pt-BR': {
-            translation: {
-                login: {
-                    title: "Login",
-                    email: {
-                        placeholder: "endereço de e-mail",
-                        validation: {
-                            required: "Campo obrigatório"
-                        },
-                        verificationEmail: {
-                            title: "Cheque seu e-mail!",
-                            body: "Um link mágico para login acaba de ser enviado!",
-                            error: "Houve um erro ao enviar o link. Tente novamente mais tarde."
-                        },
-                        button: "Entrar com e-mail"
-                    },
-                },
-                header: {
-                    imgDescricao: "Logotipo do MeRepresenta",
-                    navbar: {
-                        sobre: "Sobre",
-                        voluntaria: "Voluntária/o",
-                        eleitora: "Eleitor/a",
-                        pautas: "Pautas",
-                        perguntas: "Perguntas?",
-                        candidata: "Sou Candidata/o",
-                        menu: "Clique para {{estado}} o menu",
-                        menuAbrir: "abrir",
-                        menuFechar: "fechar"
-                    },
-                },
-                footer: {
-                    sobre: {
-                        titulo: "Sobre",
-                        quemSomos: "Quem somos",
-                        impacto: "Impacto",
-                        transparencia: "Transparência"
-                    },
-                    participar: {
-                        titulo: "Participar",
-                        candidato: "Candidato",
-                        eleitor: "Eleitor",
-                        voluntario: "Voluntário"
-                    },
-                    financiamento: {
-                        titulo: "Financiamento",
-                        iniciativa: "uma iniciativa de",
-                        imgsAlt: {
-                            ciudadania: "Ciudadania Inteligente",
-                            altec: "Uma iniciativa de Altec",
-                            undef: "Undef",
-                            avina: "Avina",
-                            omidyar: "Omidyar"
-                        }
-                    },
-                    apoio: {
-                        titulo: "Apoio",
-                        imgsAlt: {
-                            zoly: "Saiba Mais Zoly",
-                            mattos: "Mattos Filho",
-                            silveira: "Silveira Andrade",
-                            casa1: "Casa 1",
-                            tiniguimaraes: "Tini e Guimarães",
-                            dataLabel: "Data Label"
+export const validation = {
+  required: "Campo obrigatório",
+  cpf: "CPF inválido",
+  email: "Insira um e-mail válido",
+  length: "Formato inválido",
+};
 
-                        }
-                    },
-                    direitos: {
-                        titulo: "#Todos os direitos reservados a #MeRepresenta 2022"
-                    }
-                },
-                home: {
-                    ajudeEleitores: {
-                        titulo: "Ajude seus eleitores chegarem até você!",
-                        querAparecer: "Quer aparecer para as eleitoras e eleitores que se preocupam com as mesmas pautas que você? Cadastre-se e traga mais visibilidade para sua candidatura.",
-                        btnSouCandidato: "Sou candidata/o",
-                        btnSouVoluntario: "Quero ser voluntária/o",
-                        btnSouEleitor: "Sou eleitor/a",
-                        imgDescricao: "Eleitores diversos com balões de fala dizendo 'voto!' e '#me representa'"
-                    },
-                    conheca: {
-                        titulo: "Conheça o #MeRepresenta",
-                        oMeRepresenta: "O #MeRepresenta é uma união de coletivos formados por mulheres, pessoas negras e LGBT+. Nosso objetivo é diminuir a distância entre eleitoras/es e candidatas/os comprometidas/os com os direitos sociais, civis e políticos da população.",
-                        aNovaPlataforma: "A nova plataforma #MeRepresenta Eleições 2020 foi elaborada com a participação de 16 organizações da sociedade civil. Veja abaixo quem está com a gente!"
-                    },
-                    pautas: {
-                        titulo: "Entenda as #pautas em debate",
-                        genero: "#Gênero",
-                        lgbt: "#LGBT+",
-                        raca: "#Raça", 
-                        povos: "#Povos Tradicionais",
-                        politicasSociais: "#Políticas Sociais",
-                        segurancaPublica: "#Segurança Pública",
-                        drogas: "#Drogas",
-                        comunicacao: "#Comunicação",
-                        demoracracia: "#Democracia",
-                        meioAmbiente: "#Meio Ambiente",
-                        imgsAlt: {
-                            raca: "Pessoas negras marcham com punho erguido e sorrindo",
-                            povos: "Indigenas com os corpos pintados em protesto",
-                            lgbt: "Bandeira do movimento LGBT+ balançada em frente a grande público em passeata"
-                        }
-                    },
-                    facaParte: {
-                        titulo: "Faça parte do #MeRepresenta",
-                        btnVoluntario: "Quero ser voluntario",
-                        btnSaberMais: "Quero saber mais",
-                        imgDescricao: "Ilustração com 3 pessoas com balões de fala dizendo '#me representa'"
-                    },
-                    quemFez: {
-                        titulo: "Quem fez isso possível?",
-                        imgsAlt: {
-                            mulheresNegras: "Logo com a frase 'mulheres negras decidem' em maiusculas",
-                            blogueirasNegras: "Logo com uma mulher negra a esquerda em fundo amarelo e o título 'Blogueiras Negras'",
-                            redeFeminista: "Logo com uma arte em linhas finas e o título 'Rede Feminista de Juristas'",
-                            cidadaniaInteligente: "Logo com uma arte de uma lâmpada e pontos coloridos com o título 'Cidadania Inteligente'",
-                            voteLGBT: "Logo com o título '#VoteLGBT'",
-                        }
-                    },
-                    parcerias: {
-                        titulo: "Parcerias",
-                        imgsAlt: {
-                            agblt: "Logotipo da Associação Brasileira de Gays, Lésbicas, Bissexuais, Travestis, Transexuais e Intersexos",
-                            aliancaNacionalLGBTI: "Logotipo da Aliança Nacional LGBTI+",
-                            apoinme: "Logotipo da Articulação dos Povos Indígenas do Nordeste, Minas Gerais e Espírito Santo (APOINME)",
-                            cfemea: "Logotipo do Centro Feminista de Estudos e Assessoria",
-                            conaq: "Logotipo da Coordenação Nacional de Articulação de Quilombos",
-                            gn: "Logotipo da orgnização Gênero e Número",
-                            instutoSouDaPaz: "Logotipo do Instituto Sou da Paz",
-                            intervozes: "Logotipo da Intervozes",
-                            ittc: "Logotitpo do Instituto Terra, Trabalho e Cidadania - ITTC",
-                            mst: "Logotipo do Movimento dos Trabalhadores Rurais Sem Terra",
-                            pbpd: "Logotipo da Plataforma Brasileira de Política de Drogas (PBPD)",
-                            sistemaPolitico: "Logotipo da Plataforma pela reforma do sistema político",
-                            redeJusticaCriminal: "Logotipo da Rede Justiça Criminal",
-                            azMina: "Logotipo do instituto AzMina",
-                            movimentoTransparencia: "Logotipo do Movimento Transparência Partidária",
-                            monabot: "Logotipo da M0na Bot"
-                        }
-                    }
-                },
-                termos: {
-                    tituloTermos: "Termos Simplificados",
-                    labelCheckbox: "Li e concordo com os termos de uso",
-                    labelBtn: "Continuar",
-                    termos: {
-                        item1: "Dados preenchidoos aqui poderão ser pesquisados durante e após o período eleitoral.",
-                        item2: "Não fazemos pesquisa de intenção de votos, nem campanha eleitoral.",
-                        item3: "Você pode alterar suas respostas ao questionário até 30 dias antes do 1o turno das eleições.",
-                        item4: "Você pode apagar seus dados da plataforma quando quiser.",
-                    },
-                    tituloUso: "Uso e armazenamento de dados pessoais:",
-                    uso: {
-                        item1: "De acordo com a vigência da Lei Geral de Proteção de Dados, a plataforma #MeRepresenta atualizou seus prootocolos pensando na proteção de usuáries. Veja noossos termos de uso para mais informações.",
-                        item2: "Nós respeitamos sua privacidade, portanto, os dados pessoais fornecidos serão utilizados de forma anonimizada de acordo com a finalidade prevista nos termos de uso da organização.",
-                        item3: "Os dados concedidos serão armazenados, tratados e geridos de forma segura e transparente para as finalidades previsas pela organização.",
-                        item4: "Os dados sensíveis fornecidos podem ser utilizados para a realização de estudos e levantamento estatísticos de modo anônimo.",
-                        item5: "Para tais dados, naão há pedidoo de consentimento dos usuários, de acordo com os termos de uso da plataforma.",
-                        item6: "Os dados pessoais cujo acesso é público serão colhidos das bases de informações da Justiça Eleitoral.",
-                    }
+i18n.use(initReactI18next).init({
+  fallbackLng: "pt-BR",
+  lng: "pt-BR",
+  resources: {
+    "pt-BR": {
+      translation: {
+        cadastro: {
+          ...cadastro,
+          validation,
+        },
+        login: {
+          ...login,
+          validation,
+        },
+        home,
+        global: {
+          contador: "Pauta {{current}} de {{max}}",
+          posicionamento: "Qual o seu posicionamento?",
+        },
+        header: {
+          imgDescricao: "Logotipo do MeRepresenta",
+          navbar: {
+            home: "Home",
+            voluntaria: "Voluntária/o",
+            eleitora: "Eleitor/a",
+            perguntas: "Perguntas?",
+            candidata: "Sou Candidata/o",
+            menu: "Clique para {{estado}} o menu",
+            menuAbrir: "abrir",
+            menuFechar: "fechar",
+            auth: {
+              profile: "Editar perfil",
+              logout: "Sair",
+              pautas: "Pautas",
+            },
+          },
+        },
+        footer: {
+          sobre: {
+            titulo: "Sobre",
+            quemSomos: "Quem somos",
+            impacto: "Impacto",
+            transparencia: "Transparência",
+          },
+          participar: {
+            titulo: "Participar",
+            candidato: "Candidato",
+            eleitor: "Eleitor",
+            voluntario: "Voluntário",
+          },
+          financiamento: {
+            titulo: "Financiamento",
+            iniciativa: "uma iniciativa de",
+            imgsAlt: {
+              ciudadania: "Ciudadania Inteligente",
+              altec: "Uma iniciativa de Altec",
+              undef: "Undef",
+              avina: "Avina",
+              omidyar: "Omidyar",
+            },
+          },
+          apoio: {
+            titulo: "Apoio",
+            imgsAlt: {
+              zoly: "Saiba Mais Zoly",
+              mattos: "Mattos Filho",
+              silveira: "Silveira Andrade",
+              casa1: "Casa 1",
+              tiniguimaraes: "Tini e Guimarães",
+              dataLabel: "Data Label",
+            },
+          },
+          direitos: {
+            titulo: "#Todos os direitos reservados a #MeRepresenta 2022",
+          },
+        },
+        termos: {
+          tituloTermos: "Termos Simplificados",
+          labelCheckbox: "Li e concordo com os termos de uso",
+          labelBtn: "Continuar",
+          termos: {
+            item1:
+              "Dados preenchidoos aqui poderão ser pesquisados durante e após o período eleitoral.",
+            item2:
+              "Não fazemos pesquisa de intenção de votos, nem campanha eleitoral.",
+            item3:
+              "Você pode alterar suas respostas ao questionário até 30 dias antes do 1o turno das eleições.",
+            item4: "Você pode apagar seus dados da plataforma quando quiser.",
+          },
+          tituloUso: "Uso e armazenamento de dados pessoais:",
+          uso: {
+            item1:
+              "De acordo com a vigência da Lei Geral de Proteção de Dados, a plataforma #MeRepresenta atualizou seus prootocolos pensando na proteção de usuáries. Veja noossos termos de uso para mais informações.",
+            item2:
+              "Nós respeitamos sua privacidade, portanto, os dados pessoais fornecidos serão utilizados de forma anonimizada de acordo com a finalidade prevista nos termos de uso da organização.",
+            item3:
+              "Os dados concedidos serão armazenados, tratados e geridos de forma segura e transparente para as finalidades previsas pela organização.",
+            item4:
+              "Os dados sensíveis fornecidos podem ser utilizados para a realização de estudos e levantamento estatísticos de modo anônimo.",
+            item5:
+              "Para tais dados, naão há pedidoo de consentimento dos usuários, de acordo com os termos de uso da plataforma.",
+            item6:
+              "Os dados pessoais cujo acesso é público serão colhidos das bases de informações da Justiça Eleitoral.",
+          },
+        },
+      },
+    },
+  },
+});
 
-                }
-            }
-        }
-    }
-})
-
-export default i18n
+export default i18n;
