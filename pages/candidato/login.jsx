@@ -53,7 +53,7 @@ function Login() {
 
       setVerificationEmailStatus(true);
     } catch (e) {
-      console.log({ e });
+      console.error({ e });
       setVerificationEmailStatus(false);
       return { [FORM_ERROR]: e };
     }
