@@ -1,9 +1,8 @@
 import { CheckboxGroup, Heading, Stack, Flex } from "@chakra-ui/react";
-import { CustomCheckboxCard } from "../components/Checkbox";
+import CheckboxCard from "../components/CheckboxCard";
 import { useTranslation } from "react-i18next";
 
-const Priorities = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "eleitores" });
+const Priorities = ({ t }) => {
   return (
     <Stack spacing={2}>
       <Heading as="h2" size="sm" align="left">
@@ -11,42 +10,42 @@ const Priorities = () => {
       </Heading>
       <Flex wrap="wrap" gap={1}>
         <CheckboxGroup>
-          <CustomCheckboxCard
+          <CheckboxCard
             name="priorities"
             value="corruption"
             label={t("filters.priorities.corruption")}
           />
-          <CustomCheckboxCard
+          <CheckboxCard
             name="priorities"
             value="gender"
             label={t("filters.priorities.gender")}
           />
-          <CustomCheckboxCard
+          <CheckboxCard
             name="priorities"
             value="security"
             label={t("filters.priorities.security")}
           />
-          <CustomCheckboxCard
+          <CheckboxCard
             name="priorities"
             value="drugs"
             label={t("filters.priorities.drugs")}
           />
-          <CustomCheckboxCard
+          <CheckboxCard
             name="priorities"
             value="migration"
             label={t("filters.priorities.migration")}
           />
-          <CustomCheckboxCard
+          <CheckboxCard
             name="priorities"
             value="race"
             label={t("filters.priorities.race")}
           />
-          <CustomCheckboxCard
+          <CheckboxCard
             name="priorities"
             value="traditionalPopulationEnvironment"
             label={t("filters.priorities.traditionalPopulationEnvironment")}
           />
-          <CustomCheckboxCard
+          <CheckboxCard
             name="priorities"
             value="healthEducationWork"
             label={t("filters.priorities.healthEducationWork")}

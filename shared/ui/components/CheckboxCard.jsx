@@ -1,17 +1,7 @@
-import "/shared/locales/i18n";
 import { Field } from "react-final-form";
-import { Box, Checkbox, useCheckbox } from "@chakra-ui/react";
-import MultiSelect from "react-select";
+import { Box, useCheckbox } from "@chakra-ui/react";
 
-export const CustomCheckbox = (props) => {
-  return (
-    <Field name={props.name} type="checkbox" value={props.value}>
-      {({ input }) => <Checkbox {...input}>{props.label}</Checkbox>}
-    </Field>
-  );
-};
-
-export function CheckboxCard(props) {
+const CheckboxCard = (props) => {
   const { getCheckboxProps, getInputProps } = useCheckbox(props);
 
   const input = getInputProps();
@@ -41,9 +31,9 @@ export function CheckboxCard(props) {
       </Box>
     </Box>
   );
-}
+};
 
-export const CustomCheckboxCard = (props) => {
+const CustomCheckboxCard = (props) => {
   return (
     <Field name={props.name} type="checkbox" value={props.value}>
       {({ input }) => (
@@ -55,19 +45,4 @@ export const CustomCheckboxCard = (props) => {
   );
 };
 
-export const ReactSelectAdapter = ({ input, ...rest }) => (
-  <MultiSelect
-    {...input}
-    {...rest}
-    searchable
-    theme={(theme) => ({
-      ...theme,
-      colors: {
-        ...theme.colors,
-        primary: "#A0AEC0",
-        primary25: "#EDF2F7",
-        neutral10: "#ECC94B",
-      },
-    })}
-  />
-);
+export default CustomCheckboxCard;

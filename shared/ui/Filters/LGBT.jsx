@@ -1,9 +1,7 @@
 import { CheckboxGroup, Heading, Stack } from "@chakra-ui/react";
-import { CustomCheckbox } from "../components/Checkbox";
-import { useTranslation } from "react-i18next";
+import FieldCheckbox from "../components/FieldCheckbox";
 
-const LGBT = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "eleitores" });
+const LGBT = ({ t }) => {
   return (
     <Stack spacing={2}>
       <Heading as="h2" size="sm" align="left">
@@ -11,22 +9,22 @@ const LGBT = () => {
       </Heading>
       <CheckboxGroup colorScheme="yellow">
         <Stack spacing={4} direction={"row"}>
-          <CustomCheckbox
+          <FieldCheckbox
             name="lgbt"
             value="lesbian"
             label={t("filters.lgbt.lesbian")}
           />
-          <CustomCheckbox
+          <FieldCheckbox
             name="lgbt"
             value="gay"
             label={t("filters.lgbt.gay")}
           />
-          <CustomCheckbox
+          <FieldCheckbox
             name="lgbt"
             value="bisexual"
             label={t("filters.lgbt.bisexual")}
           />
-          <CustomCheckbox
+          <FieldCheckbox
             name="lgbt"
             value="trans"
             label={t("filters.lgbt.trans")}
