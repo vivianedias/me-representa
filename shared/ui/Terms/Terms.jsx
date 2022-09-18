@@ -1,10 +1,9 @@
 import { Container, Heading, List, ListItem, Box } from "@chakra-ui/layout";
 import { Button, Checkbox } from "@chakra-ui/react";
-import React from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./styles.module.css";
 
-const Termos = () => {
+const Terms = () => {
   const { t } = useTranslation("translation", { keyPrefix: "termos" });
   return (
     <>
@@ -42,4 +41,4 @@ const Termos = () => {
   );
 };
 
-export default Termos;
+export default Terms;
