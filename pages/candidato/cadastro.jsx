@@ -240,7 +240,7 @@ function AgreeTermsCheckbox({ t, termsInitialValue }) {
   }
 
   return (
-    <Field name="terms" validate={required} value="yes" type="checkbox">
+    <Field name="acceptedTerms" validate={required} value="yes" type="checkbox">
       {({ input, meta }) => (
         <FormControl isInvalid={meta.touched && meta.error}>
           <CheckboxGroup defaultValue={termsInitialValue}>
@@ -265,7 +265,7 @@ function formatInitialValues({ candidate, session }) {
     cpf: candidate?.cpf || "",
     lgbtConfirm: candidate ? parseToAnswer(candidate) : null,
     lgbt: candidate?.lgbt || "",
-    terms: candidate?.acceptedTerms ? ["yes"] : [],
+    acceptedTerms: candidate?.acceptedTerms ? ["yes"] : [],
   };
 }
 
@@ -290,13 +290,12 @@ export default function CadastroCandidato(props) {
         body: newCandidate,
       });
     } catch (e) {
-      console.log(e);
+      console.error(e);
       setSubmitError(true);
     }
   };
 
   const onSubmit = async (values) => {
-    const { terms, ...restValues } = values;
     setSubmitError(false);
 
     if (!imageUrl) {
@@ -304,11 +303,11 @@ export default function CadastroCandidato(props) {
     }
 
     const candidate = {
-      ...restValues,
+      ...values,
       image: imageUrl,
       userId: session?.user?.id,
-      lgbtConfirm: restValues.lgbtConfirm === "yes",
-      acceptedTerms: terms[0] === "yes",
+      lgbtConfirm: values.lgbtConfirm === "yes",
+      acceptedTerms: values.acceptedTerms[0] === "yes",
     };
 
     await updateCandidate(candidate);
@@ -417,7 +416,7 @@ export async function getServerSideProps(context) {
 
   try {
     const candidate = await fetcher(`/api/candidate/${session.user.id}`);
-    console.log({ candidate, session });
+
     return {
       props: {
         session,
