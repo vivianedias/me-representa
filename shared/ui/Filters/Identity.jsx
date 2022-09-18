@@ -1,5 +1,5 @@
 import { CheckboxGroup, Heading, Stack } from "@chakra-ui/react";
-import { CustomCheckbox } from "../../components/Checkbox";
+import { CustomCheckbox } from "../components/Checkbox";
 import { useTranslation } from "react-i18next";
 
 const Identity = () => {

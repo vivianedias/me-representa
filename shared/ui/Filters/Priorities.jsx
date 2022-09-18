@@ -1,5 +1,5 @@
 import { CheckboxGroup, Heading, Stack, Flex } from "@chakra-ui/react";
-import { CustomCheckboxCard } from "../../components/Checkbox";
+import { CustomCheckboxCard } from "../components/Checkbox";
 import { useTranslation } from "react-i18next";
 
 const Priorities = () => {

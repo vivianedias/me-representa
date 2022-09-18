@@ -1,25 +1,24 @@
 import { Heading, Stack } from "@chakra-ui/react";
 import { Field } from "react-final-form";
-import React from "react";
 import { useTranslation } from "react-i18next";
-import { ReactSelectAdapter } from "../../components/Checkbox";
+import { ReactSelectAdapter } from "../components/Checkbox";
 
-const State = ({ states }) => {
+const Parties = ({ parties }) => {
   const { t } = useTranslation("translation", { keyPrefix: "eleitores" });
   return (
     <Stack spacing={2}>
       <Heading as="h2" size="sm" align="left">
-        {t("filters.state.label")}
+        {t("filters.parties.label")}
       </Heading>
-
       <Field
-        name="state"
+        name="parties"
         component={ReactSelectAdapter}
-        options={states}
-        placeholder={t("filters.state.label")}
+        options={parties}
+        placeholder={t("filters.parties.label")}
+        isMulti
       />
     </Stack>
   );
 };
 
-export default State;
+export default Parties;

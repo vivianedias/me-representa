@@ -2,12 +2,10 @@ import fetchClient from "../utils/apiClient";
 import "../shared/locales/i18n";
 import { Form } from "react-final-form";
 import Head from "next/head";
-import { Box, Button, Heading, Stack } from "@chakra-ui/react";
+import { Box, Button, Stack } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
-import { ReactSelectAdapter } from "/shared/ui/Components/Checkbox";
-import React, { CSSProperties } from "react";
-import Filters from "../shared/ui/Eleitores/Filters/Filters";
-import { Identity } from "../shared/ui/Eleitores/Filters/Identity";
+import React from "react";
+import Filters from "../shared/ui/Filters/Filters";
 
 export default function EleitoresDashboard({ data }) {
   const { t } = useTranslation("translation", { keyPrefix: "eleitores" });
