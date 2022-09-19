@@ -1,5 +1,6 @@
 {
   "submitError": "Houve um erro ao enviar o formulário",
+
   "loading": "Carregando",
   "button": "Enviar",
   "email": {
@@ -8,7 +9,10 @@
   },
   "cpf": {
     "label": "CPF",
-    "placeholder": "cpf do candidato"
+    "placeholder": "cpf do candidato",
+    "noCandidateFoundError": "Não foi possível encontrar um candidato com esse CPF",
+    "requiredCandidate": "Por favor insira um CPF válido",
+    "helperText": "Para prosseguir precisamos encontrar você no registro do TSE."
   },
   "title": "Cadastro",
   "lgbt": {
