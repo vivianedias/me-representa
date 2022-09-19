@@ -3,9 +3,15 @@ import { Button, Heading, Text } from "@chakra-ui/react"
 import { signIn, useSession } from "next-auth/react"
 import { useTranslation } from "react-i18next"
 import { Form } from "react-final-form"
-import { RadioGroup, Radio } from "/shared/ui/Radio/Radio"
 import { Pergunta } from "/shared/ui/Pergunta/Pergunta"
+import { Wizard } from "/shared/ui/Wizard/Wizard"
 import "/shared/locales/i18n.js"
+
+const onSubmit = async (values) => {
+  setTimeout(() => {
+    window.alert(JSON.stringify(values, 0, 2))
+  }, 300)
+}
 
 const Perguntas = ({ data }) => {
   const { t } = useTranslation("translation", { keyPrefix: "candidato" })
@@ -25,9 +31,12 @@ const Perguntas = ({ data }) => {
       <Heading as="h1" marginY={6} textAlign="center">
         {t("titulo")}
       </Heading>
-      <section>
-        <LGBT />
-      </section>
+      <Wizard onSubmit={onSubmit}>
+        <Wizard.Page>
+          <LGBT />
+        </Wizard.Page>
+      </Wizard>
+      <section></section>
     </Container>
   )
 }
@@ -63,19 +72,28 @@ const LGBT = ({ currentCount = 1, maxCount = 22 }) => {
                 labelContra: t("cirurgia.labelContra"),
               }}
             />
-            {/* <div>
-              <h3>{t("2.label")}</h3>
-              <p>{t("2.pergunta")}</p>
-              <p>{t("2.info")}</p>
-              <RadioGroup>
-                <Radio name="bla2" value="favor">
-                  {t("2.labelAFavor")}
-                </Radio>
-                <Radio name="bla2" value="contra">
-                  {t("2.labelContra")}
-                </Radio>
-              </RadioGroup>
-            </div> */}
+            <Pergunta
+              contador={{ currentCount: currentCount, maxCount: maxCount }}
+              pergunta={{
+                id: "sexualidade",
+                label: t("sexualidade.label"),
+                texto: t("sexualidade.pergunta"),
+                info: t("sexualidade.info"),
+                labelFavor: t("sexualidade.labelAFavor"),
+                labelContra: t("sexualidade.labelContra"),
+              }}
+            />
+            <Pergunta
+              contador={{ currentCount: currentCount, maxCount: maxCount }}
+              pergunta={{
+                id: "casas",
+                label: t("casas.label"),
+                texto: t("casas.pergunta"),
+                info: t("casas.info"),
+                labelFavor: t("casas.labelAFavor"),
+                labelContra: t("casas.labelContra"),
+              }}
+            />
           </form>
         )}
       />
