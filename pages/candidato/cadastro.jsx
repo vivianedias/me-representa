@@ -1,10 +1,11 @@
 import "../../shared/locales/i18n";
 import Head from "next/head";
 import NextLink from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { unstable_getServerSession } from "next-auth";
 import { Form, Field } from "react-final-form";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/router";
 import {
   Box,
   Button,
@@ -37,7 +38,6 @@ import validations from "../../utils/validations";
 import useUploadS3 from "../../shared/hooks/useUploadS3";
 import fetcher from "../../utils/apiClient";
 import { authOptions } from "../api/auth/[...nextauth]";
-import { useRouter } from "next/router";
 
 function EmailField({ t }) {
   const CFaUserAlt = chakra(FaUserAlt);
@@ -326,7 +326,7 @@ export default function CadastroCandidato(props) {
     await updateCandidate(newCandidate);
 
     if (!candidate) {
-      return router.push("/candidato/perguntas");
+      router.push("/candidato/perguntas");
     }
 
     setInitialValues(
@@ -335,6 +335,11 @@ export default function CadastroCandidato(props) {
       })
     );
   };
+
+  useEffect(() => {
+    // Prefetch the dashboard page
+    router.prefetch("/candidato/perguntas");
+  }, []);
 
   return (
     <>
