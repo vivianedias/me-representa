@@ -1,5 +1,6 @@
-import PropTypes from "prop-types";
 import { useEffect, useCallback, useState } from "react";
+import PropTypes from "prop-types";
+import { Field } from "react-final-form";
 import {
   FormControl,
   Input,
@@ -9,9 +10,9 @@ import {
   Spinner,
   Icon,
   InputRightElement,
+  FormHelperText,
 } from "@chakra-ui/react";
-import { FaCheck } from "react-icons/fa";
-import { Field } from "react-final-form";
+import { FaCheck, FaExclamationCircle } from "react-icons/fa";
 import fetcher from "../../../utils/apiClient";
 import validations from "../../../utils/validations";
 
@@ -69,12 +70,18 @@ function CpfInput({ input, meta, tseCandidateCpf, setTseCandidate, t }) {
             <Icon as={FaCheck} color="green.500" />
           </InputRightElement>
         ) : null}
+        {noValidCandidate && !isLoading ? (
+          <InputRightElement>
+            <Icon as={FaExclamationCircle} color="red.400" />
+          </InputRightElement>
+        ) : null}
         {isLoading ? (
           <InputRightElement>
             <Spinner size="xs" />
           </InputRightElement>
         ) : null}
       </InputGroup>
+      <FormHelperText>{t("cpf.helperText")}</FormHelperText>
       <FormErrorMessage>{meta.error || noValidCandidateError}</FormErrorMessage>
     </FormControl>
   );

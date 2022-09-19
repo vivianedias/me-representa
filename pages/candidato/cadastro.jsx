@@ -1,10 +1,10 @@
 import "../../shared/locales/i18n";
-import Head from "next/head";
 import { useEffect, useMemo, useState } from "react";
+import Head from "next/head";
+import { useRouter } from "next/router";
 import { unstable_getServerSession } from "next-auth";
 import { Form } from "react-final-form";
 import { useTranslation } from "react-i18next";
-import { useRouter } from "next/router";
 import {
   Box,
   Button,
@@ -32,7 +32,7 @@ function formatInitialValues({ candidate, session }) {
     lgbtConfirm === true ? "yes" : "no";
 
   return {
-    email: candidate?.email || session?.user?.email || "",
+    email: session?.user?.email || "",
     image: null,
     cpf: candidate?.cpf || "",
     lgbtConfirm: candidate ? parseToAnswer(candidate) : null,
@@ -51,10 +51,11 @@ export default function CadastroCandidato(props) {
   const [submitError, setSubmitError] = useState(false);
   const { t } = useTranslation("translation", { keyPrefix: "cadastro" });
   const s3Props = useUploadS3({ candidate, session });
-  const { imageUrl } = s3Props;
   const [tseCandidate, setTseCandidate] = useState(null);
   const memoedInitialValues = useMemo(() => initialValues, [initialValues]);
   const CFaRegTimesCircle = chakra(FaRegTimesCircle);
+
+  const { imageUrl } = s3Props;
 
   const updateCandidate = async (newCandidate) => {
     try {
@@ -85,6 +86,7 @@ export default function CadastroCandidato(props) {
       ...values,
       image: imageUrl,
       userId: session?.user?.id,
+      tseCandidate,
     };
 
     await updateCandidate(newCandidate);
@@ -135,7 +137,7 @@ export default function CadastroCandidato(props) {
               return (
                 <Box as="form" onSubmit={handleSubmit} marginTop={8}>
                   <Stack spacing={5} align="center">
-                    <EmailField t={t} />
+                    <EmailField t={t} isDisabled={true} />
                     <CpfField
                       t={t}
                       tseCandidate={tseCandidate}

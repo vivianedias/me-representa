@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Field } from "react-final-form";
 import {
   FormControl,
   Input,
@@ -9,10 +10,9 @@ import {
   FormErrorMessage,
 } from "@chakra-ui/react";
 import { FaUserAlt } from "react-icons/fa";
-import { Field } from "react-final-form";
 import validations from "../../../utils/validations";
 
-function EmailField({ t }) {
+function EmailField({ t, isDisabled }) {
   const CFaUserAlt = chakra(FaUserAlt);
   const { required, email, composeValidators } = validations(t);
 
@@ -28,6 +28,7 @@ function EmailField({ t }) {
               </InputLeftElement>
               <Input
                 {...input}
+                disabled={isDisabled}
                 type="email"
                 placeholder={t("email.placeholder")}
               />

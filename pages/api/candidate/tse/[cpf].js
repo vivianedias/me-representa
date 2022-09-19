@@ -10,7 +10,7 @@ export default async function getCandidate(req, res) {
     const db = client.db("merepresenta");
 
     const findResult = await db
-      .collection("candidatos_tse")
+      .collection("candidates_tse")
       .findOne({ [CPF_KEY]: cpf });
 
     return res.status(200).json(findResult);
