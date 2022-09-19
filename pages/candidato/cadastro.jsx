@@ -331,7 +331,7 @@ export default function CadastroCandidato(props) {
 
     setInitialValues(
       formatInitialValues({
-        candidate,
+        candidate: newCandidate,
       })
     );
   };
