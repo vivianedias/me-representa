@@ -41,6 +41,9 @@ const Perguntas = ({ data }) => {
         <Wizard.Page>
           <Raca />
         </Wizard.Page>
+        <Wizard.Page>
+          <Povos />
+        </Wizard.Page>
       </Wizard>
       <section></section>
     </Container>
@@ -193,6 +196,57 @@ const Raca = ({ currentCount = 1, maxCount = 22 }) => {
             info: t("saude.info"),
             labelFavor: t("saude.labelAFavor"),
             labelContra: t("saude.labelContra"),
+          }}
+        />
+      </div>
+    </section>
+  )
+}
+
+const Povos = ({ currentCount = 1, maxCount = 22 }) => {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "candidato.perguntas.povos",
+  })
+
+  const sectionPrefix = "povos"
+
+  return (
+    <section>
+      <Heading as="h3" size="lg" marginY={3}>
+        {t("titulo")}
+      </Heading>
+      <div>
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}.politicas`,
+            label: t("politicas.label"),
+            texto: t("politicas.pergunta"),
+            info: t("politicas.info"),
+            labelFavor: t("politicas.labelAFavor"),
+            labelContra: t("politicas.labelContra"),
+          }}
+        />
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}.sacrificio`,
+            label: t("sacrificio.label"),
+            texto: t("sacrificio.pergunta"),
+            info: t("sacrificio.info"),
+            labelFavor: t("sacrificio.labelAFavor"),
+            labelContra: t("sacrificio.labelContra"),
+          }}
+        />
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}.demarcacao`,
+            label: t("demarcacao.label"),
+            texto: t("demarcacao.pergunta"),
+            info: t("demarcacao.info"),
+            labelFavor: t("demarcacao.labelAFavor"),
+            labelContra: t("demarcacao.labelContra"),
           }}
         />
       </div>

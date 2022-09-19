@@ -123,7 +123,7 @@ i18n.use(initReactI18next).init({
               }
             },
             LGBTQ: {
-              titulo: "#LGBT+",
+              titulo: "#LGBTQIP+",
               cirurgia: {
                 label: "Cirurgia genital em crianças intersexo por motivo estético",
                 pergunta: "Crianças intersexo estão passando por cirurgias porque seus pais e médicos estão definindo qual sexo deveriam ter, apenas por motivos estéticos. Cerca de 1% da população do mundo é intersexo, pois tem uma genitália, órgãos reprodutores ou cromossomos que não se encaixam inteiramente na definição típica de masculino ou feminino. A maioria destas cirurgias não é de emergência e nem tem motivos médicos, pois são crianças saudáveis. Após a cirurgia, estas crianças ainda precisam tomar hormônios por toda a vida. Além disso, muitas delas ficam com problemas como incontinência urinária, perda de sensação e função sexual e trauma psicológico. No Brasil não há legislação sobre o assunto. Apenas em Malta e no Chile existem leis proibindo intervenção médica em crianças intersexo sem emergências clínicas.",
@@ -172,21 +172,22 @@ i18n.use(initReactI18next).init({
               },              
             },
             povos: {
-              1: {
+              titulo: "#Povos Tradicionais",
+              politicas: {
                 label: "Políticas emergenciais de combate à pandemia nas comunidades quilombolas",
                 pergunta: "No Brasil, há 16 milhões de quilombolas, distribuídos em 6.300 comunidades remanescentes de territórios em que houve resistência negra à escravização. A Constituição de 1988 garantiu o direito dos quilombolas à propriedade de suas terras, mas, até hoje, apenas 5,34% dos territórios quilombolas conseguiu. O atual presidente afirmou em campanha que não investiria nenhum centavo em indígenas e quilombolas e derrubou uma série de medidas destinadas à saúde de povos indígenas, quilombolas e demais comunidades tradicionais durante a pandemia, que havia sido aprovada pelo Congresso Nacional. A população quilombola tem morrido 120% mais de COVID-19 do que a média da população brasileira. Por isso, a Coordenação Nacional de Articulação das Comunidades Negras Rurais Quilombolas – CONAQ recorreu ao Supremo Tribunal Federal para que o Estado brasileiro tome ações emergenciais de combate à pandemia nas comunidades quilombolas (ADPF 742/2020).",
                 info: "Saiba mais sobre a urgência de políticas de combate à pandemia nas comunidades quilombolas nesta reportagem e no vídeo da campanha Vidas Quilombolas Importam da CONAQ.",
                 labelAFavor: "Sou a FAVOR de políticas emergenciais de combate à pandemia nas comunidades quilombolas",
                 labelContra: "Sou CONTRA políticas emergenciais de combate à pandemia nas comunidades quilombolas",
               },   
-              2: {
+              sacrificio: {
                 label: "Sacrifício de animais no contexto religioso",
                 pergunta: "Em 2019, o Supremo Tribunal Federal decidiu que o sacrifício de animais praticado por povos de terreiros, judeus e muçulmanos está de acordo com a Constituição e pode ser praticado (RE 494.601). A permissão de se realizar o sacrifício ritual em contexto religioso combate o racismo dirigido às religiões de matriz africana, principais alvos de ataques e intolerância pela prática, além de promover a defesa do Estado laico.",
                 info: "Saiba mais sobre a decisão do Supremo Tribunal Federal nesta reportagem e sobre o racismo às religiões de matriz africanas neste vídeo.",
                 labelAFavor: "Sou a FAVOR do sacrifício de animais no contexto religioso.",
                 labelContra: "Sou CONTRA o sacrifício de animais no contexto religioso.",
               },
-              3: {
+              demarcacao: {
                 label: "Demarcação de terras indígenas",
                 pergunta: "Os povos indígenas têm direito ao reconhecimento da demarcação das suas terras desde a Constituição de 1988. As demarcações são importantes não apenas porque garantem a diversidade étnica e cultural dos povos indígenas, mas também por serem os territórios onde há maior conservação ambiental. Uma série de políticas públicas e recursos para indígenas são melhor garantidos nas terras indígenas demarcadas, como escolas para educação especial indígena, postos de saúde, água tratada. Desde 2016, nenhuma terra indígena foi demarcada no Brasil. Comunidades indígenas sem terras demarcadas estão sofrendo maior impacto com a pandemia. O atual presidente derrubou uma série de medidas destinadas à saúde de povos indígenas, quilombolas e demais comunidades tradicionais durante a pandemia, que havia sido aprovada pelo Congresso Nacional. A taxa de mortalidade indígena por COVID-19 é 224% mais alta do que a média da população brasileira.",
                 info: "Saiba mais sobre o impacto da não demarcação de terras sobre os indígenas na pandemia nesta reportagem e dados sobre a pandemia na plataforma Emergência Indígena da Articulação dos Povos Indígenas do Brasil - APIB.",
