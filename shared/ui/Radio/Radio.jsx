@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Button } from "@chakra-ui/react"
-import { FormSpy, useField } from "react-final-form"
+import { FormSpy, useField, useForm } from "react-final-form"
 
 /* 
   * Para ser usado como wrapper dos Radio. 
@@ -27,10 +27,11 @@ export const Radio = ({
   className,
   colorScheme = "blue",
 }) => {
+  const form = useForm()
   const field = useField(name, {
     type: "radio",
     value: value,
-    initialValue: "",
+    initialValue: form.getState().values[name] || undefined // undefined é preciso para initialValues do form não travar o submit
   })
   const toggle = () => field.input.onChange(field.input.value)
 
@@ -45,7 +46,7 @@ export const Radio = ({
             onClick={toggle}
             style={style}
             className={className}
-            maxW="100%"
+            maxWidth="100%"
             boxSizing="content-box"
             role="radio"
           >
@@ -54,7 +55,7 @@ export const Radio = ({
         </>
       )}
     </FormSpy>
-  )
+  );
 }
 
 Radio.propTypes = {

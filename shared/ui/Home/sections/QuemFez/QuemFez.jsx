@@ -17,7 +17,7 @@ import homeStyles from "../home.module.css";
 const QuemFez = () => {
   const { t } = useTranslation("translation", { keyPrefix: "home.quemFez" });
   return (
-    <section>
+    <Box as="section" w="100%">
       <div>
         <Heading
           as="h1"
@@ -71,7 +71,7 @@ const QuemFez = () => {
           )}
         </MosaicItem>
       </Mosaic>
-    </section>
+    </Box>
   );
 };
 
