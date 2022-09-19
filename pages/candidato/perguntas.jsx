@@ -56,6 +56,9 @@ const Perguntas = ({ data }) => {
         <Wizard.Page>
           <Comunicacao />
         </Wizard.Page>
+        <Wizard.Page>
+          <Democracia />
+        </Wizard.Page>
       </Wizard>
       <section></section>
     </Container>
@@ -419,6 +422,46 @@ const Comunicacao = ({ currentCount = 1, maxCount = 22 }) => {
             info: t("emissoras.info"),
             labelFavor: t("emissoras.labelAFavor"),
             labelContra: t("emissoras.labelContra"),
+          }}
+        />
+      </div>
+    </section>
+  )
+}
+
+const Democracia = ({ currentCount = 1, maxCount = 22 }) => {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "candidato.perguntas.democracia",
+  })
+
+  const sectionPrefix = "democracia"
+
+  return (
+    <section>
+      <Heading as="h3" size="lg" marginY={3}>
+        {t("titulo")}
+      </Heading>
+      <div>
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}_cota`,
+            label: t("cota.label"),
+            texto: t("cota.pergunta"),
+            info: t("cota.info"),
+            labelFavor: t("cota.labelAFavor"),
+            labelContra: t("cota.labelContra"),
+          }}
+        />
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}_recursos`,
+            label: t("recursos.label"),
+            texto: t("recursos.pergunta"),
+            info: t("recursos.info"),
+            labelFavor: t("recursos.labelAFavor"),
+            labelContra: t("recursos.labelContra"),
           }}
         />
       </div>

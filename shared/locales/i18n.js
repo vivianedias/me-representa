@@ -263,15 +263,16 @@ i18n.use(initReactI18next).init({
                 labelContra: "Sou CONTRA políticos serem donos de emissoras de rádio e TV",
               },
             },
-            demoracracia: {
-              1: {
+            democracia: {
+              titulo: "#Democracia",
+              cota: {
                 label: "Cota de gênero e raça nas lideranças dos partidos",
                 pergunta: "Os partidos políticos e sua liberdade são fundamentais à democracia. Durante a ditadura, só podiam existir dois partidos e vários políticos tiveram os seus mandatos cassados. Mas os partidos brasileiros ainda são marcados pela ausência de democracia interna. As lideranças dos partidos, por exemplo, são principalmente compostas por homens brancos, heterossexuais, cisgêneros e ricos e não costuma haver mecanismos internos democráticos para a sua escolha. Mulheres ocupam apenas 25% das lideranças partidárias. A falta de representatividade nos cargos de direção dos partidos acaba impactando na distribuição dos recursos públicos para as campanhas, pois são estas lideranças que definem quanto cada candidatura deve receber. Mulheres negras, por exemplo, são 28% da população brasileira, 12,9% das candidatas a deputado federal, mas receberam apenas 5,7% dos recursos públicos de campanha e foram apenas 2,5% dos eleitos. Também é importante que os partidos invistam em espaços de articulação política de grupos minorizados dentro dos partidos, como os setoriais de mulheres, pessoas negras e LGBT+. Enquanto 76% dos partidos têm setoriais de mulheres, apenas 42% tem setoriais negras e 33% de LGBT+.",
                 info: "Para saber mais sobre a presença de setoriais de mulheres, pessoas negras e LGBT+ em cada partido, ver pesquisa da Casa 1 e #VoteLGBT.",
                 labelAFavor: "Sou a FAVOR de cota de gênero e raça nas lideranças dos partidos",
                 labelContra: "Sou CONTRA cota de gênero e raça nas lideranças dos partidos",
               },
-              2: {
+              recursos: {
                 label: "Corte de recursos públicos a partidos com candidaturas que praticam discurso de ódio ou violência política",
                 pergunta: "O Brasil é o terceiro país do mundo mais violento com seus defensores de direitos humanos e líderes de movimentos sociais e isso se manifesta também na política e nas eleições. Em 2019, foram assassinados no país 24 ativistas (10 deles eram indígenas) e 34 políticos (candidatos ou eleitos). Nos anos de eleições, há picos de denúncias sobre ofensas e ataques contra candidaturas (muitas vezes estes ataques são praticados por outras candidaturas) na internet. A violência política tem início no período de campanha e continua no exercício dos mandatos eleitos. O objetivo é silenciar políticos ou fazer com que se retirem da política. Esta violência atinge, principalmente, quem não costuma ocupar o espaço político: mulheres, jovens, pessoas negras, LGBT+, ativistas e defensores de direitos humanos. Os partidos recebem recursos públicos para fazerem suas campanhas e o discurso de ódio e violência política não deveria ser financiados com estes recursos. Violência não pode ser estratégia para obtenção de votos em campanhas eleitorais.",
                 info: "Para denunciar discurso de ódio e violência política nestas eleições, acesse o site do TretAqui.org. Para orientações sobre como se defender e evitar ataques na internet, confira a cartilha Eleições e Internet: guia para proteção de direitos nas campanhas eleitorais da Coalizão Direitos na Rede.",
