@@ -6,6 +6,9 @@ import { Heading, Text } from "@chakra-ui/react"
 import { RadioGroup, Radio } from "/shared/ui/Radio/Radio"
 import { useTranslation } from "react-i18next"
 
+const A_FAVOR = "favor"
+const CONTRA = "contra"
+
 export const Pergunta = (props) => {
   const { contador } = props
   const { pergunta } = props
@@ -32,16 +35,16 @@ export const Pergunta = (props) => {
         <Box marginY={3} display="flex">
           <Radio
             name={pergunta.id}
-            value="favor"
-            label={pergunta.labelContra}
+            value={A_FAVOR}
+            label={pergunta.labelFavor}
             style={{ width: "100%" }}
           />
         </Box>
         <Box marginY={3} display="flex">
           <Radio
             name={pergunta.id}
-            value="contra"
-            label={pergunta.labelFavor}
+            value={CONTRA}
+            label={pergunta.labelContra}
             style={{ width: "100%" }}
           />
         </Box>
