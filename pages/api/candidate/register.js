@@ -8,6 +8,13 @@ export default async function updateCandidate(req, res) {
     const session = await unstable_getServerSession(req, res, authOptions);
     if (!session) return res.status(401).send("Not authorized");
 
+    const newCandidate = {
+      ...req.body,
+      lgbtConfirm: req.body.lgbtConfirm === "yes",
+      acceptedTerms: req.body.acceptedTerms[0] === "yes",
+      userId: ObjectId(req.body.userId),
+    };
+
     const userId = ObjectId(session.user.id);
     const client = await clientPromise;
     const db = client.db("merepresenta");
@@ -16,7 +23,7 @@ export default async function updateCandidate(req, res) {
       {
         $set: {
           ...req.body,
-          userId: ObjectId(req.body.userId),
+          newCandidate,
         },
       },
       { upsert: true }

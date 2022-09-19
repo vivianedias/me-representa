@@ -1,7 +1,7 @@
 import "../../shared/locales/i18n";
 import Head from "next/head";
 import NextLink from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import { unstable_getServerSession } from "next-auth";
 import { Form, Field } from "react-final-form";
 import { useTranslation } from "react-i18next";
@@ -32,8 +32,14 @@ import {
   Checkbox,
   Link,
   Icon,
+  InputRightElement,
 } from "@chakra-ui/react";
-import { FaUserAlt, FaRegTimesCircle, FaExternalLinkAlt } from "react-icons/fa";
+import {
+  FaUserAlt,
+  FaRegTimesCircle,
+  FaExternalLinkAlt,
+  FaCheck,
+} from "react-icons/fa";
 import validations from "../../utils/validations";
 import useUploadS3 from "../../shared/hooks/useUploadS3";
 import fetcher from "../../utils/apiClient";
@@ -67,22 +73,58 @@ function EmailField({ t }) {
   );
 }
 
-function CpfField({ t }) {
+function CpfField({ t, setTseCandidate, tseCandidate }) {
+  const [isLoading, setIsLoading] = useState(false);
   const { required, composeValidators, cpf, length } = validations(t);
+  const tseCandidateCpf = tseCandidate && tseCandidate["NR_CPF_CANDIDATO"];
+
+  function CpfInput({ input, meta }) {
+    const searchByCpf = useCallback(async (cpf) => {
+      setIsLoading(true);
+      try {
+        const data = await fetcher(`/api/candidate/tse/${cpf}`);
+        setTseCandidate(data);
+        setIsLoading(false);
+      } catch (e) {
+        console.error(e);
+        // setSubmitError(true);
+      }
+    }, []);
+
+    const { value } = input;
+    useEffect(() => {
+      const shouldValidateCpf =
+        meta.dirty && meta.touched && !meta.active && !meta.invalid;
+
+      if (shouldValidateCpf && tseCandidateCpf !== value) {
+        searchByCpf(value);
+      }
+    }, [meta, value, searchByCpf]);
+
+    return (
+      <FormControl isInvalid={meta.error && meta.touched}>
+        <FormLabel>{t("cpf.label")}</FormLabel>
+        <InputGroup>
+          <Input {...input} type="cpf" placeholder={t("cpf.placeholder")} />
+          {tseCandidate && !isLoading ? (
+            <InputRightElement>
+              <Icon as={FaCheck} color="green.500" />
+            </InputRightElement>
+          ) : null}
+          {isLoading ? (
+            <InputRightElement>
+              <Spinner size="xs" />
+            </InputRightElement>
+          ) : null}
+        </InputGroup>
+        <FormErrorMessage>{meta.error}</FormErrorMessage>
+      </FormControl>
+    );
+  }
 
   return (
     <Field name="cpf" validate={composeValidators(required, cpf, length(11))}>
-      {({ input, meta }) => {
-        return (
-          <FormControl isInvalid={meta.error && meta.touched}>
-            <FormLabel>{t("cpf.label")}</FormLabel>
-            <InputGroup>
-              <Input {...input} type="cpf" placeholder={t("cpf.placeholder")} />
-            </InputGroup>
-            <FormErrorMessage>{meta.error}</FormErrorMessage>
-          </FormControl>
-        );
-      }}
+      {(fieldProps) => <CpfInput {...fieldProps} />}
     </Field>
   );
 }
@@ -292,7 +334,7 @@ export default function CadastroCandidato(props) {
   const { t } = useTranslation("translation", { keyPrefix: "cadastro" });
   const s3Props = useUploadS3({ candidate, session });
   const { imageUrl } = s3Props;
-
+  const [tseCandidate, setTseCandidate] = useState(null);
   const memoedInitialValues = useMemo(() => initialValues, [initialValues]);
   const CFaRegTimesCircle = chakra(FaRegTimesCircle);
 
@@ -319,8 +361,6 @@ export default function CadastroCandidato(props) {
       ...values,
       image: imageUrl,
       userId: session?.user?.id,
-      lgbtConfirm: values.lgbtConfirm === "yes",
-      acceptedTerms: values.acceptedTerms[0] === "yes",
     };
 
     await updateCandidate(newCandidate);
@@ -367,12 +407,17 @@ export default function CadastroCandidato(props) {
           <Form
             onSubmit={onSubmit}
             initialValues={memoedInitialValues}
+            subscription={{ submitting: true, pristine: true }}
             render={({ handleSubmit, submitting, pristine }) => {
               return (
                 <Box as="form" onSubmit={handleSubmit} marginTop={8}>
                   <Stack spacing={5} align="center">
                     <EmailField t={t} />
-                    <CpfField t={t} />
+                    <CpfField
+                      t={t}
+                      tseCandidate={tseCandidate}
+                      setTseCandidate={setTseCandidate}
+                    />
                     <SelectSexualOrientation
                       t={t}
                       lgbtConfirmInitialValue={initialValues.lgbtConfirm}
