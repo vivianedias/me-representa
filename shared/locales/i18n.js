@@ -1,16 +1,16 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import login from "./pt-BR/candidato/login.json";
-import home from "./pt-BR/home.json";
-import cadastro from "./pt-BR/candidato/cadastro.json";
-import wizard from "./pt-BR/wizard.json";
+import i18n from "i18next"
+import { initReactI18next } from "react-i18next"
+import login from "./pt-BR/candidato/login.json"
+import home from "./pt-BR/home.json"
+import cadastro from "./pt-BR/candidato/cadastro.json"
+import wizard from "./pt-BR/wizard.json"
 
 export const validation = {
   required: "Campo obrigatório",
   cpf: "CPF inválido",
   email: "Insira um e-mail válido",
   length: "Formato inválido",
-};
+}
 
 i18n.use(initReactI18next).init({
   fallbackLng: "pt-BR",
@@ -26,6 +26,7 @@ i18n.use(initReactI18next).init({
           ...login,
           validation,
         },
+        wizard,
         home,
         global: {
           contador: "Pauta {{current}} de {{max}}",
@@ -88,10 +89,9 @@ i18n.use(initReactI18next).init({
             titulo: "#Todos os direitos reservados a #MeRepresenta 2022",
           },
         },
-		wizard,
       },
     },
   },
-});
+})
 
-export default i18n;
+export default i18n
