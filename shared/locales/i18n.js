@@ -196,14 +196,15 @@ i18n.use(initReactI18next).init({
               },
             },
             politicas: {
-              1: {
+              titulo: "#Políticas Sociais",
+              renda: {
                 label: "Renda básica permanente mantendo os programas sociais existentes",
                 pergunta: "Com a pandemia, após muita pressão da sociedade e da oposição ao governo, foi aprovado o auxílio emergencial no valor de 600 reais, que alcançou mais de 53 milhões de brasileiros. Com a popularidade que a medida trouxe ao governo, este passou a defender a ideia de uma renda básica permanente. Esta é uma ideia antiga que pode garantir que famílias mais vulneráveis possam ter acesso a direitos básicos e melhorar os índices de pobreza no Brasil, reduzindo desigualdades sociais, econômicas, tributárias e os impactos da instabilidade do mercado de trabalho. Mas a proposta do governo de implementar a renda básica permanente quer eliminar ou reduzir ainda mais a verba de outros programas sociais como o SUS, educação pública gratuita e agricultura familiar.",
                 info: "Saiba mais com a campanha Renda Básica que Queremos!",
                 labelAFavor: "Sou a FAVOR da renda básica permanente mantendo os programas sociais existentes",
                 labelContra: "Sou CONTRA a renda básica permanente mantendo os programas sociais existentes",
               },
-              2: {
+              teto: {
                 label: "Teto de gastos públicos",
                 pergunta: "Em 2016, foi aprovada uma política econômica conhecida por “teto de gastos públicos”, que nos próximos 20 anos pode reduzir cerca de 1/3 dos gastos públicos federais, voltando a níveis de recursos anteriores à Constituição de 1988. Isso levaria ao congelamento de gastos sociais com políticas para a saúde, educação e seguro desemprego. Já estamos sentindo os impactos do “teto dos gastos públicos”, com a redução de 20 bilhões de reais para o SUS, em plena pandemia.",
                 info: "Saiba mais a respeito com a campanha #AcabaTetodeGastos e com esta matéria.",

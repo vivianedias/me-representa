@@ -44,6 +44,9 @@ const Perguntas = ({ data }) => {
         <Wizard.Page>
           <Povos />
         </Wizard.Page>
+        <Wizard.Page>
+          <PoliticasSociais />
+        </Wizard.Page>
       </Wizard>
       <section></section>
     </Container>
@@ -247,6 +250,46 @@ const Povos = ({ currentCount = 1, maxCount = 22 }) => {
             info: t("demarcacao.info"),
             labelFavor: t("demarcacao.labelAFavor"),
             labelContra: t("demarcacao.labelContra"),
+          }}
+        />
+      </div>
+    </section>
+  )
+}
+
+const PoliticasSociais = ({ currentCount = 1, maxCount = 22 }) => {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "candidato.perguntas.politicas",
+  })
+
+  const sectionPrefix = "politicasSociais"
+
+  return (
+    <section>
+      <Heading as="h3" size="lg" marginY={3}>
+        {t("titulo")}
+      </Heading>
+      <div>
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}.renda`,
+            label: t("renda.label"),
+            texto: t("renda.pergunta"),
+            info: t("renda.info"),
+            labelFavor: t("renda.labelAFavor"),
+            labelContra: t("renda.labelContra"),
+          }}
+        />
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}.teto`,
+            label: t("teto.label"),
+            texto: t("teto.pergunta"),
+            info: t("teto.info"),
+            labelFavor: t("teto.labelAFavor"),
+            labelContra: t("teto.labelContra"),
           }}
         />
       </div>
