@@ -230,14 +230,15 @@ i18n.use(initReactI18next).init({
               },
             },
             drogas: {
-              1: {
+              titulo: "#Drogas",
+              descriminalizar: {
                 label: "Descriminalizar o comércio de drogas para reduzir a quantidade de mulheres e jovens negros presos",
                 pergunta: "O Brasil tem a terceira maior população carcerária do mundo, com mais de 700 mil pessoas presas. As cadeias estão superlotadas, trabalhando em média 70% acima da sua capacidade. E um dos motivos é a política de “guerra às drogas”. Em 2006, aprovamos a Lei de Drogas, uma das principais responsáveis pelo aumento do número de presos no país (Lei 11.343/2016). Hoje não é crime ser usuário de drogas, mas é crime comercializar drogas. O problema é que a lei não traz critérios para diferenciar um do outro. Ou seja, é mais provável que um usuário, negro, pobre e periférico seja preso por tráfico do que tratado como alguém que talvez precise de atendimento na saúde pública. Drogas é a segunda maior causa de prisão dos homens e é a maior causa de prisão de mulheres (metade delas está presa por comércio de drogas). Pessoas negras são 56% da população brasileira, mas são 70% da população das prisões. Jovens, de 18 a 29 anos, são 18% da população brasileira, mas 44% dos presos. Além do encarceramento, a “guerra às drogas” também provoca maior violência policial, mortes por homicídio e afasta os usuários de drogas de buscar atendimento na saúde pública.",
                 info: "Saiba mais sobre com a Agenda Nacional pelo Desencarceramento, com o vídeo e jogo Política de Drogas é uma questão de Mulheres do Instituto Terra, Trabalho e Cidadania - ITTC.",
                 labelAFavor: "Sou a FAVOR de descriminalizar o comércio de drogas para reduzir a quantidade de mulheres e jovens negros presos",
                 labelContra: "Sou CONTRA descriminalizar o comércio de drogas para reduzir a quantidade de mulheres e jovens negros presos",
               },
-              2: {
+              tratamento: {
                 label: "Tratamento de usuário de drogas no SUS com redução de danos",
                 pergunta: "Usuários de drogas devem poder ser tratados no SUS. Mas vários governos municipais, estaduais e o atual governo federal têm retirado verbas da saúde pública e destinado para entidades religiosas. As formas de tratamento do usuário de drogas no SUS e nas entidades religiosas são totalmente diferentes. O SUS adota políticas que respeitam o momento de cada usuário no seu tratamento. Isso significa que para as pessoas que ainda não podem ou não querem parar de usar drogas, o objetivo maior é reduzir os danos causados pelo uso. Por exemplo, os usuários podem receber seringas descartáveis, para não serem contaminados por doenças sexualmente transmissíveis, ou podem ser orientados a trocar uma droga por outra de menor risco. Já as entidades religiosas, normalmente conhecidas como “Comunidades Terapêuticas”, promovem a intervenção do usuário e o método da abstinência total do uso de drogas. Isso reforça a ideia de que usuários de drogas devem ser excluídos da sociedade, de que são criminosos, ou uma abordagem moral e religiosa e não de saúde pública.",
                 info: "Saiba mais sobre políticas de redução de danos aqui e sobre comunidades terapêuticas aqui.",
