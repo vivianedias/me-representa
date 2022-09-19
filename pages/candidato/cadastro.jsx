@@ -98,6 +98,7 @@ export default function CadastroCandidato(props) {
     setInitialValues(
       formatInitialValues({
         candidate: newCandidate,
+        session,
       })
     );
   };
