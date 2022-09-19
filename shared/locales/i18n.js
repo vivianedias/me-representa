@@ -6,20 +6,21 @@ import terms from "./pt-BR/terms.json";
 import cadastro from "./pt-BR/candidato/cadastro.json";
 import wizard from "./pt-BR/wizard.json";
 import eleitores from "./pt-BR/eleitores.json";
+import profile from "./pt-BR/profile.json";
 
 export const validation = {
   required: "Campo obrigatório",
   cpf: "CPF inválido",
   email: "Insira um e-mail válido",
   length: "Formato inválido",
-}
+};
 
 i18n.use(initReactI18next).init({
-	fallbackLng: "pt-BR",
-	lng: "pt-BR",
-	resources: {
-		"pt-BR": {
-			translation: {
+  fallbackLng: "pt-BR",
+  lng: "pt-BR",
+  resources: {
+    "pt-BR": {
+      translation: {
         cadastro: {
           ...cadastro,
           validation,
@@ -32,6 +33,7 @@ i18n.use(initReactI18next).init({
         home,
         eleitores,
         terms,
+        profile,
         global: {
           contador: "Pauta {{current}} de {{max}}",
           posicionamento: "Qual o seu posicionamento?",
@@ -96,6 +98,6 @@ i18n.use(initReactI18next).init({
       },
     },
   },
-})
+});
 
-export default i18n
+export default i18n;
