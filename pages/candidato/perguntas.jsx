@@ -5,12 +5,33 @@ import { useTranslation } from "react-i18next"
 import { Pergunta } from "/shared/ui/Pergunta/Pergunta"
 import { Wizard } from "/shared/ui/Wizard/Wizard"
 import "/shared/locales/i18n.js"
+import { useEffect } from "react"
+import { v4 as uuid } from 'uuid';
+
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const onSubmit = async (values) => {
   await sleep(300)
   window.alert(JSON.stringify(values, 0, 2))
+}
+
+const useHeadingFocus = () => {
+  const HEADING_ID = uuid()
+
+  const focusHeading = () => {
+    const tituloPauta = document.getElementById(HEADING_ID)
+    if (tituloPauta) {
+      tituloPauta.focus()
+    }
+  }
+
+  useEffect(focusHeading)
+
+  return {
+    tabIndex: "-1",
+    id: HEADING_ID
+  }
 }
 
 const Perguntas = ({ data }) => {
@@ -73,11 +94,13 @@ const LGBT = ({ currentCount = 1, maxCount = 22 }) => {
     keyPrefix: "candidato.perguntas.LGBTQ",
   })
 
+  const focusProps = useHeadingFocus()
+
   const sectionPrefix = "lgbt"
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3}>
+      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -123,12 +146,13 @@ const Genero = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.genero",
   })
+  const focusProps = useHeadingFocus()
 
   const sectionPrefix = "genero"
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3}>
+      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -174,12 +198,13 @@ const Raca = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.raca",
   })
+  const focusProps = useHeadingFocus()
 
   const sectionPrefix = "raca"
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3}>
+      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -226,11 +251,13 @@ const Povos = ({ currentCount = 1, maxCount = 22 }) => {
     keyPrefix: "candidato.perguntas.povos",
   })
 
+  const focusProps = useHeadingFocus()
+
   const sectionPrefix = "povos"
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3}>
+      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -276,12 +303,13 @@ const PoliticasSociais = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.politicas",
   })
+  const focusProps = useHeadingFocus()
 
   const sectionPrefix = "politicasSociais"
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3}>
+      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -316,12 +344,13 @@ const Seguranca = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.seguranca",
   })
+  const focusProps = useHeadingFocus()
 
   const sectionPrefix = "segurancaPublica"
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3}>
+      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -356,12 +385,13 @@ const Drogas = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.drogas",
   })
+  const focusProps = useHeadingFocus()
 
   const sectionPrefix = "drogas"
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3}>
+      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -397,11 +427,13 @@ const Comunicacao = ({ currentCount = 1, maxCount = 22 }) => {
     keyPrefix: "candidato.perguntas.comunicacao",
   })
 
+  const focusProps = useHeadingFocus()
+
   const sectionPrefix = "comunicacao"
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3}>
+      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -436,12 +468,13 @@ const Democracia = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.democracia",
   })
+  const focusProps = useHeadingFocus()
 
   const sectionPrefix = "democracia"
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3}>
+      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -476,12 +509,13 @@ const MeioAmbiente = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.meioAmbiente",
   })
+  const focusProps = useHeadingFocus()
 
   const sectionPrefix = "meioAmbiente"
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3}>
+      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
