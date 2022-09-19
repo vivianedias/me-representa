@@ -12,9 +12,7 @@ export const validation = {
   cpf: "CPF inválido",
   email: "Insira um e-mail válido",
   length: "Formato inválido",
-};
-
-
+}
 
 i18n.use(initReactI18next).init({
 	fallbackLng: "pt-BR",
@@ -30,6 +28,7 @@ i18n.use(initReactI18next).init({
           ...login,
           validation,
         },
+        wizard,
         home,
         eleitores,
         terms,
@@ -94,10 +93,9 @@ i18n.use(initReactI18next).init({
             titulo: "#Todos os direitos reservados a #MeRepresenta 2022",
           },
         },
-      wizard,
       },
     },
   },
-});
+})
 
-export default i18n;
+export default i18n
