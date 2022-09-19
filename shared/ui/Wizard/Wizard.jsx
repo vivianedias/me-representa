@@ -1,6 +1,5 @@
 import React, { useState } from "react"
-import PropTypes from "prop-types"
-import { v4 as uuid } from "uuid"
+import PropTypes from "prop-types";
 import { Field, Form } from "react-final-form"
 import { useTranslation } from "react-i18next"
 
@@ -121,14 +120,14 @@ Wizard.Steps = function Steps({ currentPage, childrenArray }) {
     <Box className={styles.stepsContainer}>
       {childrenArray.map((_, index) => (
         <span
-          key={uuid()}
+          key={`wizard-steps-${index}`}
           className={`${styles.step} ${
             index <= currentPage ? styles.activeStep : ""
           }`}
         />
       ))}
     </Box>
-  )
+  );
 }
 
 Wizard.Page = function Page({ children }) {
