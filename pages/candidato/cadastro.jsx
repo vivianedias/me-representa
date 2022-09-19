@@ -75,6 +75,12 @@ export default function CadastroCandidato(props) {
       return { image: t("image.validation") };
     }
 
+    if (!tseCandidate) {
+      return {
+        cpf: t("cpf.requiredCandidate"),
+      };
+    }
+
     const newCandidate = {
       ...values,
       image: imageUrl,

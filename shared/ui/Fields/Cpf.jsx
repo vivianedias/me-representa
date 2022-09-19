@@ -17,32 +17,50 @@ import validations from "../../../utils/validations";
 
 function CpfInput({ input, meta, tseCandidateCpf, setTseCandidate, t }) {
   const [isLoading, setIsLoading] = useState(false);
+  const [noValidCandidate, setNoValidCandidate] = useState(false);
 
-  const searchByCpf = useCallback(async (cpf) => {
-    setIsLoading(true);
-    try {
-      const data = await fetcher(`/api/candidate/tse/${cpf}`);
-      setTseCandidate(data);
-      setIsLoading(false);
-    } catch (e) {
-      console.error(e);
-      // setSubmitError(true);
-    }
-  }, []);
+  const { value: cpfValue } = input;
+  const noValidCandidateError = noValidCandidate
+    ? t("cpf.noCandidateFoundError")
+    : null;
 
-  const { value } = input;
+  const searchByCpf = useCallback(
+    async (cpf) => {
+      setIsLoading(true);
+      setNoValidCandidate(false);
+
+      try {
+        const data = await fetcher(`/api/candidate/tse/${cpf}`);
+
+        if (!data) {
+          setIsLoading(false);
+          setNoValidCandidate(true);
+          return setTseCandidate(null);
+        }
+
+        setTseCandidate(data);
+        setIsLoading(false);
+      } catch (e) {
+        console.error(e);
+        setIsLoading(false);
+        setTseCandidate(null);
+        // setSubmitError(true);
+      }
+    },
+    [cpfValue]
+  );
 
   useEffect(() => {
     const shouldValidateCpf =
       meta.dirty && meta.touched && !meta.active && !meta.invalid;
 
-    if (shouldValidateCpf && tseCandidateCpf !== value) {
-      searchByCpf(value);
+    if (shouldValidateCpf && tseCandidateCpf !== cpfValue) {
+      searchByCpf(cpfValue);
     }
-  }, [meta, value, searchByCpf, tseCandidateCpf]);
+  }, [meta, cpfValue, searchByCpf, tseCandidateCpf]);
 
   return (
-    <FormControl isInvalid={meta.error && meta.touched}>
+    <FormControl isInvalid={(meta.error && meta.touched) || noValidCandidate}>
       <FormLabel>{t("cpf.label")}</FormLabel>
       <InputGroup>
         <Input {...input} type="cpf" placeholder={t("cpf.placeholder")} />
@@ -57,7 +75,7 @@ function CpfInput({ input, meta, tseCandidateCpf, setTseCandidate, t }) {
           </InputRightElement>
         ) : null}
       </InputGroup>
-      <FormErrorMessage>{meta.error}</FormErrorMessage>
+      <FormErrorMessage>{meta.error || noValidCandidateError}</FormErrorMessage>
     </FormControl>
   );
 }

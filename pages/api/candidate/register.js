@@ -23,7 +23,7 @@ export default async function updateCandidate(req, res) {
       {
         $set: {
           ...req.body,
-          newCandidate,
+          ...newCandidate,
         },
       },
       { upsert: true }
