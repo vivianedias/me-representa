@@ -28,12 +28,16 @@ const validations = (t) => {
   const length = (max) => (value) =>
     value.length <= max ? undefined : t("validation.length");
 
+  const minLength = (min, errorObj) => (value) =>
+    Number(value.length) >= Number(min) ? undefined : t(errorObj);
+
   return {
     required,
     email,
     composeValidators,
     cpf,
     length,
+    minLength,
   };
 };
 

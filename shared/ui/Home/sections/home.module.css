@@ -5,11 +5,12 @@
     margin: 0 auto;
     margin-bottom: 20px;
     justify-content: space-evenly;
+    padding: var(--chakra-space-6);
 }
 
 .title {
     color: var(--chakra-colors-gray-700);
-    margin: var(--chakra-space-10) 0;
+    margin: var(--chakra-space-6) 0;
     font-weight: bold;
 }
 
@@ -59,6 +60,7 @@
     font-size: var(--chakra-fontSizes-lg);
     cursor: pointer;
     text-transform: uppercase;
+    max-width: 100%;
 }
 
 
