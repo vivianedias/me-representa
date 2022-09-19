@@ -1,9 +1,9 @@
 {
   "loading": "Carregando",
   "redirect": "Redirecionando",
-  "title": "Login",
+  "title": "Entre ou crie uma conta",
   "twitter": {
-    "button": "Entrar com Twitter"
+    "button": "Continuar com Twitter"
   },
   "email": {
     "placeholder": "endereço de e-mail",
@@ -12,6 +12,6 @@
       "body": "Um link mágico para login acaba de ser enviado!",
       "error": "Houve um erro ao enviar o link. Tente novamente mais tarde."
     },
-    "button": "Entrar com Email"
+    "button": "Continuar com um link de login"
   }
 }
