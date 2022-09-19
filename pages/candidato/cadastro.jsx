@@ -95,7 +95,6 @@ export default function CadastroCandidato(props) {
   };
 
   useEffect(() => {
-    // Prefetch the dashboard page
     router.prefetch("/candidato/perguntas");
   }, []);
 

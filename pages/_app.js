@@ -1,3 +1,4 @@
+import "@fontsource/roboto";
 import { SessionProvider } from "next-auth/react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { Flex } from "@chakra-ui/react";
@@ -13,6 +14,10 @@ const theme = {
       500: "#ECC94B",
       600: "#ECC94B",
     },
+  },
+  fonts: {
+    heading: `'Roboto', sans-serif`,
+    body: `'Roboto', sans-serif`,
   },
 };
 
