@@ -247,14 +247,15 @@ i18n.use(initReactI18next).init({
               },
             },
             comunicacao: {
-              1: {
+              titulo: "#Comunicação",
+              acesso: {
                 label: "Acesso gratuito à internet nas periferias, comunidades indígenas e quilombolas",
                 pergunta: "Na média nacional, 28% dos domicílios brasileiros ainda não tem acesso à internet. Na área rural, esse número sobre para 48%. Enquanto 99% dos domicílios da classe A estão conectados, nas classes D e E, 50% dos domicílios não possuem conexão. O Marco Civil da Internet reconhece que o acesso à internet é essencial para o exercício da cidadania (Lei n° 12.965/2014), mas a exclusão digital afeta muito mais a população pobre, periférica, quilombola e indígenas. Apenas 48% da população indígena e 55% das pessoas negras já utilizou um computador pelo menos uma vez na vida.",
                 info: "Saiba mais sobre a desigualdade no acesso à internet no vídeo da campanha Internet Direito Seu do Intervozes.",
                 labelAFavor: "Sou a FAVOR do acesso gratuito à internet nas periferias, comunidades indígenas e quilombolas",
                 labelContra: "Sou CONTRA o acesso gratuito à internet nas periferias, comunidades indígenas e quilombolas",
               },
-              2: {
+              emissoras: {
                 label: "Políticos serem donos de emissoras de rádio e TV",
                 pergunta: "Nas últimas eleições, 34 candidatos a deputado estadual, federal, senador e governador eram donos de emissoras de rádio e TV e 26 foram eleitos. Isso é um problema, porque eles podem influenciar o que a mídia fala sobre eles e seus adversários políticos, seja durante a campanha, seja quando eleitos. No caso de deputados federais e senadores eleitos é ainda mais grave. A Constituição não permite que eles tenham contratos com o Estado e as emissoras de rádio e TV são concessões públicas, um tipo de contrato. Além disso, são os deputados e senadores que fiscalizam e decidem quem pode ter uma emissora de rádio e TV. Ou seja, decidem sobre eles mesmos. Duas ações pedem uma manifestação do Supremo Tribunal Federal sobre o assunto, mas nem começaram a ser julgadas (ADPF 246 e ADPF 379).",
                 info: "Saiba mais sobre quem eram os políticos donos de rádio e TV que foram candidatos nas últimas eleições e quem foram os deputados federais e senadores eleitos nos levantamentos do Intervozes.",
