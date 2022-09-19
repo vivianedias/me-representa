@@ -1,16 +1,16 @@
-import { Box, Container } from "@chakra-ui/layout"
-import { Button, Heading, Text } from "@chakra-ui/react"
+import { Container } from "@chakra-ui/layout"
+import { Heading } from "@chakra-ui/react"
 import { signIn, useSession } from "next-auth/react"
 import { useTranslation } from "react-i18next"
-import { Form } from "react-final-form"
 import { Pergunta } from "/shared/ui/Pergunta/Pergunta"
 import { Wizard } from "/shared/ui/Wizard/Wizard"
 import "/shared/locales/i18n.js"
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
 const onSubmit = async (values) => {
-  setTimeout(() => {
-    window.alert(JSON.stringify(values, 0, 2))
-  }, 300)
+  await sleep(300)
+  window.alert(JSON.stringify(values, 0, 2))
 }
 
 const Perguntas = ({ data }) => {
@@ -35,68 +35,113 @@ const Perguntas = ({ data }) => {
         <Wizard.Page>
           <LGBT />
         </Wizard.Page>
+        <Wizard.Page>
+          <Genero />
+        </Wizard.Page>
       </Wizard>
       <section></section>
     </Container>
   )
 }
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-
 const LGBT = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.LGBTQ",
   })
-  const onSubmit = async (values) => {
-    await sleep(300)
-    window.alert(JSON.stringify(values, 0, 2))
-  }
+
+  const sectionPrefix = "lgbt"
 
   return (
     <section>
       <Heading as="h3" size="lg" marginY={3}>
         {t("titulo")}
       </Heading>
-      <Form
-        onSubmit={onSubmit}
-        render={({ handleSubmit, form, submitting, pristine, values }) => (
-          <form onSubmit={handleSubmit}>
-            <Pergunta
-              contador={{ currentCount: currentCount, maxCount: maxCount }}
-              pergunta={{
-                id: "cirurgia",
-                label: t("cirurgia.label"),
-                texto: t("cirurgia.pergunta"),
-                info: t("cirurgia.info"),
-                labelFavor: t("cirurgia.labelAFavor"),
-                labelContra: t("cirurgia.labelContra"),
-              }}
-            />
-            <Pergunta
-              contador={{ currentCount: currentCount, maxCount: maxCount }}
-              pergunta={{
-                id: "sexualidade",
-                label: t("sexualidade.label"),
-                texto: t("sexualidade.pergunta"),
-                info: t("sexualidade.info"),
-                labelFavor: t("sexualidade.labelAFavor"),
-                labelContra: t("sexualidade.labelContra"),
-              }}
-            />
-            <Pergunta
-              contador={{ currentCount: currentCount, maxCount: maxCount }}
-              pergunta={{
-                id: "casas",
-                label: t("casas.label"),
-                texto: t("casas.pergunta"),
-                info: t("casas.info"),
-                labelFavor: t("casas.labelAFavor"),
-                labelContra: t("casas.labelContra"),
-              }}
-            />
-          </form>
-        )}
-      />
+      <div>
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}.cirurgia`,
+            label: t("cirurgia.label"),
+            texto: t("cirurgia.pergunta"),
+            info: t("cirurgia.info"),
+            labelFavor: t("cirurgia.labelAFavor"),
+            labelContra: t("cirurgia.labelContra"),
+          }}
+        />
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}.sexualidade`,
+            label: t("sexualidade.label"),
+            texto: t("sexualidade.pergunta"),
+            info: t("sexualidade.info"),
+            labelFavor: t("sexualidade.labelAFavor"),
+            labelContra: t("sexualidade.labelContra"),
+          }}
+        />
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}.casas`,
+            label: t("casas.label"),
+            texto: t("casas.pergunta"),
+            info: t("casas.info"),
+            labelFavor: t("casas.labelAFavor"),
+            labelContra: t("casas.labelContra"),
+          }}
+        />
+      </div>
+    </section>
+  )
+}
+
+const Genero = ({ currentCount = 1, maxCount = 22 }) => {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "candidato.perguntas.genero",
+  })
+
+  const sectionPrefix = "genero"
+
+  return (
+    <section>
+      <Heading as="h3" size="lg" marginY={3}>
+        {t("titulo")}
+      </Heading>
+      <div>
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}.aborto`,
+            label: t("aborto.label"),
+            texto: t("aborto.pergunta"),
+            info: t("aborto.info"),
+            labelFavor: t("aborto.labelAFavor"),
+            labelContra: t("aborto.labelContra"),
+          }}
+        />
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}.delegacia`,
+            label: t("delegacia.label"),
+            texto: t("delegacia.pergunta"),
+            info: t("delegacia.info"),
+            labelFavor: t("delegacia.labelAFavor"),
+            labelContra: t("delegacia.labelContra"),
+          }}
+        />
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}.banheiro`,
+            label: t("banheiro.label"),
+            texto: t("banheiro.pergunta"),
+            info: t("banheiro.info"),
+            labelFavor: t("banheiro.labelAFavor"),
+            labelContra: t("banheiro.labelContra"),
+          }}
+        />
+      </div>
     </section>
   )
 }

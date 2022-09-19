@@ -99,21 +99,22 @@ i18n.use(initReactI18next).init({
             contador: "Pauta {{current}} de {{max}}",
             posicionamento: "Qual o seu posicionamento?",
             genero: {
-              1: {
+              titulo: "#Gênero",
+              aborto: {
                 label: "Aborto legal e seguro no SUS",
                 pergunta: "O aborto é um direito de qualquer pessoa gestante no Brasil, desde 1940, quando a sua vida está em risco com a gravidez ou quando ela é resultado de um estupro e, desde 2012, também é possível quando o feto não tiver um cérebro formado. Nestes casos, não é preciso realizar Boletim de Ocorrência, nem ter autorização da justiça. Qualquer hospital do SUS que tenha serviço de ginecologia e obstetrícia deveria realizar o aborto legal e seguro. Mas este direito não está sendo garantido no SUS - dos 126 hospitais de referência no país, apenas 42 estão realizando o serviço em 2020.",
                 info: "Conheça os hospitais que estão atendendo em 2020 e o Mapa do Aborto Legal, elaborados pela Gênero e Número e Revista AzMina.",
                 labelAFavor: "Sou a FAVOR do aborto legal e seguro no SUS",
                 labelContra: "Sou CONTRA do aborto legal e seguro no SUS",
               },
-              2: {
+              delegacia: {
                 label: "Delegacias da Mulher 24h para mulheres cis e trans",
                 pergunta: "Durante a pandemia, as denúncias de violência contra a mulher na Central de Atendimento à Mulher (Ligue 180) aumentaram 40% e os casos de feminicídio aumentaram 22%. Mas em 2019, apenas 21 Delegacias da Mulher funcionavam 24h em todo país. Poucos estados permitem Boletim de Ocorrência de violência doméstica pela internet. E a maioria das Delegacias da Mulher não atende mulheres trans.",
                 info: "Conheça os serviços públicos de enfrentamento da violência contra mulher no Brasil no Mapa do Acolhimento.",
                 labelAFavor: "Sou a FAVOR das Delegacias da Mulher 24h para mulheres cis e trans",
                 labelContra: "Sou CONTRA as Delegacias da Mulher 24h para mulheres cis e trans"
               },
-              3: {
+              banheiro: {
                 label: "Trans, travestis e pessoas não-binárias usarem o banheiro que escolherem",
                 pergunta: "A população trans, travesti e não-binária é frequentemente impedida de usar banheiros de acordo com sua identidade de gênero. Desde 2015, o tema está no Supremo Tribunal Federal e dois ministros já disseram que são a favor de poderem escolher qual banheiro usar. Mas há 5 anos o ministro Fux, atual presidente do STF, interrompeu o julgamento dizendo que precisava de tempo para pensar no assunto.",
                 info: "Saiba mais sobre o assunto neste vídeo e nesta reportagem.",
