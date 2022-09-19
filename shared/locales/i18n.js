@@ -213,14 +213,15 @@ i18n.use(initReactI18next).init({
               },              
             },
             seguranca: {
-              1: {
+              titulo: "#Segurança Pública",
+              guardas: {
                 label: "Guardas Civis Municipais andarem armadas",
                 pergunta: "A atuação da Guardas Civis Municipais de várias cidades tem se tornado cada vez mais parecida (e até mesmo realizada em conjunto) com a Polícia Militar. Enquanto o papel da Polícia Militar é o de garantir a segurança pública, o das Guardas Civis era apenas o de proteger o patrimônio público da cidade e cada município pode escolher ter uma Guarda ou não. Mas em 2014, uma lei aumentou o papel das Guardas, prevendo o patrulhamento preventivo e o uso progressivo da força (Lei 13.022/2014). A partir daí, muitas Guardas passaram a atuar de modo muito semelhante à Polícia Militar: trabalhando armadas, realizando patrulhamento ostensivo, abordagens seletivas, apreensões e prisões. Isso é um problema, porque a Polícia Militar é a que mais mata jovens negros e periféricos. Só durante a pandemia as mortes por policiais aumentaram 31%.",
                 info: "Saiba mais sobre o problema da ampliação do papel da Guarda Municipal nesta matéria.",
                 labelAFavor: "Sou a FAVOR das Guardas Civis Municipais andarem armadas",
                 labelContra: "Sou CONTRA as Guardas Civis Municipais andarem armadas",
               },
-              2: {
+              emprego: {
                 label: "Política de emprego para pessoas que saem da prisão",
                 pergunta: "As pessoas que saem da prisão muitas vezes não conseguem empregos por conta do preconceito, mesmo quando já cumpriram toda a sua pena há muito tempo. Oferecer uma política de acesso ao mercado de trabalho para estas pessoas é importante para que consigam romper com um ciclo de violência e desigualdade no qual estão inseridas, na maioria das vezes. O Brasil tem mais de 700 mil presos e só 19% deles consegue trabalhar e 13% estudar dentro das prisões. Isso também contribui para que saiam das prisões sem condições mínimas para o mercado de trabalho. O município pode promover vagas para pessoas com este perfil ou ao menos reduzir as limitações de acesso ao trabalho. Na cidade de de São Paulo, por exemplo, uma lei impede que pessoas condenadas criminalmente, não importa há quanto tempo, possam ser taxistas (Lei 7.329/69). Isso acaba sendo uma pena de perpétua e desproporcional, que só reforça a discriminação.",
                 info: "Saiba como as cidades podem contribuir com outras políticas para quem sai da prisão, além do emprego, na Agenda Municipal para Justiça Criminal do Instituto Terra, Trabalho e Cidadania - ITTC.",

@@ -47,6 +47,9 @@ const Perguntas = ({ data }) => {
         <Wizard.Page>
           <PoliticasSociais />
         </Wizard.Page>
+        <Wizard.Page>
+          <Seguranca />
+        </Wizard.Page>
       </Wizard>
       <section></section>
     </Container>
@@ -69,7 +72,7 @@ const LGBT = ({ currentCount = 1, maxCount = 22 }) => {
         <Pergunta
           contador={{ currentCount: currentCount, maxCount: maxCount }}
           pergunta={{
-            id: `${sectionPrefix}.cirurgia`,
+            id: `${sectionPrefix}_cirurgia`,
             label: t("cirurgia.label"),
             texto: t("cirurgia.pergunta"),
             info: t("cirurgia.info"),
@@ -80,7 +83,7 @@ const LGBT = ({ currentCount = 1, maxCount = 22 }) => {
         <Pergunta
           contador={{ currentCount: currentCount, maxCount: maxCount }}
           pergunta={{
-            id: `${sectionPrefix}.sexualidade`,
+            id: `${sectionPrefix}_sexualidade`,
             label: t("sexualidade.label"),
             texto: t("sexualidade.pergunta"),
             info: t("sexualidade.info"),
@@ -91,7 +94,7 @@ const LGBT = ({ currentCount = 1, maxCount = 22 }) => {
         <Pergunta
           contador={{ currentCount: currentCount, maxCount: maxCount }}
           pergunta={{
-            id: `${sectionPrefix}.casas`,
+            id: `${sectionPrefix}_casas`,
             label: t("casas.label"),
             texto: t("casas.pergunta"),
             info: t("casas.info"),
@@ -120,7 +123,7 @@ const Genero = ({ currentCount = 1, maxCount = 22 }) => {
         <Pergunta
           contador={{ currentCount: currentCount, maxCount: maxCount }}
           pergunta={{
-            id: `${sectionPrefix}.aborto`,
+            id: `${sectionPrefix}_aborto`,
             label: t("aborto.label"),
             texto: t("aborto.pergunta"),
             info: t("aborto.info"),
@@ -131,7 +134,7 @@ const Genero = ({ currentCount = 1, maxCount = 22 }) => {
         <Pergunta
           contador={{ currentCount: currentCount, maxCount: maxCount }}
           pergunta={{
-            id: `${sectionPrefix}.delegacia`,
+            id: `${sectionPrefix}_delegacia`,
             label: t("delegacia.label"),
             texto: t("delegacia.pergunta"),
             info: t("delegacia.info"),
@@ -142,7 +145,7 @@ const Genero = ({ currentCount = 1, maxCount = 22 }) => {
         <Pergunta
           contador={{ currentCount: currentCount, maxCount: maxCount }}
           pergunta={{
-            id: `${sectionPrefix}.banheiro`,
+            id: `${sectionPrefix}_banheiro`,
             label: t("banheiro.label"),
             texto: t("banheiro.pergunta"),
             info: t("banheiro.info"),
@@ -171,7 +174,7 @@ const Raca = ({ currentCount = 1, maxCount = 22 }) => {
         <Pergunta
           contador={{ currentCount: currentCount, maxCount: maxCount }}
           pergunta={{
-            id: `${sectionPrefix}.ensino`,
+            id: `${sectionPrefix}_ensino`,
             label: t("ensino.label"),
             texto: t("ensino.pergunta"),
             info: t("ensino.info"),
@@ -182,7 +185,7 @@ const Raca = ({ currentCount = 1, maxCount = 22 }) => {
         <Pergunta
           contador={{ currentCount: currentCount, maxCount: maxCount }}
           pergunta={{
-            id: `${sectionPrefix}.cotas`,
+            id: `${sectionPrefix}_cotas`,
             label: t("cotas.label"),
             texto: t("cotas.pergunta"),
             info: t("cotas.info"),
@@ -193,7 +196,7 @@ const Raca = ({ currentCount = 1, maxCount = 22 }) => {
         <Pergunta
           contador={{ currentCount: currentCount, maxCount: maxCount }}
           pergunta={{
-            id: `${sectionPrefix}.saude`,
+            id: `${sectionPrefix}_saude`,
             label: t("saude.label"),
             texto: t("saude.pergunta"),
             info: t("saude.info"),
@@ -222,7 +225,7 @@ const Povos = ({ currentCount = 1, maxCount = 22 }) => {
         <Pergunta
           contador={{ currentCount: currentCount, maxCount: maxCount }}
           pergunta={{
-            id: `${sectionPrefix}.politicas`,
+            id: `${sectionPrefix}_politicas`,
             label: t("politicas.label"),
             texto: t("politicas.pergunta"),
             info: t("politicas.info"),
@@ -233,7 +236,7 @@ const Povos = ({ currentCount = 1, maxCount = 22 }) => {
         <Pergunta
           contador={{ currentCount: currentCount, maxCount: maxCount }}
           pergunta={{
-            id: `${sectionPrefix}.sacrificio`,
+            id: `${sectionPrefix}_sacrificio`,
             label: t("sacrificio.label"),
             texto: t("sacrificio.pergunta"),
             info: t("sacrificio.info"),
@@ -244,7 +247,7 @@ const Povos = ({ currentCount = 1, maxCount = 22 }) => {
         <Pergunta
           contador={{ currentCount: currentCount, maxCount: maxCount }}
           pergunta={{
-            id: `${sectionPrefix}.demarcacao`,
+            id: `${sectionPrefix}_demarcacao`,
             label: t("demarcacao.label"),
             texto: t("demarcacao.pergunta"),
             info: t("demarcacao.info"),
@@ -273,7 +276,7 @@ const PoliticasSociais = ({ currentCount = 1, maxCount = 22 }) => {
         <Pergunta
           contador={{ currentCount: currentCount, maxCount: maxCount }}
           pergunta={{
-            id: `${sectionPrefix}.renda`,
+            id: `${sectionPrefix}_renda`,
             label: t("renda.label"),
             texto: t("renda.pergunta"),
             info: t("renda.info"),
@@ -284,12 +287,52 @@ const PoliticasSociais = ({ currentCount = 1, maxCount = 22 }) => {
         <Pergunta
           contador={{ currentCount: currentCount, maxCount: maxCount }}
           pergunta={{
-            id: `${sectionPrefix}.teto`,
+            id: `${sectionPrefix}_teto`,
             label: t("teto.label"),
             texto: t("teto.pergunta"),
             info: t("teto.info"),
             labelFavor: t("teto.labelAFavor"),
             labelContra: t("teto.labelContra"),
+          }}
+        />
+      </div>
+    </section>
+  )
+}
+
+const Seguranca = ({ currentCount = 1, maxCount = 22 }) => {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "candidato.perguntas.seguranca",
+  })
+
+  const sectionPrefix = "segurancaPublica"
+
+  return (
+    <section>
+      <Heading as="h3" size="lg" marginY={3}>
+        {t("titulo")}
+      </Heading>
+      <div>
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}_guardas`,
+            label: t("guardas.label"),
+            texto: t("guardas.pergunta"),
+            info: t("guardas.info"),
+            labelFavor: t("guardas.labelAFavor"),
+            labelContra: t("guardas.labelContra"),
+          }}
+        />
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}_emprego`,
+            label: t("emprego.label"),
+            texto: t("emprego.pergunta"),
+            info: t("emprego.info"),
+            labelFavor: t("emprego.labelAFavor"),
+            labelContra: t("emprego.labelContra"),
           }}
         />
       </div>
