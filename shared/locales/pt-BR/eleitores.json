@@ -1,0 +1,48 @@
+{
+  "title": "Eleitores",
+  "filters": {
+    "heading": "Filtros",
+    "identity": {
+      "label": "Identitários",
+      "black": "Negros",
+      "indigenous": "Indígenas",
+      "women": "Mulheres",
+      "lgbt": "LGBT"
+    },
+    "lgbt": {
+      "label": "LGBT",
+      "lesbian": "Lésbica",
+      "gay": "Gay",
+      "bisexual": "Bissexual",
+      "trans": "Trans"
+    },
+    "parties": {
+      "label": "Partidos"
+    },
+    "priorities": {
+      "label": "Prioridades",
+      "corruption": "Corrupção",
+      "gender": "Gênero",
+      "drugs": "Drogas",
+      "security": "Segurança",
+      "migration": "Imigrantes",
+      "race": "Raça",
+      "traditionalPopulationEnvironment": "Povos Tradicionais e Meio Ambiente",
+      "healthEducationWork": "Saúde, Educação e Trabalho"
+    },
+    "state": {
+      "label": "Estado"
+    },
+    "button": "Filtrar"
+  },
+  "candidates": {
+    "heading": "Quem te representa",
+    "paragraph": "Resultado de acordo com os temas que você escolheu! Para alterar seus temas, altere os filtros.",
+    "counting": "Deputadas/os",
+    "party": "partido",
+    "coalitionScore": "nota da coligação",
+    "state": "estado",
+    "city": "cidade",
+    "button": "Ver perfil completo"
+  }
+}

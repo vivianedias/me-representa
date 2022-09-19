@@ -24,7 +24,7 @@ export default async function updateCandidate(req, res) {
 
     return res.status(200).json(findResult);
   } catch (e) {
-    console.log(e);
+    console.error(e);
     return res.status(500).send(`An error occurred`);
   }
 }

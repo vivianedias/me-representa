@@ -57,9 +57,13 @@ export const authOptions = {
   },
   callbacks: {
     async session({ user, session }) {
+      const { emailVerified, ...restUser } = user;
       return {
         expires: session.expires,
-        user,
+        user: {
+          ...restUser,
+          isEmailVerified: !!emailVerified,
+        },
       };
     },
   },

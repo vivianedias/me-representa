@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { Box, Text } from "@chakra-ui/layout";
 import Mosaic from "/shared/ui/Mosaic/Mosaic";
 import MosaicItem from "/shared/ui/Mosaic/MosaicItem/MosaicItem";
@@ -10,14 +10,21 @@ import raca from "/public/imgs/home/imagem_raca.png";
 import povos from "/public/imgs/home/imagem_povos_originarios.png";
 import lgbt from "/public/imgs/home/imagem_lgbt.png";
 import { Heading } from "@chakra-ui/react";
-import homeStyles from "../home.module.css"
+import homeStyles from "../home.module.css";
 
 const Pautas = () => {
   const { t } = useTranslation("translation", { keyPrefix: "home.pautas" });
   return (
-    <section>
-      <Heading as="h1" size="2xl" className={homeStyles.title} textAlign="center">
-        {t("titulo")}
+    <Box as="section" w="100%">
+      <Heading
+        as="h1"
+        size="2xl"
+        className={homeStyles.title}
+        textAlign="center"
+      >
+        <Trans i18nKey="titulo">
+          Entenda as <Text display="inline-block" color="pink.400">#pautas</Text> em debate
+        </Trans>
       </Heading>
       <Mosaic>
         {/* Genero */}
@@ -168,7 +175,7 @@ const Pautas = () => {
         </MosaicItem>
         {/* LGBT img*/}
       </Mosaic>
-    </section>
+    </Box>
   );
 };
 

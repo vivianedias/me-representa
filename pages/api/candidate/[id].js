@@ -14,7 +14,7 @@ export default async function getCandidate(req, res) {
 
     return res.status(200).json(findResult);
   } catch (e) {
-    console.log(e);
+    console.error(e);
     return res.status(400);
   }
 }
