@@ -39,6 +39,10 @@ function Login() {
   const { t } = useTranslation("translation", { keyPrefix: "login" });
   const { required } = validations(t);
 
+  useEffect(() => {
+    router.prefetch("/candidato/cadastro");
+  }, []);
+
   const onSubmit = async ({ email }) => {
     try {
       const sendingVerificationEmail = await signIn("email", {
@@ -53,7 +57,7 @@ function Login() {
 
       setVerificationEmailStatus(true);
     } catch (e) {
-      console.log({ e });
+      console.error({ e });
       setVerificationEmailStatus(false);
       return { [FORM_ERROR]: e };
     }

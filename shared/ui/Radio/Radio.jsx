@@ -44,7 +44,7 @@ export const Radio = ({
             onClick={toggle}
             style={style}
             className={className}
-            maxW="100%"
+            maxWidth="100%"
             boxSizing="content-box"
             role="radio"
           >
@@ -53,7 +53,7 @@ export const Radio = ({
         </>
       )}
     </FormSpy>
-  )
+  );
 }
 
 Radio.propTypes = {
