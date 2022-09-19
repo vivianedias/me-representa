@@ -59,6 +59,9 @@ const Perguntas = ({ data }) => {
         <Wizard.Page>
           <Democracia />
         </Wizard.Page>
+        <Wizard.Page>
+          <MeioAmbiente />
+        </Wizard.Page>
       </Wizard>
       <section></section>
     </Container>
@@ -462,6 +465,35 @@ const Democracia = ({ currentCount = 1, maxCount = 22 }) => {
             info: t("recursos.info"),
             labelFavor: t("recursos.labelAFavor"),
             labelContra: t("recursos.labelContra"),
+          }}
+        />
+      </div>
+    </section>
+  )
+}
+
+const MeioAmbiente = ({ currentCount = 1, maxCount = 22 }) => {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "candidato.perguntas.meioAmbiente",
+  })
+
+  const sectionPrefix = "meioAmbiente"
+
+  return (
+    <section>
+      <Heading as="h3" size="lg" marginY={3}>
+        {t("titulo")}
+      </Heading>
+      <div>
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}_consentimento`,
+            label: t("consentimento.label"),
+            texto: t("consentimento.pergunta"),
+            info: t("consentimento.info"),
+            labelFavor: t("consentimento.labelAFavor"),
+            labelContra: t("consentimento.labelContra"),
           }}
         />
       </div>

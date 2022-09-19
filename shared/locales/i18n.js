@@ -281,7 +281,8 @@ i18n.use(initReactI18next).init({
               },
             },
             meioAmbiente: {
-              1: {
+              titulo: "#Meio Ambiente",
+              consentimento: {
                 label: "Consentimento dos povos indígenas para a realização de empreendimentos",
                 pergunta: "Uma série de empreendimentos (como construções de barragens, rodovias, mineração) tem sido realizada em territórios indígenas sem que haja consulta e consentimento prévio dos povos indígenas. Consultas prévias, com o objetivo de alcançar um acordo ou consentimento, são um direito dos povos indígenas (Convenção 169 da Organização Internacional do Trabalho). O Estado ou as empresas acabam fazendo pequenas reuniões, sem envolver um grupo representativo dos povos indígenas afetados, apenas para cumprirem esta etapa formal e já poderem, paralelamente, emitir autorizações para o início das obras. O processo de consulta e consentimento adequado deveria ser elaborado e proposto pelos próprios povos indígenas, em respeito a sua autodeterminação. O desrespeito a esse direito provoca impactos não só na comunidade indígena, nos seus saberes tradicionais e relação ancestral com a terra, mas também ao meio ambiente. Os povos indígenas são protetores das florestas. As terras indígenas demarcadas possuem preservação ambiental maior até do que a de parques ambientais estaduais e nacionais.",
                 info: "Conheça um exemplo de protocolo de consulta prévia e consentimento elaborado pelo povo indígena Mundukuru.",
