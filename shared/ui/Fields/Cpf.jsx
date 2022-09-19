@@ -52,8 +52,7 @@ function CpfInput({ input, meta, tseCandidateCpf, setTseCandidate, t }) {
   );
 
   useEffect(() => {
-    const shouldValidateCpf =
-      meta.dirty && meta.touched && !meta.active && !meta.invalid;
+    const shouldValidateCpf = meta.dirty && meta.touched && !meta.active;
 
     if (shouldValidateCpf && tseCandidateCpf !== cpfValue) {
       searchByCpf(cpfValue);
