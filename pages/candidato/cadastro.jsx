@@ -97,9 +97,10 @@ function ImageField({ t, isLoading, uploadS3, imageUrl }) {
   return (
     <Field name="image">
       {({ input, meta }) => {
+        const hasError = (meta.error || meta.submitError) && meta.touched;
         return (
           <Stack w="100%" spacing={4}>
-            <FormControl isInvalid={meta.error && meta.touched}>
+            <FormControl isInvalid={hasError}>
               <FormLabel>{t("image.label")}</FormLabel>
               <Grid
                 align="center"
@@ -147,7 +148,9 @@ function ImageField({ t, isLoading, uploadS3, imageUrl }) {
                   <FormHelperText textAlign="left">
                     {t("image.helperText")}
                   </FormHelperText>
-                  <FormErrorMessage>{meta.error}</FormErrorMessage>
+                  <FormErrorMessage>
+                    {meta.error || meta.submitError}
+                  </FormErrorMessage>
                 </GridItem>
               </Grid>
             </FormControl>
@@ -226,7 +229,7 @@ function SelectSexualOrientation({ t, lgbtConfirmInitialValue }) {
 }
 
 function AgreeTermsCheckbox({ t, termsInitialValue }) {
-  const { required } = validations(t);
+  const { minLength } = validations(t);
 
   function TermsLink() {
     return (
@@ -240,17 +243,26 @@ function AgreeTermsCheckbox({ t, termsInitialValue }) {
   }
 
   return (
-    <Field name="acceptedTerms" validate={required} value="yes" type="checkbox">
-      {({ input, meta }) => (
-        <FormControl isInvalid={meta.touched && meta.error}>
-          <CheckboxGroup defaultValue={termsInitialValue}>
-            <Checkbox {...input} colorScheme="yellow">
+    <Field
+      name="acceptedTerms"
+      value="yes"
+      type="checkbox"
+      validate={minLength(1, "terms.error")}
+    >
+      {({ input, meta }) => {
+        return (
+          <FormControl isInvalid={meta.error && meta.touched}>
+            <Checkbox
+              {...input}
+              isInvalid={meta.error && meta.touched}
+              colorScheme="yellow"
+            >
               {t("terms.label")} <TermsLink />
             </Checkbox>
-            <FormErrorMessage>{t("terms.error")}</FormErrorMessage>
-          </CheckboxGroup>
-        </FormControl>
-      )}
+            <FormErrorMessage>{meta.error}</FormErrorMessage>
+          </FormControl>
+        );
+      }}
     </Field>
   );
 }
@@ -265,7 +277,7 @@ function formatInitialValues({ candidate, session }) {
     cpf: candidate?.cpf || "",
     lgbtConfirm: candidate ? parseToAnswer(candidate) : null,
     lgbt: candidate?.lgbt || "",
-    acceptedTerms: candidate?.acceptedTerms ? ["yes"] : [],
+    acceptedTerms: [],
   };
 }
 
@@ -345,7 +357,7 @@ export default function CadastroCandidato(props) {
           <Form
             onSubmit={onSubmit}
             initialValues={memoedInitialValues}
-            render={({ handleSubmit, submitting, pristine, values }) => {
+            render={({ handleSubmit, submitting, pristine }) => {
               return (
                 <Box as="form" onSubmit={handleSubmit} marginTop={8}>
                   <Stack spacing={5} align="center">
