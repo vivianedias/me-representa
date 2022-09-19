@@ -31,13 +31,13 @@ import {
   Checkbox,
   Link,
   Icon,
-  CheckboxGroup,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaRegTimesCircle, FaExternalLinkAlt } from "react-icons/fa";
 import validations from "../../utils/validations";
 import useUploadS3 from "../../shared/hooks/useUploadS3";
 import fetcher from "../../utils/apiClient";
 import { authOptions } from "../api/auth/[...nextauth]";
+import { useRouter } from "next/router";
 
 function EmailField({ t }) {
   const CFaUserAlt = chakra(FaUserAlt);
@@ -284,6 +284,7 @@ function formatInitialValues({ candidate, session }) {
 export default function CadastroCandidato(props) {
   const { session, candidate } = props;
 
+  const router = useRouter();
   const [initialValues, setInitialValues] = useState(
     formatInitialValues(props)
   );
@@ -314,7 +315,7 @@ export default function CadastroCandidato(props) {
       return { image: t("image.validation") };
     }
 
-    const candidate = {
+    const newCandidate = {
       ...values,
       image: imageUrl,
       userId: session?.user?.id,
@@ -322,7 +323,11 @@ export default function CadastroCandidato(props) {
       acceptedTerms: values.acceptedTerms[0] === "yes",
     };
 
-    await updateCandidate(candidate);
+    await updateCandidate(newCandidate);
+
+    if (!candidate) {
+      return router.push("/candidato/perguntas");
+    }
 
     setInitialValues(
       formatInitialValues({
