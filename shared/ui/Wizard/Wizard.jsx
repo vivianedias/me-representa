@@ -1,52 +1,53 @@
-import React, { useState } from "react"
+import "/shared/locales/i18n";
+import { useState } from "react";
 import PropTypes from "prop-types";
-import { Field, Form } from "react-final-form"
-import { useTranslation } from "react-i18next"
+import { Field, Form } from "react-final-form";
+import { useTranslation } from "react-i18next";
+import { v4 as uuid } from "uuid";
 
-import { Box, Button } from "@chakra-ui/react"
-import { FaCaretLeft, FaCaretRight } from "react-icons/fa"
+import { Box, Button } from "@chakra-ui/react";
+import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 
-import styles from "./styles.module.css"
-import "/shared/locales/i18n"
+import styles from "./styles.module.css";
 
 export const Wizard = ({ initialValues, onSubmit, children }) => {
-  const { t } = useTranslation("translation", { keyPrefix: "wizard" })
+  const { t } = useTranslation("translation", { keyPrefix: "wizard" });
   const [state, setState] = useState({
     page: 0,
     values: initialValues || {},
-  })
-  const childrenArray = React.Children.toArray(children)
-  const activePage = childrenArray[state.page]
-  const isLastPage = state.page === React.Children.count(children) - 1
+  });
+  const childrenArray = React.Children.toArray(children);
+  const activePage = childrenArray[state.page];
+  const isLastPage = state.page === React.Children.count(children) - 1;
 
   const onSubmitHandler = (values) => {
-    const isLastPage = state.page === React.Children.count(children) - 1
+    const isLastPage = state.page === React.Children.count(children) - 1;
     if (isLastPage) {
-      return onSubmit(values)
+      return onSubmit(values);
     }
-    onNextHandler(values)
-  }
+    onNextHandler(values);
+  };
 
   const pageValidation = (values) => {
-    const errors = {}
+    const errors = {};
     for (const key in values) {
       if (!values[key]) {
-        errors[key] = "REQUIRED"
+        errors[key] = "REQUIRED";
       }
     }
-    return errors
-  }
+    return errors;
+  };
 
   const onNextHandler = (values) => {
     setState((state) => ({
       page: Math.min(state.page + 1, children.length - 1),
       values,
-    }))
-  }
+    }));
+  };
 
   const onPreviousHandler = () => {
-    setState((state) => ({ ...state, page: Math.max(state.page - 1, 0) }))
-  }
+    setState((state) => ({ ...state, page: Math.max(state.page - 1, 0) }));
+  };
 
   const renderPrevious = () => {
     return (
@@ -55,8 +56,8 @@ export const Wizard = ({ initialValues, onSubmit, children }) => {
           {t("anterior")}
         </Button>
       )
-    )
-  }
+    );
+  };
 
   const renderNext = () => {
     return (
@@ -65,8 +66,8 @@ export const Wizard = ({ initialValues, onSubmit, children }) => {
           {t("proximo")}
         </Button>
       )
-    )
-  }
+    );
+  };
 
   const renderSubmit = (isSubmitting, hasValidationErrors) => {
     return (
@@ -79,8 +80,8 @@ export const Wizard = ({ initialValues, onSubmit, children }) => {
           {t("submeter")}
         </Button>
       )
-    )
-  }
+    );
+  };
 
   return (
     <div className={styles.wizardContainer}>
@@ -108,19 +109,19 @@ export const Wizard = ({ initialValues, onSubmit, children }) => {
         </Form>
       </div>
     </div>
-  )
-}
+  );
+};
 
 Wizard.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-}
+};
 
 Wizard.Steps = function Steps({ currentPage, childrenArray }) {
   return (
     <Box className={styles.stepsContainer}>
       {childrenArray.map((_, index) => (
         <span
-          key={`wizard-steps-${index}`}
+          key={`wizard-steps-${uuid()}`}
           className={`${styles.step} ${
             index <= currentPage ? styles.activeStep : ""
           }`}
@@ -128,11 +129,11 @@ Wizard.Steps = function Steps({ currentPage, childrenArray }) {
       ))}
     </Box>
   );
-}
+};
 
 Wizard.Page = function Page({ children }) {
-  return children
-}
+  return children;
+};
 
 Wizard.Error = function Error({ name }) {
   return (
@@ -143,5 +144,5 @@ Wizard.Error = function Error({ name }) {
         touched && error ? <span>{error}</span> : null
       }
     />
-  )
-}
+  );
+};
