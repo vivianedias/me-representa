@@ -4,7 +4,9 @@ import login from "./pt-BR/candidato/login.json";
 import home from "./pt-BR/home.json";
 import terms from "./pt-BR/terms.json";
 import cadastro from "./pt-BR/candidato/cadastro.json";
+import wizard from "./pt-BR/wizard.json";
 import eleitores from "./pt-BR/eleitores.json";
+
 
 export const validation = {
   required: "Campo obrigatório",
@@ -93,7 +95,7 @@ i18n.use(initReactI18next).init({
             titulo: "#Todos os direitos reservados a #MeRepresenta 2022",
           },
         },
-        
+      wizard,
       },
     },
   },
