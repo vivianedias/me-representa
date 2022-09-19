@@ -37,7 +37,7 @@ function formatInitialValues({ candidate, session }) {
     cpf: candidate?.cpf || "",
     lgbtConfirm: candidate ? parseToAnswer(candidate) : null,
     lgbt: candidate?.lgbt || "",
-    acceptedTerms: [],
+    acceptedTerms: candidate?.acceptedTerms ? ["yes"] : [],
   };
 }
 
