@@ -7,7 +7,6 @@ import cadastro from "./pt-BR/candidato/cadastro.json";
 import wizard from "./pt-BR/wizard.json";
 import eleitores from "./pt-BR/eleitores.json";
 
-
 export const validation = {
   required: "Campo obrigatório",
   cpf: "CPF inválido",
