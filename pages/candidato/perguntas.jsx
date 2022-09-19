@@ -38,6 +38,9 @@ const Perguntas = ({ data }) => {
         <Wizard.Page>
           <Genero />
         </Wizard.Page>
+        <Wizard.Page>
+          <Raca />
+        </Wizard.Page>
       </Wizard>
       <section></section>
     </Container>
@@ -139,6 +142,57 @@ const Genero = ({ currentCount = 1, maxCount = 22 }) => {
             info: t("banheiro.info"),
             labelFavor: t("banheiro.labelAFavor"),
             labelContra: t("banheiro.labelContra"),
+          }}
+        />
+      </div>
+    </section>
+  )
+}
+
+const Raca = ({ currentCount = 1, maxCount = 22 }) => {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "candidato.perguntas.raca",
+  })
+
+  const sectionPrefix = "raca"
+
+  return (
+    <section>
+      <Heading as="h3" size="lg" marginY={3}>
+        {t("titulo")}
+      </Heading>
+      <div>
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}.ensino`,
+            label: t("ensino.label"),
+            texto: t("ensino.pergunta"),
+            info: t("ensino.info"),
+            labelFavor: t("ensino.labelAFavor"),
+            labelContra: t("ensino.labelContra"),
+          }}
+        />
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}.cotas`,
+            label: t("cotas.label"),
+            texto: t("cotas.pergunta"),
+            info: t("cotas.info"),
+            labelFavor: t("cotas.labelAFavor"),
+            labelContra: t("cotas.labelContra"),
+          }}
+        />
+        <Pergunta
+          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          pergunta={{
+            id: `${sectionPrefix}.saude`,
+            label: t("saude.label"),
+            texto: t("saude.pergunta"),
+            info: t("saude.info"),
+            labelFavor: t("saude.labelAFavor"),
+            labelContra: t("saude.labelContra"),
           }}
         />
       </div>

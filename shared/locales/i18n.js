@@ -148,21 +148,22 @@ i18n.use(initReactI18next).init({
               
             },
             raca: {
-              1: {
+              titulo: "#Raça",
+              ensino: {
                 label: "Ensino de história e cultura afro-brasileira em todas as escolas",
                 pergunta: "Há 17 anos foi aprovada uma lei para o ensino obrigatório, em todas as escolas, da história e cultura afro-brasileira (Lei 10.639/03). Mas, ainda hoje, não se ensina a luta dos negros e as contribuições do povo negro nas áreas social, econômica e política na história do Brasil. O povo negro é retratado apenas como escravizado. Falta fiscalização da aplicação da lei nas escolas e elaboração de materiais didáticos com estes conteúdos.",
                 info: "Saiba mais sobre a dificuldade do ensino de história e cultura-afrobrasileira nas escolas nesta reportagem.",
                 labelAFavor: "Sou a FAVOR do ensino história e cultura afro-brasileira em todas as escolas",
                 labelContra: "Sou CONTRA o ensino história e cultura afro-brasileira em todas as escolas",
               },
-              2: {
+              cotas: {
                 label: "Cotas para pessoas negras no Legislativo",
                 pergunta: "56% da população brasileira é negra, mas candidaturas negras recebem apenas 20% dos recursos públicos para fazerem suas campanhas e menos de 30% dos deputados estaduais e federais eleitos são negros. Não há democracia se não houver representação de negros e quilombolas, também na política. Os movimentos negros no Brasil sempre reivindicaram cotas raciais como uma medida de reparação histórica. Desde 2011, o deputado Federal Luis Alberto propôs um projeto para que houvesse cotas para políticos negros como vereadores, deputados estaduais e deputados federais (PEC 116/2011). Este projeto chegou a ser aprovado em uma etapa importante na Câmara dos Deputados, mas já está há 5 anos arquivado. Em 2020, o Tribunal Superior Eleitoral o Supremo Tribunal Federal discutiram que as candidaturas negras devem receber proporcionalmente recursos para campanha e tempo de tv e rádio nas eleições. Esta vitória reacende o debate sobre a urgência da representatividade das populações negras para que haja democracia no Brasil.",
                 info: "Saiba mais sobre cotas raciais na política nesta reportagem e sobre o financiamento público e tempo de TV para candidaturas negras na plataforma PANE Antirracista do Instituto Marielle Franco.",
                 labelAFavor: "Sou a FAVOR de cotas para pessoas negras no Legislativo",
                 labelContra: "Sou CONTRA cotas para pessoas negras no Legislativo",
               },
-              3: {
+              saude: {
                 label: "Política de saúde para a população negra",
                 pergunta: "O Brasil tem mais de 5.500 municípios, mas apenas 57 colocam em prática a Política Nacional de Saúde Integral da População Negra, criada em 2006. Há doenças que afetam mais a população negra (exemplo: pressão alta, anemia falciforme, diabetes, glaucoma) e também há práticas racistas no atendimento de saúde (exemplo: mulheres negras recebem menos anestesia nos partos do que mulheres brancas). Por isso, é fundamental que exista no SUS políticas de atendimento específicas para a população negra. Em 2019, o SUS perdeu 20 bilhões de reais de seu orçamento e isso também afeta diretamente a população negra, pois são 67% dos usuários do SUS.",
                 info: "Saiba mais sobre a falta de implementação da política de saúde para a população negra nesta reportagem sobre o impacto disso na pandemia neste evento da ONU Mulheres.",
