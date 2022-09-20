@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
-import logo from "/public/imgs/logotipo.png";
+import logo from "/public/imgs/logotipo.svg";
 import styles from "./styles.module.css";
 
 const MenuIcon = () => {
