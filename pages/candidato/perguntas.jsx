@@ -1,5 +1,6 @@
 import "/shared/locales/i18n.js";
 import { useEffect } from "react";
+import Head from "next/head";
 import { v4 as uuid } from "uuid";
 import { signIn, useSession } from "next-auth/react";
 import { useTranslation } from "react-i18next";
@@ -32,8 +33,10 @@ const useHeadingFocus = () => {
   };
 };
 
+const maxCount = 23;
+
 const Perguntas = ({ data }) => {
-  const { t } = useTranslation("translation", { keyPrefix: "candidato" });
+  const { t } = useTranslation("translation", { keyPrefix: "perguntas" });
   const { status, data: session } = useSession({
     required: true,
     onUnauthenticated() {
@@ -46,47 +49,53 @@ const Perguntas = ({ data }) => {
   // }
 
   return (
-    <Box as="section">
-      <Heading as="h1" marginY={6} textAlign="center">
-        {t("titulo")}
-      </Heading>
-      <Wizard onSubmit={onSubmit}>
-        <Wizard.Page>
-          <LGBT />
-        </Wizard.Page>
-        <Wizard.Page>
-          <Genero />
-        </Wizard.Page>
-        <Wizard.Page>
-          <Raca />
-        </Wizard.Page>
-        <Wizard.Page>
-          <Povos />
-        </Wizard.Page>
-        <Wizard.Page>
-          <PoliticasSociais />
-        </Wizard.Page>
-        <Wizard.Page>
-          <Seguranca />
-        </Wizard.Page>
-        <Wizard.Page>
-          <Drogas />
-        </Wizard.Page>
-        <Wizard.Page>
-          <Comunicacao />
-        </Wizard.Page>
-        <Wizard.Page>
-          <Democracia />
-        </Wizard.Page>
-        <Wizard.Page>
-          <MeioAmbiente />
-        </Wizard.Page>
-      </Wizard>
-    </Box>
+    <>
+      <Head>
+        <title>{t("title")}</title>
+        <meta property="og:title" content={t("title")} key="title" />
+      </Head>
+      <Box as="section">
+        <Heading as="h1" marginY={6} textAlign="center">
+          {t("titulo")}
+        </Heading>
+        <Wizard onSubmit={onSubmit}>
+          <Wizard.Page>
+            <LGBT />
+          </Wizard.Page>
+          <Wizard.Page>
+            <Genero />
+          </Wizard.Page>
+          <Wizard.Page>
+            <Raca />
+          </Wizard.Page>
+          <Wizard.Page>
+            <Povos />
+          </Wizard.Page>
+          <Wizard.Page>
+            <PoliticasSociais />
+          </Wizard.Page>
+          <Wizard.Page>
+            <Seguranca />
+          </Wizard.Page>
+          <Wizard.Page>
+            <Drogas />
+          </Wizard.Page>
+          <Wizard.Page>
+            <Comunicacao />
+          </Wizard.Page>
+          <Wizard.Page>
+            <Democracia />
+          </Wizard.Page>
+          <Wizard.Page>
+            <MeioAmbiente />
+          </Wizard.Page>
+        </Wizard>
+      </Box>
+    </>
   );
 };
 
-const LGBT = ({ currentCount = 1, maxCount = 22 }) => {
+const LGBT = () => {
   const { t } = useTranslation("translation", {
     keyPrefix: "perguntas.perguntas.LGBTQ",
   });
@@ -102,7 +111,7 @@ const LGBT = ({ currentCount = 1, maxCount = 22 }) => {
       </Heading>
       <div>
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 1, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_cirurgia`,
             label: t("cirurgia.label"),
@@ -113,7 +122,7 @@ const LGBT = ({ currentCount = 1, maxCount = 22 }) => {
           }}
         />
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 2, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_sexualidade`,
             label: t("sexualidade.label"),
@@ -124,7 +133,7 @@ const LGBT = ({ currentCount = 1, maxCount = 22 }) => {
           }}
         />
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 3, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_casas`,
             label: t("casas.label"),
@@ -139,7 +148,7 @@ const LGBT = ({ currentCount = 1, maxCount = 22 }) => {
   );
 };
 
-const Genero = ({ currentCount = 1, maxCount = 22 }) => {
+const Genero = () => {
   const { t } = useTranslation("translation", {
     keyPrefix: "perguntas.perguntas.genero",
   });
@@ -154,7 +163,7 @@ const Genero = ({ currentCount = 1, maxCount = 22 }) => {
       </Heading>
       <div>
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 4, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_aborto`,
             label: t("aborto.label"),
@@ -165,7 +174,7 @@ const Genero = ({ currentCount = 1, maxCount = 22 }) => {
           }}
         />
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 5, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_delegacia`,
             label: t("delegacia.label"),
@@ -176,7 +185,7 @@ const Genero = ({ currentCount = 1, maxCount = 22 }) => {
           }}
         />
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 6, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_banheiro`,
             label: t("banheiro.label"),
@@ -191,7 +200,7 @@ const Genero = ({ currentCount = 1, maxCount = 22 }) => {
   );
 };
 
-const Raca = ({ currentCount = 1, maxCount = 22 }) => {
+const Raca = () => {
   const { t } = useTranslation("translation", {
     keyPrefix: "perguntas.perguntas.raca",
   });
@@ -206,7 +215,7 @@ const Raca = ({ currentCount = 1, maxCount = 22 }) => {
       </Heading>
       <div>
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 7, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_ensino`,
             label: t("ensino.label"),
@@ -217,7 +226,7 @@ const Raca = ({ currentCount = 1, maxCount = 22 }) => {
           }}
         />
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 8, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_cotas`,
             label: t("cotas.label"),
@@ -228,7 +237,7 @@ const Raca = ({ currentCount = 1, maxCount = 22 }) => {
           }}
         />
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 9, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_saude`,
             label: t("saude.label"),
@@ -243,7 +252,7 @@ const Raca = ({ currentCount = 1, maxCount = 22 }) => {
   );
 };
 
-const Povos = ({ currentCount = 1, maxCount = 22 }) => {
+const Povos = () => {
   const { t } = useTranslation("translation", {
     keyPrefix: "perguntas.perguntas.povos",
   });
@@ -259,7 +268,7 @@ const Povos = ({ currentCount = 1, maxCount = 22 }) => {
       </Heading>
       <div>
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 10, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_politicas`,
             label: t("politicas.label"),
@@ -270,7 +279,7 @@ const Povos = ({ currentCount = 1, maxCount = 22 }) => {
           }}
         />
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 11, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_sacrificio`,
             label: t("sacrificio.label"),
@@ -281,7 +290,7 @@ const Povos = ({ currentCount = 1, maxCount = 22 }) => {
           }}
         />
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 12, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_demarcacao`,
             label: t("demarcacao.label"),
@@ -296,7 +305,7 @@ const Povos = ({ currentCount = 1, maxCount = 22 }) => {
   );
 };
 
-const PoliticasSociais = ({ currentCount = 1, maxCount = 22 }) => {
+const PoliticasSociais = () => {
   const { t } = useTranslation("translation", {
     keyPrefix: "perguntas.perguntas.politicas",
   });
@@ -311,7 +320,7 @@ const PoliticasSociais = ({ currentCount = 1, maxCount = 22 }) => {
       </Heading>
       <div>
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 13, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_renda`,
             label: t("renda.label"),
@@ -322,7 +331,7 @@ const PoliticasSociais = ({ currentCount = 1, maxCount = 22 }) => {
           }}
         />
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 14, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_teto`,
             label: t("teto.label"),
@@ -337,7 +346,7 @@ const PoliticasSociais = ({ currentCount = 1, maxCount = 22 }) => {
   );
 };
 
-const Seguranca = ({ currentCount = 1, maxCount = 22 }) => {
+const Seguranca = () => {
   const { t } = useTranslation("translation", {
     keyPrefix: "perguntas.perguntas.seguranca",
   });
@@ -352,7 +361,7 @@ const Seguranca = ({ currentCount = 1, maxCount = 22 }) => {
       </Heading>
       <div>
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 15, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_guardas`,
             label: t("guardas.label"),
@@ -363,7 +372,7 @@ const Seguranca = ({ currentCount = 1, maxCount = 22 }) => {
           }}
         />
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 16, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_emprego`,
             label: t("emprego.label"),
@@ -378,7 +387,7 @@ const Seguranca = ({ currentCount = 1, maxCount = 22 }) => {
   );
 };
 
-const Drogas = ({ currentCount = 1, maxCount = 22 }) => {
+const Drogas = () => {
   const { t } = useTranslation("translation", {
     keyPrefix: "perguntas.perguntas.drogas",
   });
@@ -393,7 +402,7 @@ const Drogas = ({ currentCount = 1, maxCount = 22 }) => {
       </Heading>
       <div>
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 17, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_descriminalizar`,
             label: t("descriminalizar.label"),
@@ -404,7 +413,7 @@ const Drogas = ({ currentCount = 1, maxCount = 22 }) => {
           }}
         />
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 18, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_tratamento`,
             label: t("tratamento.label"),
@@ -419,7 +428,7 @@ const Drogas = ({ currentCount = 1, maxCount = 22 }) => {
   );
 };
 
-const Comunicacao = ({ currentCount = 1, maxCount = 22 }) => {
+const Comunicacao = () => {
   const { t } = useTranslation("translation", {
     keyPrefix: "perguntas.perguntas.comunicacao",
   });
@@ -435,7 +444,7 @@ const Comunicacao = ({ currentCount = 1, maxCount = 22 }) => {
       </Heading>
       <div>
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 19, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_acesso`,
             label: t("acesso.label"),
@@ -446,7 +455,7 @@ const Comunicacao = ({ currentCount = 1, maxCount = 22 }) => {
           }}
         />
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 20, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_emissoras`,
             label: t("emissoras.label"),
@@ -461,7 +470,7 @@ const Comunicacao = ({ currentCount = 1, maxCount = 22 }) => {
   );
 };
 
-const Democracia = ({ currentCount = 1, maxCount = 22 }) => {
+const Democracia = () => {
   const { t } = useTranslation("translation", {
     keyPrefix: "perguntas.perguntas.democracia",
   });
@@ -476,7 +485,7 @@ const Democracia = ({ currentCount = 1, maxCount = 22 }) => {
       </Heading>
       <div>
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 21, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_cota`,
             label: t("cota.label"),
@@ -487,7 +496,7 @@ const Democracia = ({ currentCount = 1, maxCount = 22 }) => {
           }}
         />
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 22, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_recursos`,
             label: t("recursos.label"),
@@ -502,7 +511,7 @@ const Democracia = ({ currentCount = 1, maxCount = 22 }) => {
   );
 };
 
-const MeioAmbiente = ({ currentCount = 1, maxCount = 22 }) => {
+const MeioAmbiente = () => {
   const { t } = useTranslation("translation", {
     keyPrefix: "perguntas.perguntas.meioAmbiente",
   });
@@ -517,7 +526,7 @@ const MeioAmbiente = ({ currentCount = 1, maxCount = 22 }) => {
       </Heading>
       <div>
         <Pergunta
-          contador={{ currentCount: currentCount, maxCount: maxCount }}
+          contador={{ currentCount: 23, maxCount }}
           pergunta={{
             id: `${sectionPrefix}_consentimento`,
             label: t("consentimento.label"),

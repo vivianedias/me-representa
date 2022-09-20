@@ -36,6 +36,7 @@ i18n.use(initReactI18next).init({
         global: {
           contador: "Pauta {{current}} de {{max}}",
           posicionamento: "Qual o seu posicionamento?",
+          validation,
         },
         header: {
           imgDescricao: "Logotipo do MeRepresenta",
