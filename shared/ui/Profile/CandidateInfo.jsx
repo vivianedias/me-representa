@@ -43,8 +43,7 @@ const CandidateInfo = (props) => {
               </Text>
             </Flex>
           </Stack>
-          {/* <HStack spacing={2}> */}
-          {/* {priorities.map((priority) => ( */}
+
           <Stack direction={"row"} wrap="wrap" align="start">
             <Flex wrap="wrap" gap={1}>
               <Tag size="md" variant="solid" colorScheme="pink">
@@ -58,8 +57,6 @@ const CandidateInfo = (props) => {
               </Tag>
             </Flex>
           </Stack>
-          {/* ))} */}
-          {/* </HStack> */}
         </Stack>
       </Flex>
     </Stack>
