@@ -1,7 +1,17 @@
-import { Flex, Heading, Image, Stack, Text } from "@chakra-ui/react";
+import {
+  Flex,
+  Heading,
+  HStack,
+  Image,
+  Stack,
+  Tag,
+  TagLabel,
+  Text,
+} from "@chakra-ui/react";
 
 const CandidateInfo = (props) => {
-  const { t, image, name, gender, partyName, stateName, state } = props;
+  const { t, priorities, image, name, gender, partyName, stateName, state } =
+    props;
 
   const jobTitle =
     gender === "FEMININO" ? t("congresswoman") : t("congressman");
@@ -14,6 +24,7 @@ const CandidateInfo = (props) => {
           <Heading as="h1" size="lg" align="left">
             {name}
           </Heading>
+
           <Stack spacing={1} width="100%">
             <Flex gap="1">
               <Text fontSize="sm" color="gray.400">
@@ -32,6 +43,23 @@ const CandidateInfo = (props) => {
               </Text>
             </Flex>
           </Stack>
+          {/* <HStack spacing={2}> */}
+          {/* {priorities.map((priority) => ( */}
+          <Stack direction={"row"} wrap="wrap" align="start">
+            <Flex wrap="wrap" gap={1}>
+              <Tag size="md" variant="solid" colorScheme="pink">
+                <TagLabel>{priorities[0]}</TagLabel>
+              </Tag>
+              <Tag size="md" variant="solid" colorScheme="pink">
+                <TagLabel>{priorities[1]}</TagLabel>
+              </Tag>
+              <Tag size="md" variant="solid" colorScheme="pink">
+                <TagLabel>{priorities[2]}</TagLabel>
+              </Tag>
+            </Flex>
+          </Stack>
+          {/* ))} */}
+          {/* </HStack> */}
         </Stack>
       </Flex>
     </Stack>

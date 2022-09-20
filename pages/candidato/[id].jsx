@@ -1,7 +1,7 @@
 import fetchClient from "../../utils/apiClient";
 import "../../shared/locales/i18n";
 import Head from "next/head";
-import { Box, Stack } from "@chakra-ui/react";
+import { Box, HStack, Tag, Stack } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import CandidateInfo from "../../shared/ui/Profile/CandidateInfo";
 import Gender from "../../shared/ui/Profile/Gender";
@@ -19,6 +19,8 @@ export default function Candidato({ data }) {
   const { t } = useTranslation("translation", { keyPrefix: "profile" });
 
   const { name, gender, partyName, stateName, state } = data;
+
+  const priorities = ["Gênero", "Raça", "LGBT"];
 
   const answers = {
     gender: {
@@ -83,7 +85,7 @@ export default function Candidato({ data }) {
       >
         <Box bgColor="white" w={{ base: "85vw", md: "768px" }}>
           <Stack spacing={6}>
-            <CandidateInfo t={t} {...data} />
+            <CandidateInfo t={t} priorities={priorities} {...data} />
             <Gender t={t} answers={answers.gender} />
             <Race t={t} answers={answers.race} />
             <LGBT t={t} answers={answers.lgbt} />
