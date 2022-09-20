@@ -1,5 +1,5 @@
 import "/shared/locales/i18n";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import { Field, Form } from "react-final-form";
 import { useTranslation } from "react-i18next";
@@ -16,18 +16,18 @@ import {
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import { css } from "@emotion/react";
 
-const Wizard = ({ initialValues, onSubmit, children }) => {
+const Wizard = ({ initialValues: values, onSubmit, children }) => {
+  const [initialValues, setInitialValues] = useState(values || {});
+  const [page, setPage] = useState(0);
   const { t } = useTranslation("translation", { keyPrefix: "wizard" });
-  const [state, setState] = useState({
-    page: 0,
-    values: initialValues || {},
-  });
+
+  const memoizedInitialValues = useMemo(() => initialValues, [initialValues]);
   const childrenArray = React.Children.toArray(children);
-  const activePage = childrenArray[state.page];
-  const isLastPage = state.page === React.Children.count(children) - 1;
+  const activePage = childrenArray[page];
+  const isLastPage = page === React.Children.count(children) - 1;
 
   const onSubmitHandler = (values) => {
-    const isLastPage = state.page === React.Children.count(children) - 1;
+    const isLastPage = page === React.Children.count(children) - 1;
     if (isLastPage) {
       return onSubmit(values);
     }
@@ -45,66 +45,48 @@ const Wizard = ({ initialValues, onSubmit, children }) => {
   };
 
   const onNextHandler = (values) => {
-    setState((state) => ({
-      page: Math.min(state.page + 1, children.length - 1),
-      values,
-    }));
+    setPage((previousPage) => Math.min(previousPage + 1, children.length - 1));
+    setInitialValues(values);
   };
 
   const onPreviousHandler = () => {
-    setState((state) => ({ ...state, page: Math.max(state.page - 1, 0) }));
+    setPage((previousPage) => Math.max(previousPage - 1, 0));
   };
 
   const renderPrevious = () => {
-    return (
-      state.page > 0 && (
-        <Button leftIcon={<FaCaretLeft />} onClick={onPreviousHandler}>
-          {t("anterior")}
-        </Button>
-      )
-    );
+    return page > 0 ? (
+      <Button leftIcon={<FaCaretLeft />} onClick={onPreviousHandler}>
+        {t("anterior")}
+      </Button>
+    ) : null;
   };
 
   const renderNext = () => {
-    return (
-      !isLastPage && (
-        <Button rightIcon={<FaCaretRight />} type="submit">
-          {t("proximo")}
-        </Button>
-      )
-    );
+    return !isLastPage ? (
+      <Button rightIcon={<FaCaretRight />} type="submit">
+        {t("proximo")}
+      </Button>
+    ) : null;
   };
 
   const renderSubmit = (isSubmitting, hasValidationErrors) => {
-    return (
-      isLastPage && (
-        <Button
-          colorScheme="blue"
-          type="submit"
-          disabled={isSubmitting || hasValidationErrors}
-        >
-          {t("submeter")}
-        </Button>
-      )
-    );
+    return isLastPage ? (
+      <Button
+        colorScheme="blue"
+        type="submit"
+        disabled={isSubmitting || hasValidationErrors}
+      >
+        {t("submeter")}
+      </Button>
+    ) : null;
   };
 
   return (
     <Box maxW="100vw">
-      <Wizard.Steps currentPage={state.page} childrenArray={childrenArray} />
-      <Box
-        maxHeight="73vh"
-        overflow="auto"
-        css={css`
-          -ms-overflow-style: none; /* IE and Edge */
-          scrollbar-width: none; /* Firefox */
-          &::-webkit-scrollbar {
-            display: none;
-          }
-        `}
-      >
+      <Wizard.Steps currentPage={page} childrenArray={childrenArray} />
+      <Box>
         <Form
-          initialValues={state.values}
+          initialValues={memoizedInitialValues}
           validate={pageValidation}
           onSubmit={onSubmitHandler}
         >
@@ -114,9 +96,7 @@ const Wizard = ({ initialValues, onSubmit, children }) => {
               <Box position="sticky" bottom={0} bgColor="gray.200">
                 <Flex
                   padding={4}
-                  justifyContent={
-                    state.page === 0 ? "flex-end" : "space-between"
-                  }
+                  justifyContent={page === 0 ? "flex-end" : "space-between"}
                   alignItems="center"
                 >
                   {renderPrevious()}

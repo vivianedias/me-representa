@@ -88,7 +88,7 @@ const Perguntas = ({ data }) => {
 
 const LGBT = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
-    keyPrefix: "candidato.perguntas.LGBTQ",
+    keyPrefix: "perguntas.perguntas.LGBTQ",
   });
 
   const focusProps = useHeadingFocus();
@@ -141,7 +141,7 @@ const LGBT = ({ currentCount = 1, maxCount = 22 }) => {
 
 const Genero = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
-    keyPrefix: "candidato.perguntas.genero",
+    keyPrefix: "perguntas.perguntas.genero",
   });
   const focusProps = useHeadingFocus();
 
@@ -193,7 +193,7 @@ const Genero = ({ currentCount = 1, maxCount = 22 }) => {
 
 const Raca = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
-    keyPrefix: "candidato.perguntas.raca",
+    keyPrefix: "perguntas.perguntas.raca",
   });
   const focusProps = useHeadingFocus();
 
@@ -245,7 +245,7 @@ const Raca = ({ currentCount = 1, maxCount = 22 }) => {
 
 const Povos = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
-    keyPrefix: "candidato.perguntas.povos",
+    keyPrefix: "perguntas.perguntas.povos",
   });
 
   const focusProps = useHeadingFocus();
@@ -298,7 +298,7 @@ const Povos = ({ currentCount = 1, maxCount = 22 }) => {
 
 const PoliticasSociais = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
-    keyPrefix: "candidato.perguntas.politicas",
+    keyPrefix: "perguntas.perguntas.politicas",
   });
   const focusProps = useHeadingFocus();
 
@@ -339,7 +339,7 @@ const PoliticasSociais = ({ currentCount = 1, maxCount = 22 }) => {
 
 const Seguranca = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
-    keyPrefix: "candidato.perguntas.seguranca",
+    keyPrefix: "perguntas.perguntas.seguranca",
   });
   const focusProps = useHeadingFocus();
 
@@ -380,7 +380,7 @@ const Seguranca = ({ currentCount = 1, maxCount = 22 }) => {
 
 const Drogas = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
-    keyPrefix: "candidato.perguntas.drogas",
+    keyPrefix: "perguntas.perguntas.drogas",
   });
   const focusProps = useHeadingFocus();
 
@@ -421,7 +421,7 @@ const Drogas = ({ currentCount = 1, maxCount = 22 }) => {
 
 const Comunicacao = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
-    keyPrefix: "candidato.perguntas.comunicacao",
+    keyPrefix: "perguntas.perguntas.comunicacao",
   });
 
   const focusProps = useHeadingFocus();
@@ -463,7 +463,7 @@ const Comunicacao = ({ currentCount = 1, maxCount = 22 }) => {
 
 const Democracia = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
-    keyPrefix: "candidato.perguntas.democracia",
+    keyPrefix: "perguntas.perguntas.democracia",
   });
   const focusProps = useHeadingFocus();
 
@@ -504,7 +504,7 @@ const Democracia = ({ currentCount = 1, maxCount = 22 }) => {
 
 const MeioAmbiente = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
-    keyPrefix: "candidato.perguntas.meioAmbiente",
+    keyPrefix: "perguntas.perguntas.meioAmbiente",
   });
   const focusProps = useHeadingFocus();
 
