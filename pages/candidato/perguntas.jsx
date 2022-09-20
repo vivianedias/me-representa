@@ -106,7 +106,7 @@ const LGBT = () => {
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={4} {...focusProps}>
+      <Heading as="h3" size="lg" marginY={6} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -158,7 +158,7 @@ const Genero = () => {
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
+      <Heading as="h3" size="lg" marginY={4} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -210,7 +210,7 @@ const Raca = () => {
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
+      <Heading as="h3" size="lg" marginY={4} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -263,7 +263,7 @@ const Povos = () => {
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
+      <Heading as="h3" size="lg" marginY={4} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -315,7 +315,7 @@ const PoliticasSociais = () => {
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
+      <Heading as="h3" size="lg" marginY={4} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -356,7 +356,7 @@ const Seguranca = () => {
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
+      <Heading as="h3" size="lg" marginY={4} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -397,7 +397,7 @@ const Drogas = () => {
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
+      <Heading as="h3" size="lg" marginY={4} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -439,7 +439,7 @@ const Comunicacao = () => {
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
+      <Heading as="h3" size="lg" marginY={4} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -480,7 +480,7 @@ const Democracia = () => {
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
+      <Heading as="h3" size="lg" marginY={4} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
@@ -521,7 +521,7 @@ const MeioAmbiente = () => {
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
+      <Heading as="h3" size="lg" marginY={4} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>
