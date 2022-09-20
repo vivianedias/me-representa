@@ -71,12 +71,12 @@ const Wizard = ({ initialValues, onSubmit, children }) => {
     ) : null;
   };
 
-  const renderSubmit = (isSubmitting, hasValidationErrors) => {
+  const renderSubmit = ({ isSubmitting, hasValidationErrors, pristine }) => {
     return isLastPage ? (
       <Button
         colorScheme="yellow"
         type="submit"
-        disabled={isSubmitting || hasValidationErrors}
+        disabled={isSubmitting || hasValidationErrors || pristine}
       >
         {t("submeter")}
       </Button>
@@ -93,7 +93,7 @@ const Wizard = ({ initialValues, onSubmit, children }) => {
           onSubmit={onSubmitHandler}
           subscription={{ submitting: true, pristine: true }}
         >
-          {({ handleSubmit, submitting, hasValidationErrors }) => {
+          {({ handleSubmit, submitting, hasValidationErrors, pristine }) => {
             return (
               <form onSubmit={handleSubmit}>
                 {activePage}
@@ -105,7 +105,11 @@ const Wizard = ({ initialValues, onSubmit, children }) => {
                   >
                     {renderPrevious()}
                     {renderNext()}
-                    {renderSubmit(submitting, hasValidationErrors)}
+                    {renderSubmit({
+                      submitting,
+                      hasValidationErrors,
+                      pristine,
+                    })}
                   </Flex>
                 </Box>
               </form>

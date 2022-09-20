@@ -13,7 +13,7 @@ import { authOptions } from "../api/auth/[...nextauth]";
 import fetcher from "../../utils/apiClient";
 
 const Perguntas = ({ session, candidate }) => {
-  const [initialValues, setInitialValues] = useState(null);
+  const [initialValues, setInitialValues] = useState(candidate.answers);
   const { t } = useTranslation("translation", { keyPrefix: "perguntas" });
   const router = useRouter();
   const toast = useToast();

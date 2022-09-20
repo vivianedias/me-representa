@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
 import clientPromise from "../../../lib/mongodb";
 
-export default async function getCandidate(req, res) {
+export default async function getCandidateById(req, res) {
   try {
     const { id } = req.query;
 

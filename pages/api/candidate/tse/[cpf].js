@@ -2,7 +2,7 @@ import clientPromise from "../../../../lib/mongodb";
 
 const CPF_KEY = "NR_CPF_CANDIDATO";
 
-export default async function getCandidate(req, res) {
+export default async function getCandidateByCpf(req, res) {
   try {
     const { cpf } = req.query;
 
