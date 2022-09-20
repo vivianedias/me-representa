@@ -11,7 +11,7 @@ const CONTRA = "contra";
 const Pergunta = ({ contador, pergunta }) => {
   const { t } = useTranslation("translation", { keyPrefix: "global" });
   return (
-    <VStack spacing={3}>
+    <VStack spacing={3} marginBottom={5}>
       <Text as="strong" textAlign="left" width="100%">
         {t("contador", {
           current: contador.currentCount,

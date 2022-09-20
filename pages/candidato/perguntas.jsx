@@ -97,7 +97,7 @@ const LGBT = ({ currentCount = 1, maxCount = 22 }) => {
 
   return (
     <section>
-      <Heading as="h3" size="lg" marginY={3} {...focusProps}>
+      <Heading as="h3" size="lg" marginY={4} {...focusProps}>
         {t("titulo")}
       </Heading>
       <div>

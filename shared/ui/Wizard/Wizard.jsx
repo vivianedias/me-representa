@@ -90,7 +90,7 @@ const Wizard = ({ initialValues, onSubmit, children }) => {
   };
 
   return (
-    <Box paddingTop={6} maxW="100vw">
+    <Box maxW="100vw">
       <Wizard.Steps currentPage={state.page} childrenArray={childrenArray} />
       <Box
         maxHeight="73vh"
@@ -144,6 +144,7 @@ Wizard.Steps = function Steps({ currentPage, childrenArray }) {
       justifyContent="center"
       alignItems="flex-end"
       paddingX={4}
+      mb={4}
     >
       {childrenArray.map((_, index) => {
         const isActive = index <= currentPage;
@@ -168,7 +169,7 @@ Wizard.Steps = function Steps({ currentPage, childrenArray }) {
 };
 
 Wizard.Page = function Page({ children }) {
-  return <Container paddingBottom={10}>{children}</Container>;
+  return <Container paddingBottom={5}>{children}</Container>;
 };
 
 Wizard.Error = function Error({ name }) {
