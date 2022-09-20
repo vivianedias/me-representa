@@ -1,0 +1,10 @@
+export { default as Comunicacao } from "./Comunicacao";
+export { default as LGBT } from "./LGBT";
+export { default as Povos } from "./Povos";
+export { default as Democracia } from "./Democracia";
+export { default as Drogas } from "./Drogas";
+export { default as Genero } from "./Genero";
+export { default as MeioAmbiente } from "./MeioAmbiente";
+export { default as PoliticasSociais } from "./PoliticasSociais";
+export { default as Raca } from "./Raca";
+export { default as Seguranca } from "./Seguranca";

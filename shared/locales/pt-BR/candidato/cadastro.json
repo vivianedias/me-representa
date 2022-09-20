@@ -1,6 +1,7 @@
 {
   "submitError": "Houve um erro ao enviar o formulário",
-
+  "successUpdate": "Perfil atualizado.",
+  "success": "Sucesso!",
   "loading": "Carregando",
   "button": "Enviar",
   "email": {

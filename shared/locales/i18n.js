@@ -6,6 +6,7 @@ import terms from "./pt-BR/terms.json";
 import cadastro from "./pt-BR/candidato/cadastro.json";
 import wizard from "./pt-BR/wizard.json";
 import eleitores from "./pt-BR/eleitores.json";
+import perguntas from "./pt-BR/candidato/perguntas.json";
 
 export const validation = {
   required: "Campo obrigatório",
@@ -15,11 +16,11 @@ export const validation = {
 }
 
 i18n.use(initReactI18next).init({
-	fallbackLng: "pt-BR",
-	lng: "pt-BR",
-	resources: {
-		"pt-BR": {
-			translation: {
+  fallbackLng: "pt-BR",
+  lng: "pt-BR",
+  resources: {
+    "pt-BR": {
+      translation: {
         cadastro: {
           ...cadastro,
           validation,
@@ -35,6 +36,7 @@ i18n.use(initReactI18next).init({
         global: {
           contador: "Pauta {{current}} de {{max}}",
           posicionamento: "Qual o seu posicionamento?",
+          validation,
         },
         header: {
           imgDescricao: "Logotipo do MeRepresenta",
@@ -93,9 +95,10 @@ i18n.use(initReactI18next).init({
             titulo: "#Todos os direitos reservados a #MeRepresenta 2022",
           },
         },
+        perguntas,
       },
     },
   },
-})
+});
 
 export default i18n
