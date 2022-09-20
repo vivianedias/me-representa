@@ -1,54 +1,52 @@
-import { Container } from "@chakra-ui/layout"
-import { Heading } from "@chakra-ui/react"
-import { signIn, useSession } from "next-auth/react"
-import { useTranslation } from "react-i18next"
-import { Pergunta } from "/shared/ui/Pergunta/Pergunta"
-import { Wizard } from "/shared/ui/Wizard/Wizard"
-import "/shared/locales/i18n.js"
-import { useEffect } from "react"
-import { v4 as uuid } from 'uuid';
+import "/shared/locales/i18n.js";
+import { useEffect } from "react";
+import { v4 as uuid } from "uuid";
+import { signIn, useSession } from "next-auth/react";
+import { useTranslation } from "react-i18next";
+import { Heading, Box } from "@chakra-ui/react";
+import Pergunta from "../../shared/ui/Pergunta/Pergunta";
+import Wizard from "../../shared/ui/Wizard/Wizard";
 
-
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const onSubmit = async (values) => {
-  await sleep(300)
-  window.alert(JSON.stringify(values, 0, 2))
-}
+  await sleep(300);
+  window.alert(JSON.stringify(values, 0, 2));
+};
 
 const useHeadingFocus = () => {
-  const HEADING_ID = uuid()
+  const HEADING_ID = uuid();
 
   const focusHeading = () => {
-    const tituloPauta = document.getElementById(HEADING_ID)
+    const tituloPauta = document.getElementById(HEADING_ID);
     if (tituloPauta) {
-      tituloPauta.focus()
+      tituloPauta.focus();
     }
-  }
+  };
 
-  useEffect(focusHeading)
+  useEffect(focusHeading);
 
   return {
     tabIndex: "-1",
-    id: HEADING_ID
-  }
-}
+    id: HEADING_ID,
+  };
+};
 
 const Perguntas = ({ data }) => {
-  const { t } = useTranslation("translation", { keyPrefix: "candidato" })
+  const { t } = useTranslation("translation", { keyPrefix: "candidato" });
   const { status, data: session } = useSession({
     required: true,
     onUnauthenticated() {
       // signIn();
     },
-  })
+  });
 
   // if (status === "loading") {
   //   return <p>Loading...</p>;
   // }
 
   return (
-    <Container as="section">
+    <Box as="section">
       <Heading as="h1" marginY={6} textAlign="center">
         {t("titulo")}
       </Heading>
@@ -84,19 +82,18 @@ const Perguntas = ({ data }) => {
           <MeioAmbiente />
         </Wizard.Page>
       </Wizard>
-      <section></section>
-    </Container>
-  )
-}
+    </Box>
+  );
+};
 
 const LGBT = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.LGBTQ",
-  })
+  });
 
-  const focusProps = useHeadingFocus()
+  const focusProps = useHeadingFocus();
 
-  const sectionPrefix = "lgbt"
+  const sectionPrefix = "lgbt";
 
   return (
     <section>
@@ -139,16 +136,16 @@ const LGBT = ({ currentCount = 1, maxCount = 22 }) => {
         />
       </div>
     </section>
-  )
-}
+  );
+};
 
 const Genero = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.genero",
-  })
-  const focusProps = useHeadingFocus()
+  });
+  const focusProps = useHeadingFocus();
 
-  const sectionPrefix = "genero"
+  const sectionPrefix = "genero";
 
   return (
     <section>
@@ -191,16 +188,16 @@ const Genero = ({ currentCount = 1, maxCount = 22 }) => {
         />
       </div>
     </section>
-  )
-}
+  );
+};
 
 const Raca = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.raca",
-  })
-  const focusProps = useHeadingFocus()
+  });
+  const focusProps = useHeadingFocus();
 
-  const sectionPrefix = "raca"
+  const sectionPrefix = "raca";
 
   return (
     <section>
@@ -243,17 +240,17 @@ const Raca = ({ currentCount = 1, maxCount = 22 }) => {
         />
       </div>
     </section>
-  )
-}
+  );
+};
 
 const Povos = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.povos",
-  })
+  });
 
-  const focusProps = useHeadingFocus()
+  const focusProps = useHeadingFocus();
 
-  const sectionPrefix = "povos"
+  const sectionPrefix = "povos";
 
   return (
     <section>
@@ -296,16 +293,16 @@ const Povos = ({ currentCount = 1, maxCount = 22 }) => {
         />
       </div>
     </section>
-  )
-}
+  );
+};
 
 const PoliticasSociais = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.politicas",
-  })
-  const focusProps = useHeadingFocus()
+  });
+  const focusProps = useHeadingFocus();
 
-  const sectionPrefix = "politicasSociais"
+  const sectionPrefix = "politicasSociais";
 
   return (
     <section>
@@ -337,16 +334,16 @@ const PoliticasSociais = ({ currentCount = 1, maxCount = 22 }) => {
         />
       </div>
     </section>
-  )
-}
+  );
+};
 
 const Seguranca = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.seguranca",
-  })
-  const focusProps = useHeadingFocus()
+  });
+  const focusProps = useHeadingFocus();
 
-  const sectionPrefix = "segurancaPublica"
+  const sectionPrefix = "segurancaPublica";
 
   return (
     <section>
@@ -378,16 +375,16 @@ const Seguranca = ({ currentCount = 1, maxCount = 22 }) => {
         />
       </div>
     </section>
-  )
-}
+  );
+};
 
 const Drogas = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.drogas",
-  })
-  const focusProps = useHeadingFocus()
+  });
+  const focusProps = useHeadingFocus();
 
-  const sectionPrefix = "drogas"
+  const sectionPrefix = "drogas";
 
   return (
     <section>
@@ -419,17 +416,17 @@ const Drogas = ({ currentCount = 1, maxCount = 22 }) => {
         />
       </div>
     </section>
-  )
-}
+  );
+};
 
 const Comunicacao = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.comunicacao",
-  })
+  });
 
-  const focusProps = useHeadingFocus()
+  const focusProps = useHeadingFocus();
 
-  const sectionPrefix = "comunicacao"
+  const sectionPrefix = "comunicacao";
 
   return (
     <section>
@@ -461,16 +458,16 @@ const Comunicacao = ({ currentCount = 1, maxCount = 22 }) => {
         />
       </div>
     </section>
-  )
-}
+  );
+};
 
 const Democracia = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.democracia",
-  })
-  const focusProps = useHeadingFocus()
+  });
+  const focusProps = useHeadingFocus();
 
-  const sectionPrefix = "democracia"
+  const sectionPrefix = "democracia";
 
   return (
     <section>
@@ -502,16 +499,16 @@ const Democracia = ({ currentCount = 1, maxCount = 22 }) => {
         />
       </div>
     </section>
-  )
-}
+  );
+};
 
 const MeioAmbiente = ({ currentCount = 1, maxCount = 22 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "candidato.perguntas.meioAmbiente",
-  })
-  const focusProps = useHeadingFocus()
+  });
+  const focusProps = useHeadingFocus();
 
-  const sectionPrefix = "meioAmbiente"
+  const sectionPrefix = "meioAmbiente";
 
   return (
     <section>
@@ -532,7 +529,7 @@ const MeioAmbiente = ({ currentCount = 1, maxCount = 22 }) => {
         />
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Perguntas
+export default Perguntas;

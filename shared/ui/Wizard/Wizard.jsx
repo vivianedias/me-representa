@@ -1,16 +1,22 @@
 import "/shared/locales/i18n";
-import { useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Field, Form } from "react-final-form";
 import { useTranslation } from "react-i18next";
 import { v4 as uuid } from "uuid";
 
-import { Box, Button } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  FormErrorMessage,
+  Flex,
+  Text,
+  Container,
+} from "@chakra-ui/react";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
+import { css } from "@emotion/react";
 
-import styles from "./styles.module.css";
-
-export const Wizard = ({ initialValues, onSubmit, children }) => {
+const Wizard = ({ initialValues, onSubmit, children }) => {
   const { t } = useTranslation("translation", { keyPrefix: "wizard" });
   const [state, setState] = useState({
     page: 0,
@@ -84,9 +90,19 @@ export const Wizard = ({ initialValues, onSubmit, children }) => {
   };
 
   return (
-    <div className={styles.wizardContainer}>
+    <Box paddingTop={6} maxW="100vw">
       <Wizard.Steps currentPage={state.page} childrenArray={childrenArray} />
-      <div className={styles.formContainer}>
+      <Box
+        maxHeight="73vh"
+        overflow="auto"
+        css={css`
+          -ms-overflow-style: none; /* IE and Edge */
+          scrollbar-width: none; /* Firefox */
+          &::-webkit-scrollbar {
+            display: none;
+          }
+        `}
+      >
         <Form
           initialValues={state.values}
           validate={pageValidation}
@@ -95,20 +111,24 @@ export const Wizard = ({ initialValues, onSubmit, children }) => {
           {({ handleSubmit, submitting, hasValidationErrors }) => (
             <form onSubmit={handleSubmit}>
               {activePage}
-              <div
-                className={`${styles.footer} ${
-                  state.page === 0 ? styles.continueFooter : ""
-                }`}
-              >
-                {renderPrevious()}
-                {renderNext()}
-                {renderSubmit(submitting, hasValidationErrors)}
-              </div>
+              <Box position="sticky" bottom={0} bgColor="gray.200">
+                <Flex
+                  padding={4}
+                  justifyContent={
+                    state.page === 0 ? "flex-end" : "space-between"
+                  }
+                  alignItems="center"
+                >
+                  {renderPrevious()}
+                  {renderNext()}
+                  {renderSubmit(submitting, hasValidationErrors)}
+                </Flex>
+              </Box>
             </form>
           )}
         </Form>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
@@ -118,21 +138,37 @@ Wizard.propTypes = {
 
 Wizard.Steps = function Steps({ currentPage, childrenArray }) {
   return (
-    <Box className={styles.stepsContainer}>
-      {childrenArray.map((_, index) => (
-        <span
-          key={`wizard-steps-${uuid()}`}
-          className={`${styles.step} ${
-            index <= currentPage ? styles.activeStep : ""
-          }`}
-        />
-      ))}
-    </Box>
+    <Flex
+      height="20px"
+      flexWrap="wrap"
+      justifyContent="center"
+      alignItems="flex-end"
+      paddingX={4}
+    >
+      {childrenArray.map((_, index) => {
+        const isActive = index <= currentPage;
+        return (
+          <Text
+            as="span"
+            backgroundColor={isActive ? "pink.500" : "gray.300"}
+            height={isActive ? "8px" : "4px"}
+            flexGrow={1}
+            maxWidth="50px"
+            key={`wizard-steps-${uuid()}`}
+            css={css`
+              &:not(:last-child) {
+                margin-right: var(--chakra-space-2);
+              }
+            `}
+          />
+        );
+      })}
+    </Flex>
   );
 };
 
 Wizard.Page = function Page({ children }) {
-  return children;
+  return <Container paddingBottom={10}>{children}</Container>;
 };
 
 Wizard.Error = function Error({ name }) {
@@ -141,8 +177,10 @@ Wizard.Error = function Error({ name }) {
       name={name}
       subscription={{ touched: true, error: true }}
       render={({ meta: { touched, error } }) =>
-        touched && error ? <span>{error}</span> : null
+        touched && error ? <FormErrorMessage>{error}</FormErrorMessage> : null
       }
     />
   );
 };
+
+export default Wizard;

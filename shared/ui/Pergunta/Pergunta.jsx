@@ -1,21 +1,18 @@
 import React from "react"
 import PropTypes from 'prop-types'
+import { useTranslation } from "react-i18next";
 
-import { Box } from "@chakra-ui/layout"
-import { Heading, Text } from "@chakra-ui/react"
-import { RadioGroup, Radio } from "/shared/ui/Radio/Radio"
-import { useTranslation } from "react-i18next"
+import { Flex, Heading, Text, VStack, Box } from "@chakra-ui/react";
+import { RadioGroup, Radio } from "../Radio/Radio";
 
-const A_FAVOR = "favor"
-const CONTRA = "contra"
+const A_FAVOR = "favor";
+const CONTRA = "contra";
 
-export const Pergunta = (props) => {
-  const { contador } = props
-  const { pergunta } = props
-  const { t } = useTranslation("translation", { keyPrefix: "global" })
+const Pergunta = ({ contador, pergunta }) => {
+  const { t } = useTranslation("translation", { keyPrefix: "global" });
   return (
-    <div>
-      <Text as="strong">
+    <VStack spacing={3}>
+      <Text as="strong" textAlign="left" width="100%">
         {t("contador", {
           current: contador.currentCount,
           max: contador.maxCount,
@@ -24,34 +21,36 @@ export const Pergunta = (props) => {
       <Heading as="h3" size="lg" id={pergunta.id}>
         {pergunta.label}
       </Heading>
-      <Box as="p" marginY={3}>
-        {pergunta.texto}
-      </Box>
-      <p>{pergunta.info}</p>
-      <Box marginY={3} as="strong" display="block">
+      <>
+        <Text>{pergunta.texto}</Text>
+        <Text>{pergunta.info}</Text>
+      </>
+      <Box as="strong" display="block">
         {t("posicionamento")}
       </Box>
       <RadioGroup ariaLabelledBy={pergunta.id}>
-        <Box marginY={3} display="flex">
+        <Flex>
           <Radio
             name={pergunta.id}
             value={A_FAVOR}
             label={pergunta.labelFavor}
             style={{ width: "100%" }}
           />
-        </Box>
-        <Box marginY={3} display="flex">
+        </Flex>
+        <Flex>
           <Radio
             name={pergunta.id}
             value={CONTRA}
             label={pergunta.labelContra}
             style={{ width: "100%" }}
           />
-        </Box>
+        </Flex>
       </RadioGroup>
-    </div>
-  )
-}
+    </VStack>
+  );
+};
+
+export default Pergunta;
 
 Pergunta.propTypes = {
   contador: PropTypes.shape({
