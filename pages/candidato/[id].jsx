@@ -16,14 +16,9 @@ import Democracy from "../../shared/ui/Profile/Democracy";
 import Environment from "../../shared/ui/Profile/Environment";
 
 export default function Candidato({ data }) {
-  console.log(data);
   const { t } = useTranslation("translation", { keyPrefix: "profile" });
 
   const { name, gender, partyName, stateName, state } = data;
-
-  const statements = t("gender.statements");
-
-  console.log(statements);
 
   const answers = {
     gender: {
