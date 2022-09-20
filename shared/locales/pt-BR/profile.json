@@ -1,4 +1,80 @@
 {
   "congressman": "Deputado",
-  "congresswomen": "Deputada"
+  "congresswoman": "Deputada",
+  "favorable": "A FAVOR",
+  "against": "CONTRA",
+  "favorableComplement": "de",
+  "gender": {
+    "title": "# Gênero",
+    "statements": {
+      "1": "aborto legal e seguro no SUS",
+      "2": "Delegacias da Mulher 24h para mulheres cis e trans",
+      "3": "trans, travestis e pessoas não-binárias usarem o banheiro que escolherem"
+    }
+  },
+  "lgbt": {
+    "title": "# LGBT+",
+    "statements": {
+      "1": "cirurgia genital em crianças intersexo por motivo estético",
+      "2": "discussão de gênero e sexualidade nas escolas",
+      "3": "casas públicas de acolhida para LGBT+"
+    }
+  },
+  "race": {
+    "title": "# Raça",
+    "statements": {
+      "1": "ensino história e cultura afro-brasileira em todas as escolas",
+      "2": "cotas para pessoas negras no Legislativo",
+      "3": "política de saúde para a população negra"
+    }
+  },
+  "traditionalPopulations": {
+    "title": "# Povos Tradicionais",
+    "statements": {
+      "1": "políticas emergenciais de combate à pandemia nas comunidades quilombolas",
+      "2": "sacrifício de animais no contexto religioso",
+      "3": "demarcação de terras indígenas"
+    }
+  },
+  "socialPolicies": {
+    "title": "# Políticas Sociais",
+    "statements": {
+      "1": "renda básica permanente mantendo os programas sociais existentes",
+      "2": "teto dos gastos públicos"
+    }
+  },
+  "security": {
+    "title": "# Segurança Pública",
+    "statements": {
+      "1": "Guardas Civis Municipais andarem armadas",
+      "2": "política de emprego para pessoas que saem da prisão"
+    }
+  },
+  "drugs": {
+    "title": "# Drogas",
+    "statements": {
+      "1": "descriminalizar o comércio de drogas para reduzir a quantidade de mulheres e jovens negros presos",
+      "2": "tratamento de usuário de drogas no SUS com redução de danos"
+    }
+  },
+  "communication": {
+    "title": "# Comunicação",
+    "statements": {
+      "1": "acesso gratuito à internet nas periferias, comunidades indígenas e quilombolas",
+      "2": "políticos serem donos de emissoras de rádio e TV"
+    }
+  },
+  "democracy": {
+    "title": "# Democracia",
+    "statements": {
+      "1": "cota de gênero e raça nas lideranças dos partidos",
+      "2": "corte de recursos públicos a partidos com candidaturas que praticam discurso de ódio ou violência política"
+    }
+  },
+  "environment": {
+    "title": "# Meio Ambiente",
+    "statements": {
+      "1": "consentimento dos povos indígenas para a realização de empreendimentos."
+    }
+  }
 }

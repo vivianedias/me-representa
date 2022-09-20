@@ -1,18 +1,19 @@
 import fetchClient from "../../utils/apiClient";
 import "../../shared/locales/i18n";
 import Head from "next/head";
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Image,
-  Spacer,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import CandidateInfo from "../../shared/ui/Profile/CandidateInfo";
+import Gender from "../../shared/ui/Profile/Gender";
+import Race from "../../shared/ui/Profile/Race";
+import LGBT from "../../shared/ui/Profile/LGBT";
+import TraditionalPopulations from "../../shared/ui/Profile/TraditionalPopulations";
+import SocialPolicies from "../../shared/ui/Profile/SocialPolicies";
+import Security from "../../shared/ui/Profile/Security";
+import Drugs from "../../shared/ui/Profile/Drugs";
+import Communication from "../../shared/ui/Profile/Communication";
+import Democracy from "../../shared/ui/Profile/Democracy";
+import Environment from "../../shared/ui/Profile/Environment";
 
 export default function Candidato({ data }) {
   console.log(data);
@@ -20,11 +21,55 @@ export default function Candidato({ data }) {
 
   const { name, gender, partyName, stateName, state } = data;
 
-  const jobTitle =
-    gender === "FEMININO" ? t("congresswoman") : t("congressman");
+  const statements = t("gender.statements");
 
-  const image =
-    "https://midias.correiobraziliense.com.br/_midias/jpg/2022/04/23/fq_iq4ixsacx3qp-7832244.jpg";
+  console.log(statements);
+
+  const answers = {
+    gender: {
+      1: true,
+      2: true,
+      3: true,
+    },
+    race: {
+      1: true,
+      2: true,
+      3: true,
+    },
+    lgbt: {
+      1: true,
+      2: true,
+      3: true,
+    },
+    traditionalPopulations: {
+      1: true,
+      2: true,
+      3: true,
+    },
+    socialPolicies: {
+      1: true,
+      2: true,
+    },
+    security: {
+      1: true,
+      2: true,
+    },
+    drugs: {
+      1: true,
+      2: true,
+    },
+    communication: {
+      1: true,
+      2: true,
+    },
+    democracy: {
+      1: true,
+      2: true,
+    },
+    environment: {
+      1: true,
+    },
+  };
 
   return (
     <>
@@ -42,7 +87,22 @@ export default function Candidato({ data }) {
         boxShadow="md"
       >
         <Box bgColor="white" w={{ base: "85vw", md: "768px" }}>
-          <CandidateInfo t={t} {...data} />
+          <Stack spacing={6}>
+            <CandidateInfo t={t} {...data} />
+            <Gender t={t} answers={answers.gender} />
+            <Race t={t} answers={answers.race} />
+            <LGBT t={t} answers={answers.lgbt} />
+            <TraditionalPopulations
+              t={t}
+              answers={answers.traditionalPopulations}
+            />
+            <SocialPolicies t={t} answers={answers.socialPolicies} />
+            <Security t={t} answers={answers.security} />
+            <Drugs t={t} answers={answers.drugs} />
+            <Communication t={t} answers={answers.communication} />
+            <Democracy t={t} answers={answers.democracy} />
+            <Environment t={t} answers={answers.environment} />
+          </Stack>
         </Box>
       </Stack>
     </>
