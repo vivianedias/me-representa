@@ -144,10 +144,7 @@ export default function CadastroCandidato(props) {
                       tseCandidate={tseCandidate}
                       setTseCandidate={setTseCandidate}
                     />
-                    <SexualOrientationField
-                      t={t}
-                      lgbtConfirmInitialValue={initialValues.lgbtConfirm}
-                    />
+                    <SexualOrientationField t={t} />
                     <ImageField t={t} {...s3Props} />
                     {candidate?.acceptedTerms ? null : (
                       <TermsAndConditionsField

@@ -2,23 +2,34 @@ import React from "react"
 import PropTypes from 'prop-types'
 import { useTranslation } from "react-i18next";
 
-import { Flex, Heading, Text, VStack, Box } from "@chakra-ui/react";
-import { RadioGroup, Radio } from "../Radio/Radio";
+import { Heading, Text, VStack, Box, Divider } from "@chakra-ui/react";
+import Radio from "../components/CustomRadio";
 
 const A_FAVOR = "favor";
 const CONTRA = "contra";
 
 const Pergunta = ({ contador, pergunta }) => {
   const { t } = useTranslation("translation", { keyPrefix: "global" });
+  const options = [
+    {
+      value: A_FAVOR,
+      label: pergunta.labelFavor,
+    },
+    {
+      value: CONTRA,
+      label: pergunta.labelContra,
+    },
+  ];
+
   return (
-    <VStack spacing={3} marginBottom={5}>
+    <VStack spacing={3} marginBottom={10}>
       <Text as="strong" textAlign="left" width="100%">
         {t("contador", {
           current: contador.currentCount,
           max: contador.maxCount,
         })}
       </Text>
-      <Heading as="h3" size="lg" id={pergunta.id}>
+      <Heading as="h3" size="lg">
         {pergunta.label}
       </Heading>
       <>
@@ -28,24 +39,8 @@ const Pergunta = ({ contador, pergunta }) => {
       <Box as="strong" display="block">
         {t("posicionamento")}
       </Box>
-      <RadioGroup ariaLabelledBy={pergunta.id}>
-        <Flex>
-          <Radio
-            name={pergunta.id}
-            value={A_FAVOR}
-            label={pergunta.labelFavor}
-            style={{ width: "100%" }}
-          />
-        </Flex>
-        <Flex>
-          <Radio
-            name={pergunta.id}
-            value={CONTRA}
-            label={pergunta.labelContra}
-            style={{ width: "100%" }}
-          />
-        </Flex>
-      </RadioGroup>
+      <Radio options={options} t={t} name={pergunta.id} direction="column" />
+      <Divider />
     </VStack>
   );
 };
