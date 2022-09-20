@@ -1,23 +1,66 @@
 import "/shared/locales/i18n.js";
+import { useState, useEffect } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { unstable_getServerSession } from "next-auth";
 import { useTranslation } from "react-i18next";
-import { Heading, Box } from "@chakra-ui/react";
+import { Heading, Box, useToast } from "@chakra-ui/react";
+import { FORM_ERROR } from "final-form";
 
 import Wizard from "../../shared/ui/Wizard/Wizard";
 import * as Questions from "../../shared/ui/Questions";
 import { authOptions } from "../api/auth/[...nextauth]";
 import fetcher from "../../utils/apiClient";
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-const onSubmit = async (values) => {
-  await sleep(300);
-  window.alert(JSON.stringify(values, 0, 2));
-};
-
-const Perguntas = ({ data }) => {
+const Perguntas = ({ session, candidate }) => {
+  const [initialValues, setInitialValues] = useState(null);
   const { t } = useTranslation("translation", { keyPrefix: "perguntas" });
+  const router = useRouter();
+  const toast = useToast();
+
+  const saveAnswers = async (answers) => {
+    await fetcher("/api/candidate/answers", {
+      method: "POST",
+      body: answers,
+    });
+  };
+
+  const onSubmit = async (values) => {
+    try {
+      await saveAnswers(values);
+
+      if (!candidate.answers) {
+        router.push(`/candidato/${session?.user?.id}`);
+      }
+
+      setInitialValues(values);
+      toast({
+        title: t("success"),
+        description: t("successUpdate"),
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+        variant: "left-accent",
+        position: "top-right",
+      });
+    } catch (e) {
+      console.error(e);
+      toast({
+        title: t("error"),
+        description: t("submitError"),
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+        variant: "left-accent",
+        position: "top-right",
+      });
+      return { [FORM_ERROR]: e };
+    }
+  };
+
+  useEffect(() => {
+    router.prefetch(`/candidato/${session?.user?.id}`);
+  }, []);
 
   return (
     <>
@@ -27,9 +70,9 @@ const Perguntas = ({ data }) => {
       </Head>
       <Box as="section" bgColor="white">
         <Heading as="h1" marginY={6} textAlign="center">
-          {t("titulo")}
+          {t("title")}
         </Heading>
-        <Wizard onSubmit={onSubmit}>
+        <Wizard onSubmit={onSubmit} initialValues={initialValues} submitError>
           <Wizard.Page>
             <Questions.LGBT t={t} />
           </Wizard.Page>

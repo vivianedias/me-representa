@@ -54,7 +54,7 @@ Question.Layout = function Layout({ children, t }) {
   return (
     <>
       <Heading as="h3" size="lg" marginY={4} {...focusProps}>
-        {t("titulo")}
+        {t("title")}
       </Heading>
       <Box
         css={css`

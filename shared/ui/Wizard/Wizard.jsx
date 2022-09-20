@@ -91,6 +91,7 @@ const Wizard = ({ initialValues, onSubmit, children }) => {
           initialValues={memoizedInitialValues}
           validate={pageValidation}
           onSubmit={onSubmitHandler}
+          subscription={{ submitting: true, pristine: true }}
         >
           {({ handleSubmit, submitting, hasValidationErrors }) => {
             return (

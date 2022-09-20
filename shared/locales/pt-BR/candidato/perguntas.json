@@ -1,7 +1,11 @@
 {
-  "titulo": "Pautas #MeRepresenta",
+  "title": "Pautas #MeRepresenta",
   "contador": "Pauta {{current}} de {{max}}",
   "posicionamento": "Qual o seu posicionamento?",
+  "submitError": "Houve algum erro ao salvar suas respostas. Tente novamente.",
+  "error": "Erro",
+  "success": "Sucesso!",
+  "successUpdate": "Suas alterações foram salvas.",
   "genero": {
     "titulo": "#Gênero",
     "aborto": {
