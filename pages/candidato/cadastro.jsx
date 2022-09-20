@@ -14,6 +14,7 @@ import {
   Text,
   Flex,
   HStack,
+  useToast,
 } from "@chakra-ui/react";
 import { FaRegTimesCircle } from "react-icons/fa";
 import useUploadS3 from "../../shared/hooks/useUploadS3";
@@ -45,62 +46,74 @@ export default function CadastroCandidato(props) {
   const { session, candidate } = props;
 
   const router = useRouter();
+  const toast = useToast();
+  const { t } = useTranslation("translation", { keyPrefix: "cadastro" });
+  const s3Props = useUploadS3({ candidate, session });
+
   const [initialValues, setInitialValues] = useState(
     formatInitialValues(props)
   );
   const [submitError, setSubmitError] = useState(false);
-  const { t } = useTranslation("translation", { keyPrefix: "cadastro" });
-  const s3Props = useUploadS3({ candidate, session });
   const [tseCandidate, setTseCandidate] = useState(null);
+
   const memoedInitialValues = useMemo(() => initialValues, [initialValues]);
   const CFaRegTimesCircle = chakra(FaRegTimesCircle);
-
   const { imageUrl } = s3Props;
 
   const updateCandidate = async (newCandidate) => {
+    await fetcher("/api/candidate/register", {
+      method: "POST",
+      body: newCandidate,
+    });
+  };
+
+  const onSubmit = async (values) => {
     try {
-      await fetcher("/api/candidate/register", {
-        method: "POST",
-        body: newCandidate,
+      setSubmitError(false);
+
+      if (!imageUrl) {
+        return { image: t("image.validation") };
+      }
+
+      if (!tseCandidate && values.cpf !== candidate.cpf) {
+        return {
+          cpf: t("cpf.requiredCandidate"),
+        };
+      }
+
+      const newCandidate = {
+        ...values,
+        image: imageUrl,
+        userId: session?.user?.id,
+        tseCandidate,
+      };
+
+      await updateCandidate(newCandidate);
+
+      if (!candidate) {
+        router.push("/candidato/perguntas");
+      }
+
+      setInitialValues(
+        formatInitialValues({
+          candidate: newCandidate,
+          session,
+        })
+      );
+
+      toast({
+        title: t("success"),
+        description: t("successUpdate"),
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+        variant: "left-accent",
+        position: "top-right",
       });
     } catch (e) {
       console.error(e);
       setSubmitError(true);
     }
-  };
-
-  const onSubmit = async (values) => {
-    setSubmitError(false);
-
-    if (!imageUrl) {
-      return { image: t("image.validation") };
-    }
-
-    if (!tseCandidate) {
-      return {
-        cpf: t("cpf.requiredCandidate"),
-      };
-    }
-
-    const newCandidate = {
-      ...values,
-      image: imageUrl,
-      userId: session?.user?.id,
-      tseCandidate,
-    };
-
-    await updateCandidate(newCandidate);
-
-    if (!candidate) {
-      router.push("/candidato/perguntas");
-    }
-
-    setInitialValues(
-      formatInitialValues({
-        candidate: newCandidate,
-        session,
-      })
-    );
   };
 
   useEffect(() => {
@@ -144,10 +157,7 @@ export default function CadastroCandidato(props) {
                       tseCandidate={tseCandidate}
                       setTseCandidate={setTseCandidate}
                     />
-                    <SexualOrientationField
-                      t={t}
-                      lgbtConfirmInitialValue={initialValues.lgbtConfirm}
-                    />
+                    <SexualOrientationField t={t} />
                     <ImageField t={t} {...s3Props} />
                     {candidate?.acceptedTerms ? null : (
                       <TermsAndConditionsField

@@ -1,51 +1,30 @@
 import PropTypes from "prop-types";
 import { Field } from "react-final-form";
-import {
-  FormControl,
-  Stack,
-  FormLabel,
-  FormErrorMessage,
-  Select,
-  RadioGroup,
-  Radio,
-} from "@chakra-ui/react";
+import { FormControl, FormErrorMessage, Select } from "@chakra-ui/react";
 import validations from "../../../utils/validations";
 import Condition from "../components/Condition";
+import Radio from "../components/CustomRadio";
 
-function SexualOrientationField({ t, lgbtConfirmInitialValue }) {
+function SexualOrientationField({ t }) {
   const { required } = validations(t);
-
+  const options = [
+    {
+      value: "yes",
+      label: t("lgbt.confirm.true"),
+    },
+    {
+      value: "no",
+      label: t("lgbt.confirm.false"),
+    },
+  ];
   return (
     <>
-      <Field validate={required} type="radio" name="lgbtConfirm">
-        {({ input, meta }) => (
-          <FormControl isInvalid={meta.error && meta.touched}>
-            <FormLabel>{t("lgbt.confirm.label")}</FormLabel>
-            <RadioGroup
-              colorScheme="yellow"
-              defaultValue={lgbtConfirmInitialValue}
-            >
-              <Stack direction="row" spacing={4}>
-                <Radio
-                  {...input}
-                  value="yes"
-                  isInvalid={meta.error && meta.touched}
-                >
-                  {t("lgbt.confirm.true")}
-                </Radio>
-                <Radio
-                  {...input}
-                  value="no"
-                  isInvalid={meta.error && meta.touched}
-                >
-                  {t("lgbt.confirm.false")}
-                </Radio>
-              </Stack>
-              <FormErrorMessage>{meta.error}</FormErrorMessage>
-            </RadioGroup>
-          </FormControl>
-        )}
-      </Field>
+      <Radio
+        t={t}
+        options={options}
+        name="lgbtConfirm"
+        label={t("lgbt.confirm.label")}
+      />
       <Condition when="lgbtConfirm" is="yes">
         <Field name="lgbt" validate={required}>
           {({ input, meta }) => {
@@ -73,7 +52,6 @@ function SexualOrientationField({ t, lgbtConfirmInitialValue }) {
 
 SexualOrientationField.propTypes = {
   t: PropTypes.func.isRequired,
-  lgbtConfirmInitialValue: PropTypes.string,
 };
 
 export default SexualOrientationField;
