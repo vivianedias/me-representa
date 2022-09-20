@@ -8,7 +8,7 @@ const Raca = ({ t }) => {
       <Pergunta
         currentCount={7}
         pergunta={{
-          id: `${sectionPrefix}_ensino`,
+          id: `${prefix}_ensino`,
           label: t(prefix + ".ensino.label"),
           texto: t(prefix + ".ensino.pergunta"),
           info: t(prefix + ".ensino.info"),
@@ -19,7 +19,7 @@ const Raca = ({ t }) => {
       <Pergunta
         currentCount={8}
         pergunta={{
-          id: `${sectionPrefix}_cotas`,
+          id: `${prefix}_cotas`,
           label: t(prefix + ".cotas.label"),
           texto: t(prefix + ".cotas.pergunta"),
           info: t(prefix + ".cotas.info"),
@@ -30,7 +30,7 @@ const Raca = ({ t }) => {
       <Pergunta
         currentCount={9}
         pergunta={{
-          id: `${sectionPrefix}_saude`,
+          id: `${prefix}_saude`,
           label: t(prefix + ".saude.label"),
           texto: t(prefix + ".saude.pergunta"),
           info: t(prefix + ".saude.info"),

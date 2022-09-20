@@ -8,7 +8,7 @@ const Seguranca = ({ t }) => {
       <Pergunta
         currentCount={15}
         pergunta={{
-          id: `${sectionPrefix}_guardas`,
+          id: `${prefix}_guardas`,
           label: t(prefix + ".guardas.label"),
           texto: t(prefix + ".guardas.pergunta"),
           info: t(prefix + ".guardas.info"),
@@ -19,7 +19,7 @@ const Seguranca = ({ t }) => {
       <Pergunta
         currentCount={16}
         pergunta={{
-          id: `${sectionPrefix}_emprego`,
+          id: `${prefix}_emprego`,
           label: t(prefix + ".emprego.label"),
           texto: t(prefix + ".emprego.pergunta"),
           info: t(prefix + ".emprego.info"),

@@ -8,7 +8,7 @@ const Drogas = ({ t }) => {
       <Pergunta
         currentCount={17}
         pergunta={{
-          id: `${sectionPrefix}_descriminalizar`,
+          id: `${prefix}_descriminalizar`,
           label: t(prefix + ".descriminalizar.label"),
           texto: t(prefix + ".descriminalizar.pergunta"),
           info: t(prefix + ".descriminalizar.info"),
@@ -19,7 +19,7 @@ const Drogas = ({ t }) => {
       <Pergunta
         currentCount={18}
         pergunta={{
-          id: `${sectionPrefix}_tratamento`,
+          id: `${prefix}_tratamento`,
           label: t(prefix + ".tratamento.label"),
           texto: t(prefix + ".tratamento.pergunta"),
           info: t(prefix + ".tratamento.info"),

@@ -8,7 +8,7 @@ const Povos = ({ t }) => {
       <Pergunta
         currentCount={10}
         pergunta={{
-          id: `${sectionPrefix}_politicas`,
+          id: `${prefix}_politicas`,
           label: t(prefix + ".politicas.label"),
           texto: t(prefix + ".politicas.pergunta"),
           info: t(prefix + ".politicas.info"),
@@ -19,7 +19,7 @@ const Povos = ({ t }) => {
       <Pergunta
         currentCount={11}
         pergunta={{
-          id: `${sectionPrefix}_sacrificio`,
+          id: `${prefix}_sacrificio`,
           label: t(prefix + ".sacrificio.label"),
           texto: t(prefix + ".sacrificio.pergunta"),
           info: t(prefix + ".sacrificio.info"),
@@ -30,7 +30,7 @@ const Povos = ({ t }) => {
       <Pergunta
         currentCount={12}
         pergunta={{
-          id: `${sectionPrefix}_demarcacao`,
+          id: `${prefix}_demarcacao`,
           label: t(prefix + ".demarcacao.label"),
           texto: t(prefix + ".demarcacao.pergunta"),
           info: t(prefix + ".demarcacao.info"),

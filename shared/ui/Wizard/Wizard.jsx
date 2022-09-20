@@ -53,7 +53,11 @@ const Wizard = ({ initialValues, onSubmit, children }) => {
 
   const renderPrevious = () => {
     return page > 0 ? (
-      <Button leftIcon={<FaCaretLeft />} onClick={onPreviousHandler}>
+      <Button
+        colorScheme="pink"
+        leftIcon={<FaCaretLeft />}
+        onClick={onPreviousHandler}
+      >
         {t("anterior")}
       </Button>
     ) : null;
@@ -61,7 +65,7 @@ const Wizard = ({ initialValues, onSubmit, children }) => {
 
   const renderNext = () => {
     return !isLastPage ? (
-      <Button rightIcon={<FaCaretRight />} type="submit">
+      <Button colorScheme="pink" rightIcon={<FaCaretRight />} type="submit">
         {t("proximo")}
       </Button>
     ) : null;
@@ -70,7 +74,7 @@ const Wizard = ({ initialValues, onSubmit, children }) => {
   const renderSubmit = (isSubmitting, hasValidationErrors) => {
     return isLastPage ? (
       <Button
-        colorScheme="blue"
+        colorScheme="yellow"
         type="submit"
         disabled={isSubmitting || hasValidationErrors}
       >
