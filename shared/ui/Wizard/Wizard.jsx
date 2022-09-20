@@ -16,8 +16,7 @@ import {
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import { css } from "@emotion/react";
 
-const Wizard = ({ initialValues: values, onSubmit, children }) => {
-  const [initialValues, setInitialValues] = useState(values || {});
+const Wizard = ({ initialValues, onSubmit, children }) => {
   const [page, setPage] = useState(0);
   const { t } = useTranslation("translation", { keyPrefix: "wizard" });
 
@@ -46,7 +45,6 @@ const Wizard = ({ initialValues: values, onSubmit, children }) => {
 
   const onNextHandler = (values) => {
     setPage((previousPage) => Math.min(previousPage + 1, children.length - 1));
-    setInitialValues(values);
   };
 
   const onPreviousHandler = () => {
@@ -90,22 +88,24 @@ const Wizard = ({ initialValues: values, onSubmit, children }) => {
           validate={pageValidation}
           onSubmit={onSubmitHandler}
         >
-          {({ handleSubmit, submitting, hasValidationErrors }) => (
-            <form onSubmit={handleSubmit}>
-              {activePage}
-              <Box position="sticky" bottom={0} bgColor="gray.200">
-                <Flex
-                  padding={4}
-                  justifyContent={page === 0 ? "flex-end" : "space-between"}
-                  alignItems="center"
-                >
-                  {renderPrevious()}
-                  {renderNext()}
-                  {renderSubmit(submitting, hasValidationErrors)}
-                </Flex>
-              </Box>
-            </form>
-          )}
+          {({ handleSubmit, submitting, hasValidationErrors }) => {
+            return (
+              <form onSubmit={handleSubmit}>
+                {activePage}
+                <Box position="sticky" bottom={0} bgColor="gray.200">
+                  <Flex
+                    padding={4}
+                    justifyContent={page === 0 ? "flex-end" : "space-between"}
+                    alignItems="center"
+                  >
+                    {renderPrevious()}
+                    {renderNext()}
+                    {renderSubmit(submitting, hasValidationErrors)}
+                  </Flex>
+                </Box>
+              </form>
+            );
+          }}
         </Form>
       </Box>
     </Box>
@@ -149,7 +149,11 @@ Wizard.Steps = function Steps({ currentPage, childrenArray }) {
 };
 
 Wizard.Page = function Page({ children }) {
-  return <Container paddingBottom={5}>{children}</Container>;
+  return (
+    <Container paddingBottom={5} overflow="hidden">
+      {children}
+    </Container>
+  );
 };
 
 Wizard.Error = function Error({ name }) {

@@ -54,7 +54,7 @@ const Perguntas = ({ data }) => {
         <title>{t("title")}</title>
         <meta property="og:title" content={t("title")} key="title" />
       </Head>
-      <Box as="section">
+      <Box as="section" bgColor="white">
         <Heading as="h1" marginY={6} textAlign="center">
           {t("titulo")}
         </Heading>
