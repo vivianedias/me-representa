@@ -91,25 +91,25 @@ export default function CadastroCandidato(props) {
       await updateCandidate(newCandidate);
 
       if (!candidate) {
-        router.push("/candidato/perguntas");
+        router.push("/candidato/prioridades");
+      } else {
+        setInitialValues(
+          formatInitialValues({
+            candidate: newCandidate,
+            session,
+          })
+        );
+
+        toast({
+          title: t("success"),
+          description: t("successUpdate"),
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+          variant: "left-accent",
+          position: "top-right",
+        });
       }
-
-      setInitialValues(
-        formatInitialValues({
-          candidate: newCandidate,
-          session,
-        })
-      );
-
-      toast({
-        title: t("success"),
-        description: t("successUpdate"),
-        status: "success",
-        duration: 9000,
-        isClosable: true,
-        variant: "left-accent",
-        position: "top-right",
-      });
     } catch (e) {
       console.error(e);
       setSubmitError(true);
@@ -117,7 +117,7 @@ export default function CadastroCandidato(props) {
   };
 
   useEffect(() => {
-    router.prefetch("/candidato/perguntas");
+    router.prefetch("/candidato/prioridades");
   }, []);
 
   return (

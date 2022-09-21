@@ -13,7 +13,7 @@ import {
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 
 const PointsBox = ({ title, name, points, maxPoints }) => {
-  const { input } = useField(name, {
+  const { input } = useField(name + "Priority", {
     type: "number",
   });
   const isActive = input.value >= 1;
