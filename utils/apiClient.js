@@ -9,10 +9,13 @@ async function apiClient(endpoint, { body, ...customConfig } = {}) {
     config.body = JSON.stringify(body);
   }
 
-  const dev = process.env.NODE_ENV !== "production";
-  const url = dev
-    ? "https://" + process.env.NEXT_PUBLIC_APP_URL
-    : "https://" + process.env.NEXT_PUBLIC_VERCEL_URL;
+  const env = process.env.NEXT_PUBLIC_VERCEL_ENV || process.env.NODE_ENV;
+  const urlByEnv = {
+    preview: process.env.NEXT_PUBLIC_VERCEL_URL,
+    development: process.env.NEXT_PUBLIC_APP_URL,
+    production: process.env.NEXT_PUBLIC_APP_URL,
+  };
+  const url = "https://" + urlByEnv[env];
 
   const res = await fetch(url + endpoint, config);
 
