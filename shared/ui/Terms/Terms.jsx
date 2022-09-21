@@ -35,7 +35,7 @@ function SimplifiedTerms({ t }) {
 
 const Terms = () => {
   const { t } = useTranslation("translation", { keyPrefix: "terms" });
-
+  const termsLink = `${process.env.NEXT_PUBLIC_AWS_S3_BUCKET_URL}/terms-and-conditions/TERMOS USO candidaturas.pdf`;
   return (
     <Container bgColor="white" py={10}>
       <VStack spacing={6}>
@@ -57,7 +57,7 @@ const Terms = () => {
         </VStack>
         <Box paddingLeft={4}>
           <Text as="span">{t("fullTerms")}</Text>{" "}
-          <NextLink href="#" passHref isExternal>
+          <NextLink href={termsLink} passHref isExternal>
             <Link isExternal color="pink.600" target="_blank">
               {t("click")}{" "}
               <Icon as={FaExternalLinkAlt} color="pink.600" boxSize={3} />.
