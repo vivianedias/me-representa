@@ -31,18 +31,19 @@ const Perguntas = ({ session, candidate }) => {
 
       if (!candidate.answers) {
         router.push(`/candidato/${session?.user?.id}`);
+      } else {
+        setInitialValues(values);
+        toast({
+          title: t("success"),
+          description: t("successUpdate"),
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+          variant: "left-accent",
+          position: "top-right",
+        });
       }
 
-      setInitialValues(values);
-      toast({
-        title: t("success"),
-        description: t("successUpdate"),
-        status: "success",
-        duration: 9000,
-        isClosable: true,
-        variant: "left-accent",
-        position: "top-right",
-      });
     } catch (e) {
       console.error(e);
       toast({
