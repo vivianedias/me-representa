@@ -7,6 +7,7 @@ import Header from "../shared/ui/Header/Header";
 import Footer from "../shared/ui/Footer/Footer";
 import fetcher from "../utils/apiClient";
 import "../styles/globals.css";
+import ReactGA from 'react-ga';
 
 const theme = {
   colors: {

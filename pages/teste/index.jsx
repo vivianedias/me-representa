@@ -1,3 +1,9 @@
+import ReactGA from 'react-ga';
+
+const GA_TRACKING_ID = process.env.GA_TRACKING_ID || "4083645711" // remover essa id depois
+ReactGA.initialize(GA_TRACKING_ID)
+
+
 const useAnalyticsEventTracker = (category = "Blog category") => {
   const eventTracker = (action = "test action", label = "test label") => {
     ReactGA.event({ category, action, label })
@@ -16,3 +22,5 @@ const Teste = () => {
     </div>
   )
 }
+
+export default Teste
