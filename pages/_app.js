@@ -21,7 +21,8 @@ const theme = {
   },
 };
 
-const test = () => {}
+const GA_TRACKING_ID = process.env.GA_TRACKING_ID || "4083645711" // remover essa id depois
+ReactGA.initialize(GA_TRACKING_ID)
 
 function MyApp({ Component, pageProps }) {
   const options = {
