@@ -7,13 +7,14 @@ import cadastro from "./pt-BR/candidato/cadastro.json";
 import wizard from "./pt-BR/wizard.json";
 import eleitores from "./pt-BR/eleitores.json";
 import perguntas from "./pt-BR/candidato/perguntas.json";
+import prioridades from "./pt-BR/candidato/prioridades.json";
 
 export const validation = {
   required: "Campo obrigatório",
   cpf: "CPF inválido",
   email: "Insira um e-mail válido",
   length: "Formato inválido",
-}
+};
 
 i18n.use(initReactI18next).init({
   fallbackLng: "pt-BR",
@@ -33,6 +34,10 @@ i18n.use(initReactI18next).init({
         home,
         eleitores,
         terms,
+        prioridades: {
+          ...prioridades,
+          validation,
+        },
         global: {
           contador: "Pauta {{current}} de {{max}}",
           posicionamento: "Qual o seu posicionamento?",

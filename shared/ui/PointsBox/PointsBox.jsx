@@ -1,116 +1,89 @@
-import { Flex, VStack } from "@chakra-ui/layout"
-import { Heading, IconButton, Text } from "@chakra-ui/react"
-import { FaCaretLeft, FaCaretRight } from "react-icons/fa"
-import FieldCheckbox from "/shared/ui/components/FieldCheckbox"
+import React from "react";
+import { useField } from "react-final-form";
+import {
+  Heading,
+  IconButton,
+  Progress,
+  Input,
+  Grid,
+  GridItem,
+  Flex,
+  VStack,
+} from "@chakra-ui/react";
+import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 
-const CountContext = React.createContext()
+const PointsBox = ({ title, name, points, maxPoints }) => {
+  const { input } = useField(name, {
+    type: "number",
+  });
+  const isActive = input.value >= 1;
 
-const MAX_POINTS = 5
-
-function countReducer(state, action) {
-  switch (action.type) {
-    case "increment": {
-      return { ...state, count: Math.min(state.count + 1, MAX_POINTS) }
-    }
-    case "decrement": {
-      return { ...state, count: Math.max(state.count - 1, 0) }
-    }
-    default: {
-      throw new Error(`Unhandled action type: ${action.type}`)
-    }
-  }
-}
-
-function CountProvider({ children }) {
-  const [state, dispatch] = React.useReducer(countReducer, {
-    count: 0,
-    maxCount: MAX_POINTS,
-  })
-  const value = { state, dispatch }
-  return <CountContext.Provider value={value}>{children}</CountContext.Provider>
-}
-
-function useCount() {
-  const context = React.useContext(CountContext)
-  if (context === undefined) {
-    throw new Error("useCount must be used within a CountProvider")
-  }
-  return context
-}
-
-const PointsBox = ({ title }) => {
   return (
-    <VStack background="pink.500" minH="80px">
-      <Flex id="header" justifyContent="space-between" w="100%" padding={3}>
-        <Heading size="sm" textTransform="uppercase" color="white">
-          {title}
-        </Heading>
-        <FieldCheckbox name="titulo" />
-      </Flex>
-
-      <Flex justifyContent="space-between" w="100%" align="center" padding={3}>
-        <CountProvider>
-          <PointsBox.CounterBar />
-          <PointsBox.ActionsBar />
-        </CountProvider>
-      </Flex>
-    </VStack>
-  )
-}
-
-PointsBox.CounterBar = function CounterBar() {
-  const { state } = useCount()
-  return (
-    <Flex
-      borderRadius={4}
-      justifyContent="space-evenly"
-      flexGrow={1}
-      maxH="5px"
-      marginRight={4}
-      backgroundColor="white"
-      overflow="hidden"
+    <VStack
+      background={isActive ? "pink.500" : "white"}
+      width={{ base: "100%", md: "40ch" }}
+      p={4}
+      alignItems="flex-start"
+      spacing={4}
+      minHeight="100px"
+      borderRadius="lg"
+      border="1.5px solid"
+      borderColor="gray.300"
+      justifyContent="space-between"
     >
-      {Array.from({ length: state.maxCount }).map((_, index) => (
-        <span
-          key={`counter-key-${index}`}
-          style={{
-            flexGrow: 1,
-            height: "5px",
-            backgroundColor:
-              index <= state.count - 1 ? "yellow" : "transparent",
-            marginRight: "5px",
-          }}
-        />
-      ))}
-    </Flex>
-  )
-}
+      <Heading size="sm" color={isActive ? "white" : "gray.800"}>
+        {title}
+      </Heading>
+      <Grid
+        w="100%"
+        templateColumns="repeat(5, 1fr)"
+        alignItems="center"
+        gap={4}
+      >
+        <GridItem colSpan={3}>
+          <Progress
+            value={(input.value / maxPoints) * 100}
+            colorScheme="yellow"
+          />
+        </GridItem>
+        <GridItem colStart={4} colEnd={6}>
+          <Flex alignItems="center">
+            <IconButton
+              icon={<FaCaretLeft />}
+              onClick={() => input.onChange(Number(input.value) - 1)}
+              disabled={Number(input.value) <= 0}
+              variant="ghost"
+              color={isActive ? "white" : "gray.800"}
+              size="sm"
+              _hover={
+                isActive
+                  ? {
+                      color: "gray.800",
+                    }
+                  : {}
+              }
+            />
+            <Input {...input} color="white" />;
+            <IconButton
+              icon={<FaCaretRight />}
+              onClick={() => input.onChange(Number(input.value) + 1)}
+              disabled={Number(input.value) >= 5 || points >= 5}
+              variant="ghost"
+              color={isActive ? "white" : "gray.800"}
+              size="sm"
+              _hover={
+                isActive
+                  ? {
+                      color: "gray.800",
+                    }
+                  : {}
+              }
+            />
+          </Flex>
+        </GridItem>
+      </Grid>
+    </VStack>
+  );
+};
 
-PointsBox.ActionsBar = function ActionsBar() {
-  const { state, dispatch } = useCount()
-  return (
-    <Flex align="center">
-      <IconButton
-        aria-label={state.count + ""}
-        icon={<FaCaretLeft />}
-        onClick={() => dispatch({ type: "decrement" })}
-        variant="ghost"
-        color="white"
-        size="sm"
-      />
-      <Text align="center" color="white" marginLeft={4} marginRight={4}>
-        {state.count}
-      </Text>
-      <IconButton
-        aria-label={state.count + ""}
-        icon={<FaCaretRight />}
-        onClick={() => dispatch({ type: "increment" })}
-        variant="ghost"
-        color="white"
-        size="sm"
-      />
-    </Flex>
-  )
-}
-
-export default PointsBox
+export default PointsBox;
