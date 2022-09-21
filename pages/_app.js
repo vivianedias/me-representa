@@ -21,6 +21,8 @@ const theme = {
   },
 };
 
+const test = () => {}
+
 function MyApp({ Component, pageProps }) {
   const options = {
     fetcher,
