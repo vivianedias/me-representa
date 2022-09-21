@@ -58,6 +58,7 @@ i18n.use(initReactI18next).init({
               profile: "Editar perfil",
               logout: "Sair",
               pautas: "Pautas",
+              prioridades: "Prioridades",
             },
           },
         },

@@ -99,11 +99,14 @@ const Header = () => {
                         {t("navbar.auth.profile")}
                       </MenuItem>
                       <MenuItem
-                        onClick={() =>
-                          router.push("/candidato/cadastro/pautas")
-                        }
+                        onClick={() => router.push("/candidato/perguntas")}
                       >
                         {t("navbar.auth.pautas")}
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => router.push("/candidato/prioridades")}
+                      >
+                        {t("navbar.auth.prioridades")}
                       </MenuItem>
                       <MenuItem onClick={() => signOut({ callbackUrl: "/" })}>
                         {t("navbar.auth.logout")}
