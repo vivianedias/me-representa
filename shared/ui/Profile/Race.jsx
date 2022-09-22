@@ -29,16 +29,16 @@ const Race = (props) => {
           <Box marginLeft={4} marginTop={2}>
             <Stack spacing={4}>
               <Text>
-                01. Sou <CustomPosition t={t} answer={answers[1]} />{" "}
-                {t("race.statements.1")}
+                01. Sou <CustomPosition t={t} answer={answers.raca_ensino} />{" "}
+                {t("race.statements.raca_ensino")}
               </Text>
               <Text>
-                02. Sou <CustomPosition t={t} answer={answers[2]} />{" "}
-                {t("race.statements.2")}
+                02. Sou <CustomPosition t={t} answer={answers.raca_cotas} />{" "}
+                {t("race.statements.raca_cotas")}
               </Text>
               <Text>
-                03. Sou <CustomPosition t={t} answer={answers[3]} />{" "}
-                {t("race.statements.3")}
+                03. Sou <CustomPosition t={t} answer={answers.raca_saude} />{" "}
+                {t("race.statements.raca_saude")}
               </Text>
             </Stack>
           </Box>

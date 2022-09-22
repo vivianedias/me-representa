@@ -29,16 +29,19 @@ const TraditionalPopulations = (props) => {
           <Box marginLeft={4} marginTop={2}>
             <Stack spacing={4}>
               <Text>
-                01. Sou <CustomPosition t={t} answer={answers[1]} />{" "}
-                {t("traditionalPopulations.statements.1")}
+                01. Sou{" "}
+                <CustomPosition t={t} answer={answers.povos_politicas} />{" "}
+                {t("traditionalPopulations.statements.povos_politicas")}
               </Text>
               <Text>
-                02. Sou <CustomPosition t={t} answer={answers[2]} />{" "}
-                {t("traditionalPopulations.statements.2")}
+                02. Sou{" "}
+                <CustomPosition t={t} answer={answers.povos_sacrificio} />{" "}
+                {t("traditionalPopulations.statements.povos_sacrificio")}
               </Text>
               <Text>
-                03. Sou <CustomPosition t={t} answer={answers[3]} />{" "}
-                {t("traditionalPopulations.statements.3")}
+                03. Sou{" "}
+                <CustomPosition t={t} answer={answers.povos_demarcacao} />{" "}
+                {t("traditionalPopulations.statements.povos_demarcacao")}
               </Text>
             </Stack>
           </Box>

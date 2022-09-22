@@ -29,12 +29,14 @@ const Communication = (props) => {
           <Box marginLeft={4} marginTop={2}>
             <Stack spacing={4}>
               <Text>
-                01. Sou <CustomPosition t={t} answer={answers[1]} />{" "}
-                {t("communication.statements.1")}
+                01. Sou{" "}
+                <CustomPosition t={t} answer={answers.comunicacao_acesso} />{" "}
+                {t("communication.statements.comunicacao_acesso")}
               </Text>
               <Text>
-                02. Sou <CustomPosition t={t} answer={answers[2]} />{" "}
-                {t("communication.statements.2")}
+                02. Sou{" "}
+                <CustomPosition t={t} answer={answers.comunicacao_emissoras} />{" "}
+                {t("communication.statements.comunicacao_emissoras")}
               </Text>
             </Stack>
           </Box>

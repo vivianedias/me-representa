@@ -3,8 +3,10 @@ import { Text } from "@chakra-ui/react";
 const CustomPosition = (props) => {
   const { t, answer } = props;
 
-  const position = answer ? t("favorable") : t("against");
-  const complement = answer ? t("favorableComplement") : "";
+  const position =
+    answer === "favor" ? t("positions.favorable") : t("positions.against");
+  const complement =
+    answer === "favor" ? t("positions.favorableComplement") : "";
 
   return (
     <>

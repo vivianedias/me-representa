@@ -1,80 +1,96 @@
 {
-  "congressman": "Deputado",
-  "congresswoman": "Deputada",
-  "favorable": "A FAVOR",
-  "against": "CONTRA",
-  "favorableComplement": "de",
+  "candidateJobTitle": {
+    "congressman": "Deputado",
+    "congresswoman": "Deputada"
+  },
+  "priorities": {
+    "genderPriority": "Gênero",
+    "racePriority": "Raça",
+    "lgbtPriority": "LGBT+",
+    "indigenousPriority": "Povos Tradicionais",
+    "socialPoliciesPriority": "Políticas Sociais",
+    "securityPriority": "Segurança",
+    "drugsPriority": "Drogas",
+    "communicationPriority": "Comunicação",
+    "democracyPriority": "Democracia",
+    "environmentPriority": "Meio Ambiente"
+  },
+  "positions": {
+    "favorable": "A FAVOR",
+    "against": "CONTRA",
+    "favorableComplement": "de"
+  },
   "gender": {
     "title": "# Gênero",
     "statements": {
-      "1": "aborto legal e seguro no SUS",
-      "2": "Delegacias da Mulher 24h para mulheres cis e trans",
-      "3": "trans, travestis e pessoas não-binárias usarem o banheiro que escolherem"
+      "genero_aborto": "aborto legal e seguro no SUS",
+      "genero_delegacia": "Delegacias da Mulher 24h para mulheres cis e trans",
+      "genero_banheiro": "trans, travestis e pessoas não-binárias usarem o banheiro que escolherem"
     }
   },
   "lgbt": {
     "title": "# LGBT+",
     "statements": {
-      "1": "cirurgia genital em crianças intersexo por motivo estético",
-      "2": "discussão de gênero e sexualidade nas escolas",
-      "3": "casas públicas de acolhida para LGBT+"
+      "lgbt_cirurgia": "cirurgia genital em crianças intersexo por motivo estético",
+      "lgbt_sexualidade": "discussão de gênero e sexualidade nas escolas",
+      "lgbt_casas": "casas públicas de acolhida para LGBT+"
     }
   },
   "race": {
     "title": "# Raça",
     "statements": {
-      "1": "ensino história e cultura afro-brasileira em todas as escolas",
-      "2": "cotas para pessoas negras no Legislativo",
-      "3": "política de saúde para a população negra"
+      "raca_ensino": "ensino história e cultura afro-brasileira em todas as escolas",
+      "raca_cotas": "cotas para pessoas negras no Legislativo",
+      "raca_saude": "política de saúde para a população negra"
     }
   },
   "traditionalPopulations": {
     "title": "# Povos Tradicionais",
     "statements": {
-      "1": "políticas emergenciais de combate à pandemia nas comunidades quilombolas",
-      "2": "sacrifício de animais no contexto religioso",
-      "3": "demarcação de terras indígenas"
+      "povos_politicas": "políticas emergenciais de combate à pandemia nas comunidades quilombolas",
+      "povos_sacrificio": "sacrifício de animais no contexto religioso",
+      "povos_demarcacao": "demarcação de terras indígenas"
     }
   },
   "socialPolicies": {
     "title": "# Políticas Sociais",
     "statements": {
-      "1": "renda básica permanente mantendo os programas sociais existentes",
-      "2": "teto dos gastos públicos"
+      "politicasSociais_renda": "renda básica permanente mantendo os programas sociais existentes",
+      "politicasSociais_teto": "teto dos gastos públicos"
     }
   },
   "security": {
     "title": "# Segurança Pública",
     "statements": {
-      "1": "Guardas Civis Municipais andarem armadas",
-      "2": "política de emprego para pessoas que saem da prisão"
+      "seguranca_guardas": "Guardas Civis Municipais andarem armadas",
+      "seguranca_emprego": "política de emprego para pessoas que saem da prisão"
     }
   },
   "drugs": {
     "title": "# Drogas",
     "statements": {
-      "1": "descriminalizar o comércio de drogas para reduzir a quantidade de mulheres e jovens negros presos",
-      "2": "tratamento de usuário de drogas no SUS com redução de danos"
+      "drogas_descriminalizar": "descriminalizar o comércio de drogas para reduzir a quantidade de mulheres e jovens negros presos",
+      "drogas_tratamento": "tratamento de usuário de drogas no SUS com redução de danos"
     }
   },
   "communication": {
     "title": "# Comunicação",
     "statements": {
-      "1": "acesso gratuito à internet nas periferias, comunidades indígenas e quilombolas",
-      "2": "políticos serem donos de emissoras de rádio e TV"
+      "comunicacao_acesso": "acesso gratuito à internet nas periferias, comunidades indígenas e quilombolas",
+      "comunicacao_emissoras": "políticos serem donos de emissoras de rádio e TV"
     }
   },
   "democracy": {
     "title": "# Democracia",
     "statements": {
-      "1": "cota de gênero e raça nas lideranças dos partidos",
-      "2": "corte de recursos públicos a partidos com candidaturas que praticam discurso de ódio ou violência política"
+      "democracia_cota": "cota de gênero e raça nas lideranças dos partidos",
+      "democracia_recursos": "corte de recursos públicos a partidos com candidaturas que praticam discurso de ódio ou violência política"
     }
   },
   "environment": {
     "title": "# Meio Ambiente",
     "statements": {
-      "1": "consentimento dos povos indígenas para a realização de empreendimentos."
+      "meioAmbiente_consentimento": "consentimento dos povos indígenas para a realização de empreendimentos."
     }
   }
 }

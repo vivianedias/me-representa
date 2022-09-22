@@ -29,12 +29,14 @@ const Security = (props) => {
           <Box marginLeft={4} marginTop={2}>
             <Stack spacing={4}>
               <Text>
-                01. Sou <CustomPosition t={t} answer={answers[1]} />{" "}
-                {t("security.statements.1")}
+                01. Sou{" "}
+                <CustomPosition t={t} answer={answers.seguranca_guardas} />{" "}
+                {t("security.statements.seguranca_guardas")}
               </Text>
               <Text>
-                02. Sou <CustomPosition t={t} answer={answers[2]} />{" "}
-                {t("security.statements.2")}
+                02. Sou{" "}
+                <CustomPosition t={t} answer={answers.seguranca_emprego} />{" "}
+                {t("security.statements.seguranca_emprego")}
               </Text>
             </Stack>
           </Box>

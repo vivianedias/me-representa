@@ -1,7 +1,7 @@
 import fetchClient from "../../utils/apiClient";
 import "../../shared/locales/i18n";
 import Head from "next/head";
-import { Box, HStack, Tag, Stack } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import CandidateInfo from "../../shared/ui/Profile/CandidateInfo";
 import Gender from "../../shared/ui/Profile/Gender";
@@ -14,60 +14,34 @@ import Drugs from "../../shared/ui/Profile/Drugs";
 import Communication from "../../shared/ui/Profile/Communication";
 import Democracy from "../../shared/ui/Profile/Democracy";
 import Environment from "../../shared/ui/Profile/Environment";
+import getsCandidatesPriorities from "../../utils/getsCandidatesPriorities";
 
 export default function Candidato({ data }) {
   const { t } = useTranslation("translation", { keyPrefix: "profile" });
 
-  const { name, gender, partyName, stateName, state } = data;
+  const { name, answers } = data;
 
-  const priorities = ["Gênero", "Raça", "LGBT"];
+  function orderedPriorities(data) {
+    const candidatesPriorities = getsCandidatesPriorities(data);
 
-  const answers = {
-    gender: {
-      1: true,
-      2: true,
-      3: true,
-    },
-    race: {
-      1: true,
-      2: true,
-      3: true,
-    },
-    lgbt: {
-      1: true,
-      2: true,
-      3: true,
-    },
-    traditionalPopulations: {
-      1: true,
-      2: true,
-      3: true,
-    },
-    socialPolicies: {
-      1: true,
-      2: true,
-    },
-    security: {
-      1: true,
-      2: true,
-    },
-    drugs: {
-      1: true,
-      2: true,
-    },
-    communication: {
-      1: true,
-      2: true,
-    },
-    democracy: {
-      1: true,
-      2: true,
-    },
-    environment: {
-      1: true,
-    },
-  };
+    const candidatesPrioritiesWithoutZero = Object.keys(
+      candidatesPriorities || {}
+    ).reduce((obj, key) => {
+      const priorityValue = candidatesPriorities[key];
+      return {
+        ...obj,
+        ...(priorityValue > 0 ? { [key]: candidatesPriorities[key] } : {}),
+      };
+    }, {});
 
+    const keys = Object.keys(candidatesPrioritiesWithoutZero);
+
+    keys.sort(function (a, b) {
+      return candidatesPriorities[b] - candidatesPriorities[a];
+    });
+
+    return keys;
+  }
   return (
     <>
       <Head>
@@ -85,20 +59,21 @@ export default function Candidato({ data }) {
       >
         <Box bgColor="white" w={{ base: "85vw", md: "768px" }}>
           <Stack spacing={6}>
-            <CandidateInfo t={t} priorities={priorities} {...data} />
-            <Gender t={t} answers={answers.gender} />
-            <Race t={t} answers={answers.race} />
-            <LGBT t={t} answers={answers.lgbt} />
-            <TraditionalPopulations
+            <CandidateInfo
               t={t}
-              answers={answers.traditionalPopulations}
+              priorities={orderedPriorities(data)}
+              {...data}
             />
-            <SocialPolicies t={t} answers={answers.socialPolicies} />
-            <Security t={t} answers={answers.security} />
-            <Drugs t={t} answers={answers.drugs} />
-            <Communication t={t} answers={answers.communication} />
-            <Democracy t={t} answers={answers.democracy} />
-            <Environment t={t} answers={answers.environment} />
+            <Gender t={t} answers={answers} />
+            <Race t={t} answers={answers} />
+            <LGBT t={t} answers={answers} />
+            <TraditionalPopulations t={t} answers={answers} />
+            <SocialPolicies t={t} answers={answers} />
+            <Security t={t} answers={answers} />
+            <Drugs t={t} answers={answers} />
+            <Communication t={t} answers={answers} />
+            <Democracy t={t} answers={answers} />
+            <Environment t={t} answers={answers} />
           </Stack>
         </Box>
       </Stack>

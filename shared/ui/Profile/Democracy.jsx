@@ -29,12 +29,14 @@ const Democracy = (props) => {
           <Box marginLeft={4} marginTop={2}>
             <Stack spacing={4}>
               <Text>
-                01. Sou <CustomPosition t={t} answer={answers[1]} />{" "}
-                {t("democracy.statements.1")}
+                01. Sou{" "}
+                <CustomPosition t={t} answer={answers.democracia_cota} />{" "}
+                {t("democracy.statements.democracia_cota")}
               </Text>
               <Text>
-                02. Sou <CustomPosition t={t} answer={answers[2]} />{" "}
-                {t("democracy.statements.2")}
+                02. Sou{" "}
+                <CustomPosition t={t} answer={answers.democracia_recursos} />{" "}
+                {t("democracy.statements.democracia_recursos")}
               </Text>
             </Stack>
           </Box>

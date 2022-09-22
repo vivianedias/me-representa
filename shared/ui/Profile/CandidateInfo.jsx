@@ -14,7 +14,9 @@ const CandidateInfo = (props) => {
     props;
 
   const jobTitle =
-    gender === "FEMININO" ? t("congresswoman") : t("congressman");
+    gender === "FEMININO"
+      ? t("candidateJobTitle.congresswoman")
+      : t("candidateJobTitle.congressman");
 
   return (
     <Stack spacing={8}>
@@ -47,13 +49,13 @@ const CandidateInfo = (props) => {
           <Stack direction={"row"} wrap="wrap" align="start">
             <Flex wrap="wrap" gap={1}>
               <Tag size="md" variant="solid" colorScheme="pink">
-                <TagLabel>{priorities[0]}</TagLabel>
+                <TagLabel>{t("priorities." + priorities[0])}</TagLabel>
               </Tag>
               <Tag size="md" variant="solid" colorScheme="pink">
-                <TagLabel>{priorities[1]}</TagLabel>
+                <TagLabel>{t("priorities." + priorities[1])}</TagLabel>
               </Tag>
               <Tag size="md" variant="solid" colorScheme="pink">
-                <TagLabel>{priorities[2]}</TagLabel>
+                <TagLabel>{t("priorities." + priorities[2])}</TagLabel>
               </Tag>
             </Flex>
           </Stack>

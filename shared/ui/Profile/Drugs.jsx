@@ -29,12 +29,14 @@ const Drugs = (props) => {
           <Box marginLeft={4} marginTop={2}>
             <Stack spacing={4}>
               <Text>
-                01. Sou <CustomPosition t={t} answer={answers[1]} />{" "}
-                {t("drugs.statements.1")}
+                01. Sou{" "}
+                <CustomPosition t={t} answer={answers.drogas_descriminalizar} />{" "}
+                {t("drugs.statements.drogas_descriminalizar")}
               </Text>
               <Text>
-                02. Sou <CustomPosition t={t} answer={answers[2]} />{" "}
-                {t("drugs.statements.2")}
+                02. Sou{" "}
+                <CustomPosition t={t} answer={answers.drogas_tratamento} />{" "}
+                {t("drugs.statements.drogas_tratamento")}
               </Text>
             </Stack>
           </Box>

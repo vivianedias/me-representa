@@ -13,7 +13,6 @@ import CustomPosition from "./Postition";
 
 const LGBT = (props) => {
   const { t, answers } = props;
-
   return (
     <Accordion defaultIndex={[0]} allowMultiple>
       <AccordionItem>
@@ -29,16 +28,17 @@ const LGBT = (props) => {
           <Box marginLeft={4} marginTop={2}>
             <Stack spacing={4}>
               <Text>
-                01. Sou <CustomPosition t={t} answer={answers[1]} />{" "}
-                {t("lgbt.statements.1")}
+                01. Sou <CustomPosition t={t} answer={answers.lgbt_cirurgia} />{" "}
+                {t("lgbt.statements.lgbt_cirurgia")}
               </Text>
               <Text>
-                02. Sou <CustomPosition t={t} answer={answers[2]} />{" "}
-                {t("lgbt.statements.2")}
+                02. Sou{" "}
+                <CustomPosition t={t} answer={answers.lgbt_sexualidade} />{" "}
+                {t("lgbt.statements.lgbt_sexualidade")}
               </Text>
               <Text>
-                03. Sou <CustomPosition t={t} answer={answers[3]} />{" "}
-                {t("lgbt.statements.3")}
+                03. Sou <CustomPosition t={t} answer={answers.lgbt_casas} />{" "}
+                {t("lgbt.statements.lgbt_casas")}
               </Text>
             </Stack>
           </Box>
