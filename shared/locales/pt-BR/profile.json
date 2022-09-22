@@ -4,13 +4,21 @@
   "party": "Partido",
   "candidateNumber": "Número da candidata/o",
   "candidateJobTitle": {
-    "state": {
-      "congressman": "Deputado Estadual",
-      "congresswoman": "Deputada Estadual"
+    "congressman": {
+      "district": "Deputado Distrital",
+      "state": "Deputado Estadual",
+      "union": "Deputado Federal",
+      "governor": "Governador",
+      "president": "Presidente",
+      "senator": "Senador"
     },
-    "union": {
-      "congressman": "Deputado Federal",
-      "congresswoman": "Deputada Federal"
+    "congresswoman": {
+      "district": "Deputada Distrital",
+      "state": "Deputada Estadual",
+      "union": "Deputada Federal",
+      "governor": "Governadora",
+      "president": "Presidenta",
+      "senator": "Senadora"
     }
   },
   "priorities": {

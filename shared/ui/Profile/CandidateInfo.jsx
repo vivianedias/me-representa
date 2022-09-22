@@ -26,12 +26,20 @@ const CandidateInfo = (props) => {
 
   const runningPosition = {
     FEMININO: {
-      "DEPUTADO ESTADUAL": t("candidateJobTitle.state.congresswoman"),
-      "DEPUTADO FEDERAL": t("candidateJobTitle.union.congresswoman"),
+      "DEPUTADO DISTRITAL": t("candidateJobTitle.congresswoman.district"),
+      "DEPUTADO ESTADUAL": t("candidateJobTitle.congresswoman.state"),
+      "DEPUTADO FEDERAL": t("candidateJobTitle.congresswoman.union"),
+      GOVERNADOR: t("candidateJobTitle.congresswoman.governor"),
+      PRESIDENTE: t("candidateJobTitle.congresswoman.president"),
+      SENADOR: t("candidateJobTitle.congresswoman.senator"),
     },
     MASCULINO: {
-      "DEPUTADO ESTADUAL": t("candidateJobTitle.state.congressman"),
-      "DEPUTADO FEDERAL": t("candidateJobTitle.union.congresswoman"),
+      "DEPUTADO DISTRITAL": t("candidateJobTitle.congressman.district"),
+      "DEPUTADO ESTADUAL": t("candidateJobTitle.congressman.state"),
+      "DEPUTADO FEDERAL": t("candidateJobTitle.congressman.union"),
+      GOVERNADOR: t("candidateJobTitle.congressman.governor"),
+      PRESIDENTE: t("candidateJobTitle.congressman.president"),
+      SENADOR: t("candidateJobTitle.congressman.senator"),
     },
   };
 
