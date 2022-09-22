@@ -11,7 +11,7 @@ const Comunicacao = ({ t }) => {
           id: `${prefix}_acesso`,
           label: t(prefix + ".acesso.label"),
           texto: t(prefix + ".acesso.pergunta"),
-          info: t(prefix + ".acesso.info"),
+          // info: t(prefix + ".acesso.info"),
           labelFavor: t(prefix + ".acesso.labelAFavor"),
           labelContra: t(prefix + ".acesso.labelContra"),
         }}
@@ -22,7 +22,7 @@ const Comunicacao = ({ t }) => {
           id: `${prefix}_emissoras`,
           label: t(prefix + ".emissoras.label"),
           texto: t(prefix + ".emissoras.pergunta"),
-          info: t(prefix + ".emissoras.info"),
+          // info: t(prefix + ".emissoras.info"),
           labelFavor: t(prefix + ".emissoras.labelAFavor"),
           labelContra: t(prefix + ".emissoras.labelContra"),
         }}

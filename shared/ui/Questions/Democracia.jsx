@@ -11,7 +11,7 @@ const Democracia = ({ t }) => {
           id: `${prefix}_cota`,
           label: t(prefix + ".cota.label"),
           texto: t(prefix + ".cota.pergunta"),
-          info: t(prefix + ".cota.info"),
+          // info: t(prefix + ".cota.info"),
           labelFavor: t(prefix + ".cota.labelAFavor"),
           labelContra: t(prefix + ".cota.labelContra"),
         }}
@@ -22,7 +22,7 @@ const Democracia = ({ t }) => {
           id: `${prefix}_recursos`,
           label: t(prefix + ".recursos.label"),
           texto: t(prefix + ".recursos.pergunta"),
-          info: t(prefix + ".recursos.info"),
+          // info: t(prefix + ".recursos.info"),
           labelFavor: t(prefix + ".recursos.labelAFavor"),
           labelContra: t(prefix + ".recursos.labelContra"),
         }}
