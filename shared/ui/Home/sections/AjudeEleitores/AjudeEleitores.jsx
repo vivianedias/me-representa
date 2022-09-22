@@ -20,13 +20,15 @@ const AjudeEleitores = () => {
         </Heading>
         <Text className={`${homeStyles.body}`}>{t("querAparecer")}</Text>
         <div className={homeStyles.btnGroup}>
-          <NextLink href="/home" passHref>
-            <a className={`${homeStyles.btnLink} ${homeStyles.btnLinkPink}`}>{t("btnSouCandidato")}</a>
+          <NextLink href="/candidato/login" passHref>
+            <a className={`${homeStyles.btnLink} ${homeStyles.btnLinkPink}`}>
+              {t("btnSouCandidato")}
+            </a>
           </NextLink>
-          <NextLink href="/home" passHref>
+          {/* <NextLink href="/home" passHref>
             <a className={`${homeStyles.btnLink} ${homeStyles.btnLinkTeal}`}>{t("btnSouVoluntario")}</a>
-          </NextLink>
-          <NextLink href="/home" passHref>
+          </NextLink> */}
+          <NextLink href="/eleitores" passHref>
             <a className={`${homeStyles.btnLink}`}>{t("btnSouEleitor")}</a>
           </NextLink>
         </div>
@@ -35,7 +37,7 @@ const AjudeEleitores = () => {
         <Image src={hero} alt={t("imgDescricao")} />
       </div>
     </section>
-  )
+  );
 }
 
 export default AjudeEleitores

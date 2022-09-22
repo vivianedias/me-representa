@@ -1,0 +1,24 @@
+{
+  "headTitle": "Prioridades",
+  "success": "Sucesso!",
+  "successUpdate": "Você atualizou suas prioridades de campanha.",
+  "error": "Erro",
+  "submitError": "Não foi possível atualizar suas prioridades",
+  "tooManyPriorities": "Você só pode selecionar até 3 temas como prioridade.",
+  "tooLittlePriorities": "Você precisa selecionar pelo menos 1 tema como prioridade.",
+  "titles": {
+    "lgbt": "#LGBT",
+    "gender": "#Gênero",
+    "race": "#Raça",
+    "indigenous": "#Povos tradicionais",
+    "socialPolicies": "#Políticas Sociais",
+    "security": "#Segurança",
+    "drugs": "#Drogas",
+    "communication": "#Comunicação",
+    "democracy": "#Democracia",
+    "environment": "#Meio Ambiente"
+  },
+  "pickThemes": "Escolha de 1 até 3 temas abaixo que definam sua candidatura.",
+  "distributePoints": "Em seguida, distribua até 5 pontos entre os temas escolhidos.",
+  "title": "Escolha até 3 temas que definem sua candidatura,"
+}

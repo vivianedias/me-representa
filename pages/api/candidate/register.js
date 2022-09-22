@@ -16,6 +16,7 @@ function normalizeName(name) {
 }
 
 function getTseCandidate(tseCandidate) {
+  if (!tseCandidate) return {};
   return {
     state: tseCandidate.SG_UE,
     stateName: tseCandidate.NM_UE,
@@ -30,7 +31,7 @@ function getTseCandidate(tseCandidate) {
   };
 }
 
-export default async function updateCandidate(req, res) {
+export default async function registerCandidate(req, res) {
   try {
     const session = await unstable_getServerSession(req, res, authOptions);
     if (!session) return res.status(401).send("Not authorized");

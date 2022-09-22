@@ -7,6 +7,8 @@ import cadastro from "./pt-BR/candidato/cadastro.json";
 import wizard from "./pt-BR/wizard.json";
 import eleitores from "./pt-BR/eleitores.json";
 import profile from "./pt-BR/profile.json";
+import perguntas from "./pt-BR/candidato/perguntas.json";
+import prioridades from "./pt-BR/candidato/prioridades.json";
 
 export const validation = {
   required: "Campo obrigatório",
@@ -34,9 +36,14 @@ i18n.use(initReactI18next).init({
         eleitores,
         terms,
         profile,
+        prioridades: {
+          ...prioridades,
+          validation,
+        },
         global: {
           contador: "Pauta {{current}} de {{max}}",
           posicionamento: "Qual o seu posicionamento?",
+          validation,
         },
         header: {
           imgDescricao: "Logotipo do MeRepresenta",
@@ -53,6 +60,7 @@ i18n.use(initReactI18next).init({
               profile: "Editar perfil",
               logout: "Sair",
               pautas: "Pautas",
+              prioridades: "Prioridades",
             },
           },
         },
@@ -95,6 +103,7 @@ i18n.use(initReactI18next).init({
             titulo: "#Todos os direitos reservados a #MeRepresenta 2022",
           },
         },
+        perguntas,
       },
     },
   },

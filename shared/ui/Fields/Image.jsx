@@ -31,7 +31,7 @@ function ImageField({ t, isLoading, uploadS3, imageUrl }) {
               <Grid
                 align="center"
                 templateColumns={{ base: "1fr", md: "300px 1fr" }}
-                templateRows={{ base: "repeat(2, 100%)", md: "1fr" }}
+                templateRows={{ base: "", md: "1fr" }}
               >
                 <GridItem>
                   <Box

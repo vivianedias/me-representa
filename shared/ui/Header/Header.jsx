@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
-import logo from "/public/imgs/logotipo.png";
+import logo from "/public/imgs/logotipo.svg";
 import styles from "./styles.module.css";
 
 const MenuIcon = () => {
@@ -99,11 +99,14 @@ const Header = () => {
                         {t("navbar.auth.profile")}
                       </MenuItem>
                       <MenuItem
-                        onClick={() =>
-                          router.push("/candidato/cadastro/pautas")
-                        }
+                        onClick={() => router.push("/candidato/perguntas")}
                       >
                         {t("navbar.auth.pautas")}
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => router.push("/candidato/prioridades")}
+                      >
+                        {t("navbar.auth.prioridades")}
                       </MenuItem>
                       <MenuItem onClick={() => signOut({ callbackUrl: "/" })}>
                         {t("navbar.auth.logout")}
