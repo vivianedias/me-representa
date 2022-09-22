@@ -124,7 +124,7 @@ export default function CadastroCandidato(props) {
         action: "Submit",
         category: DEFAULT_EVENTS.error,
         label: `Submitted at ${router.pathname}`,
-        value: `Error submitting sign up form for user: ${newCandidate.userId}`,
+        value: `Error submitting sign up form for user,
       })
     }
   }
