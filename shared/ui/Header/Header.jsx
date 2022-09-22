@@ -23,7 +23,7 @@ import { FaBars } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import { useSession, signOut } from "next-auth/react";
-import logo from "/public/imgs/logotipo.svg";
+import logo from "../../../public/imgs/logotipo.svg";
 
 const NavLink = ({ children, link }) => (
   <NextLink href={link} passHref>
@@ -51,7 +51,7 @@ export default function Header() {
     { name: t("navbar.home"), link: "/" },
     { name: t("navbar.eleitora"), link: "/eleitores" },
   ];
-
+  console.log({ logo });
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -73,7 +73,7 @@ export default function Header() {
             <Box
               style={{
                 position: "relative",
-                width: "300px",
+                width: "158px",
                 height: "64px",
               }}
             >
