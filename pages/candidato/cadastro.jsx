@@ -1,10 +1,10 @@
-import "../../shared/locales/i18n";
-import { useEffect, useMemo, useState } from "react";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import { unstable_getServerSession } from "next-auth";
-import { Form } from "react-final-form";
-import { useTranslation } from "react-i18next";
+import "/shared/locales/i18n"
+import { useEffect, useMemo, useState } from "react"
+import Head from "next/head"
+import { useRouter } from "next/router"
+import { unstable_getServerSession } from "next-auth"
+import { Form } from "react-final-form"
+import { useTranslation } from "react-i18next"
 import {
   Box,
   Button,
@@ -15,22 +15,24 @@ import {
   Flex,
   HStack,
   useToast,
-} from "@chakra-ui/react";
-import { FaRegTimesCircle } from "react-icons/fa";
-import useUploadS3 from "../../shared/hooks/useUploadS3";
-import fetcher from "../../utils/apiClient";
-import { authOptions } from "../api/auth/[...nextauth]";
+} from "@chakra-ui/react"
+import { FaRegTimesCircle } from "react-icons/fa"
+import useUploadS3 from "/shared/hooks/useUploadS3"
+import fetcher from "/utils/apiClient"
+import { authOptions } from "../api/auth/[...nextauth]"
 import {
   EmailField,
   CpfField,
   ImageField,
   SexualOrientationField,
   TermsAndConditionsField,
-} from "../../shared/ui/Fields";
+} from "/shared/ui/Fields"
+import { event } from "/shared/Analytics/utils"
+import { DEFAULT_EVENTS } from "/shared/Analytics/utils"
 
 function formatInitialValues({ candidate, session }) {
   const parseToAnswer = ({ lgbtConfirm }) =>
-    lgbtConfirm === true ? "yes" : "no";
+    lgbtConfirm === true ? "yes" : "no"
 
   return {
     email: session?.user?.email || "",
@@ -39,46 +41,44 @@ function formatInitialValues({ candidate, session }) {
     lgbtConfirm: candidate ? parseToAnswer(candidate) : null,
     lgbt: candidate?.lgbt || "",
     acceptedTerms: candidate?.acceptedTerms ? ["yes"] : [],
-  };
+  }
 }
 
 export default function CadastroCandidato(props) {
-  const { session, candidate } = props;
+  const { session, candidate } = props
 
-  const router = useRouter();
-  const toast = useToast();
-  const { t } = useTranslation("translation", { keyPrefix: "cadastro" });
-  const s3Props = useUploadS3({ candidate, session });
+  const router = useRouter()
+  const toast = useToast()
+  const { t } = useTranslation("translation", { keyPrefix: "cadastro" })
+  const s3Props = useUploadS3({ candidate, session })
 
-  const [initialValues, setInitialValues] = useState(
-    formatInitialValues(props)
-  );
-  const [submitError, setSubmitError] = useState(false);
-  const [tseCandidate, setTseCandidate] = useState(null);
+  const [initialValues, setInitialValues] = useState(formatInitialValues(props))
+  const [submitError, setSubmitError] = useState(false)
+  const [tseCandidate, setTseCandidate] = useState(null)
 
-  const memoedInitialValues = useMemo(() => initialValues, [initialValues]);
-  const CFaRegTimesCircle = chakra(FaRegTimesCircle);
-  const { imageUrl } = s3Props;
+  const memoedInitialValues = useMemo(() => initialValues, [initialValues])
+  const CFaRegTimesCircle = chakra(FaRegTimesCircle)
+  const { imageUrl } = s3Props
 
   const updateCandidate = async (newCandidate) => {
     await fetcher("/api/candidate/register", {
       method: "POST",
       body: newCandidate,
-    });
-  };
+    })
+  }
 
   const onSubmit = async (values) => {
     try {
-      setSubmitError(false);
+      setSubmitError(false)
 
       if (!imageUrl) {
-        return { image: t("image.validation") };
+        return { image: t("image.validation") }
       }
 
       if (!tseCandidate && values.cpf !== candidate.cpf) {
         return {
           cpf: t("cpf.requiredCandidate"),
-        };
+        }
       }
 
       const newCandidate = {
@@ -86,19 +86,19 @@ export default function CadastroCandidato(props) {
         image: imageUrl,
         userId: session?.user?.id,
         tseCandidate,
-      };
+      }
 
-      await updateCandidate(newCandidate);
+      await updateCandidate(newCandidate)
 
       if (!candidate) {
-        router.push("/candidato/prioridades");
+        router.push("/candidato/prioridades")
       } else {
         setInitialValues(
           formatInitialValues({
             candidate: newCandidate,
             session,
           })
-        );
+        )
 
         toast({
           title: t("success"),
@@ -108,17 +108,29 @@ export default function CadastroCandidato(props) {
           isClosable: true,
           variant: "left-accent",
           position: "top-right",
-        });
+        })
+        event({
+          action: "Submit",
+          category: DEFAULT_EVENTS.click,
+          label: `Submitted at ${router.pathname}`,
+          value: `User ${newCandidate.userId} has finished signing up.`,
+        })
       }
     } catch (e) {
-      console.error(e);
-      setSubmitError(true);
+      console.error(e)
+      setSubmitError(true)
+      event({
+        action: "Submit",
+        category: DEFAULT_EVENTS.error,
+        label: `Submitted at ${router.pathname}`,
+        value: `Error submitting sign up form for user: ${newCandidate.userId}`,
+      })
     }
-  };
+  }
 
   useEffect(() => {
-    router.prefetch("/candidato/prioridades");
-  }, []);
+    router.prefetch("/candidato/prioridades")
+  }, [])
 
   return (
     <>
@@ -192,13 +204,13 @@ export default function CadastroCandidato(props) {
                     </Flex>
                   </Stack>
                 </Box>
-              );
+              )
             }}
           />
         </Box>
       </Stack>
     </>
-  );
+  )
 }
 
 export async function getServerSideProps(context) {
@@ -206,7 +218,7 @@ export async function getServerSideProps(context) {
     context.req,
     context.res,
     authOptions
-  );
+  )
 
   if (!session) {
     return {
@@ -214,25 +226,25 @@ export async function getServerSideProps(context) {
         destination: "/cadastro/login",
         permanent: false,
       },
-    };
+    }
   }
 
   try {
-    const candidate = await fetcher(`/api/candidate/${session.user.id}`);
+    const candidate = await fetcher(`/api/candidate/${session.user.id}`)
 
     return {
       props: {
         session,
         candidate,
       },
-    };
+    }
   } catch (e) {
-    console.error("error", e);
+    console.error("error", e)
     return {
       props: {
         session,
         candidate: null,
       },
-    };
+    }
   }
 }

@@ -25,5 +25,6 @@ export const trackPageChange = (routerEvents) => {
 }
 
 export const DEFAULT_EVENTS = {
-  click: "click",
+  click: "CLICK",
+  error: "ERROR"
 }
