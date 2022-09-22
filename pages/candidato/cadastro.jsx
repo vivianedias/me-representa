@@ -15,6 +15,7 @@ import {
   Flex,
   HStack,
   useToast,
+  Container,
 } from "@chakra-ui/react";
 import { FaRegTimesCircle } from "react-icons/fa";
 import useUploadS3 from "../../shared/hooks/useUploadS3";
@@ -126,70 +127,68 @@ export default function CadastroCandidato(props) {
         <title>{t("title")}</title>
         <meta property="og:title" content={t("title")} key="title" />
       </Head>
-      <Stack flexDir="column" justifyContent="center" alignItems="center">
-        <Box as="section" bgColor="white" w={{ base: "90%", lg: "768px" }}>
-          <Stack spacing={3} align="center">
-            <Heading as="h1" size="xl" align="center">
-              {t("heading.hello")}
-            </Heading>
-            <Text fontSize="18px" align="center">
-              {t("heading.thanks")} {t("heading.validationMessage")}
-            </Text>
-          </Stack>
-          <Form
-            onSubmit={onSubmit}
-            initialValues={memoedInitialValues}
-            subscription={{ submitting: true, pristine: true }}
-            render={({ handleSubmit, submitting, pristine }) => {
-              return (
-                <Box as="form" onSubmit={handleSubmit} marginTop={8}>
-                  <Stack spacing={5} align="center">
-                    <EmailField t={t} isDisabled={true} />
-                    <CpfField
+      <Container>
+        <Stack spacing={3} align="center">
+          <Heading as="h1" size="xl" align="center">
+            {t("heading.hello")}
+          </Heading>
+          <Text fontSize="18px" align="center">
+            {t("heading.thanks")} {t("heading.validationMessage")}
+          </Text>
+        </Stack>
+        <Form
+          onSubmit={onSubmit}
+          initialValues={memoedInitialValues}
+          subscription={{ submitting: true, pristine: true }}
+          render={({ handleSubmit, submitting, pristine }) => {
+            return (
+              <Box as="form" onSubmit={handleSubmit} marginTop={8}>
+                <Stack spacing={5} align="center">
+                  <EmailField t={t} isDisabled={true} />
+                  <CpfField
+                    t={t}
+                    tseCandidate={tseCandidate}
+                    setTseCandidate={setTseCandidate}
+                  />
+                  <SexualOrientationField t={t} />
+                  <ImageField t={t} {...s3Props} />
+                  {candidate?.acceptedTerms ? null : (
+                    <TermsAndConditionsField
                       t={t}
-                      tseCandidate={tseCandidate}
-                      setTseCandidate={setTseCandidate}
+                      termsInitialValue={initialValues.terms}
                     />
-                    <SexualOrientationField t={t} />
-                    <ImageField t={t} {...s3Props} />
-                    {candidate?.acceptedTerms ? null : (
-                      <TermsAndConditionsField
-                        t={t}
-                        termsInitialValue={initialValues.terms}
-                      />
-                    )}
-                    <Flex
-                      justifyContent="flex-end"
-                      direction="column"
-                      gap={4}
-                      w="100%"
+                  )}
+                  <Flex
+                    justifyContent="flex-end"
+                    direction="column"
+                    gap={4}
+                    w="100%"
+                  >
+                    {submitError ? (
+                      <HStack justifyContent="flex-end">
+                        <CFaRegTimesCircle w={5} h={5} color="red.500" />
+                        <Text color="red.600">{t("submitError")}</Text>
+                      </HStack>
+                    ) : null}
+                    <Button
+                      type="submit"
+                      isLoading={submitting}
+                      disabled={submitting || pristine}
+                      loadingText="Enviando"
+                      variant="solid"
+                      colorScheme="pink"
+                      size="md"
+                      alignSelf="flex-end"
                     >
-                      {submitError ? (
-                        <HStack justifyContent="flex-end">
-                          <CFaRegTimesCircle w={5} h={5} color="red.500" />
-                          <Text color="red.600">{t("submitError")}</Text>
-                        </HStack>
-                      ) : null}
-                      <Button
-                        type="submit"
-                        isLoading={submitting}
-                        disabled={submitting || pristine}
-                        loadingText="Enviando"
-                        variant="solid"
-                        colorScheme="pink"
-                        size="md"
-                        alignSelf="flex-end"
-                      >
-                        {t("button")}
-                      </Button>
-                    </Flex>
-                  </Stack>
-                </Box>
-              );
-            }}
-          />
-        </Box>
-      </Stack>
+                      {t("button")}
+                    </Button>
+                  </Flex>
+                </Stack>
+              </Box>
+            );
+          }}
+        />
+      </Container>
     </>
   );
 }

@@ -158,11 +158,7 @@ Wizard.Steps = function Steps({ currentPage, childrenArray }) {
 };
 
 Wizard.Page = function Page({ children }) {
-  return (
-    <Container paddingBottom={5} overflow="hidden">
-      {children}
-    </Container>
-  );
+  return <>{children}</>;
 };
 
 Wizard.Error = function Error({ name }) {
