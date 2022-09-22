@@ -11,7 +11,7 @@ const Seguranca = ({ t }) => {
           id: `${prefix}_guardas`,
           label: t(prefix + ".guardas.label"),
           texto: t(prefix + ".guardas.pergunta"),
-          info: t(prefix + ".guardas.info"),
+          // info: t(prefix + ".guardas.info"),
           labelFavor: t(prefix + ".guardas.labelAFavor"),
           labelContra: t(prefix + ".guardas.labelContra"),
         }}
@@ -22,7 +22,7 @@ const Seguranca = ({ t }) => {
           id: `${prefix}_emprego`,
           label: t(prefix + ".emprego.label"),
           texto: t(prefix + ".emprego.pergunta"),
-          info: t(prefix + ".emprego.info"),
+          // info: t(prefix + ".emprego.info"),
           labelFavor: t(prefix + ".emprego.labelAFavor"),
           labelContra: t(prefix + ".emprego.labelContra"),
         }}

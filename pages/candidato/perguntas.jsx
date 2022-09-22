@@ -4,7 +4,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { unstable_getServerSession } from "next-auth";
 import { useTranslation } from "react-i18next";
-import { Heading, Box, useToast } from "@chakra-ui/react";
+import { Heading, Container, useToast } from "@chakra-ui/react";
 import { FORM_ERROR } from "final-form";
 
 import Wizard from "../../shared/ui/Wizard/Wizard";
@@ -43,7 +43,6 @@ const Perguntas = ({ session, candidate }) => {
           position: "top-right",
         });
       }
-
     } catch (e) {
       console.error(e);
       toast({
@@ -69,8 +68,8 @@ const Perguntas = ({ session, candidate }) => {
         <title>{t("title")}</title>
         <meta property="og:title" content={t("title")} key="title" />
       </Head>
-      <Box as="section" bgColor="white">
-        <Heading as="h1" marginY={6} textAlign="center">
+      <Container paddingBottom={5}>
+        <Heading as="h1" marginBottom={6} textAlign="center">
           {t("title")}
         </Heading>
         <Wizard onSubmit={onSubmit} initialValues={initialValues} submitError>
@@ -105,7 +104,7 @@ const Perguntas = ({ session, candidate }) => {
             <Questions.MeioAmbiente t={t} />
           </Wizard.Page>
         </Wizard>
-      </Box>
+      </Container>
     </>
   );
 };

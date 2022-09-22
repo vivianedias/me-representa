@@ -11,7 +11,7 @@ const Genero = ({ t }) => {
           id: `${prefix}_aborto`,
           label: t(prefix + ".aborto.label"),
           texto: t(prefix + ".aborto.pergunta"),
-          info: t(prefix + ".aborto.info"),
+          // info: t(prefix + ".aborto.info"),
           labelFavor: t(prefix + ".aborto.labelAFavor"),
           labelContra: t(prefix + ".aborto.labelContra"),
         }}
@@ -22,7 +22,7 @@ const Genero = ({ t }) => {
           id: `${prefix}_delegacia`,
           label: t(prefix + ".delegacia.label"),
           texto: t(prefix + ".delegacia.pergunta"),
-          info: t(prefix + ".delegacia.info"),
+          // info: t(prefix + ".delegacia.info"),
           labelFavor: t(prefix + ".delegacia.labelAFavor"),
           labelContra: t(prefix + ".delegacia.labelContra"),
         }}
@@ -33,7 +33,7 @@ const Genero = ({ t }) => {
           id: `${prefix}_banheiro`,
           label: t(prefix + ".banheiro.label"),
           texto: t(prefix + ".banheiro.pergunta"),
-          info: t(prefix + ".banheiro.info"),
+          // info: t(prefix + ".banheiro.info"),
           labelFavor: t(prefix + ".banheiro.labelAFavor"),
           labelContra: t(prefix + ".banheiro.labelContra"),
         }}

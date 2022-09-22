@@ -14,6 +14,7 @@ import {
   FormErrorMessage,
   VStack,
   HStack,
+  Container,
 } from "@chakra-ui/react";
 import { Form, Field } from "react-final-form";
 import { signIn } from "next-auth/react";
@@ -85,15 +86,7 @@ function Login() {
         <title>{t("title")}</title>
         <meta property="og:title" content={t("title")} key="title" />
       </Head>
-      <Stack
-        flexDir="column"
-        mb="2"
-        justifyContent="center"
-        alignItems="center"
-        p="1rem"
-        backgroundColor="whiteAlpha.900"
-        boxShadow="md"
-      >
+      <Container>
         <Heading as="h1" color="pink.500" mb="6">
           {t("title")}
         </Heading>
@@ -165,7 +158,7 @@ function Login() {
             )}
           />
         </Box>
-      </Stack>
+      </Container>
     </>
   );
 }

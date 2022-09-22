@@ -97,7 +97,7 @@ const Wizard = ({ initialValues, onSubmit, children }) => {
             return (
               <form onSubmit={handleSubmit}>
                 {activePage}
-                <Box position="sticky" bottom={0} bgColor="gray.200">
+                <Box position="sticky" bottom={0} bgColor="white">
                   <Flex
                     padding={4}
                     justifyContent={page === 0 ? "flex-end" : "space-between"}
@@ -158,11 +158,7 @@ Wizard.Steps = function Steps({ currentPage, childrenArray }) {
 };
 
 Wizard.Page = function Page({ children }) {
-  return (
-    <Container paddingBottom={5} overflow="hidden">
-      {children}
-    </Container>
-  );
+  return <>{children}</>;
 };
 
 Wizard.Error = function Error({ name }) {
