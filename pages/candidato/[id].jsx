@@ -1,7 +1,7 @@
 import fetchClient from "../../utils/apiClient";
 import "../../shared/locales/i18n";
 import Head from "next/head";
-import { Box, Stack } from "@chakra-ui/react";
+import { Box, Container, Stack } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import CandidateInfo from "../../shared/ui/Profile/CandidateInfo";
 import Gender from "../../shared/ui/Profile/Gender";
@@ -48,35 +48,22 @@ export default function Candidato({ data }) {
         <title>{name}</title>
         <meta property="og:title" content={name} key="title" />
       </Head>
-      <Stack
-        flexDir="column"
-        mb="2"
-        justifyContent="center"
-        alignItems="center"
-        p="1rem"
-        backgroundColor="whiteAlpha.900"
-        boxShadow="md"
-      >
-        <Box bgColor="white" w={{ base: "85vw", md: "768px" }}>
-          <Stack spacing={6}>
-            <CandidateInfo
-              t={t}
-              priorities={orderedPriorities(data)}
-              {...data}
-            />
-            <Gender t={t} answers={answers} />
-            <Race t={t} answers={answers} />
-            <LGBT t={t} answers={answers} />
-            <TraditionalPopulations t={t} answers={answers} />
-            <SocialPolicies t={t} answers={answers} />
-            <Security t={t} answers={answers} />
-            <Drugs t={t} answers={answers} />
-            <Communication t={t} answers={answers} />
-            <Democracy t={t} answers={answers} />
-            <Environment t={t} answers={answers} />
-          </Stack>
-        </Box>
-      </Stack>
+
+      <Container>
+        <Stack spacing={6}>
+          <CandidateInfo t={t} priorities={orderedPriorities(data)} {...data} />
+          <Gender t={t} answers={answers} />
+          <Race t={t} answers={answers} />
+          <LGBT t={t} answers={answers} />
+          <TraditionalPopulations t={t} answers={answers} />
+          <SocialPolicies t={t} answers={answers} />
+          <Security t={t} answers={answers} />
+          <Drugs t={t} answers={answers} />
+          <Communication t={t} answers={answers} />
+          <Democracy t={t} answers={answers} />
+          <Environment t={t} answers={answers} />
+        </Stack>
+      </Container>
     </>
   );
 }

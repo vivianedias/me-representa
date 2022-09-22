@@ -1,7 +1,17 @@
 {
+  "position": "Cargo",
+  "state": "Estado",
+  "party": "Partido",
+  "candidateNumber": "Número da candidata/o",
   "candidateJobTitle": {
-    "congressman": "Deputado",
-    "congresswoman": "Deputada"
+    "state": {
+      "congressman": "Deputado Estadual",
+      "congresswoman": "Deputada Estadual"
+    },
+    "union": {
+      "congressman": "Deputado Federal",
+      "congresswoman": "Deputada Federal"
+    }
   },
   "priorities": {
     "genderPriority": "Gênero",
