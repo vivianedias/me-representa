@@ -6,6 +6,7 @@ import terms from "./pt-BR/terms.json";
 import cadastro from "./pt-BR/candidato/cadastro.json";
 import wizard from "./pt-BR/wizard.json";
 import eleitores from "./pt-BR/eleitores.json";
+import profile from "./pt-BR/profile.json";
 import perguntas from "./pt-BR/candidato/perguntas.json";
 import prioridades from "./pt-BR/candidato/prioridades.json";
 
@@ -34,6 +35,7 @@ i18n.use(initReactI18next).init({
         home,
         eleitores,
         terms,
+        profile,
         prioridades: {
           ...prioridades,
           validation,
@@ -108,4 +110,4 @@ i18n.use(initReactI18next).init({
   },
 });
 
-export default i18n
+export default i18n;

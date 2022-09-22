@@ -24,6 +24,7 @@ import { FaRegTimesCircle } from "react-icons/fa";
 import { authOptions } from "../api/auth/[...nextauth]";
 import PointsBox from "../../shared/ui/PointsBox/PointsBox";
 import fetcher from "../../utils/apiClient";
+import getsCandidatesPriorities from "../../utils/getsCandidatesPriorities";
 
 function sumPoints(values) {
   return Object.values(values || {}).reduce((previousValue, currentValue) => {
@@ -44,26 +45,12 @@ function Count({ values, children }) {
   return children({ points: sum, maxPoints: MAX_POINTS });
 }
 
-function loadInitialValues(candidate) {
-  const candidatePriorities = Object.keys(candidate || {}).reduce(
-    (obj, key) => {
-      const keyHasPriority = key.includes("Priority");
-      return {
-        ...obj,
-        ...(keyHasPriority ? { [key]: candidate[key] } : {}),
-      };
-    },
-    {}
-  );
-  return candidatePriorities;
-}
-
 export default function Candidato({ session, candidate }) {
   const { t } = useTranslation("translation", { keyPrefix: "prioridades" });
   const toast = useToast();
   const router = useRouter();
   const [initialValues, setInitialValues] = useState(
-    loadInitialValues(candidate)
+    getsCandidatesPriorities(candidate)
   );
   const priorities = [
     {
@@ -291,4 +278,3 @@ export async function getServerSideProps(context) {
     };
   }
 }
-
