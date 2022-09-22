@@ -37,7 +37,7 @@ const CandidateInfo = (props) => {
 
   return (
     <Flex alignItems="center">
-      <Image boxSize="160px" src={image} alt={name} borderRadius="3px" />
+      <Image boxSize="170px" src={image} alt={name} borderRadius="3px" />
       <Stack spacing={2} width="100%" px={4}>
         <Heading as="h1" size="lg" align="left">
           {name}
@@ -45,7 +45,7 @@ const CandidateInfo = (props) => {
 
         <List>
           <ListItem>
-            <Text fontSize="sm" color="gray.500">
+            <Text color="gray.500">
               {t("position")}:{" "}
               <Text as="span" fontWeight="700">
                 {runningPosition[gender][position]}
@@ -53,7 +53,7 @@ const CandidateInfo = (props) => {
             </Text>
           </ListItem>
           <ListItem>
-            <Text fontSize="sm" color="gray.500">
+            <Text color="gray.500">
               {t("party")}:{" "}
               <Text as="span" fontWeight="700">
                 {partyName}
@@ -61,7 +61,7 @@ const CandidateInfo = (props) => {
             </Text>
           </ListItem>
           <ListItem>
-            <Text fontSize="sm" color="gray.500">
+            <Text color="gray.500">
               {t("candidateNumber")}:{" "}
               <Text as="span" fontWeight="700">
                 {candidateNumber}
@@ -69,7 +69,7 @@ const CandidateInfo = (props) => {
             </Text>
           </ListItem>
           <ListItem>
-            <Text fontSize="sm" color="gray.500">
+            <Text color="gray.500">
               {t("state")}:{" "}
               <Text as="span" fontWeight="700">
                 {stateName} ({state})

@@ -49,7 +49,7 @@ export default function Candidato({ data }) {
         <meta property="og:title" content={name} key="title" />
       </Head>
 
-      <Container>
+      <Container maxW="100ch">
         <Stack spacing={6}>
           <CandidateInfo t={t} priorities={orderedPriorities(data)} {...data} />
           <Gender t={t} answers={answers} />
