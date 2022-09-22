@@ -165,7 +165,7 @@ export default function Candidato({ session, candidate }) {
       <Head>
         <title>{t("headTitle")}</title>
       </Head>
-      <Container maxW={{ base: "60ch", md: "100ch" }} centerContent my={8}>
+      <Container maxW={{ base: "60ch", md: "100ch" }} centerContent>
         <Form
           onSubmit={onSubmit}
           initialValues={initialValues}

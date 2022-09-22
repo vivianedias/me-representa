@@ -45,6 +45,7 @@ i18n.use(initReactI18next).init({
         },
         header: {
           imgDescricao: "Logotipo do MeRepresenta",
+          botaoHamburgues: "Abrir menu",
           navbar: {
             home: "Home",
             voluntaria: "Voluntária/o",

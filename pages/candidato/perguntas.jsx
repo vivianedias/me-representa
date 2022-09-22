@@ -70,7 +70,7 @@ const Perguntas = ({ session, candidate }) => {
         <meta property="og:title" content={t("title")} key="title" />
       </Head>
       <Box as="section" bgColor="white">
-        <Heading as="h1" marginY={6} textAlign="center">
+        <Heading as="h1" marginBottom={6} textAlign="center">
           {t("title")}
         </Heading>
         <Wizard onSubmit={onSubmit} initialValues={initialValues} submitError>

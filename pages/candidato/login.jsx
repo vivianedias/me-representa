@@ -87,12 +87,9 @@ function Login() {
       </Head>
       <Stack
         flexDir="column"
-        mb="2"
         justifyContent="center"
         alignItems="center"
         p="1rem"
-        backgroundColor="whiteAlpha.900"
-        boxShadow="md"
       >
         <Heading as="h1" color="pink.500" mb="6">
           {t("title")}

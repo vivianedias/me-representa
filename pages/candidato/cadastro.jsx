@@ -126,14 +126,7 @@ export default function CadastroCandidato(props) {
         <title>{t("title")}</title>
         <meta property="og:title" content={t("title")} key="title" />
       </Head>
-      <Stack
-        flexDir="column"
-        justifyContent="center"
-        alignItems="center"
-        backgroundColor="whiteAlpha.900"
-        boxShadow="md"
-        p={8}
-      >
+      <Stack flexDir="column" justifyContent="center" alignItems="center">
         <Box as="section" bgColor="white" w={{ base: "90%", lg: "768px" }}>
           <Stack spacing={3} align="center">
             <Heading as="h1" size="xl" align="center">
