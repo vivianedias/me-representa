@@ -37,7 +37,7 @@ const CandidateInfo = (props) => {
 
   return (
     <Flex alignItems="center">
-      <Image boxSize="150px" src={image} alt={name} borderRadius="3px" />
+      <Image boxSize="160px" src={image} alt={name} borderRadius="3px" />
       <Stack spacing={2} width="100%" px={4}>
         <Heading as="h1" size="lg" align="left">
           {name}
