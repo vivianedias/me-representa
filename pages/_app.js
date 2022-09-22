@@ -1,18 +1,21 @@
 import "@fontsource/roboto"
+import { useEffect } from "react"
+import { SWRConfig } from "swr"
 import { SessionProvider } from "next-auth/react"
+import { useRouter } from 'next/router'
+
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import { Flex } from "@chakra-ui/react"
-import { SWRConfig } from "swr"
-import Header from "../shared/ui/Header/Header"
-import Footer from "../shared/ui/Footer/Footer"
-import fetcher from "../utils/apiClient"
+
+import Header from "/shared/ui/Header/Header"
+import Footer from "/shared/ui/Footer/Footer"
+import Analytics from "/shared/Analytics"
+import { trackPageChange } from "/shared/Analytics/utils"
+
+import fetcher from "/utils/apiClient"
+
 import "../styles/globals.css"
-import ReactGA from 'react-ga';
-import { useEffect } from "react"
 
-const GA_TRACKING_ID = process.env.GA_TRACKING_ID || "G-NB8VZ0Q87J" // remover essa id depois
-
-ReactGA.initialize(GA_TRACKING_ID);
 
 const theme = {
   colors: {
@@ -32,9 +35,9 @@ function MyApp({ Component, pageProps }) {
     fetcher,
   }
 
-  useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  }, []);
+  const router = useRouter()
+
+  useEffect(() => trackPageChange(router.events), [router.events])
 
   return (
     <>
@@ -57,6 +60,7 @@ function MyApp({ Component, pageProps }) {
           </ChakraProvider>
         </SessionProvider>
       </SWRConfig>
+      <Analytics />
     </>
   )
 }
