@@ -1,0 +1,50 @@
+{
+  "submitError": "Houve um erro ao enviar o formulário",
+  "successUpdate": "Perfil atualizado.",
+  "success": "Sucesso!",
+  "loading": "Carregando",
+  "button": "Enviar",
+  "email": {
+    "label": "E-mail",
+    "placeholder": "endereço de e-mail"
+  },
+  "cpf": {
+    "label": "CPF",
+    "placeholder": "cpf do candidato",
+    "noCandidateFoundError": "Não foi possível encontrar um candidato com esse CPF",
+    "requiredCandidate": "Por favor insira um CPF válido",
+    "helperText": "Para prosseguir precisamos encontrar você no registro do TSE."
+  },
+  "title": "Cadastro",
+  "lgbt": {
+    "options": {
+      "lesbian": "Lésbica",
+      "bisexual": "Bissexual",
+      "gay": "Gay",
+      "trans": "Trans",
+      "other": "Outro",
+      "default": "Como você se identifica?"
+    },
+    "confirm": {
+      "true": "Sim",
+      "false": "Não",
+      "label": "Você se considera parte da comunidade LGBT?"
+    }
+  },
+  "terms": {
+    "label": "Li e concordo com os",
+    "termsAndConditions": "Termos e Condições e Política de Privacidade",
+    "error": "Você precisa concordar com os termos."
+  },
+  "heading": {
+    "hello": "Olá, Candidata(o)!",
+    "thanks": "Obrigada por ingressar na nossa plataforma!",
+    "validationMessage": "Para sua segurança, precisamos cadastrar e validar o seu perfil."
+  },
+  "image": {
+    "label": "Anexar sua foto de candidatura",
+    "placeholder": "Inserir foto da candidatura",
+    "helperText": "Insira a foto que será usado na divulgação da sua campanha, caso faça parte de uma candidatura coletiva, você deverá usar a imagem com todos os integrantes.",
+    "validation": "Por favor, faça o upload de uma foto da candidata(o)"
+  }
+}

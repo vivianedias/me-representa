@@ -1,10 +1,10 @@
-import "/shared/locales/i18n"
-import { useEffect, useMemo, useState } from "react"
-import Head from "next/head"
-import { useRouter } from "next/router"
-import { unstable_getServerSession } from "next-auth"
-import { Form } from "react-final-form"
-import { useTranslation } from "react-i18next"
+import { useEffect, useMemo, useState } from "react";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { unstable_getServerSession } from "next-auth";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { Form } from "react-final-form";
+import { useTranslation } from "react-i18next";
 import {
   Box,
   Button,
@@ -50,7 +50,7 @@ export default function CadastroCandidato(props) {
 
   const router = useRouter();
   const toast = useToast();
-  const { t } = useTranslation("translation", { keyPrefix: "cadastro" });
+  const { t } = useTranslation("cadastro");
   const s3Props = useUploadS3({ candidate, session });
 
   const [initialValues, setInitialValues] = useState(
@@ -210,7 +210,7 @@ export async function getServerSideProps(context) {
     context.req,
     context.res,
     authOptions
-  )
+  );
 
   if (!session) {
     return {
@@ -218,25 +218,35 @@ export async function getServerSideProps(context) {
         destination: "/cadastro/login",
         permanent: false,
       },
-    }
+    };
   }
 
   try {
-    const candidate = await fetcher(`/api/candidate/${session.user.id}`)
+    const candidate = await fetcher(`/api/candidate/${session.user.id}`);
 
     return {
       props: {
+        ...(await serverSideTranslations(context.locale, [
+          "cadastro",
+          "header",
+          "footer",
+        ])),
         session,
         candidate,
       },
-    }
+    };
   } catch (e) {
-    console.error("error", e)
+    console.error("error", e);
     return {
       props: {
+        ...(await serverSideTranslations(locale, [
+          "cadastro",
+          "header",
+          "footer",
+        ])),
         session,
         candidate: null,
       },
-    }
+    };
   }
 }
