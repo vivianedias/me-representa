@@ -1,21 +1,17 @@
-import "@fontsource/roboto"
-import { useEffect } from "react"
-import { SWRConfig } from "swr"
-import { SessionProvider } from "next-auth/react"
-import { useRouter } from 'next/router'
+import "@fontsource/roboto";
+import { SWRConfig } from "swr";
+import { SessionProvider } from "next-auth/react";
 
-import { ChakraProvider, extendTheme } from "@chakra-ui/react"
-import { Flex } from "@chakra-ui/react"
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 import Header from "../shared/ui/Header/Header";
 import Footer from "../shared/ui/Footer/Footer";
 import Analytics from "../shared/analytics";
-import { trackPageChange } from "../shared/analytics/utils";
 
-import fetcher from "/utils/apiClient"
+import fetcher from "/utils/apiClient";
 
-import "../styles/globals.css"
-
+import "../styles/globals.css";
 
 const theme = {
   colors: {
@@ -28,16 +24,12 @@ const theme = {
     heading: `'Roboto', sans-serif`,
     body: `'Roboto', sans-serif`,
   },
-}
+};
 
 function MyApp({ Component, pageProps }) {
   const options = {
     fetcher,
-  }
-
-  const router = useRouter()
-
-  useEffect(() => trackPageChange(router.events), [router.events])
+  };
 
   return (
     <>
@@ -62,7 +54,7 @@ function MyApp({ Component, pageProps }) {
       </SWRConfig>
       <Analytics />
     </>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
