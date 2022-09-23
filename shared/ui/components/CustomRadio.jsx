@@ -8,7 +8,6 @@ import {
   FormErrorMessage,
   FormLabel,
 } from "@chakra-ui/react";
-import { v4 as uuid } from "uuid";
 import { useForm } from "react-final-form";
 import validations from "../../../utils/validations";
 
@@ -26,10 +25,10 @@ const CustomRadio = ({ options, t, name, label, direction }) => {
             defaultValue={form.getState().values[name] || undefined}
           >
             <Stack direction={direction} spacing={4}>
-              {options.map(({ value, label }) => (
+              {options.map(({ value, label }, i) => (
                 <Radio
                   {...input}
-                  key={uuid()}
+                  key={`custom-radio-${i}`}
                   value={value}
                   isInvalid={meta.error && meta.touched}
                 >

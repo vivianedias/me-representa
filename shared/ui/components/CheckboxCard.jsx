@@ -1,6 +1,5 @@
 import { Field } from "react-final-form";
 import { Box, useCheckbox } from "@chakra-ui/react";
-import { v4 as uuid } from "uuid";
 
 const CheckboxCard = (props) => {
   const { getCheckboxProps, getInputProps } = useCheckbox(props);

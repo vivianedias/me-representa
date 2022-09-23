@@ -1,18 +1,9 @@
-import "/shared/locales/i18n";
 import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import { Field, Form } from "react-final-form";
 import { useTranslation } from "react-i18next";
-import { v4 as uuid } from "uuid";
 
-import {
-  Box,
-  Button,
-  FormErrorMessage,
-  Flex,
-  Text,
-  Container,
-} from "@chakra-ui/react";
+import { Box, Button, FormErrorMessage, Flex, Text } from "@chakra-ui/react";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import { css } from "@emotion/react";
 
@@ -144,7 +135,7 @@ Wizard.Steps = function Steps({ currentPage, childrenArray }) {
             height={isActive ? "8px" : "4px"}
             flexGrow={1}
             maxWidth="50px"
-            key={`wizard-steps-${uuid()}`}
+            key={`wizard-steps-${index}`}
             css={css`
               &:not(:last-child) {
                 margin-right: var(--chakra-space-2);
