@@ -7,6 +7,7 @@ import Priorities from "./Priorities";
 import State from "./State";
 import fetcher from "../../../utils/apiClient";
 import { FORM_ERROR } from "final-form";
+import { event, DEFAULT_EVENTS } from "../../analytics/utils";
 
 const Filters = ({ t, parties, mutate }) => {
   const toast = useToast();
@@ -26,11 +27,23 @@ const Filters = ({ t, parties, mutate }) => {
 
   const handleReset = async (reset) => {
     reset();
+    event({
+      action: "Submit",
+      category: DEFAULT_EVENTS.click,
+      label: `Submitted at ${router.pathname}`,
+      value: `User clicked to reset filters.`,
+    });
 
     try {
       await filter();
     } catch (e) {
       console.error(e);
+      event({
+        action: "Submit",
+        category: DEFAULT_EVENTS.error,
+        label: `Submitted at ${router.pathname}`,
+        value: `User couldnt reset filters`,
+      });
       toast({
         title: t("error"),
         description: t("submitError"),
@@ -46,9 +59,21 @@ const Filters = ({ t, parties, mutate }) => {
 
   const onSubmit = async (values) => {
     try {
+      event({
+        action: "Submit",
+        category: DEFAULT_EVENTS.click,
+        label: `Submitted at ${router.pathname}`,
+        value: `User clicked to filter candidates.`,
+      });
       await filter(values);
     } catch (e) {
       console.error(e);
+      event({
+        action: "Submit",
+        category: DEFAULT_EVENTS.error,
+        label: `Submitted at ${router.pathname}`,
+        value: `User couldnt filter candidates`,
+      });
       toast({
         title: t("error"),
         description: t("submitError"),

@@ -29,12 +29,11 @@ import {
 import { authOptions } from "../api/auth/[...nextauth]";
 import useUploadS3 from "../../shared/hooks/useUploadS3";
 import fetcher from "../../utils/apiClient";
-import { event } from "../../shared/analytics/utils";
-import { DEFAULT_EVENTS } from "../../shared/analytics/utils";
+import { event, DEFAULT_EVENTS } from "../../shared/analytics/utils";
 
 function formatInitialValues({ candidate, session }) {
   const parseToAnswer = ({ lgbtConfirm }) =>
-    lgbtConfirm === true ? "yes" : "no"
+    lgbtConfirm === true ? "yes" : "no";
 
   return {
     email: session?.user?.email || "",
@@ -43,44 +42,46 @@ function formatInitialValues({ candidate, session }) {
     lgbtConfirm: candidate ? parseToAnswer(candidate) : null,
     lgbt: candidate?.lgbt || "",
     acceptedTerms: candidate?.acceptedTerms ? ["yes"] : [],
-  }
+  };
 }
 
 export default function CadastroCandidato(props) {
-  const { session, candidate } = props
+  const { session, candidate } = props;
 
-  const router = useRouter()
-  const toast = useToast()
-  const { t } = useTranslation("translation", { keyPrefix: "cadastro" })
-  const s3Props = useUploadS3({ candidate, session })
+  const router = useRouter();
+  const toast = useToast();
+  const { t } = useTranslation("translation", { keyPrefix: "cadastro" });
+  const s3Props = useUploadS3({ candidate, session });
 
-  const [initialValues, setInitialValues] = useState(formatInitialValues(props))
-  const [submitError, setSubmitError] = useState(false)
-  const [tseCandidate, setTseCandidate] = useState(null)
+  const [initialValues, setInitialValues] = useState(
+    formatInitialValues(props)
+  );
+  const [submitError, setSubmitError] = useState(false);
+  const [tseCandidate, setTseCandidate] = useState(null);
 
-  const memoedInitialValues = useMemo(() => initialValues, [initialValues])
-  const CFaRegTimesCircle = chakra(FaRegTimesCircle)
-  const { imageUrl } = s3Props
+  const memoedInitialValues = useMemo(() => initialValues, [initialValues]);
+  const CFaRegTimesCircle = chakra(FaRegTimesCircle);
+  const { imageUrl } = s3Props;
 
   const updateCandidate = async (newCandidate) => {
     await fetcher("/api/candidate/register", {
       method: "POST",
       body: newCandidate,
-    })
-  }
+    });
+  };
 
   const onSubmit = async (values) => {
     try {
-      setSubmitError(false)
+      setSubmitError(false);
 
       if (!imageUrl) {
-        return { image: t("image.validation") }
+        return { image: t("image.validation") };
       }
 
       if (!tseCandidate && values.cpf !== candidate.cpf) {
         return {
           cpf: t("cpf.requiredCandidate"),
-        }
+        };
       }
 
       const newCandidate = {
@@ -88,19 +89,25 @@ export default function CadastroCandidato(props) {
         image: imageUrl,
         userId: session?.user?.id,
         tseCandidate,
-      }
+      };
 
-      await updateCandidate(newCandidate)
+      await updateCandidate(newCandidate);
 
       if (!candidate) {
-        router.push("/candidato/prioridades")
+        event({
+          action: "Submit",
+          category: DEFAULT_EVENTS.click,
+          label: `Submitted at ${router.pathname}`,
+          value: `User ${session.user.id} has finished signing up.`,
+        });
+        router.push("/candidato/prioridades");
       } else {
         setInitialValues(
           formatInitialValues({
             candidate: newCandidate,
             session,
           })
-        )
+        );
 
         toast({
           title: t("success"),
@@ -110,29 +117,23 @@ export default function CadastroCandidato(props) {
           isClosable: true,
           variant: "left-accent",
           position: "top-right",
-        })
-        event({
-          action: "Submit",
-          category: DEFAULT_EVENTS.click,
-          label: `Submitted at ${router.pathname}`,
-          value: `User ${newCandidate.userId} has finished signing up.`,
-        })
+        });
       }
     } catch (e) {
-      console.error(e)
+      console.error(e);
       setSubmitError(true);
       event({
         action: "Submit",
         category: DEFAULT_EVENTS.error,
         label: `Submitted at ${router.pathname}`,
-        value: `Error submitting sign up form for user`,
+        value: `Error submitting sign up form for user ${session.user.id}`,
       });
     }
-  }
+  };
 
   useEffect(() => {
-    router.prefetch("/candidato/prioridades")
-  }, [])
+    router.prefetch("/candidato/prioridades");
+  }, []);
 
   return (
     <>
@@ -204,7 +205,7 @@ export default function CadastroCandidato(props) {
         />
       </Container>
     </>
-  )
+  );
 }
 
 export async function getServerSideProps(context) {
