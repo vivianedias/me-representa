@@ -1,6 +1,5 @@
 import { Heading, Stack } from "@chakra-ui/react";
 import { Field } from "react-final-form";
-import { useTranslation } from "react-i18next";
 import MultiSelectAdapter from "../components/MultiSelectAdapter";
 
 const Parties = ({ parties, t }) => {

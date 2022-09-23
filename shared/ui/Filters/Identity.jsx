@@ -1,6 +1,5 @@
 import { CheckboxGroup, Flex, Heading, Stack } from "@chakra-ui/react";
 import FieldCheckbox from "../components/FieldCheckbox";
-import { useTranslation } from "react-i18next";
 
 const Identity = ({ t }) => {
   return (
