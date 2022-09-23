@@ -173,13 +173,22 @@ const Footer = () => {
                   </NextLink>
                 </li>
                 <li>
-                  <NextLink href="#">Contato</NextLink>
+                  <NextLink
+                    href="https://merepresenta.org.br/faq"
+                    passHref
+                    isExternal
+                  >
+                    <Link isExternal color="pink.600" target="_blank">
+                      Perguntas?
+                    </Link>
+                  </NextLink>
                 </li>
                 <li>
-                  <NextLink href="#">Perguntas?</NextLink>
-                </li>
-                <li>
-                  <NextLink href="#">Termos de Uso</NextLink>
+                  <NextLink href="/termos" passHref>
+                    <Link color="pink.600" target="_blank">
+                      Termos de Uso
+                    </Link>
+                  </NextLink>
                 </li>
               </ul>
             </nav>
