@@ -62,7 +62,7 @@ export default function EleitoresDashboard({
 
 export async function getServerSideProps(req, res) {
   // Fetch data from external API
-  const { candidates, count } = await fetchClient("/api/candidates");
+  const { candidates, count } = await fetchClient("/api/candidates/all");
   const parties = await fetchClient("/api/politicalParties");
 
   // Pass data to the page via props
