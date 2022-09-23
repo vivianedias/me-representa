@@ -66,8 +66,7 @@ const Filters = ({ t, parties, mutate }) => {
     <Form
       onSubmit={onSubmit}
       subscription={{ submitting: true, values: true }}
-      render={({ handleSubmit, submitting, form, values }) => {
-        console.log({ values });
+      render={({ handleSubmit, submitting, form }) => {
         return (
           <Box as="form" onSubmit={handleSubmit}>
             <Stack spacing={8}>
