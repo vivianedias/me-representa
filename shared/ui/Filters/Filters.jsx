@@ -24,10 +24,11 @@ const Filters = (props) => {
     await sleep(300);
     console.log({ data });
   };
+
   return (
     <Form
       onSubmit={onSubmit}
-      render={({ handleSubmit, submitting, submitError }) => {
+      render={({ handleSubmit, submitting }) => {
         return (
           <Box as="form" onSubmit={handleSubmit}>
             <Stack spacing={8}>
@@ -35,14 +36,14 @@ const Filters = (props) => {
                 <Identity t={t} />
                 <LGBT t={t} />
                 <Parties parties={props.parties} t={t} />
-                <State states={props.states} t={t} />
+                <State t={t} />
                 <Priorities t={t} />
               </Stack>
 
               <Button
                 type="submit"
                 isLoading={submitting}
-                loadingText="Filtrando"
+                loadingText={t("loading")}
                 variant="solid"
                 colorScheme="pink"
                 size="md"

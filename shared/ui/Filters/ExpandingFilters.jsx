@@ -9,11 +9,10 @@ import {
   Heading,
   Stack,
 } from "@chakra-ui/react";
-import { Form } from "react-final-form";
 import Filters from "./Filters";
 
 const ExpandingFilters = (props) => {
-  const { t, parties, states } = props;
+  const { t, parties } = props;
   return (
     <Stack marginTop={4}>
       <Accordion defaultIndex={[0]} allowMultiple>
@@ -27,7 +26,7 @@ const ExpandingFilters = (props) => {
             <AccordionIcon />
           </AccordionButton>
           <AccordionPanel pb={4}>
-            <Filters t={t} parties={parties} states={states} />
+            <Filters t={t} parties={parties} />
           </AccordionPanel>
         </AccordionItem>
       </Accordion>

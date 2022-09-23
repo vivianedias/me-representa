@@ -1,15 +1,24 @@
+import NextLink from "next/link";
 import {
   Box,
-  Button,
   Flex,
   Heading,
   Image,
+  Link,
   Stack,
   Text,
+  Center,
 } from "@chakra-ui/react";
 
-const CandidateCard = (props) => {
-  const { t, image, name, party, coalitionScore, state, city } = props;
+const CandidateCard = ({
+  t,
+  image,
+  name,
+  partyName,
+  state,
+  userId,
+  candidateNumber,
+}) => {
   return (
     <Box
       borderWidth="1px"
@@ -25,13 +34,13 @@ const CandidateCard = (props) => {
             <Flex gap="4" justifyContent="space-between">
               <Text fontSize="sm">{t("candidates.party")}</Text>
               <Text fontWeight={700} fontSize="sm">
-                {party}
+                {partyName}
               </Text>
             </Flex>
             <Flex gap="4" justifyContent="space-between">
-              <Text fontSize="sm">{t("candidates.coalitionScore")}</Text>
+              <Text fontSize="sm">{t("candidates.candidateNumber")}</Text>
               <Text fontWeight={700} fontSize="sm">
-                {coalitionScore}
+                {candidateNumber}
               </Text>
             </Flex>
             <Flex gap="4" justifyContent="space-between">
@@ -40,25 +49,23 @@ const CandidateCard = (props) => {
                 {state}
               </Text>
             </Flex>
-            <Flex gap="4" justifyContent="space-between">
-              <Text fontSize="sm">{t("candidates.city")}</Text>
-              <Text fontWeight={700} fontSize="sm">
-                {city}
-              </Text>
-            </Flex>
           </Stack>
         </Stack>
       </Flex>
-      <Button
-        loadingText="Filtrando"
-        variant="solid"
-        colorScheme="teal"
-        size="md"
-        borderRadius="0"
-        width="100%"
-      >
-        {t("candidates.button")}
-      </Button>
+      <NextLink passHref href={`/candidato/${userId}`}>
+        <Link
+          target="_blank"
+          _hover={{
+            textDecoration: "none",
+          }}
+        >
+          <Center size="md" bgColor="teal.500" width="100%" height="40px">
+            <Text textAlign="center" color="white" fontWeight={600}>
+              {t("candidates.button")}
+            </Text>
+          </Center>
+        </Link>
+      </NextLink>
     </Box>
   );
 };

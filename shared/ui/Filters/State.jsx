@@ -1,9 +1,9 @@
-import { Heading, Stack } from "@chakra-ui/react";
 import { Field } from "react-final-form";
-import { useTranslation } from "react-i18next";
+import { Heading, Stack } from "@chakra-ui/react";
 import MultiSelectAdapter from "../components/MultiSelectAdapter";
+import states from "./states.json";
 
-const State = ({ states, t }) => {
+const State = ({ t }) => {
   return (
     <Stack spacing={2}>
       <Heading as="h2" size="sm" align="left">

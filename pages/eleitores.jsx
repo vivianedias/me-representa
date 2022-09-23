@@ -19,32 +19,12 @@ import WhoRepresentsYou from "../shared/ui/CandidateCard/WhoRepresentsYou";
 import CandidatesCount from "../shared/ui/CandidateCard/CandidatesCount";
 import CandidateCard from "../shared/ui/CandidateCard/CandidateCard";
 
-export default function EleitoresDashboard({ data }) {
+export default function EleitoresDashboard({
+  candidates = [],
+  count = 0,
+  parties = [],
+}) {
   const { t } = useTranslation("translation", { keyPrefix: "eleitores" });
-
-  const parties = [
-    { value: "pt", label: "PT" },
-    { value: "psol", label: "PSOL" },
-    { value: "pcdob", label: "PCdoB" },
-  ];
-
-  const states = [
-    { value: "sp", label: "SP" },
-    { value: "rj", label: "RJ" },
-    { value: "es", label: "ES" },
-  ];
-
-  const candidatesCount = 10;
-
-  const candidate = {
-    image:
-      "https://midias.correiobraziliense.com.br/_midias/jpg/2022/04/23/fq_iq4ixsacx3qp-7832244.jpg",
-    name: "Lulinha",
-    party: "PT",
-    coalitionScore: 10.0,
-    state: "BR",
-    city: "São Bernardo",
-  };
 
   return (
     <>
@@ -63,10 +43,16 @@ export default function EleitoresDashboard({ data }) {
       >
         <Box bgColor="white" w={{ base: "85vw", md: "768px" }}>
           <Stack spacing={8}>
-            <ExpandingFilters t={t} parties={parties} states={states} />
+            <ExpandingFilters t={t} parties={parties} />
             <WhoRepresentsYou t={t} />
-            <CandidatesCount t={t} candidatesCount={candidatesCount} />
-            <CandidateCard t={t} {...candidate} />
+            <CandidatesCount t={t} candidatesCount={count} />
+            <Flex flexWrap={"wrap"} gap={2}>
+              {candidates.map((candidate) => {
+                return (
+                  <CandidateCard key={candidate._id} t={t} {...candidate} />
+                );
+              })}
+            </Flex>
           </Stack>
         </Box>
       </Stack>
@@ -76,8 +62,9 @@ export default function EleitoresDashboard({ data }) {
 
 export async function getServerSideProps(req, res) {
   // Fetch data from external API
-  // const data = await fetchClient("/api/users");
+  const { candidates, count } = await fetchClient("/api/candidates");
+  const parties = await fetchClient("/api/politicalParties");
 
   // Pass data to the page via props
-  return { props: { data: [] } };
+  return { props: { candidates, count, parties } };
 }
