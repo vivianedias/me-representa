@@ -1,14 +1,14 @@
-import "../shared/locales/i18n";
 import React from "react";
 import Head from "next/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "react-i18next";
+import useSWR, { SWRConfig } from "swr";
 import { Flex, Stack, Container } from "@chakra-ui/react";
 import ExpandingFilters from "../shared/ui/Filters/ExpandingFilters";
 import WhoRepresentsYou from "../shared/ui/CandidateCard/WhoRepresentsYou";
 import CandidatesCount from "../shared/ui/CandidateCard/CandidatesCount";
 import CandidateCard from "../shared/ui/CandidateCard/CandidateCard";
 import fetchClient from "../utils/apiClient";
-import useSWR, { SWRConfig } from "swr";
 
 function Eleitores({ parties = [], t }) {
   const { data, mutate } = useSWR("/api/candidates/all");
@@ -24,7 +24,7 @@ function Eleitores({ parties = [], t }) {
         <CandidatesCount t={t} candidatesCount={count} />
         <Flex
           flexWrap={"wrap"}
-          gap={{ base: 6, lg: 0 }}
+          gap={{ base: 6, lg: 4 }}
           justifyContent="space-between"
         >
           {candidates.map((candidate) => {
@@ -37,7 +37,7 @@ function Eleitores({ parties = [], t }) {
 }
 
 export default function EleitoresDashboard({ parties, fallback }) {
-  const { t } = useTranslation("translation", { keyPrefix: "eleitores" });
+  const { t } = useTranslation("eleitores");
 
   return (
     <>
@@ -53,13 +53,18 @@ export default function EleitoresDashboard({ parties, fallback }) {
   );
 }
 
-export async function getServerSideProps(req, res) {
+export async function getServerSideProps({ locale }) {
   try {
     const data = await fetchClient("/api/candidates/all");
     const parties = await fetchClient("/api/politicalParties");
 
     return {
       props: {
+        ...(await serverSideTranslations(locale, [
+          "eleitores",
+          "header",
+          "footer",
+        ])),
         parties,
         fallback: {
           "/api/candidates/all": data,
@@ -70,6 +75,11 @@ export async function getServerSideProps(req, res) {
     console.error(e);
     return {
       props: {
+        ...(await serverSideTranslations(locale, [
+          "eleitores",
+          "header",
+          "footer",
+        ])),
         candidates: [],
         count: 0,
         parties: [],
