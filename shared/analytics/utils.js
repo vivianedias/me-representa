@@ -20,7 +20,7 @@ export const event = ({ action, category, label, description, fatal }) => {
             event_category: category,
             event_label: label,
           }
-        : null;
+        : {};
   }
 
   window.gtag("event", action, opts);
