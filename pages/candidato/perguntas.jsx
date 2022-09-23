@@ -1,8 +1,8 @@
-import "/shared/locales/i18n.js";
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { unstable_getServerSession } from "next-auth";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "react-i18next";
 import { Heading, Container, useToast } from "@chakra-ui/react";
 import { FORM_ERROR } from "final-form";
@@ -18,8 +18,8 @@ import {
 } from "../../shared/analytics/utils";
 
 const Perguntas = ({ session, candidate }) => {
-  const [initialValues, setInitialValues] = useState(candidate.answers);
-  const { t } = useTranslation("translation", { keyPrefix: "perguntas" });
+  const [initialValues, setInitialValues] = useState(candidate?.answers);
+  const { t } = useTranslation("perguntas");
   const router = useRouter();
   const toast = useToast();
 
@@ -148,6 +148,12 @@ export async function getServerSideProps(context) {
 
     return {
       props: {
+        ...(await serverSideTranslations(context.locale, [
+          "perguntas",
+          "header",
+          "footer",
+          "wizard",
+        ])),
         session,
         candidate,
       },
@@ -156,6 +162,12 @@ export async function getServerSideProps(context) {
     console.error("error", e);
     return {
       props: {
+        ...(await serverSideTranslations(context.locale, [
+          "perguntas",
+          "header",
+          "footer",
+          "wizard",
+        ])),
         session,
         candidate: null,
       },

@@ -9,7 +9,7 @@ import { css } from "@emotion/react";
 
 const Wizard = ({ initialValues, onSubmit, children }) => {
   const [page, setPage] = useState(0);
-  const { t } = useTranslation("translation", { keyPrefix: "wizard" });
+  const { t } = useTranslation("wizard");
 
   const memoizedInitialValues = useMemo(() => initialValues, [initialValues]);
   const childrenArray = React.Children.toArray(children);
@@ -48,6 +48,7 @@ const Wizard = ({ initialValues, onSubmit, children }) => {
         colorScheme="pink"
         leftIcon={<FaCaretLeft />}
         onClick={onPreviousHandler}
+        variant="outline"
       >
         {t("anterior")}
       </Button>
