@@ -95,10 +95,7 @@ export default function CadastroCandidato(props) {
 
       if (!candidate) {
         event({
-          action: "Submit",
-          category: DEFAULT_EVENTS.click,
-          label: `Submitted at ${router.pathname}`,
-          value: `User ${session.user.id} has finished signing up.`,
+          action: DEFAULT_EVENTS.signup,
         });
         router.push("/candidato/prioridades");
       } else {
@@ -123,10 +120,9 @@ export default function CadastroCandidato(props) {
       console.error(e);
       setSubmitError(true);
       event({
-        action: "Submit",
-        category: DEFAULT_EVENTS.error,
-        label: `Submitted at ${router.pathname}`,
-        value: `Error submitting sign up form for user ${session.user.id}`,
+        action: DEFAULT_EVENTS.error,
+        description: `Error submitting sign up form for user ${session.user.id}: ${e}`,
+        fatal: false,
       });
     }
   };

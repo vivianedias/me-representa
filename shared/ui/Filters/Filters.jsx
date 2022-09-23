@@ -28,10 +28,7 @@ const Filters = ({ t, parties, mutate }) => {
   const handleReset = async (reset) => {
     reset();
     event({
-      action: "Submit",
-      category: DEFAULT_EVENTS.click,
-      label: `Submitted at ${router.pathname}`,
-      value: `User clicked to reset filters.`,
+      action: DEFAULT_EVENTS.filter,
     });
 
     try {
@@ -39,10 +36,9 @@ const Filters = ({ t, parties, mutate }) => {
     } catch (e) {
       console.error(e);
       event({
-        action: "Submit",
-        category: DEFAULT_EVENTS.error,
-        label: `Submitted at ${router.pathname}`,
-        value: `User couldnt reset filters`,
+        action: DEFAULT_EVENTS.error,
+        description: `User couldnt reset filters: ${e}`,
+        fatal: false,
       });
       toast({
         title: t("error"),
@@ -60,19 +56,15 @@ const Filters = ({ t, parties, mutate }) => {
   const onSubmit = async (values) => {
     try {
       event({
-        action: "Submit",
-        category: DEFAULT_EVENTS.click,
-        label: `Submitted at ${router.pathname}`,
-        value: `User clicked to filter candidates.`,
+        action: DEFAULT_EVENTS.filter,
       });
       await filter(values);
     } catch (e) {
       console.error(e);
       event({
-        action: "Submit",
-        category: DEFAULT_EVENTS.error,
-        label: `Submitted at ${router.pathname}`,
-        value: `User couldnt filter candidates`,
+        action: DEFAULT_EVENTS.error,
+        description: `User couldnt filter filters: ${e}`,
+        fatal: false,
       });
       toast({
         title: t("error"),

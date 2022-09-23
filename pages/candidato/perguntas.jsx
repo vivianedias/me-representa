@@ -11,7 +11,11 @@ import Wizard from "../../shared/ui/Wizard/Wizard";
 import * as Questions from "../../shared/ui/Questions";
 import { authOptions } from "../api/auth/[...nextauth]";
 import fetcher from "../../utils/apiClient";
-import { event, DEFAULT_EVENTS } from "../../shared/analytics/utils";
+import {
+  event,
+  DEFAULT_EVENTS,
+  DEFAULT_CATEGORIES,
+} from "../../shared/analytics/utils";
 
 const Perguntas = ({ session, candidate }) => {
   const [initialValues, setInitialValues] = useState(candidate.answers);
@@ -33,10 +37,9 @@ const Perguntas = ({ session, candidate }) => {
       if (!candidate.answers) {
         router.push(`/candidato/${session?.user?.id}`);
         event({
-          action: "Submit",
-          category: DEFAULT_EVENTS.click,
-          label: `Submitted at ${router.pathname}`,
-          value: `User ${session.user.id} has finished answering the human rights survey.`,
+          action: DEFAULT_EVENTS.answer,
+          category: DEFAULT_CATEGORIES.candidate,
+          label: `User ${session.user.id} has finished answering the human rights survey.`,
         });
       } else {
         setInitialValues(values);
@@ -53,10 +56,9 @@ const Perguntas = ({ session, candidate }) => {
     } catch (e) {
       console.error(e);
       event({
-        action: "Submit",
-        category: DEFAULT_EVENTS.error,
-        label: `Submitted at ${router.pathname}`,
-        value: `Error submitting answers form for user ${session.user.id}`,
+        action: DEFAULT_EVENTS.error,
+        description: `Error submitting answers form for user ${session.user.id}: ${e}`,
+        fatal: false,
       });
       toast({
         title: t("error"),
