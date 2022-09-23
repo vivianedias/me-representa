@@ -4,7 +4,7 @@
     justify-content: space-evenly;
     background-color: var(--chakra-colors-teal-500);
     padding: var(--chakra-space-12) var(--chakra-space-16);
-    max-width: 100%;
+    width: 100%;
 }
 
 .title {

@@ -23,7 +23,11 @@ const Pautas = () => {
         textAlign="center"
       >
         <Trans i18nKey="titulo">
-          Entenda as <Text display="inline-block" color="pink.400">#pautas</Text> em debate
+          Entenda as{" "}
+          <Text display="inline-block" color="pink.400">
+            #pautas
+          </Text>{" "}
+          em debate
         </Trans>
       </Heading>
       <Mosaic>
@@ -76,7 +80,7 @@ const Pautas = () => {
         {/* Povos */}
         <MosaicItem>
           {({ colors, getBoxProps }) => (
-            <Box bg={colors.pink} {...getBoxProps()}>
+            <Box bg={colors.blue} {...getBoxProps()}>
               <Text className={styles.text}>{t("povos")}</Text>
             </Box>
           )}
@@ -102,7 +106,7 @@ const Pautas = () => {
         {/* Politicas sociais*/}
         <MosaicItem>
           {({ colors, getBoxProps }) => (
-            <Box bg={colors.pink} {...getBoxProps()}>
+            <Box bg={colors.yellow} {...getBoxProps()}>
               <Text className={styles.text}>{t("politicasSociais")}</Text>
             </Box>
           )}
@@ -112,7 +116,7 @@ const Pautas = () => {
         {/* Segurança Publica*/}
         <MosaicItem>
           {({ colors, getBoxProps }) => (
-            <Box bg={colors.yellow} {...getBoxProps()}>
+            <Box bg={colors.pink} {...getBoxProps()}>
               <Text className={styles.text}>{t("segurancaPublica")}</Text>
             </Box>
           )}
@@ -122,7 +126,7 @@ const Pautas = () => {
         {/* Drogas */}
         <MosaicItem>
           {({ colors, getBoxProps }) => (
-            <Box bg={colors.blue} {...getBoxProps()}>
+            <Box bg={colors.yellow} {...getBoxProps()}>
               <Text className={styles.text}>{t("drogas")}</Text>
             </Box>
           )}
@@ -132,7 +136,7 @@ const Pautas = () => {
         {/* Comunicação */}
         <MosaicItem>
           {({ colors, getBoxProps }) => (
-            <Box bg={colors.yellow} {...getBoxProps()}>
+            <Box bg={colors.blue} {...getBoxProps()}>
               <Text className={styles.text}>{t("comunicacao")}</Text>
             </Box>
           )}
@@ -142,7 +146,7 @@ const Pautas = () => {
         {/* Democracia */}
         <MosaicItem>
           {({ colors, getBoxProps }) => (
-            <Box bg={colors.blue} {...getBoxProps()}>
+            <Box bg={colors.pink} {...getBoxProps()}>
               <Text className={styles.text}>{t("demoracracia")}</Text>
             </Box>
           )}
@@ -152,14 +156,14 @@ const Pautas = () => {
         {/* Meio Ambiente */}
         <MosaicItem>
           {({ colors, getBoxProps }) => (
-            <Box bg={colors.pink} {...getBoxProps()}>
+            <Box bg={colors.yellow} {...getBoxProps()}>
               <Text className={styles.text}>{t("meioAmbiente")}</Text>
             </Box>
           )}
         </MosaicItem>
         {/* Meio Ambiente */}
 
-        {/* LGBT img*/}
+        {/* LGBT img
         <MosaicItem>
           {({ getBoxProps }) => (
             <Box {...getBoxProps()}>
@@ -172,7 +176,7 @@ const Pautas = () => {
               />
             </Box>
           )}
-        </MosaicItem>
+        </MosaicItem> */}
         {/* LGBT img*/}
       </Mosaic>
     </Box>
