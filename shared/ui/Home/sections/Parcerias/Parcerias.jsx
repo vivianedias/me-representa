@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Center, Heading } from "@chakra-ui/react";
 import styles from "./styles.module.css";
 import homeStyles from "../home.module.css";
 
@@ -34,76 +34,86 @@ const Parcerias = () => {
       >
         {t("titulo")}
       </Heading>
-      <div className={styles.container}>
-        <div className={styles.imageContainer}>
-          <Image src={abglt} alt={t("imgsAlt.abglt")} layout="responsive" />
+      <Center>
+        <div className={styles.container}>
+          <div className={styles.imageContainer}>
+            <Image src={abglt} alt={t("imgsAlt.abglt")} layout="responsive" />
+          </div>
+          <div className={styles.imageContainer}>
+            <Image src={alianca} alt={t("imgsAlt.aliancaNacionalLGBTI")} />
+          </div>
+          <div className={styles.imageContainer}>
+            <Image
+              src={apoinme}
+              alt={t("imgsAlt.apoinme")}
+              layout="responsive"
+            />
+          </div>
+          <div className={styles.imageContainer}>
+            <Image src={cfemea} alt={t("imgsAlt.cfemea")} />
+          </div>
+          <div className={styles.imageContainer}>
+            <Image src={conaq} alt={t("imgsAlt.conaq")} layout="responsive" />
+          </div>
+          <div className={styles.imageContainer}>
+            <Image src={gn} alt={t("imgsAlt.gn")} layout="responsive" />
+          </div>
+          <div className={styles.imageContainer}>
+            <Image
+              src={instutoSouDaPaz}
+              alt={t("imgsAlt.instutoSouDaPaz")}
+              layout="responsive"
+            />
+          </div>
+          <div className={styles.imageContainer}>
+            <Image
+              src={intervozes}
+              alt={t("imgsAlt.intervozes")}
+              layout="responsive"
+            />
+          </div>
+          <div className={styles.imageContainer}>
+            <Image src={ittc} alt={t("imgsAlt.ittc")} layout="responsive" />
+          </div>
+          <div className={styles.imageContainer}>
+            <Image src={mst} alt={t("imgsAlt.mst")} layout="responsive" />
+          </div>
+          <div className={styles.imageContainer}>
+            <Image src={pbpd} alt={t("imgsAlt.pbpd")} layout="responsive" />
+          </div>
+          <div className={styles.imageContainer}>
+            <Image
+              src={sistemaPolitico}
+              alt={t("imgsAlt.sistemaPolitico")}
+              layout="responsive"
+            />
+          </div>
+          <div className={styles.imageContainer}>
+            <Image
+              src={redeJusticaCriminal}
+              alt={t("imgsAlt.redeJusticaCriminal")}
+              layout="responsive"
+            />
+          </div>
+          <div className={styles.imageContainer}>
+            <Image src={azMina} alt={t("imgsAlt.azMina")} layout="responsive" />
+          </div>
+          <div className={styles.imageContainer}>
+            <Image
+              src={movimentoTransparencia}
+              alt={t("imgsAlt.movimentoTransparencia")}
+              layout="responsive"
+            />
+          </div>
+          <div className={styles.imageContainer}>
+            <Image
+              src={monabot}
+              alt={t("imgsAlt.monabot")}
+              layout="responsive"
+            />
+          </div>
         </div>
-        <div className={styles.imageContainer}>
-          <Image src={alianca} alt={t("imgsAlt.aliancaNacionalLGBTI")} />
-        </div>
-        <div className={styles.imageContainer}>
-          <Image src={apoinme} alt={t("imgsAlt.apoinme")} layout="responsive" />
-        </div>
-        <div className={styles.imageContainer}>
-          <Image src={cfemea} alt={t("imgsAlt.cfemea")} />
-        </div>
-        <div className={styles.imageContainer}>
-          <Image src={conaq} alt={t("imgsAlt.conaq")} layout="responsive" />
-        </div>
-        <div className={styles.imageContainer}>
-          <Image src={gn} alt={t("imgsAlt.gn")} layout="responsive" />
-        </div>
-        <div className={styles.imageContainer}>
-          <Image
-            src={instutoSouDaPaz}
-            alt={t("imgsAlt.instutoSouDaPaz")}
-            layout="responsive"
-          />
-        </div>
-        <div className={styles.imageContainer}>
-          <Image
-            src={intervozes}
-            alt={t("imgsAlt.intervozes")}
-            layout="responsive"
-          />
-        </div>
-        <div className={styles.imageContainer}>
-          <Image src={ittc} alt={t("imgsAlt.ittc")} layout="responsive" />
-        </div>
-        <div className={styles.imageContainer}>
-          <Image src={mst} alt={t("imgsAlt.mst")} layout="responsive" />
-        </div>
-        <div className={styles.imageContainer}>
-          <Image src={pbpd} alt={t("imgsAlt.pbpd")} layout="responsive" />
-        </div>
-        <div className={styles.imageContainer}>
-          <Image
-            src={sistemaPolitico}
-            alt={t("imgsAlt.sistemaPolitico")}
-            layout="responsive"
-          />
-        </div>
-        <div className={styles.imageContainer}>
-          <Image
-            src={redeJusticaCriminal}
-            alt={t("imgsAlt.redeJusticaCriminal")}
-            layout="responsive"
-          />
-        </div>
-        <div className={styles.imageContainer}>
-          <Image src={azMina} alt={t("imgsAlt.azMina")} layout="responsive" />
-        </div>
-        <div className={styles.imageContainer}>
-          <Image
-            src={movimentoTransparencia}
-            alt={t("imgsAlt.movimentoTransparencia")}
-            layout="responsive"
-          />
-        </div>
-        <div className={styles.imageContainer}>
-          <Image src={monabot} alt={t("imgsAlt.monabot")} layout="responsive" />
-        </div>
-      </div>
+      </Center>
     </Box>
   );
 };
