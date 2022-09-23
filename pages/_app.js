@@ -9,8 +9,8 @@ import { Flex } from "@chakra-ui/react"
 
 import Header from "/shared/ui/Header/Header"
 import Footer from "/shared/ui/Footer/Footer"
-import Analytics from "/shared/Analytics"
-import { trackPageChange } from "/shared/Analytics/utils"
+import Analytics from "/shared/analytics";
+import { trackPageChange } from "/shared/analytics/utils";
 
 import fetcher from "/utils/apiClient"
 
