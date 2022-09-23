@@ -126,7 +126,7 @@ const Pautas = () => {
         {/* Drogas */}
         <MosaicItem>
           {({ colors, getBoxProps }) => (
-            <Box bg={colors.pink} {...getBoxProps()}>
+            <Box bg={colors.yellow} {...getBoxProps()}>
               <Text className={styles.text}>{t("drogas")}</Text>
             </Box>
           )}
@@ -136,7 +136,7 @@ const Pautas = () => {
         {/* Comunicação */}
         <MosaicItem>
           {({ colors, getBoxProps }) => (
-            <Box bg={colors.yellow} {...getBoxProps()}>
+            <Box bg={colors.blue} {...getBoxProps()}>
               <Text className={styles.text}>{t("comunicacao")}</Text>
             </Box>
           )}
