@@ -143,17 +143,14 @@ export async function getServerSideProps(context) {
     };
   }
 
+  const t = ["perguntas", "header", "footer", "wizard", "common"];
+
   try {
     const candidate = await fetcher(`/api/candidate/${session.user.id}`);
 
     return {
       props: {
-        ...(await serverSideTranslations(context.locale, [
-          "perguntas",
-          "header",
-          "footer",
-          "wizard",
-        ])),
+        ...(await serverSideTranslations(context.locale, t)),
         session,
         candidate,
       },
@@ -162,12 +159,7 @@ export async function getServerSideProps(context) {
     console.error("error", e);
     return {
       props: {
-        ...(await serverSideTranslations(context.locale, [
-          "perguntas",
-          "header",
-          "footer",
-          "wizard",
-        ])),
+        ...(await serverSideTranslations(context.locale, t)),
         session,
         candidate: null,
       },

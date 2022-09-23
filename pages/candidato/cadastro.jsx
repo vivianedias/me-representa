@@ -221,16 +221,14 @@ export async function getServerSideProps(context) {
     };
   }
 
+  const t = ["cadastro", "header", "footer", "common"];
+
   try {
     const candidate = await fetcher(`/api/candidate/${session.user.id}`);
 
     return {
       props: {
-        ...(await serverSideTranslations(context.locale, [
-          "cadastro",
-          "header",
-          "footer",
-        ])),
+        ...(await serverSideTranslations(context.locale, t)),
         session,
         candidate,
       },
@@ -239,11 +237,7 @@ export async function getServerSideProps(context) {
     console.error("error", e);
     return {
       props: {
-        ...(await serverSideTranslations(locale, [
-          "cadastro",
-          "header",
-          "footer",
-        ])),
+        ...(await serverSideTranslations(locale, t)),
         session,
         candidate: null,
       },

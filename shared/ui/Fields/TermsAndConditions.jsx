@@ -1,5 +1,6 @@
 import NextLink from "next/link";
 import { Field } from "react-final-form";
+import { useTranslation } from "react-i18next";
 import {
   FormControl,
   FormErrorMessage,
@@ -11,7 +12,8 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import validations from "../../../utils/validations";
 
 function TermsAndConditionsField({ t }) {
-  const { minLength } = validations(t);
+  const { t: validationsT } = useTranslation("common");
+  const { minLength } = validations(validationsT);
 
   function TermsLink() {
     return (

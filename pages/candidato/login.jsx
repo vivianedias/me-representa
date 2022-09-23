@@ -1,40 +1,41 @@
+import { useEffect, useState } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { Form } from "react-final-form";
+import { signIn, useSession } from "next-auth/react";
+import { FORM_ERROR } from "final-form";
+import { useTranslation } from "react-i18next";
+
 import {
   Heading,
   Box,
   Button,
   Text,
   Stack,
-  FormControl,
-  InputGroup,
-  InputLeftElement,
-  Input,
   chakra,
-  FormErrorMessage,
   VStack,
   HStack,
   Container,
 } from "@chakra-ui/react";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { Form, Field } from "react-final-form";
-import { signIn } from "next-auth/react";
-import { useEffect, useState } from "react";
-import { FORM_ERROR } from "final-form";
-import { useSession } from "next-auth/react";
 import {
-  FaUserAlt,
   FaRegTimesCircle,
   FaTwitterSquare,
   FaRegEnvelope,
 } from "react-icons/fa";
-import { useTranslation } from "react-i18next";
-import { useRouter } from "next/router";
+
+import { EmailField } from "../../shared/ui/Fields";
 import validations from "../../utils/validations";
 
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["login", "header", "footer"])),
+      ...(await serverSideTranslations(locale, [
+        "login",
+        "header",
+        "footer",
+        "common",
+      ])),
     },
   };
 }
@@ -43,10 +44,8 @@ function Login() {
   const { status } = useSession();
   const router = useRouter();
   const [verificationEmailSent, setVerificationEmailStatus] = useState(false);
-  const CFaUserAlt = chakra(FaUserAlt);
   const CFaRegTimesCircle = chakra(FaRegTimesCircle);
   const { t } = useTranslation("login");
-  const { required } = validations(t);
 
   useEffect(() => {
     router.prefetch("/candidato/cadastro");
@@ -103,23 +102,7 @@ function Login() {
             render={({ handleSubmit, submitting, submitError }) => (
               <Box as="form" onSubmit={handleSubmit}>
                 <Stack spacing={4} align="center">
-                  <Field name="email" validate={required}>
-                    {({ input, meta }) => (
-                      <FormControl isInvalid={meta.error && meta.touched}>
-                        <InputGroup>
-                          <InputLeftElement pointerEvents="none">
-                            <CFaUserAlt color="gray.300" />
-                          </InputLeftElement>
-                          <Input
-                            {...input}
-                            type="email"
-                            placeholder={t("email.placeholder")}
-                          />
-                        </InputGroup>
-                        <FormErrorMessage>{meta.error}</FormErrorMessage>
-                      </FormControl>
-                    )}
-                  </Field>
+                  <EmailField t={t} isDisabled={submitting} hasLabel={false} />
                   {verificationEmailSent ? (
                     <VStack>
                       <Heading as="h2" size="md">
