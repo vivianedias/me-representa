@@ -14,7 +14,7 @@ import voteLGBT from "/public/imgs/home/logo_vote_lgbt.png";
 import homeStyles from "../home.module.css";
 
 const QuemFez = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "home.quemFez" });
+  const { t } = useTranslation("home", { keyPrefix: "quemFez" });
   return (
     <Box as="section" w="100%" paddingBottom={"5rem"}>
       <div>

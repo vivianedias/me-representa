@@ -9,9 +9,8 @@ import hero from "/public/imgs/home/imagem_hero.png"
 
 
 const AjudeEleitores = () => {
-  const { t } = useTranslation("translation", {
-    keyPrefix: "home.ajudeEleitores",
-  })
+  const { t } = useTranslation("home", { keyPrefix: "ajudeEleitores" });
+
   return (
     <section className={homeStyles.container}>
       <div className={homeStyles.left}>

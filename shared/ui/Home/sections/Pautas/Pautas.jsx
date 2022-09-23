@@ -13,7 +13,7 @@ import { Heading } from "@chakra-ui/react";
 import homeStyles from "../home.module.css";
 
 const Pautas = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "home.pautas" });
+  const { t } = useTranslation("home", { keyPrefix: "pautas" });
   return (
     <Box as="section" w="100%">
       <Heading

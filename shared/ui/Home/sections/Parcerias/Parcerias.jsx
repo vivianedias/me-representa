@@ -23,7 +23,7 @@ import movimentoTransparencia from "/public/imgs/home/logo_movimento_transparenc
 import monabot from "/public/imgs/home/logo_mona_bot.png";
 
 const Parcerias = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "home.parcerias" });
+  const { t } = useTranslation("home", { keyPrefix: "parcerias" });
   return (
     <Box as="section" w="100%">
       <Heading
