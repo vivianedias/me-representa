@@ -127,6 +127,7 @@ export default function CadastroCandidato(props) {
         <title>{t("title")}</title>
         <meta property="og:title" content={t("title")} key="title" />
       </Head>
+
       <Container>
         <Stack spacing={3} align="center">
           <Heading as="h1" size="xl" align="center">

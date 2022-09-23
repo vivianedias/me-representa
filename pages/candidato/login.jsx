@@ -86,6 +86,7 @@ function Login() {
         <title>{t("title")}</title>
         <meta property="og:title" content={t("title")} key="title" />
       </Head>
+
       <Container>
         <Heading as="h1" color="pink.500" mb="6">
           {t("title")}

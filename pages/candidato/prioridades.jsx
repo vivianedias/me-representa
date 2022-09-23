@@ -112,7 +112,9 @@ export default function Candidato({ session, candidate }) {
     <>
       <Head>
         <title>{t("headTitle")}</title>
+        <meta property="og:title" content={t("headTitle")} key="title" />
       </Head>
+
       <Container maxW={{ base: "60ch", md: "100ch" }} centerContent>
         <Form
           onSubmit={onSubmit}
