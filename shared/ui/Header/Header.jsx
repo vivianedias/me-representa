@@ -42,7 +42,7 @@ const NavLink = ({ children, link }) => (
 );
 
 export default function Header() {
-  const { t } = useTranslation("translation", { keyPrefix: "header" });
+  const { t } = useTranslation('header');
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
   const { status, data } = useSession();

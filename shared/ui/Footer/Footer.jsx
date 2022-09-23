@@ -23,7 +23,7 @@ import { chakra, Flex, Icon, Link, Stack } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "footer" });
+  const { t } = useTranslation("footer");
   const githubIcon = chakra(FaGithub);
   return (
     <footer className={styles.footer}>
