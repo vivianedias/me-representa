@@ -38,7 +38,7 @@ const Perguntas = ({ session, candidate }) => {
         router.push(`/candidato/${session?.user?.id}`);
         event({
           action: DEFAULT_EVENTS.answer,
-          category: DEFAULT_CATEGORIES.candidate,
+          category: DEFAULT_CATEGORIES.engagement,
           label: `User ${session.user.id} has finished answering the human rights survey.`,
         });
       } else {

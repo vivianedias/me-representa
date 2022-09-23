@@ -96,6 +96,7 @@ export default function CadastroCandidato(props) {
       if (!candidate) {
         event({
           action: DEFAULT_EVENTS.signup,
+          description: `User ${session.user.id} has finished signing up.`,
         });
         router.push("/candidato/prioridades");
       } else {

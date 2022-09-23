@@ -15,10 +15,11 @@ export const event = ({ action, category, label, description, fatal }) => {
     };
   } else {
     opts =
-      category || label
+      category || label || description
         ? {
             event_category: category,
             event_label: label,
+            description,
           }
         : {};
   }
@@ -37,7 +38,7 @@ export const trackPageChange = (routerEvents) => {
 };
 
 export const DEFAULT_CATEGORIES = {
-  candidate: "candidate",
+  engagement: "engagement",
 };
 
 export const DEFAULT_EVENTS = {

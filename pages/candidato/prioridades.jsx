@@ -26,7 +26,11 @@ import PointsBox from "../../shared/ui/PointsBox/PointsBox";
 import fetcher from "../../utils/apiClient";
 import filterCandidatesPriorities from "../../utils/filterCandidatesPriorities";
 import getPriorities from "../../utils/getPriorities";
-import { event, DEFAULT_EVENTS } from "../../shared/analytics/utils";
+import {
+  event,
+  DEFAULT_EVENTS,
+  DEFAULT_CATEGORIES,
+} from "../../shared/analytics/utils";
 
 function sumPoints(values) {
   return Object.values(values || {}).reduce((previousValue, currentValue) => {
@@ -80,7 +84,7 @@ export default function Candidato({ session, candidate }) {
         router.push("/candidato/perguntas");
         event({
           action: DEFAULT_EVENTS.select,
-          category: DEFAULT_EVENTS.candidate,
+          category: DEFAULT_CATEGORIES.engagement,
           label: `User ${session.user.id} has finished selecting their priorities.`,
         });
       } else {
