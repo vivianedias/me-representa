@@ -11,13 +11,11 @@ const Analytics = () => (
     />
     <Script id="google-analytics" strategy="afterInteractive">
       {`
-          if (typeof window !== 'undefined) {
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){window.dataLayer.push(arguments);}
-            gtag('js', new Date());
-  
-            gtag('config', ${GA_TRACKING_ID});
-          }
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', ${GA_TRACKING_ID});
         `}
     </Script>
   </>
