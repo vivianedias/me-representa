@@ -14,34 +14,35 @@ import Drugs from "../../shared/ui/Profile/Drugs";
 import Communication from "../../shared/ui/Profile/Communication";
 import Democracy from "../../shared/ui/Profile/Democracy";
 import Environment from "../../shared/ui/Profile/Environment";
-import getsCandidatesPriorities from "../../utils/getsCandidatesPriorities";
+import filterCandidatesPriorities from "../../utils/filterCandidatesPriorities";
+
+function orderedPriorities(data) {
+  const candidatesPriorities = filterCandidatesPriorities(data);
+
+  const candidatesPrioritiesWithoutZero = Object.keys(
+    candidatesPriorities || {}
+  ).reduce((obj, key) => {
+    const priorityValue = candidatesPriorities[key];
+    return {
+      ...obj,
+      ...(priorityValue > 0 ? { [key]: candidatesPriorities[key] } : {}),
+    };
+  }, {});
+
+  const keys = Object.keys(candidatesPrioritiesWithoutZero);
+
+  keys.sort(function (a, b) {
+    return candidatesPriorities[b] - candidatesPriorities[a];
+  });
+
+  return keys;
+}
 
 export default function Candidato({ data }) {
   const { t } = useTranslation("translation", { keyPrefix: "profile" });
 
   const { name, answers } = data;
 
-  function orderedPriorities(data) {
-    const candidatesPriorities = getsCandidatesPriorities(data);
-
-    const candidatesPrioritiesWithoutZero = Object.keys(
-      candidatesPriorities || {}
-    ).reduce((obj, key) => {
-      const priorityValue = candidatesPriorities[key];
-      return {
-        ...obj,
-        ...(priorityValue > 0 ? { [key]: candidatesPriorities[key] } : {}),
-      };
-    }, {});
-
-    const keys = Object.keys(candidatesPrioritiesWithoutZero);
-
-    keys.sort(function (a, b) {
-      return candidatesPriorities[b] - candidatesPriorities[a];
-    });
-
-    return keys;
-  }
   return (
     <>
       <Head>

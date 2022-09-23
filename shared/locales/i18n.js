@@ -10,11 +10,26 @@ import profile from "./pt-BR/profile.json";
 import perguntas from "./pt-BR/candidato/perguntas.json";
 import prioridades from "./pt-BR/candidato/prioridades.json";
 
-export const validation = {
+const validation = {
   required: "Campo obrigatório",
   cpf: "CPF inválido",
   email: "Insira um e-mail válido",
   length: "Formato inválido",
+};
+
+const prioritiesTitles = {
+  titles: {
+    lgbt: "LGBT",
+    gender: "Gênero",
+    race: "Raça",
+    indigenous: "Povos tradicionais",
+    socialPolicies: "Políticas Sociais",
+    security: "Segurança",
+    drugs: "Drogas",
+    communication: "Comunicação",
+    democracy: "Democracia",
+    environment: "Meio Ambiente",
+  },
 };
 
 i18n.use(initReactI18next).init({
@@ -33,11 +48,15 @@ i18n.use(initReactI18next).init({
         },
         wizard,
         home,
-        eleitores,
+        eleitores: {
+          ...eleitores,
+          ...prioritiesTitles,
+        },
         terms,
         profile,
         prioridades: {
           ...prioridades,
+          ...prioritiesTitles,
           validation,
         },
         global: {

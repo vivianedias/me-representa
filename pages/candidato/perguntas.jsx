@@ -68,6 +68,7 @@ const Perguntas = ({ session, candidate }) => {
         <title>{t("title")}</title>
         <meta property="og:title" content={t("title")} key="title" />
       </Head>
+
       <Container paddingBottom={5}>
         <Heading as="h1" marginBottom={6} textAlign="center">
           {t("title")}

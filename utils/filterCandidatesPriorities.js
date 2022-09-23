@@ -1,4 +1,4 @@
-function getsCandidatesPriorities(candidate) {
+function filterCandidatesPriorities(candidate) {
   const candidatePriorities = Object.keys(candidate || {}).reduce(
     (obj, key) => {
       const keyHasPriority = key.includes("Priority");
@@ -12,4 +12,4 @@ function getsCandidatesPriorities(candidate) {
   return candidatePriorities;
 }
 
-export default getsCandidatesPriorities;
+export default filterCandidatesPriorities;

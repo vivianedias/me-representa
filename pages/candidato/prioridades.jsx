@@ -24,7 +24,8 @@ import { FaRegTimesCircle } from "react-icons/fa";
 import { authOptions } from "../api/auth/[...nextauth]";
 import PointsBox from "../../shared/ui/PointsBox/PointsBox";
 import fetcher from "../../utils/apiClient";
-import getsCandidatesPriorities from "../../utils/getsCandidatesPriorities";
+import filterCandidatesPriorities from "../../utils/filterCandidatesPriorities";
+import getPriorities from "../../utils/getPriorities";
 
 function sumPoints(values) {
   return Object.values(values || {}).reduce((previousValue, currentValue) => {
@@ -50,50 +51,10 @@ export default function Candidato({ session, candidate }) {
   const toast = useToast();
   const router = useRouter();
   const [initialValues, setInitialValues] = useState(
-    getsCandidatesPriorities(candidate)
+    filterCandidatesPriorities(candidate)
   );
-  const priorities = [
-    {
-      name: "gender",
-      title: t("titles.gender"),
-    },
-    {
-      name: "lgbt",
-      title: t("titles.lgbt"),
-    },
-    {
-      name: "race",
-      title: t("titles.race"),
-    },
-    {
-      name: "indigenous",
-      title: t("titles.indigenous"),
-    },
-    {
-      name: "socialPolicies",
-      title: t("titles.socialPolicies"),
-    },
-    {
-      name: "security",
-      title: t("titles.security"),
-    },
-    {
-      name: "drugs",
-      title: t("titles.drugs"),
-    },
-    {
-      name: "communication",
-      title: t("titles.communication"),
-    },
-    {
-      name: "democracy",
-      title: t("titles.democracy"),
-    },
-    {
-      name: "environment",
-      title: t("titles.environment"),
-    },
-  ];
+
+  const priorities = getPriorities(t);
 
   const savePriorities = async (priorities) => {
     await fetcher("/api/candidate/priorities", {
@@ -151,7 +112,9 @@ export default function Candidato({ session, candidate }) {
     <>
       <Head>
         <title>{t("headTitle")}</title>
+        <meta property="og:title" content={t("headTitle")} key="title" />
       </Head>
+
       <Container maxW={{ base: "60ch", md: "100ch" }} centerContent>
         <Form
           onSubmit={onSubmit}
@@ -198,7 +161,7 @@ export default function Candidato({ session, candidate }) {
                             return (
                               <GridItem key={`priority-box-${i}`}>
                                 <PointsBox
-                                  title={title}
+                                  title={`#${title}`}
                                   name={name}
                                   points={points}
                                   maxPoints={maxPoints}
