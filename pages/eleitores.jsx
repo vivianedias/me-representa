@@ -2,16 +2,7 @@ import fetchClient from "../utils/apiClient";
 import "../shared/locales/i18n";
 import { Form } from "react-final-form";
 import Head from "next/head";
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Image,
-  Spacer,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Flex, Stack, Container } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import ExpandingFilters from "../shared/ui/Filters/ExpandingFilters";
@@ -32,30 +23,23 @@ export default function EleitoresDashboard({
         <title>{t("title")}</title>
         <meta property="og:title" content={t("title")} key="title" />
       </Head>
-      <Stack
-        flexDir="column"
-        mb="2"
-        justifyContent="center"
-        alignItems="center"
-        p="1rem"
-        backgroundColor="whiteAlpha.900"
-        boxShadow="md"
-      >
-        <Box bgColor="white" w={{ base: "85vw", md: "768px" }}>
-          <Stack spacing={8}>
-            <ExpandingFilters t={t} parties={parties} />
-            <WhoRepresentsYou t={t} />
-            <CandidatesCount t={t} candidatesCount={count} />
-            <Flex flexWrap={"wrap"} gap={2}>
-              {candidates.map((candidate) => {
-                return (
-                  <CandidateCard key={candidate._id} t={t} {...candidate} />
-                );
-              })}
-            </Flex>
-          </Stack>
-        </Box>
-      </Stack>
+
+      <Container maxW={"100ch"}>
+        <Stack spacing={8}>
+          <ExpandingFilters t={t} parties={parties} />
+          <WhoRepresentsYou t={t} />
+          <CandidatesCount t={t} candidatesCount={count} />
+          <Flex
+            flexWrap={"wrap"}
+            gap={{ base: 6, lg: 0 }}
+            justifyContent="space-between"
+          >
+            {candidates.map((candidate) => {
+              return <CandidateCard key={candidate._id} t={t} {...candidate} />;
+            })}
+          </Flex>
+        </Stack>
+      </Container>
     </>
   );
 }
