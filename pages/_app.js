@@ -7,10 +7,10 @@ import { useRouter } from 'next/router'
 import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import { Flex } from "@chakra-ui/react"
 
-import Header from "/shared/ui/Header/Header"
-import Footer from "/shared/ui/Footer/Footer"
-import Analytics from "/shared/analytics";
-import { trackPageChange } from "/shared/analytics/utils";
+import Header from "../shared/ui/Header/Header";
+import Footer from "../shared/ui/Footer/Footer";
+import Analytics from "../shared/analytics";
+import { trackPageChange } from "../shared/analytics/utils";
 
 import fetcher from "/utils/apiClient"
 

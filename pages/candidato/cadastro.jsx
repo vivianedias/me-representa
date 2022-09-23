@@ -17,9 +17,7 @@ import {
   useToast,
 } from "@chakra-ui/react"
 import { FaRegTimesCircle } from "react-icons/fa"
-import useUploadS3 from "/shared/hooks/useUploadS3"
-import fetcher from "/utils/apiClient"
-import { authOptions } from "../api/auth/[...nextauth]"
+
 import {
   EmailField,
   CpfField,
@@ -27,8 +25,12 @@ import {
   SexualOrientationField,
   TermsAndConditionsField,
 } from "/shared/ui/Fields"
-import { event } from "/shared/Analytics/utils"
-import { DEFAULT_EVENTS } from "/shared/Analytics/utils"
+
+import { authOptions } from "../api/auth/[...nextauth]";
+import useUploadS3 from "../../shared/hooks/useUploadS3";
+import fetcher from "../../utils/apiClient";
+import { event } from "../../shared/analytics/utils";
+import { DEFAULT_EVENTS } from "../../shared/analytics/utils";
 
 function formatInitialValues({ candidate, session }) {
   const parseToAnswer = ({ lgbtConfirm }) =>
