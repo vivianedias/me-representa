@@ -1,0 +1,8 @@
+{
+  "validation": {
+    "required": "Campo obrigatório",
+    "cpf": "CPF inválido",
+    "email": "Insira um e-mail válido",
+    "length": "Formato inválido"
+  }
+}

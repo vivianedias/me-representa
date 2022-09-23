@@ -1,8 +1,8 @@
-import fetchClient from "../../utils/apiClient";
-import "../../shared/locales/i18n";
 import Head from "next/head";
-import { Box, Container, Stack } from "@chakra-ui/react";
+import { Container, Stack } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
 import CandidateInfo from "../../shared/ui/Profile/CandidateInfo";
 import Gender from "../../shared/ui/Profile/Gender";
 import Race from "../../shared/ui/Profile/Race";
@@ -14,7 +14,9 @@ import Drugs from "../../shared/ui/Profile/Drugs";
 import Communication from "../../shared/ui/Profile/Communication";
 import Democracy from "../../shared/ui/Profile/Democracy";
 import Environment from "../../shared/ui/Profile/Environment";
+
 import filterCandidatesPriorities from "../../utils/filterCandidatesPriorities";
+import fetchClient from "../../utils/apiClient";
 
 function orderedPriorities(data) {
   const candidatesPriorities = filterCandidatesPriorities(data);
@@ -39,7 +41,7 @@ function orderedPriorities(data) {
 }
 
 export default function Candidato({ data }) {
-  const { t } = useTranslation("translation", { keyPrefix: "profile" });
+  const { t } = useTranslation("profile");
 
   const { name, answers } = data;
 
@@ -69,12 +71,33 @@ export default function Candidato({ data }) {
   );
 }
 
-export async function getServerSideProps(req, res) {
-  // Fetch data from external API
-  const { id } = req.query;
+export async function getServerSideProps({ req, locale }) {
+  try {
+    const { id } = req.query;
 
-  const data = await fetchClient(`/api/candidate/${id}`);
+    const data = await fetchClient(`/api/candidate/${id}`);
 
-  // Pass data to the page via props
-  return { props: { data } };
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          "profile",
+          "header",
+          "footer",
+        ])),
+        data,
+      },
+    };
+  } catch (e) {
+    console.error(e);
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, [
+          "profile",
+          "header",
+          "footer",
+        ])),
+        data: {},
+      },
+    };
+  }
 }
