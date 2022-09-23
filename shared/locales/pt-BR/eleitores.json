@@ -21,15 +21,7 @@
       "label": "Partidos"
     },
     "priorities": {
-      "label": "Prioridades",
-      "corruption": "Corrupção",
-      "gender": "Gênero",
-      "drugs": "Drogas",
-      "security": "Segurança",
-      "migration": "Imigrantes",
-      "race": "Raça",
-      "traditionalPopulationEnvironment": "Povos Tradicionais e Meio Ambiente",
-      "healthEducationWork": "Saúde, Educação e Trabalho"
+      "label": "Prioridades"
     },
     "state": {
       "label": "Estado"

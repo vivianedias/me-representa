@@ -14,7 +14,7 @@ import Drugs from "../../shared/ui/Profile/Drugs";
 import Communication from "../../shared/ui/Profile/Communication";
 import Democracy from "../../shared/ui/Profile/Democracy";
 import Environment from "../../shared/ui/Profile/Environment";
-import getsCandidatesPriorities from "../../utils/getsCandidatesPriorities";
+import filterCandidatesPriorities from "../../utils/filterCandidatesPriorities";
 
 export default function Candidato({ data }) {
   const { t } = useTranslation("translation", { keyPrefix: "profile" });
@@ -22,7 +22,7 @@ export default function Candidato({ data }) {
   const { name, answers } = data;
 
   function orderedPriorities(data) {
-    const candidatesPriorities = getsCandidatesPriorities(data);
+    const candidatesPriorities = filterCandidatesPriorities(data);
 
     const candidatesPrioritiesWithoutZero = Object.keys(
       candidatesPriorities || {}
