@@ -1,4 +1,3 @@
-import "../../shared/locales/i18n";
 import Head from "next/head";
 import {
   Heading,
@@ -16,6 +15,7 @@ import {
   HStack,
   Container,
 } from "@chakra-ui/react";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Form, Field } from "react-final-form";
 import { signIn } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -31,13 +31,21 @@ import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 import validations from "../../utils/validations";
 
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["login", "header", "footer"])),
+    },
+  };
+}
+
 function Login() {
   const { status } = useSession();
   const router = useRouter();
   const [verificationEmailSent, setVerificationEmailStatus] = useState(false);
   const CFaUserAlt = chakra(FaUserAlt);
   const CFaRegTimesCircle = chakra(FaRegTimesCircle);
-  const { t } = useTranslation("translation", { keyPrefix: "login" });
+  const { t } = useTranslation("login");
   const { required } = validations(t);
 
   useEffect(() => {
@@ -63,8 +71,6 @@ function Login() {
       return { [FORM_ERROR]: e };
     }
   };
-
-  
 
   useEffect(() => {
     if (status === "authenticated") {
