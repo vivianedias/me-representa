@@ -15,7 +15,7 @@ async function apiClient(endpoint, { body, ...customConfig } = {}) {
     development: process.env.NEXT_PUBLIC_APP_URL,
     production: process.env.NEXT_PUBLIC_APP_URL,
   };
-  const url = "https://" + urlByEnv[env];
+  const url = "http://" + urlByEnv[env];
 
   const res = await fetch(url + endpoint, config);
 
