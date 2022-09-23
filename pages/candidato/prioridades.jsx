@@ -26,7 +26,11 @@ import PointsBox from "../../shared/ui/PointsBox/PointsBox";
 import fetcher from "../../utils/apiClient";
 import filterCandidatesPriorities from "../../utils/filterCandidatesPriorities";
 import getPriorities from "../../utils/getPriorities";
-import { event, DEFAULT_EVENTS } from "../../shared/analytics/utils";
+import {
+  event,
+  DEFAULT_EVENTS,
+  DEFAULT_CATEGORIES,
+} from "../../shared/analytics/utils";
 
 function sumPoints(values) {
   return Object.values(values || {}).reduce((previousValue, currentValue) => {
@@ -79,10 +83,9 @@ export default function Candidato({ session, candidate }) {
       if (Object.keys(initialValues).length < 1) {
         router.push("/candidato/perguntas");
         event({
-          action: "Submit",
-          category: DEFAULT_EVENTS.click,
-          label: `Submitted at ${router.pathname}`,
-          value: `User ${candidate.userId} has finished selecting their priorities.`,
+          action: DEFAULT_EVENTS.select,
+          category: DEFAULT_CATEGORIES.engagement,
+          label: `User ${session.user.id} has finished selecting their priorities.`,
         });
       } else {
         setInitialValues(values);
@@ -99,10 +102,9 @@ export default function Candidato({ session, candidate }) {
     } catch (e) {
       console.error(e);
       event({
-        action: "Submit",
-        category: DEFAULT_EVENTS.error,
-        label: `Submitted at ${router.pathname}`,
-        value: `Error submitting priorities form for user ${session.user.id}`,
+        action: DEFAULT_EVENTS.error,
+        description: `Error submitting priorities form for user ${session.user.id}: ${e}`,
+        fatal: false,
       });
       toast({
         title: t("error"),
