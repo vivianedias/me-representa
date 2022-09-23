@@ -1,10 +1,10 @@
-import "../../shared/locales/i18n";
-import { useEffect, useMemo, useState } from "react";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import { unstable_getServerSession } from "next-auth";
-import { Form } from "react-final-form";
-import { useTranslation } from "react-i18next";
+import "/shared/locales/i18n"
+import { useEffect, useMemo, useState } from "react"
+import Head from "next/head"
+import { useRouter } from "next/router"
+import { unstable_getServerSession } from "next-auth"
+import { Form } from "react-final-form"
+import { useTranslation } from "react-i18next"
 import {
   Box,
   Button,
@@ -18,9 +18,6 @@ import {
   Container,
 } from "@chakra-ui/react";
 import { FaRegTimesCircle } from "react-icons/fa";
-import useUploadS3 from "../../shared/hooks/useUploadS3";
-import fetcher from "../../utils/apiClient";
-import { authOptions } from "../api/auth/[...nextauth]";
 import {
   EmailField,
   CpfField,
@@ -28,6 +25,11 @@ import {
   SexualOrientationField,
   TermsAndConditionsField,
 } from "../../shared/ui/Fields";
+
+import { authOptions } from "../api/auth/[...nextauth]";
+import useUploadS3 from "../../shared/hooks/useUploadS3";
+import fetcher from "../../utils/apiClient";
+import { event, DEFAULT_EVENTS } from "../../shared/analytics/utils";
 
 function formatInitialValues({ candidate, session }) {
   const parseToAnswer = ({ lgbtConfirm }) =>
@@ -92,6 +94,12 @@ export default function CadastroCandidato(props) {
       await updateCandidate(newCandidate);
 
       if (!candidate) {
+        event({
+          action: "Submit",
+          category: DEFAULT_EVENTS.click,
+          label: `Submitted at ${router.pathname}`,
+          value: `User ${session.user.id} has finished signing up.`,
+        });
         router.push("/candidato/prioridades");
       } else {
         setInitialValues(
@@ -114,6 +122,12 @@ export default function CadastroCandidato(props) {
     } catch (e) {
       console.error(e);
       setSubmitError(true);
+      event({
+        action: "Submit",
+        category: DEFAULT_EVENTS.error,
+        label: `Submitted at ${router.pathname}`,
+        value: `Error submitting sign up form for user ${session.user.id}`,
+      });
     }
   };
 
@@ -199,7 +213,7 @@ export async function getServerSideProps(context) {
     context.req,
     context.res,
     authOptions
-  );
+  )
 
   if (!session) {
     return {
@@ -207,25 +221,25 @@ export async function getServerSideProps(context) {
         destination: "/cadastro/login",
         permanent: false,
       },
-    };
+    }
   }
 
   try {
-    const candidate = await fetcher(`/api/candidate/${session.user.id}`);
+    const candidate = await fetcher(`/api/candidate/${session.user.id}`)
 
     return {
       props: {
         session,
         candidate,
       },
-    };
+    }
   } catch (e) {
-    console.error("error", e);
+    console.error("error", e)
     return {
       props: {
         session,
         candidate: null,
       },
-    };
+    }
   }
 }

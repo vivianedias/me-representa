@@ -73,7 +73,7 @@ function Login() {
   }, [status, router]);
 
   if (status === "loading") {
-    return <div>{t("loading")}</div>;
+    return <div>{t("loading")}...</div>;
   }
 
   if (status === "authenticated") {

@@ -15,7 +15,7 @@ const FacaParte = () => {
   return (
     <section className={styles.container}>
       <div className={styles.imgContainer}>
-        <Image src={facaParte} alt={t("imgDescricao")} layout="responsive" maxW="100%"/>
+        <Image src={facaParte} alt={t("imgDescricao")} layout="responsive"/>
       </div>
       <div className={styles.btnsContainer}>
         <Heading
