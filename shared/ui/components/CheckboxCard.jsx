@@ -38,7 +38,7 @@ const CustomCheckboxCard = (props) => {
   return (
     <Field name={props.name} type="checkbox" value={props.value}>
       {({ input }) => (
-        <CheckboxCard {...input} key={`custom-checkbox-${uuid()}`}>
+        <CheckboxCard {...input} key={props.value}>
           {props.label}
         </CheckboxCard>
       )}

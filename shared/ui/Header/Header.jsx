@@ -51,7 +51,7 @@ export default function Header() {
     { name: t("navbar.home"), link: "/" },
     { name: t("navbar.eleitora"), link: "/eleitores" },
   ];
-  console.log({ logo });
+
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>

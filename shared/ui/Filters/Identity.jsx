@@ -12,24 +12,29 @@ const Identity = ({ t }) => {
           <Flex wrap="wrap" gap={2}>
             <FieldCheckbox
               name="identity"
-              value="black"
+              value="PRETA"
               label={t("filters.identity.black")}
             />
             <FieldCheckbox
               name="identity"
-              value="indigenous"
+              value="PARDA"
+              label={t("filters.identity.brown")}
+            />
+            <FieldCheckbox
+              name="identity"
+              value="INDÍGENA"
               label={t("filters.identity.indigenous")}
             />
             <FieldCheckbox
               name="identity"
-              value="women"
+              value="FEMININO"
               label={t("filters.identity.women")}
             />
-            <FieldCheckbox
+            {/* <FieldCheckbox
               name="identity"
               value="lgbt"
               label={t("filters.identity.lgbt")}
-            />
+            /> */}
           </Flex>
         </Stack>
       </CheckboxGroup>

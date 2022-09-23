@@ -18,7 +18,6 @@ import State from "./State";
 
 const Filters = (props) => {
   const { t } = props;
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const onSubmit = async (data) => {
     await sleep(300);
@@ -28,7 +27,8 @@ const Filters = (props) => {
   return (
     <Form
       onSubmit={onSubmit}
-      render={({ handleSubmit, submitting }) => {
+      render={({ handleSubmit, submitting, values }) => {
+        console.log({ values });
         return (
           <Box as="form" onSubmit={handleSubmit}>
             <Stack spacing={8}>
