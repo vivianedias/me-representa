@@ -11,7 +11,7 @@ const Raca = ({ t }) => {
           id: `${prefix}_ensino`,
           label: t(prefix + ".ensino.label"),
           texto: t(prefix + ".ensino.pergunta"),
-          info: t(prefix + ".ensino.info"),
+          // info: t(prefix + ".ensino.info"),
           labelFavor: t(prefix + ".ensino.labelAFavor"),
           labelContra: t(prefix + ".ensino.labelContra"),
         }}
@@ -22,7 +22,7 @@ const Raca = ({ t }) => {
           id: `${prefix}_cotas`,
           label: t(prefix + ".cotas.label"),
           texto: t(prefix + ".cotas.pergunta"),
-          info: t(prefix + ".cotas.info"),
+          // info: t(prefix + ".cotas.info"),
           labelFavor: t(prefix + ".cotas.labelAFavor"),
           labelContra: t(prefix + ".cotas.labelContra"),
         }}
@@ -33,7 +33,7 @@ const Raca = ({ t }) => {
           id: `${prefix}_saude`,
           label: t(prefix + ".saude.label"),
           texto: t(prefix + ".saude.pergunta"),
-          info: t(prefix + ".saude.info"),
+          // info: t(prefix + ".saude.info"),
           labelFavor: t(prefix + ".saude.labelAFavor"),
           labelContra: t(prefix + ".saude.labelContra"),
         }}

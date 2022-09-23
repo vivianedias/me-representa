@@ -33,9 +33,7 @@ function SexualOrientationField({ t }) {
                 <Select {...input}>
                   <option value="">{t("lgbt.options.default")}</option>
                   <option value="lesbian">{t("lgbt.options.lesbian")}</option>
-                  <option value="bissexual">
-                    {t("lgbt.options.bissexual")}
-                  </option>
+                  <option value="bisexual">{t("lgbt.options.bisexual")}</option>
                   <option value="gay">{t("lgbt.options.gay")}</option>
                   <option value="trans">{t("lgbt.options.trans")}</option>
                   <option value="other">{t("lgbt.options.other")}</option>

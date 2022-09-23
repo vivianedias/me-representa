@@ -11,7 +11,7 @@ const MeioAmbiente = ({ t }) => {
           id: `${prefix}_consentimento`,
           label: t(prefix + ".consentimento.label"),
           texto: t(prefix + ".consentimento.pergunta"),
-          info: t(prefix + ".consentimento.info"),
+          // info: t(prefix + ".consentimento.info"),
           labelFavor: t(prefix + ".consentimento.labelAFavor"),
           labelContra: t(prefix + ".consentimento.labelContra"),
         }}

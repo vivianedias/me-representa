@@ -37,7 +37,7 @@ const Terms = () => {
   const { t } = useTranslation("translation", { keyPrefix: "terms" });
   const termsLink = `${process.env.NEXT_PUBLIC_AWS_S3_BUCKET_URL}/terms-and-conditions/TERMOS USO candidaturas.pdf`;
   return (
-    <Container bgColor="white" py={10}>
+    <Container>
       <VStack spacing={6}>
         <VStack as="article">
           <Heading as="h1" textAlign="center">

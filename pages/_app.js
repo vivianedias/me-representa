@@ -49,10 +49,10 @@ function MyApp({ Component, pageProps }) {
               flexDirection="column"
               width="100wh"
               minHeight="calc(100vh - 450px)"
-              backgroundColor="gray.200"
               justifyContent="center"
               alignItems="center"
               as="main"
+              py={16}
             >
               <Component {...pageProps} />
             </Flex>

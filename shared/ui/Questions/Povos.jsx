@@ -11,7 +11,7 @@ const Povos = ({ t }) => {
           id: `${prefix}_politicas`,
           label: t(prefix + ".politicas.label"),
           texto: t(prefix + ".politicas.pergunta"),
-          info: t(prefix + ".politicas.info"),
+          // info: t(prefix + ".politicas.info"),
           labelFavor: t(prefix + ".politicas.labelAFavor"),
           labelContra: t(prefix + ".politicas.labelContra"),
         }}
@@ -22,7 +22,7 @@ const Povos = ({ t }) => {
           id: `${prefix}_sacrificio`,
           label: t(prefix + ".sacrificio.label"),
           texto: t(prefix + ".sacrificio.pergunta"),
-          info: t(prefix + ".sacrificio.info"),
+          // info: t(prefix + ".sacrificio.info"),
           labelFavor: t(prefix + ".sacrificio.labelAFavor"),
           labelContra: t(prefix + ".sacrificio.labelContra"),
         }}
@@ -33,7 +33,7 @@ const Povos = ({ t }) => {
           id: `${prefix}_demarcacao`,
           label: t(prefix + ".demarcacao.label"),
           texto: t(prefix + ".demarcacao.pergunta"),
-          info: t(prefix + ".demarcacao.info"),
+          // info: t(prefix + ".demarcacao.info"),
           labelFavor: t(prefix + ".demarcacao.labelAFavor"),
           labelContra: t(prefix + ".demarcacao.labelContra"),
         }}

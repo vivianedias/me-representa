@@ -11,7 +11,7 @@ const Drogas = ({ t }) => {
           id: `${prefix}_descriminalizar`,
           label: t(prefix + ".descriminalizar.label"),
           texto: t(prefix + ".descriminalizar.pergunta"),
-          info: t(prefix + ".descriminalizar.info"),
+          // info: t(prefix + ".descriminalizar.info"),
           labelFavor: t(prefix + ".descriminalizar.labelAFavor"),
           labelContra: t(prefix + ".descriminalizar.labelContra"),
         }}
@@ -22,7 +22,7 @@ const Drogas = ({ t }) => {
           id: `${prefix}_tratamento`,
           label: t(prefix + ".tratamento.label"),
           texto: t(prefix + ".tratamento.pergunta"),
-          info: t(prefix + ".tratamento.info"),
+          // info: t(prefix + ".tratamento.info"),
           labelFavor: t(prefix + ".tratamento.labelAFavor"),
           labelContra: t(prefix + ".tratamento.labelContra"),
         }}

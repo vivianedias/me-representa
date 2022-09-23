@@ -14,14 +14,17 @@ import mattos from "/public/imgs/footer/mattos-filho-veiga-filho-marrey-jr-e-qui
 import dataLabel from "/public/imgs/footer/data-lavel.png";
 import silveira from "/public/imgs/footer/silveira_andrade.png";
 import logoInsta from "/public/imgs/footer/logoinsta.png";
+import { FaGithub } from "react-icons/fa";
 
 import styles from "./styles.module.css";
 import Image from "next/image";
-import NextLink from "next/link"
+import NextLink from "next/link";
+import { chakra, Flex, Icon, Link, Stack } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
-	const {t} = useTranslation("translation", {keyPrefix: "footer"})
+  const { t } = useTranslation("translation", { keyPrefix: "footer" });
+  const githubIcon = chakra(FaGithub);
   return (
     <footer className={styles.footer}>
       <div className={styles.footerWrapper}>
@@ -31,13 +34,26 @@ const Footer = () => {
             <nav>
               <ul>
                 <li>
-                  <NextLink href="#">{t("sobre.quemSomos")}</NextLink>
+                  <NextLink
+                    href="https://merepresenta.org.br/#sobre"
+                    passHref
+                    isExternal
+                  >
+                    <Link isExternal color="pink.600" target="_blank">
+                      {t("sobre.quemSomos")}
+                    </Link>
+                  </NextLink>
                 </li>
                 <li>
-                  <NextLink href="#">{t("sobre.impacto")}</NextLink>
-                </li>
-                <li>
-                  <NextLink href="#">{t("sobre.transparencia")}</NextLink>
+                  <NextLink
+                    href="https://merepresenta.org.br/#impacto"
+                    passHref
+                    isExternal
+                  >
+                    <Link isExternal color="pink.600" target="_blank">
+                      {t("sobre.impacto")}
+                    </Link>
+                  </NextLink>
                 </li>
               </ul>
             </nav>
@@ -47,48 +63,72 @@ const Footer = () => {
             <nav>
               <ul>
                 <li>
-                  <NextLink href="#">{t("participar.candidato")}</NextLink>
+                  <NextLink href="/candidato/login" passHref>
+                    <Link color="pink.600" target="_blank">
+                      {t("participar.candidato")}
+                    </Link>
+                  </NextLink>
                 </li>
                 <li>
-                  <NextLink href="#">{t("participar.eleitor")}</NextLink>
+                  <NextLink href="/eleitores" passHref>
+                    <Link color="pink.600" target="_blank">
+                      {t("participar.eleitor")}
+                    </Link>
+                  </NextLink>
                 </li>
                 <li>
-                  <NextLink href="#">{t("participar.voluntario")}</NextLink>
+                  <NextLink
+                    href="https://merepresenta.org.br/voluntariado"
+                    passHref
+                    isExternal
+                  >
+                    <Link isExternal color="pink.600" target="_blank">
+                      {t("participar.voluntario")}
+                    </Link>
+                  </NextLink>
                 </li>
               </ul>
             </nav>
           </div>
           <div className={styles.financing}>
             <span>{t("financiamento.titulo")}</span>
-            <ul>
-              <li>
-                <Image src={ciudadania} alt={t("financiamento.imgsAlt.ciudadania")} />
-              </li>
-              <li>
+            <Stack direction={"row"} wrap="wrap" align="start">
+              <Flex wrap="wrap" gap={4}>
+                <Image
+                  src={ciudadania}
+                  alt={t("financiamento.imgsAlt.ciudadania")}
+                />
                 <Image src={altec} alt={t("financiamento.imgsAlt.altec")} />
-              </li>
-              <li>
                 <Image src={undef} alt={t("financiamento.imgsAlt.undef")} />
-              </li>
-              <li>
-                <p id="iniciativa-titulo">{t("financiamento.iniciativa")}</p>
-              </li>
-              <li>
+              </Flex>
+            </Stack>
+          </div>
+          <div className={styles.financing}>
+            <span>{t("financiamento.iniciativa")}</span>
+            <Stack direction={"row"} wrap="wrap" align="start">
+              <Flex wrap="wrap" gap={10}>
                 <Image src={avina} alt={t("financiamento.imgsAlt.avina")} />
                 <Image src={omidyar} alt={t("financiamento.imgsAlt.avina")} />
-              </li>
-            </ul>
+              </Flex>
+            </Stack>
           </div>
           <div className={styles.support}>
             <span>{t("apoio.titulo")}</span>
             <div className={styles.supportWrapper}>
-              <Image src={zoly} alt={t("apoio.imgsAlt.zoly")} />
-              <Image src={mattos} alt={t("apoio.imgsAlt.mattos")} />
-              <Image src={silveira} alt={t("apoio.imgsAlt.silveira")} />
-              <Image src={casa1} alt={t("apoio.imgsAlt.casa1")}/>
-              <Image src={tiniguimaraes} alt={t("apoio.imgsAlt.tiniguimaraes")} />
+              <Stack direction={"row"} wrap="wrap" align="start">
+                <Flex wrap="wrap" gap={6}>
+                  <Image src={zoly} alt={t("apoio.imgsAlt.zoly")} />
+                  <Image src={mattos} alt={t("apoio.imgsAlt.mattos")} />
+                  <Image src={silveira} alt={t("apoio.imgsAlt.silveira")} />
+                  <Image src={casa1} alt={t("apoio.imgsAlt.casa1")} />
+                  <Image
+                    src={tiniguimaraes}
+                    alt={t("apoio.imgsAlt.tiniguimaraes")}
+                  />
+                  <Image src={dataLabel} alt={t("apoio.imgsAlt.dataLabel")} />
+                </Flex>
+              </Stack>
             </div>
-            <Image src={dataLabel} alt={t("apoio.imgsAlt.dataLabel")} />
           </div>
         </div>
       </div>
@@ -100,37 +140,82 @@ const Footer = () => {
               <ul>
                 <li>
                   <NextLink
-										target="_blank"
                     href="https://www.youtube.com/channel/UCKNpPOIOdhY5gI42fuVVr_g"
+                    passHref
+                    isExternal
                   >
-                    <Image src={youtube} alt="YouTube" width={25} height={25}/>
+                    <Link isExternal color="pink.600" target="_blank">
+                      <Image
+                        src={youtube}
+                        alt="YouTube"
+                        width={25}
+                        height={25}
+                      />
+                    </Link>
                   </NextLink>
                 </li>
                 <li>
                   <NextLink
-                    target="_blank"
                     href="https://www.instagram.com/me_representaa/?hl=pt-br"
+                    passHref
+                    isExternal
                   >
-                    <Image id="logoinstastyle" src={logoInsta} alt="Instagram" width={25} height={25}/>
+                    <Link isExternal color="pink.600" target="_blank">
+                      <Image
+                        id="logoinstastyle"
+                        src={logoInsta}
+                        alt="Instagram"
+                        width={25}
+                        height={25}
+                      />
+                    </Link>
                   </NextLink>
                 </li>
 
                 <li>
                   <NextLink
-                    target="_blank"
                     href="https://www.facebook.com/merepresenta.org.br"
+                    passHref
+                    isExternal
                   >
-                    <Image src={facebook} alt="Facebook" width={25} height={25}/>
+                    <Link isExternal color="pink.600" target="_blank">
+                      <Image
+                        src={facebook}
+                        alt="Facebook"
+                        width={25}
+                        height={25}
+                      />
+                    </Link>
                   </NextLink>
                 </li>
                 <li>
-                  <NextLink href="#">Contato</NextLink>
+                  <NextLink
+                    href="https://github.com/vivianedias/me-representa"
+                    passHref
+                    isExternal
+                  >
+                    <Link isExternal color="pink.600" target="_blank">
+                      <Icon as={githubIcon} w={6} h={6} color="gray.200" />
+                    </Link>
+                  </NextLink>
                 </li>
                 <li>
-                  <NextLink href="#">Perguntas?</NextLink>
+                  <NextLink
+                    href="https://merepresenta.org.br/faq"
+                    passHref
+                    isExternal
+                  >
+                    <Link isExternal color="pink.600" target="_blank">
+                      Perguntas?
+                    </Link>
+                  </NextLink>
                 </li>
                 <li>
-                  <NextLink href="#">Termos de Uso</NextLink>
+                  <NextLink href="/termos" passHref>
+                    <Link color="pink.600" target="_blank">
+                      Termos de Uso
+                    </Link>
+                  </NextLink>
                 </li>
               </ul>
             </nav>
