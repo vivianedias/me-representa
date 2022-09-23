@@ -12,7 +12,7 @@ import {
 import Filters from "./Filters";
 
 const ExpandingFilters = (props) => {
-  const { t, parties } = props;
+  const { t } = props;
   return (
     <Stack marginTop={4}>
       <Accordion defaultIndex={[0]} allowMultiple>
@@ -26,7 +26,7 @@ const ExpandingFilters = (props) => {
             <AccordionIcon />
           </AccordionButton>
           <AccordionPanel pb={4}>
-            <Filters t={t} parties={parties} />
+            <Filters {...props} />
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
