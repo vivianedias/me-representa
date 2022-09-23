@@ -30,13 +30,14 @@
 .footerNavigations {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0px 6rem;
+    justify-content: start;
     width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .footerNavigations>div {
-    margin: 16px;
+    padding: 0 6rem 4rem;
 }
 
 .footerNavigations a {
