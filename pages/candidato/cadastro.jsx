@@ -118,8 +118,7 @@ export default function CadastroCandidato(props) {
       }
     } catch (e) {
       console.error(e)
-      setSubmitError(true)
-      console.log('hello there error');
+      setSubmitError(true);
       event({
         action: "Submit",
         category: DEFAULT_EVENTS.error,
