@@ -64,6 +64,7 @@ export async function getServerSideProps({ locale }) {
           "eleitores",
           "header",
           "footer",
+          "prioritiesTitle",
         ])),
         parties,
         fallback: {
@@ -79,6 +80,7 @@ export async function getServerSideProps({ locale }) {
           "eleitores",
           "header",
           "footer",
+          "prioritiesTitle",
         ])),
         candidates: [],
         count: 0,

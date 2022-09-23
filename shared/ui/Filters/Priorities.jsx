@@ -1,9 +1,12 @@
 import { CheckboxGroup, Heading, Stack, Flex } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 import CheckboxCard from "../components/CheckboxCard";
 import getPriorities from "../../../utils/getPriorities";
 
 const Priorities = ({ t }) => {
-  const priorities = getPriorities(t);
+  const { t: prioritiesT } = useTranslation("prioritiesTitle");
+  const priorities = getPriorities(prioritiesT);
+
   return (
     <Stack spacing={2}>
       <Heading as="h2" size="sm" align="left">

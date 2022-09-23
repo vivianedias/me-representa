@@ -1,43 +1,43 @@
 const getPriorities = (t) => [
   {
     name: "gender",
-    title: t("titles.gender"),
+    title: t("gender"),
   },
   {
     name: "lgbt",
-    title: t("titles.lgbt"),
+    title: t("lgbt"),
   },
   {
     name: "race",
-    title: t("titles.race"),
+    title: t("race"),
   },
   {
     name: "indigenous",
-    title: t("titles.indigenous"),
+    title: t("indigenous"),
   },
   {
     name: "socialPolicies",
-    title: t("titles.socialPolicies"),
+    title: t("socialPolicies"),
   },
   {
     name: "security",
-    title: t("titles.security"),
+    title: t("security"),
   },
   {
     name: "drugs",
-    title: t("titles.drugs"),
+    title: t("drugs"),
   },
   {
     name: "communication",
-    title: t("titles.communication"),
+    title: t("communication"),
   },
   {
     name: "democracy",
-    title: t("titles.democracy"),
+    title: t("democracy"),
   },
   {
     name: "environment",
-    title: t("titles.environment"),
+    title: t("environment"),
   },
 ];
 

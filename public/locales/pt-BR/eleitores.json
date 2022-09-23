@@ -27,19 +27,7 @@
       "label": "Estado"
     },
     "button": "Filtrar",
-    "reset": "Reset",
-    "titles": {
-      "lgbt": "LGBT",
-      "gender": "Gênero",
-      "race": "Raça",
-      "indigenous": "Povos tradicionais",
-      "socialPolicies": "Políticas Sociais",
-      "security": "Segurança",
-      "drugs": "Drogas",
-      "communication": "Comunicação",
-      "democracy": "Democracia",
-      "environment": "Meio Ambiente"
-    }
+    "reset": "Reset"
   },
   "candidates": {
     "heading": "Quem te representa",
