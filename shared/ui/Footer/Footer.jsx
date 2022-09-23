@@ -14,15 +14,17 @@ import mattos from "/public/imgs/footer/mattos-filho-veiga-filho-marrey-jr-e-qui
 import dataLabel from "/public/imgs/footer/data-lavel.png";
 import silveira from "/public/imgs/footer/silveira_andrade.png";
 import logoInsta from "/public/imgs/footer/logoinsta.png";
+import { FaGithub } from "react-icons/fa";
 
 import styles from "./styles.module.css";
 import Image from "next/image";
 import NextLink from "next/link";
-import { Flex, Link, Stack } from "@chakra-ui/react";
+import { chakra, Flex, Icon, Link, Stack } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
   const { t } = useTranslation("translation", { keyPrefix: "footer" });
+  const githubIcon = chakra(FaGithub);
   return (
     <footer className={styles.footer}>
       <div className={styles.footerWrapper}>
@@ -138,38 +140,63 @@ const Footer = () => {
               <ul>
                 <li>
                   <NextLink
-                    target="_blank"
                     href="https://www.youtube.com/channel/UCKNpPOIOdhY5gI42fuVVr_g"
+                    passHref
+                    isExternal
                   >
-                    <Image src={youtube} alt="YouTube" width={25} height={25} />
+                    <Link isExternal color="pink.600" target="_blank">
+                      <Image
+                        src={youtube}
+                        alt="YouTube"
+                        width={25}
+                        height={25}
+                      />
+                    </Link>
                   </NextLink>
                 </li>
                 <li>
                   <NextLink
-                    target="_blank"
                     href="https://www.instagram.com/me_representaa/?hl=pt-br"
+                    passHref
+                    isExternal
                   >
-                    <Image
-                      id="logoinstastyle"
-                      src={logoInsta}
-                      alt="Instagram"
-                      width={25}
-                      height={25}
-                    />
+                    <Link isExternal color="pink.600" target="_blank">
+                      <Image
+                        id="logoinstastyle"
+                        src={logoInsta}
+                        alt="Instagram"
+                        width={25}
+                        height={25}
+                      />
+                    </Link>
                   </NextLink>
                 </li>
 
                 <li>
                   <NextLink
-                    target="_blank"
                     href="https://www.facebook.com/merepresenta.org.br"
+                    passHref
+                    isExternal
                   >
-                    <Image
-                      src={facebook}
-                      alt="Facebook"
-                      width={25}
-                      height={25}
-                    />
+                    <Link isExternal color="pink.600" target="_blank">
+                      <Image
+                        src={facebook}
+                        alt="Facebook"
+                        width={25}
+                        height={25}
+                      />
+                    </Link>
+                  </NextLink>
+                </li>
+                <li>
+                  <NextLink
+                    href="https://github.com/vivianedias/me-representa"
+                    passHref
+                    isExternal
+                  >
+                    <Link isExternal color="pink.600" target="_blank">
+                      <Icon as={githubIcon} w={6} h={6} color="gray.200" />
+                    </Link>
                   </NextLink>
                 </li>
                 <li>
