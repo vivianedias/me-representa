@@ -71,9 +71,9 @@ export default function Candidato({ data }) {
   );
 }
 
-export async function getServerSideProps({ req, locale }) {
+export async function getServerSideProps({ locale, query }) {
   try {
-    const { id } = req.query;
+    const { id } = query;
 
     const data = await fetchClient(`/api/candidate/${id}`);
 
