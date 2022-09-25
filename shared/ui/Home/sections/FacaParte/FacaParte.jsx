@@ -3,7 +3,7 @@ import NextLink from "next/link";
 import Image from "next/image";
 import { Trans, useTranslation } from "react-i18next";
 import { Heading } from "@chakra-ui/layout";
-import { Box, Container, Text, useTheme, Stack } from "@chakra-ui/react";
+import { Box, Container, Text } from "@chakra-ui/react";
 import homeStyles from "../home.module.css";
 import styles from "./styles.module.css";
 
@@ -32,13 +32,26 @@ const FacaParte = () => {
           </Trans>
         </Heading>
         <div className={homeStyles.btnGroup}>
-          <NextLink href="/home" passHref>
-            <a className={`${homeStyles.btnLink} ${homeStyles.btnLinkTeal}`}>
+          <NextLink
+            href="https://merepresenta.org.br/voluntariado"
+            passHref
+            isExternal
+          >
+            <a
+              className={`${homeStyles.btnLink} ${homeStyles.btnLinkTeal}`}
+              target="_blank"
+            >
               {t("btnVoluntario")}
             </a>
           </NextLink>
-          <NextLink href="/home" passHref>
-            <a className={`${homeStyles.btnLink}`}>{t("btnSaberMais")}</a>
+          <NextLink
+            href="https://merepresenta.org.br/#sobre"
+            passHref
+            isExternal
+          >
+            <a className={`${homeStyles.btnLink}`} target="_blank">
+              {t("btnSaberMais")}
+            </a>
           </NextLink>
         </div>
       </div>
