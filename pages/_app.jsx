@@ -1,4 +1,5 @@
 import "@fontsource/roboto";
+export { reportWebVitals } from "next-axiom";
 import { appWithTranslation } from "next-i18next";
 import { SWRConfig } from "swr";
 import { SessionProvider } from "next-auth/react";
