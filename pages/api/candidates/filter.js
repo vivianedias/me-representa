@@ -22,7 +22,10 @@ export default async function getCandidates(req, res) {
       parties: req?.body?.parties || [],
       identity: req?.body?.identity || [],
     };
-    const filters = [];
+    const filters = [
+      { tseId: { $exists: true } },
+      { answers: { $exists: true } },
+    ];
 
     const prioritiesFilter = buildPrioritiesQuery(initialFilters.priorities);
     if (prioritiesFilter.length > 0) {
@@ -54,14 +57,12 @@ export default async function getCandidates(req, res) {
       filters.push({ gender: "FEMININO" });
     }
 
-    const find =
-      filters.length > 0
-        ? {
-            $and: filters,
-          }
-        : {};
-
-    const findResult = await db.collection("candidates").find(find).toArray();
+    const findResult = await db
+      .collection("candidates")
+      .find({
+        $and: filters,
+      })
+      .toArray();
 
     return res.status(200).json({
       candidates: findResult,
