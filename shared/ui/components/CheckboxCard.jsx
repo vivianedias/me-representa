@@ -1,4 +1,4 @@
-import { Field } from "react-final-form";
+import { Field, useField } from "react-final-form";
 import { Box, useCheckbox } from "@chakra-ui/react";
 import { v4 as uuid } from "uuid";
 
@@ -34,15 +34,23 @@ const CheckboxCard = (props) => {
   );
 };
 
-const CustomCheckboxCard = (props) => {
+const CustomCheckboxCard = ({ name, value, label }) => {
+  const {
+    input: { checked, ...input },
+    meta: { error, touched },
+  } = useField(name, {
+    type: "checkbox", // important for RFF to manage the checked prop
+    value, // important for RFF to manage list of strings
+  });
   return (
-    <Field name={props.name} type="checkbox" value={props.value}>
-      {({ input }) => (
-        <CheckboxCard {...input} key={props.value}>
-          {props.label}
-        </CheckboxCard>
-      )}
-    </Field>
+    <CheckboxCard
+      {...input}
+      isChecked={checked}
+      isInvalid={error && touched}
+      colorScheme="yellow"
+    >
+      {label}
+    </CheckboxCard>
   );
 };
 

@@ -99,7 +99,8 @@ const Filters = ({ t, parties, mutate }) => {
                   colorScheme={"blue"}
                   variant="outline"
                   type="button"
-                  onClick={() => handleReset(form.reset)}
+                  onClick={form.reset}
+                  // onClick={() => handleReset(form.reset)}
                   disabled={submitting}
                 >
                   Reset

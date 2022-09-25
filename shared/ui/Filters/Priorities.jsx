@@ -10,16 +10,16 @@ const Priorities = ({ t }) => {
         {t("filters.priorities.label")}
       </Heading>
       <Flex wrap="wrap" gap={1}>
-        <CheckboxGroup>
-          {priorities.map(({ name: value, title: label }, i) => (
-            <CheckboxCard
-              key={`priorities-filter-${i}`}
-              name="priorities"
-              value={`${value}Priority`}
-              label={label}
-            />
-          ))}
-        </CheckboxGroup>
+        {/* <CheckboxGroup> */}
+        {priorities.map(({ name: value, title: label }, i) => (
+          <CheckboxCard
+            key={`priorities-filter-${i}`}
+            name="priorities"
+            value={`${value}Priority`}
+            label={label}
+          />
+        ))}
+        {/* </CheckboxGroup> */}
       </Flex>
     </Stack>
   );
