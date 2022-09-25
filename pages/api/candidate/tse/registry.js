@@ -17,7 +17,9 @@ export default async function updateTseRegistry(req, res) {
     const findResult = await db.collection("candidates").findOne({ userId });
 
     if (!findResult) {
-      throw new Error("You can't update a different candidate");
+      throw new Error(
+        `No candidates registered under this user ${session.user.id}`
+      );
     }
 
     const updateResult = await db.collection("candidates_tse").updateOne(
