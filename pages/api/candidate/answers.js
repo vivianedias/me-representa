@@ -24,7 +24,7 @@ export default async function saveCandidateAnswers(req, res) {
 
     return res.status(200).json(findResult);
   } catch (e) {
-    console.error(e);
-    return res.status(500).send(`An error occurred`);
+    console.error("SAVE CANDIDATE ANSWERS", e);
+    return res.status(400).send(e);
   }
 }

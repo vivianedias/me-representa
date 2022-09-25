@@ -19,7 +19,7 @@ export default async function getCandidateByCpf(req, res) {
 
     return res.status(200).json(findResult);
   } catch (e) {
-    console.error(e);
-    return res.status(400);
+    console.error("CANDIDATE CPF", e);
+    return res.status(400).send(e);
   }
 }

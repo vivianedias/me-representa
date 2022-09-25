@@ -22,7 +22,7 @@ export default async function saveCandidatePriorities(req, res) {
 
     return res.status(200).json(findResult);
   } catch (e) {
-    console.error(e);
-    return res.status(500).send(`An error occurred`);
+    console.error("SAVE CANDIDATE PRIORITIES", e);
+    return res.status(400).send(e);
   }
 }

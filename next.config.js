@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const { i18n } = require("./next-i18next.config");
+const { withAxiom } = require("next-axiom");
 
-const nextConfig = {
+const nextConfig = withAxiom({
   i18n,
   reactStrictMode: true,
   swcMinify: true,
@@ -13,6 +14,6 @@ const nextConfig = {
       },
     ];
   },
-};
+});
 
 module.exports = nextConfig

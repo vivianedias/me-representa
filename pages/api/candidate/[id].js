@@ -14,7 +14,7 @@ export default async function getCandidateById(req, res) {
 
     return res.status(200).json(findResult);
   } catch (e) {
-    console.error(e);
-    return res.status(400);
+    console.error("GET CANDIDATE", e);
+    return res.status(400).send(e);
   }
 }
