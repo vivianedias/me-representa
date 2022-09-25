@@ -17,8 +17,5 @@
       "description": "A página que você buscou não existe",
       "home": "Ir para a página inicial"
     }
-  },
-  "success": "Sucesso!",
-  "loading": "Carregando",
-  "error": "Erro"
+  }
 }
