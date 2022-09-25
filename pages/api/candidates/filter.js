@@ -30,7 +30,7 @@ export default async function getCandidates(req, res) {
     }
 
     if (initialFilters.state) {
-      filters.push({ state: { $in: req.body.state.value } });
+      filters.push({ state: req.body.state.value });
     }
 
     if (initialFilters.lgbt.length > 0) {
@@ -68,7 +68,7 @@ export default async function getCandidates(req, res) {
       count: findResult.length,
     });
   } catch (e) {
-    console.log(e);
-    return res.status(400);
+    console.error("FILTER ERROR", e);
+    return res.status(400).send(e);
   }
 }
