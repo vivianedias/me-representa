@@ -2,8 +2,7 @@ import React from "react";
 import NextLink from "next/link";
 import Image from "next/image";
 import { Trans, useTranslation } from "react-i18next";
-import { Heading } from "@chakra-ui/layout";
-import { Box, Container, Text, useTheme } from "@chakra-ui/react";
+import { Text, Heading } from "@chakra-ui/react";
 import homeStyles from "../home.module.css";
 import styles from "./styles.module.css";
 
@@ -22,7 +21,7 @@ const FacaParte = () => {
           as="h1"
           size="2xl"
           className={homeStyles.title}
-          textAlign="left"
+          textAlign="center"
         >
           <Trans i18nKey="titulo">
             Faça parte do{" "}
