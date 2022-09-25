@@ -39,8 +39,8 @@ const CustomCheckboxCard = ({ name, value, label }) => {
     input: { checked, ...input },
     meta: { error, touched },
   } = useField(name, {
-    type: "checkbox", // important for RFF to manage the checked prop
-    value, // important for RFF to manage list of strings
+    type: "checkbox",
+    value,
   });
   return (
     <CheckboxCard
