@@ -6,6 +6,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "react-i18next";
 import { Heading, Container, useToast } from "@chakra-ui/react";
 import { FORM_ERROR } from "final-form";
+import { log } from "next-axiom";
 
 import Wizard from "../../shared/ui/Wizard/Wizard";
 import * as Questions from "../../shared/ui/Questions";
@@ -54,7 +55,10 @@ const Perguntas = ({ session, candidate }) => {
         });
       }
     } catch (e) {
-      console.error(e);
+      log.error(
+        `Candidate with id '${session.user.id}' wasn't able to compute their answers`,
+        e
+      );
       event({
         action: DEFAULT_EVENTS.error,
         description: `Error submitting answers form for user ${session.user.id}: ${e}`,

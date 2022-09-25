@@ -1,12 +1,14 @@
 import { Box, Button, Stack, useToast } from "@chakra-ui/react";
 import { Form } from "react-final-form";
+import { FORM_ERROR } from "final-form";
+import { log } from "next-axiom";
+
 import Identity from "./Identity";
 import LGBT from "./LGBT";
 import Parties from "./Parties";
 import Priorities from "./Priorities";
 import State from "./State";
 import fetcher from "../../../utils/apiClient";
-import { FORM_ERROR } from "final-form";
 import { event, DEFAULT_EVENTS } from "../../analytics/utils";
 
 const Filters = ({ t, parties, mutate }) => {
@@ -34,7 +36,7 @@ const Filters = ({ t, parties, mutate }) => {
     try {
       await filter();
     } catch (e) {
-      console.error(e);
+      log.error(`User wasn't able to reset the page filters`, e);
       event({
         action: DEFAULT_EVENTS.error,
         description: `User couldnt reset filters: ${e}`,
@@ -60,10 +62,17 @@ const Filters = ({ t, parties, mutate }) => {
       });
       await filter(values);
     } catch (e) {
-      console.error(e);
+      log.error(
+        `User wasn't able to filter candidates with these values: ${JSON.stringify(
+          values,
+          null,
+          2
+        )}`,
+        e
+      );
       event({
         action: DEFAULT_EVENTS.error,
-        description: `User couldnt filter filters with values ${JSON.stringify(
+        description: `User wasn't able to filter candidates with these values ${JSON.stringify(
           values,
           null,
           2

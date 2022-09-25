@@ -2,6 +2,7 @@ import { useEffect, useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import { Field } from "react-final-form";
 import { useTranslation } from "react-i18next";
+import { log } from "next-axiom";
 import {
   FormControl,
   Input,
@@ -43,7 +44,10 @@ function CpfInput({ input, meta, tseCandidateCpf, setTseCandidate, t }) {
         setTseCandidate(data);
         setIsLoading(false);
       } catch (e) {
-        console.error(e);
+        log.error(
+          `Candidate wasn't able to find their registry on TSE with this CPF '${cpf}'`,
+          e
+        );
         setIsLoading(false);
         setTseCandidate(null);
         // setSubmitError(true);

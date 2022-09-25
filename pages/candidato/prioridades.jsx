@@ -6,6 +6,8 @@ import { unstable_getServerSession } from "next-auth/next";
 import { useRouter } from "next/router";
 import { FORM_ERROR } from "final-form";
 import { Form } from "react-final-form";
+import { log } from "next-axiom";
+
 import {
   Button,
   Grid,
@@ -101,7 +103,10 @@ export default function Prioridades({ session, candidate }) {
         });
       }
     } catch (e) {
-      console.error(e);
+      log.error(
+        `Candidate with id '${session.user.id}' wasn't able to compute their priorities`,
+        e
+      );
       event({
         action: DEFAULT_EVENTS.error,
         description: `Error submitting priorities form for user ${session.user.id}: ${e}`,

@@ -5,6 +5,8 @@ import { unstable_getServerSession } from "next-auth";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Form } from "react-final-form";
 import { useTranslation } from "react-i18next";
+import { log } from "next-axiom";
+
 import {
   Box,
   Button,
@@ -125,7 +127,7 @@ export default function CadastroCandidato(props) {
         });
       }
     } catch (e) {
-      console.error(e);
+      log.error(`Candidate '${session.user.id}' wasn't able to register`, e);
       setSubmitError(true);
       event({
         action: DEFAULT_EVENTS.error,

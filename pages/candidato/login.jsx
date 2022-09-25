@@ -6,6 +6,7 @@ import { Form } from "react-final-form";
 import { signIn, useSession } from "next-auth/react";
 import { FORM_ERROR } from "final-form";
 import { useTranslation } from "react-i18next";
+import { log } from "next-axiom";
 
 import {
   Heading,
@@ -64,7 +65,7 @@ function Login() {
 
       setVerificationEmailStatus(true);
     } catch (e) {
-      console.error({ e });
+      log.error(`User with '${email}' wasn't able to login`, e);
       setVerificationEmailStatus(false);
       return { [FORM_ERROR]: e };
     }
