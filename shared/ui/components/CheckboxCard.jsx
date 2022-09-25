@@ -1,4 +1,4 @@
-import { Field } from "react-final-form";
+import { Field, useField } from "react-final-form";
 import { Box, useCheckbox } from "@chakra-ui/react";
 
 const CheckboxCard = (props) => {
@@ -33,15 +33,23 @@ const CheckboxCard = (props) => {
   );
 };
 
-const CustomCheckboxCard = (props) => {
+const CustomCheckboxCard = ({ name, value, label }) => {
+  const {
+    input: { checked, ...input },
+    meta: { error, touched },
+  } = useField(name, {
+    type: "checkbox",
+    value,
+  });
   return (
-    <Field name={props.name} type="checkbox" value={props.value}>
-      {({ input }) => (
-        <CheckboxCard {...input} key={props.value}>
-          {props.label}
-        </CheckboxCard>
-      )}
-    </Field>
+    <CheckboxCard
+      {...input}
+      isChecked={checked}
+      isInvalid={error && touched}
+      colorScheme="yellow"
+    >
+      {label}
+    </CheckboxCard>
   );
 };
 
