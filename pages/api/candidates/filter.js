@@ -68,7 +68,7 @@ export default async function getCandidates(req, res) {
       count: findResult.length,
     });
   } catch (e) {
-    console.log(e);
-    return res.status(400);
+    console.error("FILTER ERROR", e);
+    return res.status(400).send(e);
   }
 }
