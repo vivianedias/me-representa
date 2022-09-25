@@ -19,6 +19,7 @@ export default async function getCandidateByCpf(req, res) {
     const findResult = await db.collection("candidates_tse").findOne({
       [CPF_KEY]: removesSpecialChars(cpf),
       [CANDIDATURE_STATUS_KEY]: VALID_CANDIDATE,
+      $or: [{ isRegistered: { $exists: false } }, { isRegistered: false }],
     });
 
     return res.status(200).json(findResult);

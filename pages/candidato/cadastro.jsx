@@ -70,6 +70,12 @@ export default function CadastroCandidato(props) {
     });
   };
 
+  const updateTseRegistry = async () => {
+    await fetcher("/api/candidate/tse/registry", {
+      method: "POST",
+    });
+  };
+
   const onSubmit = async (values) => {
     try {
       setSubmitError(false);
@@ -94,6 +100,7 @@ export default function CadastroCandidato(props) {
       await updateCandidate(newCandidate);
 
       if (!candidate) {
+        await updateTseRegistry();
         event({
           action: DEFAULT_EVENTS.signup,
           description: `User ${session.user.id} has finished signing up.`,
@@ -237,7 +244,7 @@ export async function getServerSideProps(context) {
     console.error("error", e);
     return {
       props: {
-        ...(await serverSideTranslations(locale, t)),
+        ...(await serverSideTranslations(context.locale, t)),
         session,
         candidate: null,
       },

@@ -11,7 +11,7 @@
   "cpf": {
     "label": "CPF",
     "placeholder": "cpf do candidato",
-    "noCandidateFoundError": "Não foi possível encontrar um candidato apto com esse CPF",
+    "noCandidateFoundError": "Não foi possível encontrar um candidato apto com esse CPF.",
     "requiredCandidate": "Por favor insira um CPF válido",
     "helperText": "Para prosseguir precisamos encontrar você no registro do TSE."
   },
