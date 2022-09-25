@@ -1,5 +1,6 @@
 {
-  "title": "Pautas #MeRepresenta",
+  "pageTitle": "Pautas - #MeRepresenta",
+  "title": "Pautas",
   "contador": "Pauta {{current}} de {{max}}",
   "posicionamento": "Qual o seu posicionamento?",
   "submitError": "Houve algum erro ao salvar suas respostas. Tente novamente.",

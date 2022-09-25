@@ -87,7 +87,7 @@ function Login() {
   return (
     <>
       <Head>
-        <title>{t("title")}</title>
+        <title>{t("pageTitle")}</title>
         <meta property="og:title" content={t("title")} key="title" />
       </Head>
 

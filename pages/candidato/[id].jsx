@@ -48,7 +48,7 @@ export default function Candidato({ data }) {
   return (
     <>
       <Head>
-        <title>{name}</title>
+        <title>{name} - #MeRepresenta</title>
         <meta property="og:title" content={name} key="title" />
       </Head>
 
