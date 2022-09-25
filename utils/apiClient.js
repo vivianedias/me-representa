@@ -20,7 +20,9 @@ async function apiClient(endpoint, { body, ...customConfig } = {}) {
   const res = await fetch(url + endpoint, config);
 
   if (!res.ok) {
-    const error = new Error("An error occurred while making the request.");
+    const error = new Error(
+      `An error occurred while making the request: ${res.statusText}`
+    );
     error.status = res.status;
     throw error;
   }
