@@ -8,3 +8,16 @@
     overflow: hidden;
     position: relative;
 }
+
+@media screen and (max-width: 768px) {
+    .box {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        max-height: 200px;
+        overflow: hidden;
+        position: relative;
+    }
+}
