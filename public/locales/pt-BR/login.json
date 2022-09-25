@@ -1,7 +1,8 @@
 {
   "loading": "Carregando",
   "redirect": "Redirecionando",
-  "title": "Entre ou crie uma conta - #MeRepresenta",
+  "pageTitle": "Entre ou crie uma conta - #MeRepresenta",
+  "title": "Entre ou crie uma conta",
   "twitter": {
     "button": "Continuar com Twitter"
   },
