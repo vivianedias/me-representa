@@ -8,12 +8,12 @@
   },
   "errorPage": {
     "500": {
-      "title": "Erro Servidor",
+      "title": "Erro Servidor - #MeRepresenta",
       "description": "Houve um erro no servidor",
       "home": "Voltar para página anterior"
     },
     "404": {
-      "title": "Página não encontrada",
+      "title": "Página não encontrada - #MeRepresenta",
       "description": "A página que você buscou não existe",
       "home": "Ir para a página inicial"
     }
