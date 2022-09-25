@@ -39,5 +39,7 @@
     "city": "cidade",
     "button": "Ver perfil completo"
   },
-  "loading": "Filtrando"
+  "loading": "Filtrando",
+  "submitError": "Houve um erro ao tentar filtrar os candidatos",
+  "error": "Erro"
 }
