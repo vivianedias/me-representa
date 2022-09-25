@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { Field } from "react-final-form";
+import { useTranslation } from "react-i18next";
 import {
   FormControl,
   Input,
@@ -12,16 +13,17 @@ import {
 import { FaUserAlt } from "react-icons/fa";
 import validations from "../../../utils/validations";
 
-function EmailField({ t, isDisabled }) {
+function EmailField({ t, isDisabled, hasLabel }) {
   const CFaUserAlt = chakra(FaUserAlt);
-  const { required, email, composeValidators } = validations(t);
+  const { t: validationsT } = useTranslation("common");
+  const { required, email, composeValidators } = validations(validationsT);
 
   return (
     <Field name="email" validate={composeValidators(required, email)}>
       {({ input, meta }) => {
         return (
           <FormControl isInvalid={meta.error && meta.touched}>
-            <FormLabel>{t("email.label")}</FormLabel>
+            {hasLabel ? <FormLabel>{t("email.label")}</FormLabel> : null}
             <InputGroup>
               <InputLeftElement pointerEvents="none">
                 <CFaUserAlt color="gray.300" />
@@ -40,6 +42,10 @@ function EmailField({ t, isDisabled }) {
     </Field>
   );
 }
+
+EmailField.defaultProps = {
+  hasLabel: true,
+};
 
 EmailField.propTypes = {
   t: PropTypes.func.isRequired,

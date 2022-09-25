@@ -30,7 +30,7 @@
 .footerNavigations {
     display: flex;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: flex-start;
     width: 100%;
     padding-top: 2rem;
     padding-bottom: 2rem;

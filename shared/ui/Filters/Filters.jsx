@@ -102,7 +102,7 @@ const Filters = ({ t, parties, mutate }) => {
                   onClick={() => handleReset(form.reset)}
                   disabled={submitting}
                 >
-                  Reset
+                  {t("filters.reset")}
                 </Button>
                 <Button
                   type="submit"

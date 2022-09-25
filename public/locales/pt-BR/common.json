@@ -1,0 +1,21 @@
+{
+  "validation": {
+    "required": "Campo obrigatório",
+    "cpf": "CPF inválido",
+    "email": "Insira um e-mail válido",
+    "length": "Formato inválido",
+    "terms": "Você precisa concordar com os termos."
+  },
+  "errorPage": {
+    "500": {
+      "title": "Erro Servidor",
+      "description": "Houve um erro no servidor",
+      "home": "Voltar para página anterior"
+    },
+    "404": {
+      "title": "Página não encontrada",
+      "description": "A página que você buscou não existe",
+      "home": "Ir para a página inicial"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-import { Field } from "react-final-form";
+import { Field, useForm } from "react-final-form";
+import { useTranslation } from "react-i18next";
 import {
   FormControl,
   RadioGroup,
@@ -8,12 +9,12 @@ import {
   FormErrorMessage,
   FormLabel,
 } from "@chakra-ui/react";
-import { v4 as uuid } from "uuid";
-import { useForm } from "react-final-form";
 import validations from "../../../utils/validations";
 
 const CustomRadio = ({ options, t, name, label, direction }) => {
-  const { required } = validations(t);
+  const { t: validationsT } = useTranslation("common");
+  const { required } = validations(validationsT);
+
   const form = useForm();
 
   return (
@@ -26,10 +27,10 @@ const CustomRadio = ({ options, t, name, label, direction }) => {
             defaultValue={form.getState().values[name] || undefined}
           >
             <Stack direction={direction} spacing={4}>
-              {options.map(({ value, label }) => (
+              {options.map(({ value, label }, i) => (
                 <Radio
                   {...input}
-                  key={uuid()}
+                  key={`custom-radio-${i}`}
                   value={value}
                   isInvalid={meta.error && meta.touched}
                 >

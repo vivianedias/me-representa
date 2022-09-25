@@ -1,0 +1,20 @@
+{
+  "imgDescricao": "Logotipo do MeRepresenta",
+  "botaoHamburgues": "Abrir menu",
+  "navbar": {
+    "home": "Home",
+    "voluntaria": "Voluntária/o",
+    "eleitora": "Eleitor/a",
+    "perguntas": "Perguntas?",
+    "candidata": "Sou Candidata/o",
+    "menu": "Clique para {{estado}} o menu",
+    "menuAbrir": "abrir",
+    "menuFechar": "fechar",
+    "auth": {
+      "profile": "Editar perfil",
+      "logout": "Sair",
+      "pautas": "Pautas",
+      "prioridades": "Prioridades"
+    }
+  }
+}

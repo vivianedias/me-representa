@@ -1,6 +1,7 @@
 import { useEffect, useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import { Field } from "react-final-form";
+import { useTranslation } from "react-i18next";
 import {
   FormControl,
   Input,
@@ -95,7 +96,10 @@ CpfInput.propTypes = {
 };
 
 function CpfField({ t, setTseCandidate, tseCandidate }) {
-  const { required, composeValidators, cpf, length } = validations(t);
+  const { t: validationsT } = useTranslation("common");
+  const { required, composeValidators, cpf, length } =
+    validations(validationsT);
+
   const tseCandidateCpf = tseCandidate && tseCandidate["NR_CPF_CANDIDATO"];
 
   return (

@@ -10,8 +10,8 @@ import styles from './styles.module.css'
 import facaParte from "/public/imgs/home/imagem_faca_parte.png";
 
 const FacaParte = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "home.facaParte" });
-  const theme = useTheme();
+  const { t } = useTranslation("home", { keyPrefix: "facaParte" });
+
   return (
     <section className={styles.container}>
       <div className={styles.imgContainer}>

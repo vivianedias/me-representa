@@ -1,4 +1,5 @@
 import "@fontsource/roboto";
+import { appWithTranslation } from "next-i18next";
 import { SWRConfig } from "swr";
 import { SessionProvider } from "next-auth/react";
 
@@ -57,4 +58,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

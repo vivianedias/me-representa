@@ -1,12 +1,14 @@
 import PropTypes from "prop-types";
 import { Field } from "react-final-form";
+import { useTranslation } from "react-i18next";
 import { FormControl, FormErrorMessage, Select } from "@chakra-ui/react";
-import validations from "../../../utils/validations";
 import Condition from "../components/Condition";
 import Radio from "../components/CustomRadio";
+import validations from "../../../utils/validations";
 
 function SexualOrientationField({ t }) {
-  const { required } = validations(t);
+  const { t: validationsT } = useTranslation("common");
+  const { required } = validations(validationsT);
   const options = [
     {
       value: "yes",

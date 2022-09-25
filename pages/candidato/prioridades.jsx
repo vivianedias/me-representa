@@ -1,7 +1,7 @@
-import "../../shared/locales/i18n";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Head from "next/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { unstable_getServerSession } from "next-auth/next";
 import { useRouter } from "next/router";
 import { FORM_ERROR } from "final-form";
@@ -51,15 +51,16 @@ function Count({ values, children }) {
   return children({ points: sum, maxPoints: MAX_POINTS });
 }
 
-export default function Candidato({ session, candidate }) {
-  const { t } = useTranslation("translation", { keyPrefix: "prioridades" });
+export default function Prioridades({ session, candidate }) {
+  const { t } = useTranslation("prioridades");
+  const { t: prioritiesT } = useTranslation("prioritiesTitle");
   const toast = useToast();
   const router = useRouter();
   const [initialValues, setInitialValues] = useState(
     filterCandidatesPriorities(candidate)
   );
 
-  const priorities = getPriorities(t);
+  const priorities = getPriorities(prioritiesT);
 
   const savePriorities = async (priorities) => {
     await fetcher("/api/candidate/priorities", {
@@ -242,6 +243,12 @@ export async function getServerSideProps(context) {
 
     return {
       props: {
+        ...(await serverSideTranslations(context.locale, [
+          "prioridades",
+          "header",
+          "footer",
+          "prioritiesTitle",
+        ])),
         session,
         candidate,
       },
@@ -250,6 +257,12 @@ export async function getServerSideProps(context) {
     console.error("error", e);
     return {
       props: {
+        ...(await serverSideTranslations(context.locale, [
+          "prioridades",
+          "header",
+          "footer",
+          "prioritiesTitle",
+        ])),
         session,
         candidate: null,
       },

@@ -5,7 +5,7 @@ import homeStyles from "../home.module.css";
 import styles from "./styles.module.css";
 
 const Conheca = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "home.conheca" });
+  const { t } = useTranslation("home", { keyPrefix: "conheca" });
   return (
     <section className={`${styles.container}`}>
       <div className={`${styles.videoContainer}`}>

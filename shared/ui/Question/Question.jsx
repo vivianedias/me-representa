@@ -12,7 +12,7 @@ const CONTRA = "contra";
 const MAX_COUNT = 23;
 
 const Question = ({ currentCount, pergunta }) => {
-  const { t } = useTranslation("translation", { keyPrefix: "global" });
+  const { t } = useTranslation("perguntas");
   const options = [
     {
       value: A_FAVOR,

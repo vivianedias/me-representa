@@ -1,10 +1,18 @@
-import "../shared/locales/i18n";
 import Head from "next/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "react-i18next";
 import Home from "../shared/ui/Home/Home";
 
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["home", "header", "footer"])),
+    },
+  };
+}
+
 export default function HomePage() {
-  const { t } = useTranslation("translation", { keyPrefix: "home" });
+  const { t } = useTranslation("home");
 
   return (
     <>
