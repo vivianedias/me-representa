@@ -25,7 +25,6 @@ import {
 } from "react-icons/fa";
 
 import { EmailField } from "../../shared/ui/Fields";
-import validations from "../../utils/validations";
 
 export async function getStaticProps({ locale }) {
   return {
