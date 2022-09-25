@@ -19,7 +19,7 @@ export default async function getPoliticalParties(req, res) {
 
     return res.status(200).json(aggregate);
   } catch (e) {
-    console.log(e);
-    return res.status(400);
+    console.error("POLITICAL PARTIES ERROR", e);
+    return res.status(400).send(e);
   }
 }

@@ -17,7 +17,7 @@ export default async function getCandidates(req, res) {
       count: findResult.length,
     });
   } catch (e) {
-    console.log(e);
-    return res.status(400);
+    console.error("GET ALL CANDIDATES", e);
+    return res.status(400).send(e);
   }
 }
