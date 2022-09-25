@@ -63,7 +63,11 @@ const Filters = ({ t, parties, mutate }) => {
       console.error(e);
       event({
         action: DEFAULT_EVENTS.error,
-        description: `User couldnt filter filters: ${e}`,
+        description: `User couldnt filter filters with values ${JSON.stringify(
+          values,
+          null,
+          2
+        )}: ${e}`,
         fatal: false,
       });
       toast({

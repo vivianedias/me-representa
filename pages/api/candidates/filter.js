@@ -30,7 +30,7 @@ export default async function getCandidates(req, res) {
     }
 
     if (initialFilters.state) {
-      filters.push({ state: { $in: req.body.state.value } });
+      filters.push({ state: req.body.state.value });
     }
 
     if (initialFilters.lgbt.length > 0) {
