@@ -6,6 +6,9 @@ function removesSpecialChars(cpf) {
   return cpf.replace(/[^\w\s]/gi, "");
 }
 
+const CANDIDATURE_STATUS_KEY = "DS_SITUACAO_CANDIDATURA";
+const VALID_CANDIDATE = "APTO";
+
 export default async function getCandidateByCpf(req, res) {
   try {
     const { cpf } = req.query;
@@ -13,9 +16,10 @@ export default async function getCandidateByCpf(req, res) {
     const client = await clientPromise;
     const db = client.db("merepresenta");
 
-    const findResult = await db
-      .collection("candidates_tse")
-      .findOne({ [CPF_KEY]: removesSpecialChars(cpf) });
+    const findResult = await db.collection("candidates_tse").findOne({
+      [CPF_KEY]: removesSpecialChars(cpf),
+      [CANDIDATURE_STATUS_KEY]: VALID_CANDIDATE,
+    });
 
     return res.status(200).json(findResult);
   } catch (e) {
