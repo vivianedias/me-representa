@@ -31,7 +31,7 @@ function TermsAndConditionsField({ t }) {
       name="acceptedTerms"
       value="yes"
       type="checkbox"
-      validate={minLength(1, "terms.error")}
+      validate={minLength(1, "validation.terms")}
     >
       {({ input, meta }) => {
         return (
