@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps }) {
             <Header />
             <Flex
               flexDirection="column"
-              width="100wh"
+              width="100vw"
               minHeight="calc(100vh - 450px)"
               justifyContent="center"
               alignItems="center"

@@ -4,25 +4,31 @@ import "primereact/resources/primereact.css";
 import "primeflex/primeflex.css";
 
 import React, { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
+
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
-import { Dropdown } from "primereact/dropdown";
-import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
 import { ProductService } from "./ProductService";
+import { Dropdown } from "primereact/dropdown";
 import "./DataTableDemo.module.css";
 
-const DataTableEditDemo = () => {
+const DataTableEditDemo = (props) => {
+  // console.log({ props });
+  const { t } = useTranslation("voluntarios", { keyPrefix: "table" });
+  const { pageSize, pageNum, setPageNum, data, isLoading, setPageSize } = props;
   const [products4, setProducts4] = useState(null);
   const toast = useRef(null);
 
   const columns = [
-    { field: "code", header: "Code" },
-    { field: "name", header: "Name" },
-    { field: "quantity", header: "Quantity" },
-    { field: "price", header: "Price" },
+    { field: "NM_URNA_CANDIDATO", header: t("name"), width: "15%" },
+    { field: "SG_PARTIDO", header: t("partyName"), width: "15%" },
+    { field: "DS_CARGO", header: t("position"), width: "15%" },
+    { field: "SG_UF", header: t("state"), width: "10%" },
+    { field: "DS_URL", header: t("link"), widht: "30%" },
+    { field: "hasBeenContacted", header: t("contact"), width: "15%" },
   ];
 
   const statuses = [
@@ -109,6 +115,26 @@ const DataTableEditDemo = () => {
     }).format(rowData.price);
   };
 
+  const template = {
+    layout:
+      "CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown",
+    RowsPerPageDropdown: (options) => {
+      const dropdownOptions = [
+        { label: 10, value: 10 },
+        { label: 20, value: 20 },
+        { label: 50, value: 50 },
+      ];
+
+      return (
+        <Dropdown
+          value={pageSize}
+          options={dropdownOptions}
+          onChange={(e) => setPageSize(e.target.value)}
+        />
+      );
+    },
+  };
+
   return (
     <div className="datatable-editing-demo">
       <Toast ref={toast} />
@@ -116,18 +142,25 @@ const DataTableEditDemo = () => {
       <div className="card p-fluid">
         <h5>Cell Editing with Sorting and Filter</h5>
         <DataTable
-          value={products4}
+          value={data?.candidates}
           editMode="cell"
           className="editable-cells-table"
           filterDisplay="row"
-          responsiveLayout="scroll"
+          header="Stack"
+          responsiveLayout="stack"
+          breakpoint={"62em"}
           paginator
-          paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+          paginatorTemplate={template}
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
-          rows={10}
+          rows={pageSize}
+          first={pageNum - 1}
+          onPage={(e) => setPageNum(e.first + 1)}
           rowsPerPageOptions={[10, 20, 50]}
+          totalRecords={data?.count}
+          lazy
+          loading={isLoading}
         >
-          {columns.map(({ field, header }) => {
+          {columns.map(({ field, header, width }) => {
             return (
               <Column
                 key={field}
@@ -135,7 +168,7 @@ const DataTableEditDemo = () => {
                 header={header}
                 filter
                 sortable
-                style={{ width: "25%" }}
+                style={{ width }}
                 body={field === "price" && priceBodyTemplate}
                 editor={(options) => cellEditor(options)}
                 onCellEditComplete={onCellEditComplete}

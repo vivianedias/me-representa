@@ -1,3 +1,11 @@
 {
-  "title": "Voluntários - #MeRepresenta"
+  "title": "Voluntários - #MeRepresenta",
+  "table": {
+    "name": "Nome do Candidato",
+    "partyName": "Partido",
+    "position": "Cargo",
+    "link": "Link para redes sociais",
+    "contact": "Já entrou em contato?",
+    "state": "Estado"
+  }
 }

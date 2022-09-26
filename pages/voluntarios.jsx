@@ -22,7 +22,7 @@ const Voluntarios = () => {
   const [pageSize, setPageSize] = useState(10);
   const [pageNum, setPageNum] = useState(1);
 
-  const { data, mutate } = useSWR(
+  const { data, mutate, isValidating } = useSWR(
     `/api/candidates/tse/social?pageSize=${pageSize}&pageNum=${pageNum}`,
     {
       shouldRetryOnError: false,
@@ -35,7 +35,15 @@ const Voluntarios = () => {
       <Head>
         <title>{t("title")}</title>
       </Head>
-      <VolunteersTable />
+      <VolunteersTable
+        pageSize={pageSize}
+        setPageSize={setPageSize}
+        pageNum={pageNum}
+        setPageNum={setPageNum}
+        data={data}
+        mutate={mutate}
+        isLoading={isValidating}
+      />
     </>
   );
 };
