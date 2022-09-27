@@ -71,7 +71,12 @@ function CpfInput({ input, meta, tseCandidateCpf, setTseCandidate, t }) {
     <FormControl isInvalid={(meta.error && meta.touched) || noValidCandidate}>
       <FormLabel>{t("cpf.label")}</FormLabel>
       <InputGroup>
-        <Input {...input} type="cpf" placeholder={t("cpf.placeholder")} />
+        <Input
+          {...input}
+          disabled={!!meta.initial}
+          type="cpf"
+          placeholder={t("cpf.placeholder")}
+        />
         {tseCandidateCpf && !isLoading ? (
           <InputRightElement>
             <Icon as={FaCheck} color="green.500" />
