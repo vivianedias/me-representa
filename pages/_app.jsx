@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps }) {
               justifyContent="center"
               alignItems="center"
               as="main"
-              py={16}
+              py={[8, 16]}
             >
               <Component {...pageProps} />
             </Flex>

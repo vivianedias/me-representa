@@ -3,14 +3,13 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
 import "primeflex/primeflex.css";
 
-import React, { useRef } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import NextLink from "next/link";
 
 import { Box, Heading, Link, Text, VStack } from "@chakra-ui/react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { Toast } from "primereact/toast";
 import { Dropdown } from "primereact/dropdown";
 import StatusBadge, { INVITED, NOT_INVITED } from "./StatusBadge";
 import CopyText from "./CopyText";
@@ -27,7 +26,6 @@ const DataTableEditDemo = (props) => {
     setPageSize,
     onRowEditComplete,
   } = props;
-  const toast = useRef(null);
 
   const nameBodyTemplate = (rowData) => {
     return normalizeName(rowData.NM_URNA_CANDIDATO);
@@ -40,7 +38,11 @@ const DataTableEditDemo = (props) => {
   const linkBodyTemplate = (rowData) => {
     return (
       <NextLink href={rowData.DS_URL} passHref>
-        <Link target="_blank" color={"pink.500"}>
+        <Link
+          target="_blank"
+          color={"pink.500"}
+          maxWidth={{ base: "200px", md: "inherit" }}
+        >
           {rowData.DS_URL}
         </Link>
       </NextLink>
@@ -97,7 +99,7 @@ const DataTableEditDemo = (props) => {
     {
       field: "DS_URL",
       header: t("link"),
-      widht: "25%",
+      width: "25%",
       body: linkBodyTemplate,
       filter: false,
     },
@@ -131,88 +133,84 @@ const DataTableEditDemo = (props) => {
   };
 
   return (
-    <div className="datatable-editing-demo">
-      <Toast ref={toast} />
-
-      <div className="card p-fluid">
-        <Box maxW={"1000px"} mb={8}>
-          <VStack spacing={4} align="flex-start">
-            <Heading as="h1">{t("title")}</Heading>
-            <Text fontSize="xl">{t("subtitle1")}</Text>
-            <Text fontSize="xl">
-              {t("subtitle2")}{" "}
-              <Text
-                as="mark"
-                fontSize="lg"
-                borderBottom={"4px"}
-                borderColor={"purple.100"}
-                fontWeight={600}
-                bgColor="transparent"
-              >
-                {t("contact")}{" "}
-              </Text>
-              {t("subtitle3")}{" "}
-              <Text
-                as="mark"
-                fontSize="lg"
-                px={2}
-                py={1.5}
-                rounded="full"
-                bgColor={"teal.100"}
-                fontWeight={600}
-              >
-                {t("badges.invited")}
-              </Text>
+    <Box>
+      <Box maxW={"1000px"} mb={8} p={{ base: 6, "2xl": 0 }}>
+        <VStack spacing={4} align="flex-start">
+          <Heading as="h1">{t("title")}</Heading>
+          <Text fontSize="xl">{t("subtitle1")}</Text>
+          <Text fontSize="xl">
+            {t("subtitle2")}{" "}
+            <Text
+              as="mark"
+              fontSize="lg"
+              borderBottom={"4px"}
+              borderColor={"purple.100"}
+              fontWeight={600}
+              bgColor="transparent"
+            >
+              {t("contact")}
+            </Text>{" "}
+            {t("subtitle3")}{" "}
+            <Text
+              as="mark"
+              fontSize="lg"
+              px={2}
+              py={1.5}
+              rounded="full"
+              bgColor={"teal.100"}
+              fontWeight={600}
+            >
+              {t("badges.invited")}
             </Text>
-          </VStack>
-        </Box>
-        <DataTable
-          value={data?.candidates}
-          editMode="row"
-          className="editable-cells-table"
-          // filterDisplay="row"
-          header={t("tableName")}
-          responsiveLayout="stack"
-          breakpoint={"62em"}
-          paginator
-          paginatorTemplate={template}
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
-          rows={pageSize}
-          first={pageNum - 1}
-          onPage={(e) => setPageNum(e.first + 1)}
-          rowsPerPageOptions={[10, 20, 50]}
-          totalRecords={data?.count}
-          lazy
-          loading={isLoading}
-          onRowEditComplete={onRowEditComplete}
-        >
-          {columns.map(({ field, header, width, body, filter = false }) => {
-            return (
-              <Column
-                key={field}
-                field={field}
-                header={header}
-                // filter={filter}
-                style={{ width }}
-                body={body}
-                editor={cellEditor}
-              />
-            );
-          })}
-          <Column
-            headerStyle={{ width: "5%", textAlign: "center" }}
-            header={t("copyHeader")}
-            bodyStyle={{ textAlign: "center" }}
-            body={CopyText}
-          />
-          <Column
-            rowEditor
-            headerStyle={{ width: "5%", minWidth: "8rem" }}
-            bodyStyle={{ textAlign: "center" }}
-          />
-        </DataTable>
-      </div>
-    </div>
+          </Text>
+        </VStack>
+      </Box>
+
+      <DataTable
+        value={data?.candidates}
+        editMode="row"
+        // filterDisplay="row"
+        header={t("tableName")}
+        responsiveLayout="stack"
+        breakpoint={"62em"}
+        paginator
+        paginatorTemplate={template}
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+        rows={pageSize}
+        first={pageNum - 1}
+        onPage={(e) => setPageNum(e.first + 1)}
+        rowsPerPageOptions={[10, 20, 50]}
+        totalRecords={data?.count}
+        lazy
+        loading={isLoading}
+        onRowEditComplete={onRowEditComplete}
+      >
+        {columns.map(({ field, header, width, body, filter = false }) => {
+          return (
+            <Column
+              key={field}
+              field={field}
+              header={header}
+              // filter={filter}
+              style={{ width }}
+              body={body}
+              editor={cellEditor}
+            />
+          );
+        })}
+        <Column
+          headerStyle={{ width: "5%", textAlign: "center" }}
+          header={t("copyHeader")}
+          bodyStyle={{ textAlign: "center" }}
+          body={CopyText}
+        />
+        <Column
+          rowEditor
+          headerStyle={{ width: "5%", minWidth: "8rem" }}
+          bodyStyle={{ textAlign: "center" }}
+        />
+      </DataTable>
+    </Box>
   );
 };
 
