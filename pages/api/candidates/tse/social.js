@@ -9,14 +9,12 @@ export default async function getTseCandidatesSocialMedia(req, res) {
     const pageNum = Number(req.query.pageNum);
     const skips = pageSize * (pageNum - 1);
 
-    // $and: [
-    //   { hasContacted: false },
-    //   { state: req.body.state }
-    // ]
-
     const findResult = await db
       .collection("candidates_tse_social_media")
-      .find({})
+      .find({
+        candidateInviteStatus: "NOT_INVITED",
+      })
+      .sort({ SQ_CANDIDATO: 1 })
       .skip(skips)
       .limit(pageSize)
       .toArray();

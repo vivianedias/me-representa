@@ -5,8 +5,8 @@ export const NOT_INVITED = "NOT_INVITED";
 
 const StatusBadge = ({ status }) => {
   const colors = {
-    NOT_INVITED: "purple",
-    INVITED: "green",
+    [NOT_INVITED]: "purple",
+    [INVITED]: "green",
     NA: "default",
   };
 

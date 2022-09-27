@@ -18,7 +18,15 @@ import normalizeName from "../../../utils/normalizeName";
 
 const DataTableEditDemo = (props) => {
   const { t } = useTranslation("voluntarios", { keyPrefix: "table" });
-  const { pageSize, pageNum, setPageNum, data, isLoading, setPageSize } = props;
+  const {
+    pageSize,
+    pageNum,
+    setPageNum,
+    data,
+    isLoading,
+    setPageSize,
+    onRowEditComplete,
+  } = props;
   const toast = useRef(null);
 
   const nameBodyTemplate = (rowData) => {
@@ -102,16 +110,6 @@ const DataTableEditDemo = (props) => {
     },
   ];
 
-  const onRowEditComplete1 = (e) => {
-    // let _products2 = [...products2];
-    // let { newData, index } = e;
-
-    // _products2[index] = newData;
-
-    // setProducts2(_products2);
-    console.log({ e });
-  };
-
   const template = {
     layout:
       "CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown",
@@ -142,7 +140,7 @@ const DataTableEditDemo = (props) => {
           value={data?.candidates}
           editMode="row"
           className="editable-cells-table"
-          filterDisplay="row"
+          // filterDisplay="row"
           header={t("tableName")}
           responsiveLayout="stack"
           breakpoint={"62em"}
@@ -156,15 +154,15 @@ const DataTableEditDemo = (props) => {
           totalRecords={data?.count}
           lazy
           loading={isLoading}
-          onRowEditComplete={onRowEditComplete1}
+          onRowEditComplete={onRowEditComplete}
         >
-          {columns.map(({ field, header, width, body, filter = true }) => {
+          {columns.map(({ field, header, width, body, filter = false }) => {
             return (
               <Column
                 key={field}
                 field={field}
                 header={header}
-                filter={filter}
+                // filter={filter}
                 style={{ width }}
                 body={body}
                 editor={cellEditor}
