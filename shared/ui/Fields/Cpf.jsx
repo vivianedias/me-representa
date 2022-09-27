@@ -36,6 +36,9 @@ function CpfInput({ input, meta, tseCandidateCpf, setTseCandidate, t }) {
         const data = await fetcher(`/api/candidate/tse/${cpf}`);
 
         if (!data) {
+          log.warn(
+            `Candidate wasn't able to find their registry on TSE with this CPF '${cpf}'`
+          );
           setIsLoading(false);
           setNoValidCandidate(true);
           return setTseCandidate(null);
