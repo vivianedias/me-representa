@@ -2,18 +2,7 @@ import { unstable_getServerSession } from "next-auth/next";
 import { ObjectId } from "mongodb";
 import clientPromise from "../../../lib/mongodb";
 import { authOptions } from "../auth/[...nextauth]";
-
-function normalizeName(name) {
-  const names = name.split(" ");
-  const normalizedNames = names.map((name) => {
-    const lowerCaseName = name.toLowerCase();
-    let splitName = lowerCaseName.split("");
-    splitName[0] = splitName[0].toUpperCase();
-    return splitName.join("");
-  });
-
-  return normalizedNames.join(" ");
-}
+import normalizeName from "../../../utils/normalizeName";
 
 function getTseCandidate(tseCandidate) {
   if (!tseCandidate) return {};

@@ -3,116 +3,140 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.css";
 import "primeflex/primeflex.css";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useTranslation } from "react-i18next";
+import NextLink from "next/link";
 
+import { Heading, Link } from "@chakra-ui/react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { InputText } from "primereact/inputtext";
-import { InputNumber } from "primereact/inputnumber";
 import { Toast } from "primereact/toast";
-import { ProductService } from "./ProductService";
 import { Dropdown } from "primereact/dropdown";
+import normalizeName from "../../../utils/normalizeName";
+
 import "./DataTableDemo.module.css";
 
+const CONTACTED = "CONTATADO";
+const NOT_CONTACTED = "NAO_CONTATADO";
+
 const DataTableEditDemo = (props) => {
-  // console.log({ props });
   const { t } = useTranslation("voluntarios", { keyPrefix: "table" });
   const { pageSize, pageNum, setPageNum, data, isLoading, setPageSize } = props;
-  const [products4, setProducts4] = useState(null);
   const toast = useRef(null);
 
-  const columns = [
-    { field: "NM_URNA_CANDIDATO", header: t("name"), width: "15%" },
-    { field: "SG_PARTIDO", header: t("partyName"), width: "15%" },
-    { field: "DS_CARGO", header: t("position"), width: "15%" },
-    { field: "SG_UF", header: t("state"), width: "10%" },
-    { field: "DS_URL", header: t("link"), widht: "30%" },
-    { field: "hasBeenContacted", header: t("contact"), width: "15%" },
-  ];
-
-  const statuses = [
-    { label: "In Stock", value: "INSTOCK" },
-    { label: "Low Stock", value: "LOWSTOCK" },
-    { label: "Out of Stock", value: "OUTOFSTOCK" },
-  ];
-
-  const dataTableFuncMap = {
-    products4: setProducts4,
+  const nameBodyTemplate = (rowData) => {
+    return normalizeName(rowData.NM_URNA_CANDIDATO);
   };
 
-  const productService = new ProductService();
-
-  useEffect(() => {
-    fetchProductData("products4");
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const fetchProductData = (productStateKey) => {
-    productService
-      .getProductsSmall()
-      .then((data) => dataTableFuncMap[`${productStateKey}`](data));
+  const positionBodyTemplate = (rowData) => {
+    return normalizeName(rowData.DS_CARGO);
   };
 
-  const isPositiveInteger = (val) => {
-    let str = String(val);
-    str = str.trim();
-    if (!str) {
-      return false;
-    }
-    str = str.replace(/^0+/, "") || "0";
-    let n = Math.floor(Number(str));
-    return n !== Infinity && String(n) === str && n >= 0;
+  const linkBodyTemplate = (rowData) => {
+    return (
+      <NextLink href={rowData.DS_URL} passHref>
+        <Link target="_blank" color={"pink.500"}>
+          {rowData.DS_URL}
+        </Link>
+      </NextLink>
+    );
   };
 
-  const onCellEditComplete = (e) => {
-    let { rowData, newValue, field, originalEvent: event } = e;
+  const getStatusLabel = (status) => {
+    switch (status) {
+      case CONTACTED:
+        return "Contatado";
 
-    switch (field) {
-      case "quantity":
-      case "price":
-        if (isPositiveInteger(newValue)) rowData[field] = newValue;
-        else event.preventDefault();
-        break;
+      case NOT_CONTACTED:
+        return "Não contatado";
 
       default:
-        if (newValue.trim().length > 0) rowData[field] = newValue;
-        else event.preventDefault();
-        break;
+        return "NA";
     }
+  };
+
+  const statusBodyTemplate = (rowData) => {
+    // console.log({ status: rowData.status });
+    return (
+      <span className={`product-badge status-${rowData.status || "na"}`}>
+        {getStatusLabel(rowData.inventoryStatus)}
+      </span>
+    );
+  };
+
+  const statuses = [
+    { label: "Contatado", value: CONTACTED },
+    { label: "Não contatado", value: NOT_CONTACTED },
+  ];
+
+  const statusEditor = (options) => {
+    return (
+      <Dropdown
+        value={options.value}
+        options={statuses}
+        optionLabel="label"
+        optionValue="value"
+        onChange={(e) => options.editorCallback(e.value)}
+        placeholder={t("placeholder")}
+        itemTemplate={(option) => {
+          return (
+            <span
+              className={`product-badge status-${option.value.toLowerCase()}`}
+            >
+              {option.label}
+            </span>
+          );
+        }}
+      />
+    );
   };
 
   const cellEditor = (options) => {
-    if (options.field === "price") return priceEditor(options);
-    else return textEditor(options);
+    if (options.field === "candidateInviteStatus") return statusEditor(options);
+    if (options.field === "NM_URNA_CANDIDATO" || options.field === "DS_CARGO")
+      return normalizeName(options.value);
+    else return options.value;
   };
 
-  const textEditor = (options) => {
-    return (
-      <InputText
-        type="text"
-        value={options.value}
-        onChange={(e) => options.editorCallback(e.target.value)}
-      />
-    );
-  };
+  const columns = [
+    {
+      field: "NM_URNA_CANDIDATO",
+      header: t("name"),
+      width: "15%",
+      body: nameBodyTemplate,
+    },
+    { field: "SG_PARTIDO", header: t("partyName"), width: "15%" },
+    {
+      field: "DS_CARGO",
+      header: t("position"),
+      width: "15%",
+      body: positionBodyTemplate,
+    },
+    { field: "SG_UF", header: t("state"), width: "10%" },
+    {
+      field: "DS_URL",
+      header: t("link"),
+      widht: "25%",
+      body: linkBodyTemplate,
+      filter: false,
+    },
+    {
+      field: "candidateInviteStatus",
+      header: t("contact"),
+      width: "10%",
+      body: statusBodyTemplate,
+      filter: false,
+    },
+  ];
 
-  const priceEditor = (options) => {
-    return (
-      <InputNumber
-        value={options.value}
-        onValueChange={(e) => options.editorCallback(e.value)}
-        mode="currency"
-        currency="USD"
-        locale="en-US"
-      />
-    );
-  };
+  const onRowEditComplete1 = (e) => {
+    // let _products2 = [...products2];
+    // let { newData, index } = e;
 
-  const priceBodyTemplate = (rowData) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(rowData.price);
+    // _products2[index] = newData;
+
+    // setProducts2(_products2);
+    console.log({ e });
   };
 
   const template = {
@@ -140,13 +164,13 @@ const DataTableEditDemo = (props) => {
       <Toast ref={toast} />
 
       <div className="card p-fluid">
-        <h5>Cell Editing with Sorting and Filter</h5>
+        <Heading as="h1">{t("title")}</Heading>
         <DataTable
           value={data?.candidates}
-          editMode="cell"
+          editMode="row"
           className="editable-cells-table"
           filterDisplay="row"
-          header="Stack"
+          header={t("tableName")}
           responsiveLayout="stack"
           breakpoint={"62em"}
           paginator
@@ -159,22 +183,26 @@ const DataTableEditDemo = (props) => {
           totalRecords={data?.count}
           lazy
           loading={isLoading}
+          onRowEditComplete={onRowEditComplete1}
         >
-          {columns.map(({ field, header, width }) => {
+          {columns.map(({ field, header, width, body, filter = true }) => {
             return (
               <Column
                 key={field}
                 field={field}
                 header={header}
-                filter
-                sortable
+                filter={filter}
                 style={{ width }}
-                body={field === "price" && priceBodyTemplate}
-                editor={(options) => cellEditor(options)}
-                onCellEditComplete={onCellEditComplete}
+                body={body}
+                editor={cellEditor}
               />
             );
           })}
+          <Column
+            rowEditor
+            headerStyle={{ width: "10%", minWidth: "8rem" }}
+            bodyStyle={{ textAlign: "center" }}
+          ></Column>
         </DataTable>
       </div>
     </div>

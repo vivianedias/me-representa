@@ -114,17 +114,17 @@ input[type="number"]::-webkit-inner-spin-button {
   letter-spacing: .3px;
 }
 
-.product-badge.status-instock {
+.product-badge.status-contatado {
   background: #C8E6C9;
   color: #256029;
 }
 
-.product-badge.status-outofstock {
+.product-badge.status-nao_contatado {
   background: #FFCDD2;
   color: #C63737;
 }
 
-.product-badge.status-lowstock {
+.product-badge.status-na {
   background: #FEEDAF;
   color: #8A5340;
 }
