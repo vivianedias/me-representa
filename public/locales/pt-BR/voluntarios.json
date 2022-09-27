@@ -1,0 +1,23 @@
+{
+  "title": "Voluntários - #MeRepresenta",
+  "table": {
+    "title": "Voluntária/o, muito obrigada por contribuir!",
+    "tableName": "Redes sociais dos candidatos",
+    "name": "Nome do Candidato",
+    "partyName": "Partido",
+    "position": "Cargo",
+    "link": "Link para redes sociais",
+    "contact": "Já entrou em contato?",
+    "state": "Estado",
+    "placeholder": "Selecione um status",
+    "copyText": "Copiar mensagem para compartilhar",
+    "copyHeader": "Texto para compartilhar",
+    "subtitle1": "Essa é uma lista com todos os candidatos cadastrados no TSE e os links para suas redes sociais.",
+    "subtitle2": "Após enviar o convite para alguma das redes, por favor, atualize o campo",
+    "subtitle3": "para",
+    "badges": {
+      "invited": "Convidado",
+      "notInvited": "Não convidado"
+    }
+  }
+}

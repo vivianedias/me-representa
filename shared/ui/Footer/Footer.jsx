@@ -77,11 +77,7 @@ const Footer = () => {
                   </NextLink>
                 </li>
                 <li>
-                  <NextLink
-                    href="https://merepresenta.org.br/voluntariado"
-                    passHref
-                    isExternal
-                  >
+                  <NextLink href="/voluntarios" passHref>
                     <Link isExternal color="pink.600" target="_blank">
                       {t("participar.voluntario")}
                     </Link>

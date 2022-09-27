@@ -31,11 +31,7 @@ const FacaParte = () => {
           </Trans>
         </Heading>
         <div className={homeStyles.btnGroup}>
-          <NextLink
-            href="https://merepresenta.org.br/voluntariado"
-            passHref
-            isExternal
-          >
+          <NextLink href="/voluntarios" passHref>
             <a
               className={`${homeStyles.btnLink} ${homeStyles.btnLinkTeal}`}
               target="_blank"

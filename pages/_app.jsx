@@ -41,12 +41,12 @@ function MyApp({ Component, pageProps }) {
             <Header />
             <Flex
               flexDirection="column"
-              width="100wh"
+              width="100vw"
               minHeight="calc(100vh - 450px)"
               justifyContent="center"
               alignItems="center"
               as="main"
-              py={16}
+              py={[8, 16]}
             >
               <Component {...pageProps} />
             </Flex>
