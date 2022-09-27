@@ -12,12 +12,9 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Toast } from "primereact/toast";
 import { Dropdown } from "primereact/dropdown";
+
+import StatusBadge, { INVITED, NOT_INVITED } from "./StatusBadge";
 import normalizeName from "../../../utils/normalizeName";
-
-import "./DataTableDemo.module.css";
-
-const CONTACTED = "CONTATADO";
-const NOT_CONTACTED = "NAO_CONTATADO";
 
 const DataTableEditDemo = (props) => {
   const { t } = useTranslation("voluntarios", { keyPrefix: "table" });
@@ -42,34 +39,16 @@ const DataTableEditDemo = (props) => {
     );
   };
 
-  const getStatusLabel = (status) => {
-    switch (status) {
-      case CONTACTED:
-        return "Contatado";
-
-      case NOT_CONTACTED:
-        return "Não contatado";
-
-      default:
-        return "NA";
-    }
-  };
-
   const statusBodyTemplate = (rowData) => {
-    // console.log({ status: rowData.status });
-    return (
-      <span className={`product-badge status-${rowData.status || "na"}`}>
-        {getStatusLabel(rowData.inventoryStatus)}
-      </span>
-    );
+    return <StatusBadge status={rowData.candidateInviteStatus} />;
   };
-
-  const statuses = [
-    { label: "Contatado", value: CONTACTED },
-    { label: "Não contatado", value: NOT_CONTACTED },
-  ];
 
   const statusEditor = (options) => {
+    const statuses = [
+      { label: "Contatado", value: INVITED },
+      { label: "Não contatado", value: NOT_INVITED },
+    ];
+
     return (
       <Dropdown
         value={options.value}
@@ -79,13 +58,7 @@ const DataTableEditDemo = (props) => {
         onChange={(e) => options.editorCallback(e.value)}
         placeholder={t("placeholder")}
         itemTemplate={(option) => {
-          return (
-            <span
-              className={`product-badge status-${option.value.toLowerCase()}`}
-            >
-              {option.label}
-            </span>
-          );
+          return <StatusBadge status={option.value} />;
         }}
       />
     );
