@@ -1,9 +1,11 @@
 import { Badge } from "@chakra-ui/react";
+import { useTranslation } from "next-i18next";
 
 export const INVITED = "INVITED";
 export const NOT_INVITED = "NOT_INVITED";
 
 const StatusBadge = ({ status }) => {
+  const { t } = useTranslation("voluntarios", { keyPrefix: "table.badges" });
   const colors = {
     [NOT_INVITED]: "purple",
     [INVITED]: "green",
@@ -13,10 +15,10 @@ const StatusBadge = ({ status }) => {
   const getStatusLabel = (status) => {
     switch (status) {
       case INVITED:
-        return "Contatado";
+        return t("invited");
 
       case NOT_INVITED:
-        return "Não contatado";
+        return t("notInvited");
 
       default:
         return "NA";

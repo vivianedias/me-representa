@@ -7,13 +7,13 @@ import React, { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import NextLink from "next/link";
 
-import { Heading, Link } from "@chakra-ui/react";
+import { Box, Heading, Link, Text, VStack } from "@chakra-ui/react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Toast } from "primereact/toast";
 import { Dropdown } from "primereact/dropdown";
-
 import StatusBadge, { INVITED, NOT_INVITED } from "./StatusBadge";
+import CopyText from "./CopyText";
 import normalizeName from "../../../utils/normalizeName";
 
 const DataTableEditDemo = (props) => {
@@ -135,7 +135,37 @@ const DataTableEditDemo = (props) => {
       <Toast ref={toast} />
 
       <div className="card p-fluid">
-        <Heading as="h1">{t("title")}</Heading>
+        <Box maxW={"1000px"} mb={8}>
+          <VStack spacing={4} align="flex-start">
+            <Heading as="h1">{t("title")}</Heading>
+            <Text fontSize="xl">{t("subtitle1")}</Text>
+            <Text fontSize="xl">
+              {t("subtitle2")}{" "}
+              <Text
+                as="mark"
+                fontSize="lg"
+                borderBottom={"4px"}
+                borderColor={"purple.100"}
+                fontWeight={600}
+                bgColor="transparent"
+              >
+                {t("contact")}{" "}
+              </Text>
+              {t("subtitle3")}{" "}
+              <Text
+                as="mark"
+                fontSize="lg"
+                px={2}
+                py={1.5}
+                rounded="full"
+                bgColor={"teal.100"}
+                fontWeight={600}
+              >
+                {t("badges.invited")}
+              </Text>
+            </Text>
+          </VStack>
+        </Box>
         <DataTable
           value={data?.candidates}
           editMode="row"
@@ -170,10 +200,16 @@ const DataTableEditDemo = (props) => {
             );
           })}
           <Column
-            rowEditor
-            headerStyle={{ width: "10%", minWidth: "8rem" }}
+            headerStyle={{ width: "5%", textAlign: "center" }}
+            header={t("copyHeader")}
             bodyStyle={{ textAlign: "center" }}
-          ></Column>
+            body={CopyText}
+          />
+          <Column
+            rowEditor
+            headerStyle={{ width: "5%", minWidth: "8rem" }}
+            bodyStyle={{ textAlign: "center" }}
+          />
         </DataTable>
       </div>
     </div>

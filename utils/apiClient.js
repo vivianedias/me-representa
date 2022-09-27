@@ -1,3 +1,11 @@
+const env = process.env.NEXT_PUBLIC_VERCEL_ENV || process.env.NODE_ENV;
+const urlByEnv = {
+  preview: process.env.NEXT_PUBLIC_VERCEL_URL,
+  development: process.env.NEXT_PUBLIC_APP_URL,
+  production: process.env.NEXT_PUBLIC_APP_URL,
+};
+export const url = "https://" + urlByEnv[env];
+
 async function apiClient(endpoint, { body, ...customConfig } = {}) {
   const config = {
     ...customConfig,
@@ -8,14 +16,6 @@ async function apiClient(endpoint, { body, ...customConfig } = {}) {
   if (body) {
     config.body = JSON.stringify(body);
   }
-
-  const env = process.env.NEXT_PUBLIC_VERCEL_ENV || process.env.NODE_ENV;
-  const urlByEnv = {
-    preview: process.env.NEXT_PUBLIC_VERCEL_URL,
-    development: process.env.NEXT_PUBLIC_APP_URL,
-    production: process.env.NEXT_PUBLIC_APP_URL,
-  };
-  const url = "https://" + urlByEnv[env];
 
   const res = await fetch(url + endpoint, config);
 
