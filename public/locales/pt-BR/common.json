@@ -3,7 +3,7 @@
     "required": "Campo obrigatório",
     "cpf": "CPF inválido",
     "email": "Insira um e-mail válido",
-    "length": "Formato inválido",
+    "length": "Você excedeu o limite de caracteres ({{size}})",
     "terms": "Você precisa concordar com os termos."
   },
   "errorPage": {

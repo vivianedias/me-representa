@@ -2,10 +2,6 @@ import clientPromise from "../../../../lib/mongodb";
 
 const CPF_KEY = "NR_CPF_CANDIDATO";
 
-function removesSpecialChars(cpf) {
-  return cpf.replace(/[^\w\s]/gi, "");
-}
-
 const CANDIDATURE_STATUS_KEY = "DS_SITUACAO_CANDIDATURA";
 const VALID_CANDIDATE = "APTO";
 
@@ -17,7 +13,7 @@ export default async function getCandidateByCpf(req, res) {
     const db = client.db("merepresenta");
 
     const findResult = await db.collection("candidates_tse").findOne({
-      [CPF_KEY]: removesSpecialChars(cpf),
+      [CPF_KEY]: cpf,
       [CANDIDATURE_STATUS_KEY]: VALID_CANDIDATE,
       $or: [{ isRegistered: { $exists: false } }, { isRegistered: false }],
     });

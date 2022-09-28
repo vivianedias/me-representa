@@ -10,7 +10,7 @@
   },
   "cpf": {
     "label": "CPF",
-    "placeholder": "cpf do candidato",
+    "placeholder": "123.456.789-10",
     "noCandidateFoundError": "Não foi possível encontrar um candidato apto com esse CPF.",
     "requiredCandidate": "Por favor insira um CPF válido",
     "helperText": "Para prosseguir precisamos encontrar você no registro do TSE."

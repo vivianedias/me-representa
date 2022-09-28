@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { FaCheck, FaExclamationCircle } from "react-icons/fa";
 import fetcher from "../../../utils/apiClient";
+import removesSpecialChars from "../../../utils/removesSpecialChars";
 import validations from "../../../utils/validations";
 
 function CpfInput({ input, meta, tseCandidateCpf, setTseCandidate, t }) {
@@ -31,13 +32,14 @@ function CpfInput({ input, meta, tseCandidateCpf, setTseCandidate, t }) {
     async (cpf) => {
       setIsLoading(true);
       setNoValidCandidate(false);
+      const parsedCpf = removesSpecialChars(cpf);
 
       try {
-        const data = await fetcher(`/api/candidate/tse/${cpf}`);
+        const data = await fetcher(`/api/candidate/tse/${parsedCpf}`);
 
         if (!data) {
           log.warn(
-            `Candidate wasn't able to find their registry on TSE with this CPF '${cpf}'`
+            `Candidate wasn't able to find their registry on TSE with this CPF '${parsedCpf}'`
           );
           setIsLoading(false);
           setNoValidCandidate(true);
@@ -48,7 +50,7 @@ function CpfInput({ input, meta, tseCandidateCpf, setTseCandidate, t }) {
         setIsLoading(false);
       } catch (e) {
         log.error(
-          `Candidate wasn't able to find their registry on TSE with this CPF '${cpf}'`,
+          `Candidate wasn't able to find their registry on TSE with this CPF '${parsedCpf}'`,
           e
         );
         setIsLoading(false);
@@ -62,7 +64,10 @@ function CpfInput({ input, meta, tseCandidateCpf, setTseCandidate, t }) {
   useEffect(() => {
     const shouldValidateCpf = meta.dirty && meta.touched && !meta.active;
 
-    if (shouldValidateCpf && tseCandidateCpf !== cpfValue) {
+    if (
+      shouldValidateCpf &&
+      tseCandidateCpf !== removesSpecialChars(cpfValue)
+    ) {
       searchByCpf(cpfValue);
     }
   }, [meta, cpfValue, searchByCpf, tseCandidateCpf]);
@@ -109,13 +114,12 @@ CpfInput.propTypes = {
 
 function CpfField({ t, setTseCandidate, tseCandidate }) {
   const { t: validationsT } = useTranslation("common");
-  const { required, composeValidators, cpf, length } =
-    validations(validationsT);
+  const { required, composeValidators, length } = validations(validationsT);
 
   const tseCandidateCpf = tseCandidate && tseCandidate["NR_CPF_CANDIDATO"];
 
   return (
-    <Field name="cpf" validate={composeValidators(required, cpf, length(11))}>
+    <Field name="cpf" validate={composeValidators(required, length(14))}>
       {(fieldProps) => (
         <CpfInput
           {...fieldProps}

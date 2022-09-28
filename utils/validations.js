@@ -14,19 +14,9 @@ const validations = (t) => {
     }
     return t("validation.email");
   };
-  const cpf = (value) => {
-    const cpfRegex = new RegExp(
-      /^([0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}|[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2})$/
-    );
-
-    if (cpfRegex.test(value)) {
-      return undefined;
-    }
-    return t("validation.cpf");
-  };
 
   const length = (max) => (value) =>
-    value.length <= max ? undefined : t("validation.length");
+    value.length <= max ? undefined : t("validation.length", { size: max });
 
   const minLength = (min, errorObj) => (value) =>
     Number(value.length) >= Number(min) ? undefined : t(errorObj);
@@ -35,7 +25,6 @@ const validations = (t) => {
     required,
     email,
     composeValidators,
-    cpf,
     length,
     minLength,
   };
