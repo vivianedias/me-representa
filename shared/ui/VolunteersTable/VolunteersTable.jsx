@@ -11,9 +11,14 @@ import { Box, Heading, Link, Text, VStack } from "@chakra-ui/react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
+import { MultiSelect } from "primereact/multiselect";
+
 import StatusBadge, { INVITED, NOT_INVITED } from "./StatusBadge";
 import CopyText from "./CopyText";
 import normalizeName from "../../../utils/normalizeName";
+import states from "/public/data/states.json";
+import politicalParties from "/public/data/politicalParties.json";
+import positions from "/public/data/positions.json";
 
 const DataTableEditDemo = (props) => {
   const { t } = useTranslation("voluntarios", { keyPrefix: "table" });
@@ -81,21 +86,86 @@ const DataTableEditDemo = (props) => {
     else return options.value;
   };
 
+  const stateRowFilterTemplate = (options) => {
+    const statesOptions = states.map((state) => ({
+      value: state,
+      label: state,
+    }));
+
+    return (
+      <MultiSelect
+        value={options.value}
+        options={statesOptions}
+        onChange={(e) => options.filterApplyCallback(e.value)}
+        name={options.field}
+        placeholder={t("filters.placeholder")}
+        maxSelectedLabels={1}
+      />
+    );
+  };
+
+  const positionRowFilterTemplate = (options) => {
+    const availablePositions = positions.map((position) => ({
+      value: position,
+      label: normalizeName(position),
+    }));
+
+    return (
+      <MultiSelect
+        value={options.value}
+        options={availablePositions}
+        onChange={(e) => options.filterApplyCallback(e.value)}
+        name={options.field}
+        placeholder={t("filters.placeholder")}
+        maxSelectedLabels={1}
+      />
+    );
+  };
+
+  const partiesRowFilterTemplate = (options) => {
+    const politicalPartiesOptions = politicalParties.map((party) => ({
+      value: party,
+      label: party,
+    }));
+    return (
+      <MultiSelect
+        value={options.value}
+        options={politicalPartiesOptions}
+        onChange={(e) => options.filterApplyCallback(e.value)}
+        name={options.field}
+        placeholder={t("filters.placeholder")}
+        maxSelectedLabels={1}
+      />
+    );
+  };
+
   const columns = [
     {
       field: "NM_URNA_CANDIDATO",
       header: t("name"),
       width: "15%",
       body: nameBodyTemplate,
+      showFilterMenu: true,
     },
-    { field: "SG_PARTIDO", header: t("partyName"), width: "15%" },
+    {
+      field: "SG_PARTIDO",
+      header: t("partyName"),
+      width: "15%",
+      filterElement: partiesRowFilterTemplate,
+    },
     {
       field: "DS_CARGO",
       header: t("position"),
       width: "15%",
       body: positionBodyTemplate,
+      filterElement: positionRowFilterTemplate,
     },
-    { field: "SG_UF", header: t("state"), width: "10%" },
+    {
+      field: "SG_UF",
+      header: t("state"),
+      width: "10%",
+      filterElement: stateRowFilterTemplate,
+    },
     {
       field: "DS_URL",
       header: t("link"),
@@ -165,51 +235,66 @@ const DataTableEditDemo = (props) => {
           </Text>
         </VStack>
       </Box>
-
-      <DataTable
-        value={data?.candidates}
-        editMode="row"
-        // filterDisplay="row"
-        header={t("tableName")}
-        responsiveLayout="stack"
-        breakpoint={"62em"}
-        paginator
-        paginatorTemplate={template}
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
-        rows={pageSize}
-        first={pageNum - 1}
-        onPage={(e) => setPageNum(e.first + 1)}
-        rowsPerPageOptions={[10, 20, 50]}
-        totalRecords={data?.count}
-        lazy
-        loading={isLoading}
-        onRowEditComplete={onRowEditComplete}
-      >
-        {columns.map(({ field, header, width, body, filter = false }) => {
-          return (
-            <Column
-              key={field}
-              field={field}
-              header={header}
-              // filter={filter}
-              style={{ width }}
-              body={body}
-              editor={cellEditor}
-            />
-          );
-        })}
-        <Column
-          headerStyle={{ width: "5%", textAlign: "center" }}
-          header={t("copyHeader")}
-          bodyStyle={{ textAlign: "center" }}
-          body={CopyText}
-        />
-        <Column
-          rowEditor
-          headerStyle={{ width: "5%", minWidth: "8rem" }}
-          bodyStyle={{ textAlign: "center" }}
-        />
-      </DataTable>
+      <Box>
+        <DataTable
+          value={data?.candidates}
+          editMode="row"
+          filterDisplay="row"
+          header={t("tableName")}
+          responsiveLayout="stack"
+          breakpoint={"62em"}
+          paginator
+          paginatorTemplate={template}
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+          rows={pageSize}
+          first={pageNum - 1}
+          onPage={(e) => setPageNum(e.first + 1)}
+          rowsPerPageOptions={[10, 20, 50]}
+          totalRecords={data?.count}
+          lazy
+          loading={isLoading}
+          onRowEditComplete={onRowEditComplete}
+          emptyMessage={t("notFound")}
+        >
+          {columns.map(
+            ({
+              field,
+              header,
+              width,
+              body,
+              filter = true,
+              showFilterMenu = false,
+              filterElement,
+            }) => {
+              return (
+                <Column
+                  key={field}
+                  field={field}
+                  header={header}
+                  style={{ width }}
+                  body={body}
+                  editor={cellEditor}
+                  filter={filter}
+                  showFilterMenu={showFilterMenu}
+                  filterElement={filterElement}
+                  filterMenuStyle={{ width }}
+                />
+              );
+            }
+          )}
+          <Column
+            headerStyle={{ width: "5%", textAlign: "center" }}
+            header={t("copyHeader")}
+            bodyStyle={{ textAlign: "center" }}
+            body={CopyText}
+          />
+          <Column
+            rowEditor
+            headerStyle={{ width: "5%", minWidth: "8rem" }}
+            bodyStyle={{ textAlign: "center" }}
+          />
+        </DataTable>
+      </Box>
     </Box>
   );
 };

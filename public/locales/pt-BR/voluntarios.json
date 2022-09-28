@@ -18,6 +18,10 @@
     "badges": {
       "invited": "Convidado",
       "notInvited": "Não convidado"
-    }
+    },
+    "filters": {
+      "placeholder": "Todos"
+    },
+    "notFound": "Nenhuma rede social de candidato encontrada."
   }
 }
