@@ -1,10 +1,12 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
-import { useState } from "react";
+import React, { useState } from "react";
+
 import { useTranslation } from "react-i18next";
 import useSWR from "swr";
 import VolunteersTable from "../shared/ui/VolunteersTable/VolunteersTable";
 import fetcher from "../utils/apiClient";
+import { FilterMatchMode } from "primereact/api";
 
 export async function getStaticProps({ locale }) {
   return {
@@ -22,10 +24,18 @@ export async function getStaticProps({ locale }) {
 const Voluntarios = () => {
   const [pageSize, setPageSize] = useState(10);
   const [pageNum, setPageNum] = useState(1);
+  const [filters, setFilters] = useState({
+    NM_URNA_CANDIDATO: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    SG_PARTIDO: { value: null, matchMode: FilterMatchMode.IN },
+    DS_CARGO: { value: null, matchMode: FilterMatchMode.IN },
+    SG_UF: { value: null, matchMode: FilterMatchMode.IN },
+  });
   const { t } = useTranslation("voluntarios");
 
   const { data, mutate, isValidating } = useSWR(
-    `/api/candidates/tse/social?pageSize=${pageSize}&pageNum=${pageNum}`,
+    `/api/candidates/tse/social?pageSize=${pageSize}&pageNum=${pageNum}&filters=${JSON.stringify(
+      filters
+    )}`,
     {
       shouldRetryOnError: false,
     }
@@ -68,6 +78,8 @@ const Voluntarios = () => {
         data={data}
         isLoading={isValidating}
         onRowEditComplete={onRowEditComplete}
+        filters={filters}
+        setFilters={setFilters}
       />
     </>
   );
