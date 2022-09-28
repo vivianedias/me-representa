@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 import NextLink from "next/link";
 
 import { Box, Heading, Link, Text, VStack } from "@chakra-ui/react";
-import { FilterMatchMode } from "primereact/api";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dropdown } from "primereact/dropdown";
@@ -17,10 +16,10 @@ import { MultiSelect } from "primereact/multiselect";
 import StatusBadge, { INVITED, NOT_INVITED } from "./StatusBadge";
 import CopyText from "./CopyText";
 import normalizeName from "../../../utils/normalizeName";
+
 import states from "/public/data/states.json";
 import politicalParties from "/public/data/politicalParties.json";
 import positions from "/public/data/positions.json";
-import { useState } from "react";
 
 const DataTableEditDemo = ({
   pageSize,
@@ -30,14 +29,10 @@ const DataTableEditDemo = ({
   isLoading,
   setPageSize,
   onRowEditComplete,
+  filters,
+  setFilters,
 }) => {
   const { t } = useTranslation("voluntarios", { keyPrefix: "table" });
-  const [filters, setFilters] = useState({
-    NM_URNA_CANDIDATO: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    SG_PARTIDO: { value: null, matchMode: FilterMatchMode.IN },
-    DS_CARGO: { value: null, matchMode: FilterMatchMode.IN },
-    SG_UF: { value: null, matchMode: FilterMatchMode.IN },
-  });
 
   const nameBodyTemplate = (rowData) => {
     return normalizeName(rowData.NM_URNA_CANDIDATO);
@@ -152,6 +147,7 @@ const DataTableEditDemo = ({
       header: t("name"),
       width: "15%",
       body: nameBodyTemplate,
+      filter: false,
     },
     {
       field: "SG_PARTIDO",
