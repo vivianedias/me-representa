@@ -50,6 +50,7 @@ export default function Header() {
   const Links = [
     { name: t("navbar.home"), link: "/" },
     { name: t("navbar.eleitora"), link: "/eleitores" },
+    { name: t("navbar.voluntaria"), link: "/voluntarios" },
   ];
 
   return (
