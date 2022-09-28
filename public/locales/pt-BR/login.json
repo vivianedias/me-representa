@@ -10,7 +10,8 @@
     "placeholder": "endereço de e-mail",
     "verificationEmail": {
       "title": "Cheque seu e-mail!",
-      "body": "Um link mágico para login acaba de ser enviado!",
+      "subtitle": "Um link mágico para login acaba de ser enviado.",
+      "body": "Caso ele não chegue entre 1 e 3 minutos, cheque sua caixa de Spam e a aba Promoções.",
       "error": "Houve um erro ao enviar o link. Tente novamente mais tarde."
     },
     "button": "Continuar com um link de login"
