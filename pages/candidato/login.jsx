@@ -95,7 +95,7 @@ function Login() {
 
       <Container>
         {verificationEmailSent ? (
-          <VStack>
+          <VStack spacing={4}>
             <Heading as="h1" color="pink.500">
               {t("email.verificationEmail.title")}
             </Heading>
