@@ -18,6 +18,7 @@ import {
   VStack,
   HStack,
   Container,
+  Highlight,
 } from "@chakra-ui/react";
 import {
   FaRegTimesCircle,
@@ -93,25 +94,34 @@ function Login() {
       </Head>
 
       <Container>
-        <Heading as="h1" color="pink.500" mb="6">
-          {t("title")}
-        </Heading>
-        <Box minW={{ base: "90%", md: "468px" }}>
+        {verificationEmailSent ? (
+          <VStack>
+            <Heading as="h1" color="pink.500">
+              {t("email.verificationEmail.title")}
+            </Heading>
+            <Heading as="h2" size="md">
+              {t("email.verificationEmail.subtitle")}
+            </Heading>
+            <Text textAlign={"center"} fontSize={"lg"}>
+              <Highlight
+                query={["spam", "promoções"]}
+                styles={{ px: "2", py: "1", rounded: "full", bg: "red.100" }}
+              >
+                {t("email.verificationEmail.body")}
+              </Highlight>
+            </Text>
+          </VStack>
+        ) : (
           <Form
             onSubmit={onSubmit}
             render={({ handleSubmit, submitting, submitError }) => (
               <Box as="form" onSubmit={handleSubmit}>
                 <Stack spacing={4} align="center">
+                  <Heading as="h1" color="pink.500" mb="6">
+                    {t("title")}
+                  </Heading>
                   <EmailField t={t} isDisabled={submitting} hasLabel={false} />
-                  {verificationEmailSent ? (
-                    <VStack>
-                      <Heading as="h2" size="md">
-                        {t("email.verificationEmail.title")}
-                      </Heading>
-                      <Text>{t("email.verificationEmail.body")}</Text>
-                    </VStack>
-                  ) : null}
-                  {!verificationEmailSent && submitError ? (
+                  {submitError ? (
                     <HStack>
                       <CFaRegTimesCircle w={5} h={5} color="red.500" />
                       <Text color="red.600">
@@ -147,7 +157,7 @@ function Login() {
               </Box>
             )}
           />
-        </Box>
+        )}
       </Container>
     </>
   );
