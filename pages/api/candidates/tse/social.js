@@ -9,6 +9,10 @@ export default async function getTseCandidatesSocialMedia(req, res) {
     const pageNum = Number(req.query.pageNum);
     const skips = pageSize * (pageNum - 1);
 
+    const initialFilter = {
+      candidateInviteStatus: "NOT_INVITED",
+    };
+
     const rawFilters = JSON.parse(req.query.filters);
     const populatedFilters = Object.keys(rawFilters).reduce((arr, key) => {
       const filterValue = rawFilters[key]["value"];
@@ -23,7 +27,9 @@ export default async function getTseCandidatesSocialMedia(req, res) {
     }, []);
 
     const finalFilters =
-      populatedFilters.length < 1 ? {} : { $and: populatedFilters };
+      populatedFilters.length < 1
+        ? initialFilter
+        : { $and: [initialFilter, ...populatedFilters] };
 
     const findResult = await db
       .collection("candidates_tse_social_media")
