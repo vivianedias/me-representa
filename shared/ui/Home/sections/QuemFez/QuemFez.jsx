@@ -1,10 +1,7 @@
 import React from "react";
-import Image from "next/image";
-import { Box } from "@chakra-ui/layout";
-import { Flex, Heading } from "@chakra-ui/react";
+import { Box, Flex, Heading } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
-import Mosaic from "/shared/ui/Mosaic/Mosaic";
-import MosaicItem from "/shared/ui/Mosaic/MosaicItem/MosaicItem";
+import ChakraNextImage from "../../../components/ChakraNextImage";
 
 import mulheresNegras from "/public/imgs/home/logo_mulheres_negras.png";
 import blogueirasNegras from "/public/imgs/home/logo_blogueiras_negras.png";
@@ -15,6 +12,7 @@ import homeStyles from "../home.module.css";
 
 const QuemFez = () => {
   const { t } = useTranslation("home", { keyPrefix: "quemFez" });
+
   return (
     <Box as="section" w="100%" paddingBottom={"5rem"}>
       <div>
@@ -27,15 +25,33 @@ const QuemFez = () => {
           {t("titulo")}
         </Heading>
       </div>
-      <Flex flexWrap={"wrap"} justifyContent={"center"}>
-        <Image src={mulheresNegras} alt={t("imgsAlt.mulheresNegras")} />
-        <Image src={blogueirasNegras} alt={t("imgsAlt.blogueirasNegras")} />
-        <Image src={redeFeminista} alt={t("imgsAlt.redeFeminista")} />
-        <Image
+      <Flex flexWrap={"wrap"} gap={8} justify="center">
+        <ChakraNextImage
+          boxSize={[100, 150]}
+          src={mulheresNegras}
+          alt={t("imgsAlt.mulheresNegras")}
+        />
+        <ChakraNextImage
+          height={[100, 150]}
+          width={[200, 300]}
+          src={blogueirasNegras}
+          alt={t("imgsAlt.blogueirasNegras")}
+        />
+        <ChakraNextImage
+          boxSize={[100, 150]}
+          src={redeFeminista}
+          alt={t("imgsAlt.redeFeminista")}
+        />
+        <ChakraNextImage
+          boxSize={[100, 150]}
           src={cidadaniaInteligente}
           alt={t("imgsAlt.cidadaniaInteligente")}
         />
-        <Image src={voteLGBT} alt={t("imgsAlt.voteLGBT")} />
+        <ChakraNextImage
+          boxSize={[100, 150]}
+          src={voteLGBT}
+          alt={t("imgsAlt.voteLGBT")}
+        />
       </Flex>
     </Box>
   );
